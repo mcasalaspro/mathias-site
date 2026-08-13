@@ -8,6 +8,8 @@ Tudo que muda está em `dados/`, em três arquivos de texto simples.
 
 ```
 CONFIGURAR-GIT.bat            prepara o Git na sua máquina (uma vez só)
+ATUALIZAR-ALCANCE.bat         soma views e curtidas dos vídeos
+ferramentas/                  o script que consulta o YouTube
 PUBLICAR.bat                  envia tudo para o GitHub (Windows)
 VER-LOCAL.bat                 abre o site na sua máquina para conferir
 index.html                    o site (não precisa ser editado)
@@ -228,6 +230,18 @@ atualiza sozinho em cerca de um minuto.
 Subiu o rating? Troque `2341` nos dois lugares e salve. A régua, as casas de norma e a barra
 de meta se redesenham sozinhas.
 
+**A meta da temporada fica nesse mesmo bloco `caminho`:**
+
+| Campo | O que é |
+|---|---|
+| `temporada` | O ano que aparece no título ("Meta da temporada 2027") |
+| `metaResumo` | A linha abaixo do título ("4 torneios internacionais · 2 normas restantes") |
+| `metaValor` | Quanto se pretende arrecadar, em reais |
+| `arrecadado` | Quanto já entrou. Começa em `0` |
+| `apoiadores` | Nº de pessoas que já apoiaram. Em `0`, a linha não aparece |
+
+A barra de progresso é a divisão de `arrecadado` por `metaValor` — não precisa calcular nada.
+
 Nova conquista? Acrescente uma linha no topo da lista `conquistas`:
 
 ```json
@@ -290,40 +304,66 @@ largura e salve em JPG com qualidade 80.
 
 ---
 
-## 3. A contagem de visualizações
+## 3. Visualizações e curtidas
 
-A seção **Alcance** mostra o total de views somado de todos os vídeos da lista, arredondado
-**sempre para baixo** — 517.430 vira *"Mais de 510.000"*, para a frase nunca prometer mais do
-que os vídeos entregam.
+A seção **Alcance** mostra a soma das visualizações e das curtidas de todos os vídeos da lista,
+arredondada **sempre para baixo** — 517.430 vira *"Mais de 510.000"*, para a frase nunca
+prometer mais do que os vídeos entregam.
 
-**Caminho rápido:** some as views e as curtidas na mão e escreva em `viewsManual` e
-`curtidasManual`, dentro de `dados/videos.json`. Leva alguns minutos e os dois números aparecem.
+O site tenta três fontes, nesta ordem:
 
-Enquanto os dois forem `0` e não houver chave de API, **os contadores não aparecem no site**.
-Abrindo em `localhost` (com o `VER-LOCAL.bat`), aparece no lugar um aviso lembrando o que
-preencher — esse aviso nunca é mostrado no site publicado.
+1. **`dados/alcance.json`** — gerado por um script. É o caminho recomendado.
+2. **Chave da API dentro do site** (`apiKeyYouTube`, em `dados/videos.json`).
+3. **Números escritos à mão** (`viewsManual` e `curtidasManual`).
 
-**Caminho automático:** crie uma chave da YouTube Data API v3 e cole em `apiKeyYouTube`. A soma
-de visualizações **e de curtidas** passa a ser feita ao vivo a cada visita, e os títulos dos
-vídeos também vêm prontos. Observação: quando o dono de um vídeo esconde as curtidas, aquele
-vídeo entra como zero — o total fica subestimado, nunca inflado.
+### Por que a chave dentro do site costuma falhar
 
-1. Acesse `console.cloud.google.com` e crie um projeto.
-2. Em *APIs e serviços → Biblioteca*, ative a **YouTube Data API v3**.
-3. Em *Credenciais*, crie uma **chave de API**.
-4. Clique na chave. Em *Restrições de aplicativo*, escolha **Referenciadores HTTP** e adicione
-   `mathiascasalaspro.com.br/*` e `*.mathiascasalaspro.com.br/*`.
-5. Em *Restrições de API*, marque só a YouTube Data API v3.
+Se você criou a chave seguindo a recomendação de segurança e marcou **Referenciadores HTTP**
+restritos ao seu domínio, ela **não funciona em `localhost`** nem em nenhum outro endereço.
+E se você deixar a chave sem restrição para funcionar, ela fica exposta no código-fonte de um
+repositório público — qualquer pessoa pode copiar e gastar a sua cota.
 
-A chave fica visível no código-fonte, e isso é normal e seguro para esse uso, desde que você
-faça a restrição do passo 4: ela só lê dados públicos e só funciona a partir do seu domínio.
-A cota gratuita é de 10.000 unidades por dia; cada carregamento da página gasta 1.
+Os dois problemas somem com o script.
 
-**Enquanto não houver chave nem `viewsManual`, o bloco do número simplesmente não aparece.**
-É de propósito: melhor não mostrar número nenhum do que mostrar um número inventado numa
-página que um patrocinador vai conferir.
+### Caminho recomendado: gerar `dados/alcance.json`
 
----
+O script `ferramentas/atualizar-alcance.py` consulta o YouTube, soma tudo e grava o resultado
+num arquivo. **A chave nunca entra no site.**
+
+**Crie a chave assim** (diferente do que eu havia recomendado antes):
+
+1. Em `console.cloud.google.com`, ative a **YouTube Data API v3** e crie uma **chave de API**.
+2. Em *Restrições de aplicativo*, deixe em **Nenhuma**. Chamadas de servidor não enviam
+   referenciador; com a restrição por domínio, o Google recusa com erro 403.
+3. Em *Restrições de API*, marque **somente** a YouTube Data API v3. É isso que limita o
+   estrago caso a chave vaze: ela só serve para ler dados públicos de vídeo.
+
+**Depois, escolha como rodar:**
+
+**A) No seu computador, quando quiser.** Dois cliques em **ATUALIZAR-ALCANCE.bat**. Ele pede a
+chave na primeira vez e oferece guardá-la em `ferramentas/chave.txt` — arquivo que já está no
+`.gitignore` e nunca vai para o GitHub. Depois é só rodar o `PUBLICAR.bat`.
+
+**B) Sozinho, toda madrugada.** Guarde a chave como segredo do repositório e a GitHub Action
+faz o resto:
+
+1. No repositório: *Settings → Secrets and variables → Actions → New repository secret*
+2. **Name:** `YOUTUBE_API_KEY` · **Secret:** a sua chave
+3. Pronto. A rotina roda às 3h17 (horário de Brasília), atualiza o arquivo e publica sozinha.
+   Para rodar na hora, vá em *Actions → Atualizar alcance → Run workflow*.
+
+Com o arquivo no lugar, o site mostra também a data da última atualização, e os títulos dos
+vídeos aparecem no mosaico sem nenhuma requisição extra do visitante.
+
+### Enquanto não houver nenhuma das três fontes
+
+Os contadores simplesmente não aparecem — melhor nada do que número inventado. Abrindo em
+`localhost` com o `VER-LOCAL.bat`, um aviso explica o que falta e, se a chave tiver sido
+recusada, mostra a mensagem exata do Google. Esse aviso nunca aparece no site publicado.
+
+**Sobre as curtidas:** quando o dono de um vídeo esconde as curtidas, aquele vídeo entra como
+zero na soma. O script avisa quantos casos assim existem. O total fica subestimado, nunca
+inflado.
 
 ## 4. O que ainda falta preencher
 
@@ -342,7 +382,8 @@ página que um patrocinador vai conferir.
 - [ ] **Conferir os links de apoio.** Os quatro valores (R$ 10, R$ 50, R$ 100 e Outro) apontam
       para planos do Mercado Pago herdados do site antigo. Confirme qual `plan_id` corresponde a
       qual valor.
-- [ ] **Meta e valor arrecadado da temporada**, em `dados/conteudo.json`.
+- [ ] **Definir a meta da temporada** (`metaValor`) em `dados/conteudo.json`. O valor de
+      R$ 60.000 é uma estimativa minha, não um número seu.
 - [ ] **E-mail de contato**, em `dados/conteudo.json` (o WhatsApp já está ligado ao número
       (11) 99961-0210 em todos os botões).
 - [ ] **PDF do mídia kit** em `assets/midia-kit-mathias.pdf` — o botão já aponta para lá.

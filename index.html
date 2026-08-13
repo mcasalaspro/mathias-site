@@ -694,8 +694,8 @@ p{ margin:0 0 1em; }
 /* ============ VÍDEOS + IMPRENSA ============ */
 .videos{ margin-inline:calc(-1 * var(--fuga)); }
 .videos__grid{
-  display:grid; grid-template-columns:repeat(var(--colsVideo, 6), 1fr);
-  gap:4px;
+  display:grid; grid-template-columns:repeat(var(--colsVideo, 3), 1fr);
+  gap:clamp(6px,.8vw,12px);
 }
 .videos__grid .video{ aspect-ratio:16/9; height:auto; }
 .video{ border-radius:0; border:0; }
@@ -716,9 +716,9 @@ p{ margin:0 0 1em; }
 .video:hover .video__play i{ transform:scale(1.09); }
 .video__play svg{ width:18px; height:18px; color:var(--noite); margin-left:3px; }
 .video__lb{
-  position:absolute; inset:auto 0 0 0; padding:26px 11px 10px; pointer-events:none;
+  position:absolute; inset:auto 0 0 0; padding:48px 18px 16px; pointer-events:none;
   background:linear-gradient(to top, rgba(7,21,35,.96), transparent);
-  font-weight:600; font-size:.76rem; line-height:1.3; color:var(--marfim); overflow:hidden;
+  font-weight:600; font-size:clamp(.86rem,1.1vw,1.02rem); line-height:1.32; color:var(--marfim); overflow:hidden;
   opacity:0; transform:translateY(6px); transition:opacity .2s ease, transform .2s ease;
 }
 .video:hover .video__lb, .video:focus-visible .video__lb{ opacity:1; transform:none; }
@@ -726,8 +726,8 @@ p{ margin:0 0 1em; }
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
 }
 
-.video__play i{ width:34px; height:34px; opacity:.85; transition:opacity .2s ease, transform .25s ease; }
-.video__play svg{ width:13px; height:13px; }
+.video__play i{ width:clamp(46px,4.6vw,68px); height:clamp(46px,4.6vw,68px); opacity:.9; transition:opacity .2s ease, transform .25s ease; }
+.video__play svg{ width:clamp(15px,1.5vw,22px); height:clamp(15px,1.5vw,22px); }
 .video:hover .video__play i{ opacity:1; }
 .video iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
@@ -824,9 +824,7 @@ p{ margin:0 0 1em; }
   .normas{ grid-template-columns:1fr; }
   .rodape__grid{ grid-template-columns:1fr 1fr; }
   .palmares__itens li{ grid-template-columns:1fr; row-gap:8px; }
-  .video__lb{ font-size:.68rem; padding:20px 8px 7px; }
-  .video__play i{ width:28px; height:28px; }
-  .video__play svg{ width:11px; height:11px; }
+  .video__lb{ font-size:.84rem; padding:34px 13px 11px; }
   .palmares__itens .tag{ justify-self:start; }
 }
 @media (max-width:560px){
@@ -1022,8 +1020,8 @@ p{ margin:0 0 1em; }
       <p class="glossario__t"><span data-t="glossario.titulo">Para quem não joga xadrez</span></p>
       <dl class="verbete" data-t="glossario.gm"><dt>Grande Mestre (GM)</dt><dd>O título mais alto do xadrez. O mundo tem cerca de <b>2.000</b>; o Brasil, menos de 20.</dd></dl>
       <dl class="verbete" data-t="glossario.fm"><dt>Mestre FIDE (FM)</dt><dd>Título internacional da federação mundial. Mathias conquistou aos <b>12 anos</b>.</dd></dl>
-      <dl class="verbete" data-t="glossario.rating"><dt>Rating</dt><dd>A pontuação oficial. 2000 é forte, 2200 é elite nacional, <b>2400</b> abre a porta do título de Mestre Internacional.</dd></dl>
-      <dl class="verbete" data-t="glossario.norma"><dt>Norma</dt><dd>Resultado de alto nível num torneio internacional contra titulados. São precisas <b>três</b> para virar Mestre Internacional.</dd></dl>
+      <dl class="verbete" data-t="glossario.rating"><dt>Rating</dt><dd>Medida internacional para estimar a força do jogador. <b>2000</b> é um bom jogador, <b>2200</b> é um excelente jogador e <b>2400</b> já permite a titulação de Mestre Internacional.</dd></dl>
+      <dl class="verbete" data-t="glossario.norma"><dt>Norma</dt><dd>Resultado de alto nível num torneio internacional contra titulados. São precisos <b>três</b> para virar Mestre Internacional.</dd></dl>
     </div>
 
     <ol class="palmares rev" id="palmares">
@@ -1134,7 +1132,7 @@ p{ margin:0 0 1em; }
          CONFERIR: qual plan_id corresponde a qual valor. -->
     <div class="apoios rev" id="apoios">
       <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 10<small>/mês</small></span>
+        <span class="apoio__v">R$ 20<small>/mês</small></span>
         <span class="apoio__d">Toda ajuda conta e se soma às outras</span>
         <span class="apoio__pe">Apoiar →</span>
       </a>
@@ -1303,9 +1301,7 @@ p{ margin:0 0 1em; }
         <ul data-t="plano.itens1">
           <li><b>Logomarca no site</b></li>
           <li class="nao">Menção em posts e vídeos</li>
-          <li class="nao">Logomarca na camisa</li>
-          <li class="nao">Conteúdo exclusivo</li>
-          <li class="nao">Simultânea corporativa</li>
+          <li class="nao">Logomarca na camiseta</li>
         </ul>
       </article>
 
@@ -1314,9 +1310,7 @@ p{ margin:0 0 1em; }
         <ul data-t="plano.itens2">
           <li><b>Logomarca no site</b></li>
           <li><b>Menção em posts e vídeos</b></li>
-          <li><b>Logomarca na manga da camisa</b></li>
-          <li><b>1 conteúdo exclusivo por trimestre</b></li>
-          <li><b>1 simultânea ou palestra por ano</b></li>
+          <li class="nao">Logomarca na camiseta</li>
         </ul>
       </article>
 
@@ -1326,9 +1320,7 @@ p{ margin:0 0 1em; }
         <ul data-t="plano.itens3">
           <li><b>Logomarca no site, em destaque</b></li>
           <li><b>Menção em destaque em posts e vídeos</b></li>
-          <li><b>Logomarca no peito da camisa</b></li>
-          <li><b>1 conteúdo exclusivo por mês</b></li>
-          <li><b>2 simultâneas ou palestras por ano</b></li>
+          <li><b>Logomarca na camiseta</b></li>
         </ul>
       </article>
     </div>
@@ -1839,9 +1831,15 @@ const PADRAO = {
       if (!emPreview){ if (f) f.remove(); return; }
       if (f){
         f.className = "alcance__aviso";
-        f.innerHTML = 'Contadores ocultos: preencha <b>viewsManual</b> e <b>curtidasManual</b> ' +
-          'em <b>dados/videos.json</b>, ou cole uma chave em <b>apiKeyYouTube</b> para a soma ' +
-          'ser automática. Este aviso só aparece na pré-visualização.';
+        f.innerHTML = erroDaApi
+          ? 'A chave do YouTube foi recusada: <b>' + esc(erroDaApi) + '</b><br>' +
+            'Se a mensagem fala em <i>referer</i>, a chave está restrita a um domínio e não ' +
+            'funciona daqui. O caminho recomendado é rodar o <b>ATUALIZAR-ALCANCE.bat</b>, que ' +
+            'gera <b>dados/alcance.json</b> e dispensa a chave dentro do site.'
+          : 'Contadores ocultos. Rode o <b>ATUALIZAR-ALCANCE.bat</b> para gerar ' +
+            '<b>dados/alcance.json</b>, ou preencha <b>viewsManual</b> e <b>curtidasManual</b> ' +
+            'em <b>dados/videos.json</b>.';
+        f.innerHTML += '<br><span style="opacity:.65">Este aviso só aparece na pré-visualização.</span>';
       }
       console.warn("Alcance: sem views nem curtidas. Preencha viewsManual/curtidasManual em dados/videos.json ou informe apiKeyYouTube.");
       return;
@@ -1851,7 +1849,7 @@ const PADRAO = {
   }
 
 
-  async function montaVideos(cfg){
+  async function montaVideos(cfg, pronto){
     const lista = (cfg && cfg.videos || []).map(v=>{
       const bruto = typeof v === "string" ? v : (v.url || v.id);
       const id = idDoYoutube(bruto);
@@ -1862,94 +1860,96 @@ const PADRAO = {
 
     const grade = document.createElement("div");
     grade.className = "videos__grid";
-    lista.forEach((v,i)=>{
-      grade.appendChild(cartao(v, false));
-    });
+    lista.forEach(v=> grade.appendChild(cartao(v, false)));
     const caixa = $("#videos"); caixa.innerHTML = ""; caixa.appendChild(grade);
     $("#miniVideos").textContent = lista.length;
 
-    /* Uma miniatura sozinha na última linha fica com cara de erro.
-       Quando isso acontece, a última passa a ocupar duas colunas. */
-    /* Uma parede de miniaturas passa "são muitos". Para isso a grade não pode
-       terminar com uma linha pela metade: escolhemos o número de colunas que
-       deixa a última linha o mais cheia possível, sem apertar demais a peça. */
+    /* Miniaturas grandes, 3 ou 4 por linha no desktop. Entre as opções da faixa,
+       escolhemos a que deixa a última linha mais cheia. */
     function melhorColunas(n, largura){
-      const alvo = largura < 560 ? 108 : largura < 900 ? 134 : 168;
-      const min  = largura < 560 ? 3 : 4;
-      const max  = Math.max(min, Math.min(largura < 560 ? 5 : 11, Math.floor(largura / 96)));
+      const min = largura < 560 ? 1 : largura < 900 ? 2 : 3;
+      const max = largura < 560 ? 2 : largura < 900 ? 3 : 4;
       let escolha = min, nota = Infinity;
       for (let c = min; c <= max; c++){
-        const peca = largura / c;
-        /* peça absurdamente grande ou pequena está fora de questão */
-        if (peca < alvo * 0.62 || peca > alvo * 1.75) continue;
-        const sobra  = (c - (n % c)) % c;          // casas vazias na última linha
-        const desvio = Math.abs(peca - alvo) / alvo;
-        let p = sobra + desvio * 5;
-        /* com muitos vídeos, uma única fileira não passa a ideia de volume */
-        if (Math.ceil(n / c) < 2 && n >= 10) p += 3;
+        const sobra = (c - (n % c)) % c;
+        const p = sobra - c * 0.15;
         if (p < nota){ nota = p; escolha = c; }
       }
       return escolha;
     }
-
     function ajustaGrade(){
       const largura = grade.clientWidth;
-      if (!largura) return;
-      grade.style.setProperty("--colsVideo", melhorColunas(lista.length, largura));
+      if (largura) grade.style.setProperty("--colsVideo", melhorColunas(lista.length, largura));
     }
-
     ajustaGrade();
     let t; addEventListener("resize", ()=>{ clearTimeout(t); t = setTimeout(ajustaGrade, 120); }, {passive:true});
+
+    function poeTitulo(id, titulo){
+      const b = $('.video[data-yt="'+id+'"]');
+      if (!b || !titulo) return;
+      let lb = b.querySelector(".video__lb");
+      if (!lb){ lb = document.createElement("span"); lb.className = "video__lb"; b.appendChild(lb); }
+      lb.innerHTML = '<span>'+esc(titulo)+'</span>';
+      b.setAttribute("aria-label", T("alcance.assistir","Assistir") + ": " + titulo);
+    }
+
+    /* 1º caminho, o recomendado: dados/alcance.json, gerado por
+       ferramentas/atualizar-alcance.py. A chave fica fora do site e a página
+       não gasta requisição nenhuma. */
+    if (pronto && (pronto.views || pronto.curtidas)){
+      Object.keys(pronto.porVideo || {}).forEach(id=> poeTitulo(id, (pronto.porVideo[id]||{}).titulo));
+      if (pronto.videos) $("#miniVideos").textContent = pronto.videos;
+      const f = $("#viewsFonte");
+      if (f && pronto.atualizadoEm){
+        const d = new Date(pronto.atualizadoEm);
+        if (!isNaN(d)) f.textContent = T("alcance.atualizadoEm","atualizado em") + " " +
+          d.toLocaleDateString(LANG === "pt" ? "pt-BR" : LANG);
+      }
+      mostraViews(pronto.views, pronto.curtidas, true);
+      return;
+    }
 
     const chave = (cfg && cfg.apiKeyYouTube) || PADRAO.alcance.apiKeyYouTube;
     const manual = Number((cfg && cfg.viewsManual) || PADRAO.alcance.viewsManual || 0);
     const manualCurtidas = Number((cfg && cfg.curtidasManual) || 0);
 
     if (!chave){
-      $("#viewsFonte").textContent = T("_meta.fonteManual","contagem informada manualmente");
+      $("#viewsFonte").textContent = T("alcance.fonteManual","contagem informada manualmente");
       mostraViews(manual, manualCurtidas, true);
       return;
     }
+
+    /* 2º caminho: chave no próprio site. Só funciona se ela estiver liberada
+       para o domínio de onde a página foi aberta. */
     try{
-      /* a API aceita 50 ids por chamada */
       let total = 0, curtidas = 0, vistos = 0;
       for (let i = 0; i < lista.length; i += 50){
         const ids = lista.slice(i, i+50).map(v=>v.id).join(",");
         const r = await fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id="+ids+"&key="+chave);
-        const d = await r.json();
+        const d = await r.json().catch(()=>({}));
+        if (!r.ok || d.error) throw new Error((d.error && d.error.message) || ("HTTP " + r.status));
         if (!d.items) throw new Error("resposta sem itens");
         d.items.forEach(v=>{
           vistos++;
-          const n = Number(v.statistics && v.statistics.viewCount || 0);
-          total += n;
+          total += Number(v.statistics && v.statistics.viewCount || 0);
           /* likeCount some quando o dono do vídeo esconde as curtidas. */
           curtidas += Number(v.statistics && v.statistics.likeCount || 0);
-          const b = $('.video[data-yt="'+v.id+'"]');
-          if (!b) return;
-          if (v.snippet && v.snippet.title){
-            let lb = b.querySelector(".video__lb");
-            if (!lb){ lb = document.createElement("span"); lb.className = "video__lb"; b.appendChild(lb); }
-            lb.innerHTML = '<span>'+esc(v.snippet.title)+'</span>';
-            b.setAttribute("aria-label", T("_meta.assistir","Assistir") + ": " + v.snippet.title);
-          }
-          if (n && b.classList.contains("video--grande")){
-            const s = document.createElement("span");
-            s.className = "video__views";
-            s.textContent = n.toLocaleString("pt-BR") + " " + T("_meta.views","views");
-            b.appendChild(s);
-          }
+          if (v.snippet && v.snippet.title) poeTitulo(v.id, v.snippet.title);
         });
       }
       if (!vistos) throw new Error("nenhum vídeo retornado");
+      $("#viewsFonte").textContent = T("alcance.fonteAuto","somadas direto do YouTube a cada visita");
       mostraViews(total, curtidas, true);
     }catch(e){
-      $("#viewsFonte").textContent = T("_meta.fonteManual","contagem informada manualmente");
+      erroDaApi = String((e && e.message) || e);
+      console.warn("YouTube: a chave do site não funcionou —", erroDaApi);
+      $("#viewsFonte").textContent = T("alcance.fonteManual","contagem informada manualmente");
       mostraViews(manual, manualCurtidas, true);
     }
   }
 
   /* ---------------- carga ---------------- */
-  let CONTEUDO = null, VIDEOS = null;
+  let CONTEUDO = null, VIDEOS = null, ALCANCE = null, erroDaApi = "";
 
   function reserva(id){
     const el = document.getElementById(id);
@@ -1972,7 +1972,7 @@ const PADRAO = {
   function redesenha(){
     clonaTicker();
     desenhaConteudo(CONTEUDO);
-    if (VIDEOS) montaVideos(VIDEOS);
+    if (VIDEOS) montaVideos(VIDEOS, ALCANCE);
   }
 
   if (location.protocol === "file:"){
@@ -1994,7 +1994,10 @@ const PADRAO = {
 
     try { VIDEOS = await dados("videos.json"); }
     catch(e){ VIDEOS = Object.assign({}, PADRAO.alcance, reserva("videosReserva")); }
-    montaVideos(VIDEOS);
+    /* alcance.json vem do script ferramentas/atualizar-alcance.py; se não existir,
+       montaVideos cai na chave do navegador e depois nos números manuais. */
+    try { ALCANCE = await dados("alcance.json"); } catch(e){ ALCANCE = null; }
+    montaVideos(VIDEOS, ALCANCE);
 
     dados("galeria.json").then(montaGaleria).catch(()=>{});
     dados("hero.json").then(montaHero).catch(()=>{});

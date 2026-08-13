@@ -10,3 +10,6 @@ desktop.ini
 .idea/
 *.swp
 *~
+
+# chave da API, se voce optar por guardar localmente
+ferramentas/chave.txt

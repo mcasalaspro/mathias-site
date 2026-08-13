@@ -51,8 +51,8 @@
   "glossario.titulo": "For those who don't play chess",
   "glossario.gm": "<dt>Grandmaster (GM)</dt><dd>The highest title in chess. There are around <b>2,000</b> in the world and fewer than 20 in Brazil.</dd>",
   "glossario.fm": "<dt>FIDE Master (FM)</dt><dd>An international title awarded by the world federation. Mathias earned it at <b>12</b>.</dd>",
-  "glossario.rating": "<dt>Rating</dt><dd>The official score. 2000 is strong, 2200 is national elite, <b>2400</b> opens the door to the International Master title.</dd>",
-  "glossario.norma": "<dt>Norm</dt><dd>A high-level result in an international tournament against titled players. <b>Three</b> are required to become an International Master.</dd>",
+  "glossario.rating": "International measure of a player's strength. <b>2000</b> is a good player, <b>2200</b> is an excellent one, and <b>2400</b> already allows the International Master title.",
+  "glossario.norma": "A high-level result in an international tournament against titled players. <b>Three</b> are required to become an International Master.",
   "caminho.h2": "To keep moving forward, he needs opportunity and investment.<br> <em>And you can help.</em>",
   "caminho.p": "To become an International Master you need to reach <strong>2400 FIDE rating</strong> and earn <strong>3 IM norms</strong>: high-level results in tournaments with titled players from different federations. He already has the talent and the training. What is missing is being seated at the right boards, and that costs money.",
   "escada.titulo": "FIDE rating · where he stands",
@@ -83,9 +83,9 @@
   "plano.patrocinador": "Sponsor",
   "plano.oficial": "Official Sponsor",
   "plano.exclusividade": "Category exclusivity",
-  "plano.itens1": "<li><b>Logo on the website</b></li> <li class=\"nao\">Mentions in posts and videos</li> <li class=\"nao\">Logo on the shirt</li> <li class=\"nao\">Exclusive content</li> <li class=\"nao\">Corporate simul</li>",
-  "plano.itens2": "<li><b>Logo on the website</b></li> <li><b>Mentions in posts and videos</b></li> <li><b>Logo on the shirt sleeve</b></li> <li><b>1 piece of exclusive content per quarter</b></li> <li><b>1 simul or talk per year</b></li>",
-  "plano.itens3": "<li><b>Featured logo on the website</b></li> <li><b>Featured mentions in posts and videos</b></li> <li><b>Logo on the chest of the shirt</b></li> <li><b>1 piece of exclusive content per month</b></li> <li><b>2 simuls or talks per year</b></li>",
+  "plano.itens1": "<li><b>Logo on the website</b></li><li class=\"nao\">Mentions in posts and videos</li><li class=\"nao\">Logo on the jersey</li>",
+  "plano.itens2": "<li><b>Logo on the website</b></li><li><b>Mentions in posts and videos</b></li><li class=\"nao\">Logo on the jersey</li>",
+  "plano.itens3": "<li><b>Featured logo on the website</b></li><li><b>Featured mentions in posts and videos</b></li><li><b>Logo on the jersey</b></li>",
   "planos.cta": "Get in touch",
   "planos.kit": "Download the media kit",
   "patro.contato": "Commercial enquiries with the athlete's legal guardians: <a class=\"link-zap\" href=\"https://wa.me/5511999610210?text=Hello!%20I%20would%20like%20to%20talk%20about%20sponsoring%20Mathias.\" target=\"_blank\" rel=\"noopener\">WhatsApp +55 11 99961-0210</a>.",
@@ -103,5 +103,8 @@
   "palmares.anos": "years old",
   "alcance.subCurtidas": "likes",
   "btn.contato": "Get in touch",
-  "btn.apoiarAgora": "Support now"
+  "btn.apoiarAgora": "Support now",
+  "alcance.atualizadoEm": "updated on",
+  "alcance.fonteManual": "manually entered count",
+  "alcance.assistir": "Watch"
 }

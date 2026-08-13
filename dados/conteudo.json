@@ -62,7 +62,7 @@
     "temporada": "2027",
     "metaResumo": "4 torneios internacionais · 2 normas restantes",
     "metaValor": 60000,
-    "arrecadado": 12500,
+    "arrecadado": 0,
     "apoiadores": 0,
     "metaResumo_en": "4 international tournaments · 2 norms to go",
     "metaResumo_it": "4 tornei internazionali · 2 norme da ottenere"
@@ -284,7 +284,7 @@
   "_apoios": "CONFERIR: cada url é um plano de assinatura do Mercado Pago. Confirme qual plan_id corresponde a qual valor antes de publicar.",
   "apoios": [
     {
-      "valor": "R$ 10",
+      "valor": "R$ 20",
       "descricao": "Toda ajuda conta e se soma às outras",
       "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc",
       "descricao_en": "Every bit helps and adds to the rest",

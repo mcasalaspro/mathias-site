@@ -51,8 +51,8 @@
   "glossario.titulo": "Per chi non gioca a scacchi",
   "glossario.gm": "<dt>Grande Maestro (GM)</dt><dd>Il titolo più alto negli scacchi. Nel mondo ce ne sono circa <b>2.000</b>, in Brasile meno di 20.</dd>",
   "glossario.fm": "<dt>Maestro FIDE (FM)</dt><dd>Titolo internazionale della federazione mondiale. Mathias lo ha ottenuto a <b>12 anni</b>.</dd>",
-  "glossario.rating": "<dt>Rating</dt><dd>Il punteggio ufficiale. 2000 è forte, 2200 è élite nazionale, <b>2400</b> apre la porta al titolo di Maestro Internazionale.</dd>",
-  "glossario.norma": "<dt>Norma</dt><dd>Risultato di alto livello in un torneo internazionale contro giocatori titolati. Ne servono <b>tre</b> per diventare Maestro Internazionale.</dd>",
+  "glossario.rating": "Misura internazionale della forza di un giocatore. <b>2000</b> è un buon giocatore, <b>2200</b> è un giocatore eccellente e <b>2400</b> consente già il titolo di Maestro Internazionale.",
+  "glossario.norma": "Risultato di alto livello in un torneo internazionale contro giocatori titolati. Ne servono <b>tre</b> per diventare Maestro Internazionale.",
   "caminho.h2": "Per continuare a crescere gli servono opportunità e investimento.<br> <em>E tu puoi aiutare.</em>",
   "caminho.p": "Per diventare Maestro Internazionale bisogna raggiungere <strong>2400 punti Elo FIDE</strong> e ottenere <strong>3 norme di MI</strong>: risultati di alto livello in tornei con giocatori titolati di federazioni diverse. Talento e allenamento ce li ha già. Quello che manca è sedersi alle scacchiere giuste, e questo ha un costo.",
   "escada.titulo": "Rating FIDE · a che punto è",
@@ -83,9 +83,9 @@
   "plano.patrocinador": "Sponsor",
   "plano.oficial": "Sponsor Ufficiale",
   "plano.exclusividade": "Esclusiva di settore",
-  "plano.itens1": "<li><b>Logo sul sito</b></li> <li class=\"nao\">Menzioni in post e video</li> <li class=\"nao\">Logo sulla maglia</li> <li class=\"nao\">Contenuti esclusivi</li> <li class=\"nao\">Simultanea aziendale</li>",
-  "plano.itens2": "<li><b>Logo sul sito</b></li> <li><b>Menzioni in post e video</b></li> <li><b>Logo sulla manica della maglia</b></li> <li><b>1 contenuto esclusivo a trimestre</b></li> <li><b>1 simultanea o conferenza all'anno</b></li>",
-  "plano.itens3": "<li><b>Logo in evidenza sul sito</b></li> <li><b>Menzioni in evidenza in post e video</b></li> <li><b>Logo sul petto della maglia</b></li> <li><b>1 contenuto esclusivo al mese</b></li> <li><b>2 simultanee o conferenze all'anno</b></li>",
+  "plano.itens1": "<li><b>Logo sul sito</b></li><li class=\"nao\">Menzioni in post e video</li><li class=\"nao\">Logo sulla maglia</li>",
+  "plano.itens2": "<li><b>Logo sul sito</b></li><li><b>Menzioni in post e video</b></li><li class=\"nao\">Logo sulla maglia</li>",
+  "plano.itens3": "<li><b>Logo in evidenza sul sito</b></li><li><b>Menzioni in evidenza in post e video</b></li><li><b>Logo sulla maglia</b></li>",
   "planos.cta": "Mettiti in contatto",
   "planos.kit": "Scarica il media kit",
   "patro.contato": "Contatti commerciali con i tutori legali dell'atleta: <a class=\"link-zap\" href=\"https://wa.me/5511999610210?text=Salve!%20Vorrei%20parlare%20della%20sponsorizzazione%20di%20Mathias.\" target=\"_blank\" rel=\"noopener\">WhatsApp +55 11 99961-0210</a>.",
@@ -103,5 +103,8 @@
   "palmares.anos": "anni",
   "alcance.subCurtidas": "mi piace",
   "btn.contato": "Contattaci",
-  "btn.apoiarAgora": "Sostieni ora"
+  "btn.apoiarAgora": "Sostieni ora",
+  "alcance.atualizadoEm": "aggiornato il",
+  "alcance.fonteManual": "conteggio inserito a mano",
+  "alcance.assistir": "Guarda"
 }
