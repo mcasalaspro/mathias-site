@@ -296,11 +296,17 @@ A seção **Alcance** mostra o total de views somado de todos os vídeos da list
 **sempre para baixo** — 517.430 vira *"Mais de 510.000"*, para a frase nunca prometer mais do
 que os vídeos entregam.
 
-**Caminho rápido:** some as views na mão e escreva em `viewsManual`, dentro de
-`dados/videos.json`. Leva dois minutos e o número aparece.
+**Caminho rápido:** some as views e as curtidas na mão e escreva em `viewsManual` e
+`curtidasManual`, dentro de `dados/videos.json`. Leva alguns minutos e os dois números aparecem.
 
-**Caminho automático:** crie uma chave da YouTube Data API v3 e cole em `apiKeyYouTube`. A
-soma passa a ser feita ao vivo a cada visita, e os títulos dos vídeos também vêm prontos.
+Enquanto os dois forem `0` e não houver chave de API, **os contadores não aparecem no site**.
+Abrindo em `localhost` (com o `VER-LOCAL.bat`), aparece no lugar um aviso lembrando o que
+preencher — esse aviso nunca é mostrado no site publicado.
+
+**Caminho automático:** crie uma chave da YouTube Data API v3 e cole em `apiKeyYouTube`. A soma
+de visualizações **e de curtidas** passa a ser feita ao vivo a cada visita, e os títulos dos
+vídeos também vêm prontos. Observação: quando o dono de um vídeo esconde as curtidas, aquele
+vídeo entra como zero — o total fica subestimado, nunca inflado.
 
 1. Acesse `console.cloud.google.com` e crie um projeto.
 2. Em *APIs e serviços → Biblioteca*, ative a **YouTube Data API v3**.

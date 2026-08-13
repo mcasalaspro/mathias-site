@@ -651,6 +651,9 @@ p{ margin:0 0 1em; }
   font-size:clamp(1.15rem,2vw,1.6rem); color:var(--marfim); margin:0 0 22px;
 }
 .alcance__metricas{ display:flex; flex-wrap:wrap; gap:clamp(26px,5vw,64px); }
+/* Sem contadores, a coluna da esquerda ficaria vazia: a seção vira uma coluna só. */
+.alcance__topo--simples{ grid-template-columns:1fr; }
+.alcance__topo--simples > div:first-child{ order:2; }
 .alcance__num{
   font-family:var(--display); font-weight:800; line-height:.86; letter-spacing:-.04em;
   font-size:clamp(2.6rem,6.4vw,5rem); color:var(--ouro); margin:6px 0 8px;
@@ -660,6 +663,12 @@ p{ margin:0 0 1em; }
   font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase;
   color:var(--nevoa); margin:20px 0 0;
 }
+.alcance__aviso{
+  margin:0 0 6px; padding:16px 20px; max-width:70ch;
+  border:1px dashed rgba(201,162,75,.5); border-radius:var(--raio);
+  background:rgba(201,162,75,.07); color:var(--marfim); font-size:.9rem; line-height:1.55;
+}
+.alcance__aviso b{ color:var(--ouro); font-weight:600; }
 .alcance__mais{ font-family:var(--mono); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--nevoa); margin:0; }
 .alcance__sub{
   font-family:var(--mono); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
@@ -671,12 +680,7 @@ p{ margin:0 0 1em; }
 .alcance__mini b{ display:block; font-family:var(--display); font-weight:800; font-size:1.5rem; letter-spacing:-.02em; color:var(--marfim); }
 .alcance__mini span{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--nevoa); }
 
-.video--grande .video__play i{ width:78px; height:78px; }
-.video--grande .video__play svg{ width:25px; height:25px; }
-.video--grande .video__lb{
-  padding:56px 22px 20px; font-size:clamp(1rem,1.7vw,1.32rem);
-  font-family:var(--display); font-weight:800; letter-spacing:-.015em;
-}
+
 .video__views{
   position:absolute; top:14px; left:14px; z-index:2; pointer-events:none;
   font-family:var(--mono); font-size:.64rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
@@ -690,21 +694,18 @@ p{ margin:0 0 1em; }
 /* ============ VÍDEOS + IMPRENSA ============ */
 .videos{ margin-inline:calc(-1 * var(--fuga)); }
 .videos__grid{
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));
-  grid-auto-rows:var(--linhaVideo, 112px); grid-auto-flow:row dense; gap:6px;
+  display:grid; grid-template-columns:repeat(var(--colsVideo, 6), 1fr);
+  gap:4px;
 }
-.videos__grid .video{ aspect-ratio:auto; height:100%; }
-.videos__grid .video--grande{ grid-column:span 2; grid-row:span 2; }
-.videos__grid .video--larga{ grid-column:span 2; }
-.videos__grid .video--alta{ grid-row:span 2; }
-.video{ border-radius:0; border-color:rgba(201,162,75,.12); }
+.videos__grid .video{ aspect-ratio:16/9; height:auto; }
+.video{ border-radius:0; border:0; }
 .video{
   position:relative; display:block; width:100%; padding:0; border:1px solid var(--linha-esc);
   border-radius:var(--raio); overflow:hidden; cursor:pointer; background:var(--tabuleiro);
   aspect-ratio:16/9; color:inherit; font:inherit; text-align:left;
 }
-.video img{ width:100%; height:100%; object-fit:cover; opacity:.72; transition:opacity .25s ease, transform .5s ease; }
-.video:hover img{ opacity:.92; transform:scale(1.03); }
+.video img{ width:100%; height:100%; object-fit:cover; opacity:.82; transition:opacity .25s ease, transform .5s ease; }
+.video:hover img{ opacity:1; transform:scale(1.05); }
 .video__play{
   position:absolute; inset:0; display:grid; place-items:center; pointer-events:none;
 }
@@ -715,16 +716,19 @@ p{ margin:0 0 1em; }
 .video:hover .video__play i{ transform:scale(1.09); }
 .video__play svg{ width:18px; height:18px; color:var(--noite); margin-left:3px; }
 .video__lb{
-  position:absolute; left:0; right:0; bottom:0; padding:30px 13px 12px; pointer-events:none;
-  background:linear-gradient(to top, rgba(7,21,35,.95), transparent);
-  font-weight:600; font-size:.82rem; line-height:1.32; color:var(--marfim); overflow:hidden;
+  position:absolute; inset:auto 0 0 0; padding:26px 11px 10px; pointer-events:none;
+  background:linear-gradient(to top, rgba(7,21,35,.96), transparent);
+  font-weight:600; font-size:.76rem; line-height:1.3; color:var(--marfim); overflow:hidden;
+  opacity:0; transform:translateY(6px); transition:opacity .2s ease, transform .2s ease;
 }
+.video:hover .video__lb, .video:focus-visible .video__lb{ opacity:1; transform:none; }
 .video__lb span{
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
 }
-.video--grande .video__lb span{ -webkit-line-clamp:3; }
-.video__play i{ width:40px; height:40px; }
-.video__play svg{ width:15px; height:15px; }
+
+.video__play i{ width:34px; height:34px; opacity:.85; transition:opacity .2s ease, transform .25s ease; }
+.video__play svg{ width:13px; height:13px; }
+.video:hover .video__play i{ opacity:1; }
 .video iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
 .midia{ margin-top:clamp(58px,7vw,86px); display:grid; grid-template-columns:.62fr 1.38fr; gap:clamp(26px,4vw,58px); align-items:start; }
@@ -820,9 +824,9 @@ p{ margin:0 0 1em; }
   .normas{ grid-template-columns:1fr; }
   .rodape__grid{ grid-template-columns:1fr 1fr; }
   .palmares__itens li{ grid-template-columns:1fr; row-gap:8px; }
-  .videos__grid{ grid-template-columns:repeat(auto-fill,minmax(min(148px,100%),1fr)); gap:7px; }
-  .video__lb{ font-size:.72rem; padding:24px 10px 9px; }
-  .video__play i{ width:36px; height:36px; }
+  .video__lb{ font-size:.68rem; padding:20px 8px 7px; }
+  .video__play i{ width:28px; height:28px; }
+  .video__play svg{ width:11px; height:11px; }
   .palmares__itens .tag{ justify-self:start; }
 }
 @media (max-width:560px){
@@ -1819,10 +1823,31 @@ const PADRAO = {
     el.dataset.conta = v;
     obsConta.observe(el);
   }
+  /* Em produção, sem dado o bloco some — melhor nada do que número inventado.
+     Na sua máquina (localhost ou arquivo aberto direto), aparece um aviso
+     explicando o que preencher, para não parecer que a seção quebrou. */
+  const emPreview = location.hostname === "localhost" || location.hostname === "127.0.0.1"
+                 || location.protocol === "file:";
+
   function mostraViews(views, curtidas, aproximado){
+    if (!views && !curtidas){
+      const f = $("#viewsFonte");
+      const m = $(".alcance__metricas");
+      const topo = $(".alcance__topo");
+      if (m) m.remove();
+      if (topo) topo.classList.add("alcance__topo--simples");
+      if (!emPreview){ if (f) f.remove(); return; }
+      if (f){
+        f.className = "alcance__aviso";
+        f.innerHTML = 'Contadores ocultos: preencha <b>viewsManual</b> e <b>curtidasManual</b> ' +
+          'em <b>dados/videos.json</b>, ou cole uma chave em <b>apiKeyYouTube</b> para a soma ' +
+          'ser automática. Este aviso só aparece na pré-visualização.';
+      }
+      console.warn("Alcance: sem views nem curtidas. Preencha viewsManual/curtidasManual em dados/videos.json ou informe apiKeyYouTube.");
+      return;
+    }
     mostraMetrica("#blocoViews", "#viewsNum", views, aproximado);
     mostraMetrica("#blocoCurtidas", "#curtidasNum", curtidas, aproximado);
-    if (!views && !curtidas){ const f = $("#viewsFonte"); if (f) f.remove(); }
   }
 
 
@@ -1838,42 +1863,41 @@ const PADRAO = {
     const grade = document.createElement("div");
     grade.className = "videos__grid";
     lista.forEach((v,i)=>{
-      const c = cartao(v, i === 0 && lista.length >= 5);
-      /* Peças de formatos diferentes quebram a monotonia da grade. */
-      if (i > 0 && i < lista.length - 4 && lista.length >= 10){
-        if (i % 7 === 0) c.classList.add("video--larga");
-        else if (i % 5 === 0) c.classList.add("video--alta");
-      }
-      grade.appendChild(c);
+      grade.appendChild(cartao(v, false));
     });
     const caixa = $("#videos"); caixa.innerHTML = ""; caixa.appendChild(grade);
     $("#miniVideos").textContent = lista.length;
 
     /* Uma miniatura sozinha na última linha fica com cara de erro.
        Quando isso acontece, a última passa a ocupar duas colunas. */
-    function ajustaGrade(){
-      const filhos = Array.from(grade.children);
-      const colunas = getComputedStyle(grade).gridTemplateColumns.split(" ").filter(Boolean);
-      const cols = colunas.length;
-      if (!cols) return;
-
-      /* Altura da linha = 16:9 de uma coluna. Sem isso, peças de tamanhos
-         diferentes desalinham e a grade fica cheia de buracos. */
-      const larguraCol = parseFloat(colunas[0]) || (grade.clientWidth / cols);
-      grade.style.setProperty("--linhaVideo", Math.round(larguraCol * 9 / 16) + "px");
-
-      /* Uma miniatura sozinha na última linha fica com cara de erro. */
-      const ultimo = filhos[filhos.length-1];
-      if (!ultimo || ultimo.classList.contains("video--grande")) return;
-      ultimo.style.gridColumn = "";
-      if (cols < 3) return;
-      let ocupadas = 0;
-      filhos.forEach(f=>{
-        ocupadas += f.classList.contains("video--grande") ? 4
-                  : f.classList.contains("video--larga")  ? 2 : 1;
-      });
-      if (ocupadas % cols === 1) ultimo.style.gridColumn = "span 2";
+    /* Uma parede de miniaturas passa "são muitos". Para isso a grade não pode
+       terminar com uma linha pela metade: escolhemos o número de colunas que
+       deixa a última linha o mais cheia possível, sem apertar demais a peça. */
+    function melhorColunas(n, largura){
+      const alvo = largura < 560 ? 108 : largura < 900 ? 134 : 168;
+      const min  = largura < 560 ? 3 : 4;
+      const max  = Math.max(min, Math.min(largura < 560 ? 5 : 11, Math.floor(largura / 96)));
+      let escolha = min, nota = Infinity;
+      for (let c = min; c <= max; c++){
+        const peca = largura / c;
+        /* peça absurdamente grande ou pequena está fora de questão */
+        if (peca < alvo * 0.62 || peca > alvo * 1.75) continue;
+        const sobra  = (c - (n % c)) % c;          // casas vazias na última linha
+        const desvio = Math.abs(peca - alvo) / alvo;
+        let p = sobra + desvio * 5;
+        /* com muitos vídeos, uma única fileira não passa a ideia de volume */
+        if (Math.ceil(n / c) < 2 && n >= 10) p += 3;
+        if (p < nota){ nota = p; escolha = c; }
+      }
+      return escolha;
     }
+
+    function ajustaGrade(){
+      const largura = grade.clientWidth;
+      if (!largura) return;
+      grade.style.setProperty("--colsVideo", melhorColunas(lista.length, largura));
+    }
+
     ajustaGrade();
     let t; addEventListener("resize", ()=>{ clearTimeout(t); t = setTimeout(ajustaGrade, 120); }, {passive:true});
 
