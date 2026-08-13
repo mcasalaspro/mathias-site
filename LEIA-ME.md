@@ -14,6 +14,8 @@ index.html                    o site (não precisa ser editado)
 dados/conteudo.json           números, conquistas, imprensa, contato
 dados/videos.json             lista de vídeos do YouTube
 dados/galeria.json            legendas das fotos (gerado sozinho)
+dados/hero.json               imagens do topo (gerado sozinho)
+dados/idiomas/                pt.json, en.json, it.json
 assets/                       imagens fixas
 assets/hero/                  imagens de fundo da primeira dobra
 assets/galeria/               é só jogar fotos aqui
@@ -319,6 +321,10 @@ página que um patrocinador vai conferir.
 
 ## 4. O que ainda falta preencher
 
+- [ ] **Confirmar o ano de nascimento.** O campo `anoNascimento` em `dados/conteudo.json`
+      está como **2012** e é o que calcula a idade em cada ano da linha do tempo
+      (2026 · 14 anos, 2025 · 13 anos, e assim por diante). Se estiver errado, todas as
+      idades saem erradas de uma vez.
 - [ ] **Confirmar a norma de MI de Leça.** Ela aparece no hero, nos números, na história, nas
       conquistas e na seção do caminho. Se ainda não foi homologada, é a primeira coisa a ajustar.
 - [ ] **Conferir os quatro selos de recorde:** três "Inédito no Brasil" (primeiro GM aos 9 em
@@ -375,8 +381,45 @@ que uma edição apareça rápido mesmo com a Cloudflare cacheando na frente.
 
 ---
 
-## 7. Versões em outros idiomas
+## 7. Os três idiomas
 
-O rodapé já tem `PT / EN / IT` apontando para `/mathias-chess` e `/mathias-scacchi`, como no
-site atual. Para traduzir, duplique `index.html` e os arquivos de `dados/`, traduza os textos e
-troque o `lang` do `<html>`.
+O site é trilíngue: português, inglês e italiano. As bandeiras ficam no topo, ao lado do menu,
+e os links `PT / EN / IT` do rodapé fazem a mesma coisa. Não existem três páginas — é a mesma
+página trocando os textos.
+
+**Qual idioma abre primeiro:** o `?lang=` da URL, se houver; senão o último escolhido pela
+pessoa; senão o idioma do navegador dela; senão português. Cada troca grava `?lang=xx` no
+endereço, então dá para mandar `mathiascasalaspro.com.br/?lang=it` direto para um contato
+italiano.
+
+### Onde ficam os textos
+
+**Interface** (menus, títulos, botões, textos fixos): `dados/idiomas/pt.json`, `en.json` e
+`it.json`. As três chaves são idênticas nos três arquivos. Corrigiu uma frase em português?
+Edite `pt.json`. **Se uma chave faltar em `en.json` ou `it.json`, o site usa a versão em
+português** — nada quebra, só não fica traduzido.
+
+**Conteúdo** (conquistas, produtos, números): fica em `dados/conteudo.json`, com o campo
+principal em português e sufixos `_en` e `_it` para as traduções:
+
+```json
+{
+  "ano": "2026",
+  "texto": "5º lugar no geral do Leça Chess Open...",
+  "texto_en": "5th overall at the Leça Chess Open...",
+  "texto_it": "5º posto assoluto al Leça Chess Open..."
+}
+```
+
+Isso vale para `texto`, `local`, `selo`, `rotulo`, `descricao`, `nome` e `grupo`. **Adicionar
+uma conquista nova só exige o português.** As traduções podem vir depois, sem quebrar nada:
+enquanto não existirem, aquele item aparece em português nas três versões.
+
+**Títulos de matérias na imprensa não são traduzidos** — são manchetes reais e devem ficar
+como foram publicadas. Só o nome do grupo ("Olimpíada Mundial Sub-16") é traduzido.
+
+### Antes de mexer
+
+Os três arquivos de idioma aceitam HTML dentro dos textos: é assim que `<strong>` e `<em>`
+funcionam no meio das frases. Se apagar uma tag de abertura sem apagar a de fechamento, aquele
+trecho fica torto — mas o resto da página continua de pé.

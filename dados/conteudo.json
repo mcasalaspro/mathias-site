@@ -4,19 +4,33 @@
   "numeros": [
     {
       "valor": 2341,
-      "rotulo": "Rating FIDE"
+      "rotulo": "Rating FIDE",
+      "rotulo_en": "FIDE rating",
+      "rotulo_it": "Rating FIDE"
     },
     {
-      "valor": 489,
-      "rotulo": "Partidas clássicas"
+      "valor": 529,
+      "rotulo": "Partidas clássicas",
+      "rotulo_en": "Classical games",
+      "rotulo_it": "Partite classiche"
     },
     {
-      "valor": 311,
-      "rotulo": "Torneios disputados"
+      "valor": 316,
+      "rotulo": "Torneios disputados",
+      "rotulo_en": "Tournaments played",
+      "rotulo_it": "Tornei disputati"
+    },
+    {
+      "valor": 162,
+      "rotulo": "Eventos presenciais",
+      "rotulo_en": "In-person events",
+      "rotulo_it": "Eventi in presenza"
     },
     {
       "valor": 1,
-      "rotulo": "Norma de MI conquistada"
+      "rotulo": "Norma de MI conquistada",
+      "rotulo_en": "IM norm achieved",
+      "rotulo_it": "Norma di MI ottenuta"
     }
   ],
   "caminho": {
@@ -49,78 +63,131 @@
     "metaResumo": "4 torneios internacionais · 2 normas restantes",
     "metaValor": 60000,
     "arrecadado": 12500,
-    "apoiadores": 0
+    "apoiadores": 0,
+    "metaResumo_en": "4 international tournaments · 2 norms to go",
+    "metaResumo_it": "4 tornei internazionali · 2 norme da ottenere"
   },
   "conquistas": [
     {
       "ano": "2026",
-      "texto": "5º lugar no geral do Leça Chess Open, empatado em pontos com o campeão e com performance de 2554 — o resultado que fechou a primeira norma de Mestre Internacional",
+      "texto": "5º lugar no geral do Leça Chess Open, empatado em pontos com o campeão e com performance de 2553 — o resultado que fechou a primeira norma de Mestre Internacional",
       "local": "Portugal",
       "selo": "Norma de MI",
-      "tipo": "fide"
+      "tipo": "fide",
+      "texto_en": "5th overall at the Leça Chess Open, level on points with the winner and with a 2553 performance — the result that secured his first International Master norm",
+      "texto_it": "5º posto assoluto al Leça Chess Open, a pari punti con il vincitore e con una performance di 2553 — il risultato che gli è valso la prima norma di Maestro Internazionale",
+      "local_en": "Portugal",
+      "local_it": "Portogallo",
+      "selo_en": "IM norm",
+      "selo_it": "Norma di MI"
     },
     {
       "ano": "2026",
-      "texto": "Campeão do Blitz de Abertura do Brazil Chess Series — Floripa, entre 114 participantes"
+      "texto": "Campeão do Blitz de Abertura do Brazil Chess Series — Floripa, entre 114 participantes",
+      "url": "https://s1.chess-results.com/tnr1331756.aspx?lan=10&art=1&rd=9&fed=BRA&turdet=YES&flag=30&SNode=S0",
+      "texto_en": "Winner of the Brazil Chess Series opening blitz in Florianópolis, among 114 players",
+      "texto_it": "Vincitore del blitz d'apertura della Brazil Chess Series a Florianópolis, tra 114 partecipanti"
     },
     {
       "ano": "2025",
       "texto": "Mesa 1 da seleção brasileira Sub-16 na Olimpíada Mundial",
       "local": "Barranquilla, Colômbia",
       "selo": "Destaque!",
-      "tipo": "inedito"
+      "tipo": "inedito",
+      "texto_en": "Board 1 for the Brazilian U16 team at the World Youth Olympiad",
+      "texto_it": "Prima scacchiera della nazionale brasiliana U16 alle Olimpiadi giovanili",
+      "local_en": "Barranquilla, Colombia",
+      "local_it": "Barranquilla, Colombia",
+      "selo_en": "Highlight!",
+      "selo_it": "In evidenza!"
     },
     {
       "ano": "2025",
-      "texto": "Campeão invicto do Manaus Chess Open, com 7 pontos em 9 e performance de 2492"
+      "texto": "Campeão invicto do Manaus Chess Open — 7 pontos em 9 e performance de 2492. No desempate, finalizou em 5º lugar",
+      "url": "https://s1.chess-results.com/tnr1104644.aspx?lan=10&art=1&rd=9&turdet=YES&flag=30&SNode=S0",
+      "texto_en": "Unbeaten at the Manaus Chess Open — 7 points out of 9 and a 2492 performance. He placed 5th on tiebreak",
+      "texto_it": "Imbattuto al Manaus Chess Open — 7 punti su 9 e performance di 2492. Per spareggio ha chiuso 5º"
     },
     {
       "ano": "2025",
       "texto": "Convidado a representar o xadrez na COB Expo",
-      "local": "São Paulo"
+      "local": "São Paulo",
+      "url": "https://cobexpo.com.br/",
+      "texto_en": "Invited to represent chess at COB Expo, one of the largest sports fairs in Latin America",
+      "texto_it": "Invitato a rappresentare gli scacchi alla COB Expo, una delle maggiori fiere sportive dell'America Latina",
+      "local_en": "São Paulo, Brazil",
+      "local_it": "São Paulo, Brasile"
     },
     {
       "ano": "2024",
       "texto": "Mestre FIDE (FM) aos 12 anos, atingindo 2341 de rating",
       "selo": "Título FIDE",
-      "tipo": "fide"
+      "tipo": "fide",
+      "texto_en": "FIDE Master (FM) at 12, reaching a 2341 rating",
+      "texto_it": "Maestro FIDE (FM) a 12 anni, raggiungendo 2341 punti Elo",
+      "selo_en": "FIDE title",
+      "selo_it": "Titolo FIDE"
     },
     {
       "ano": "2024",
       "texto": "Derrotou um Grande Mestre em partida clássica oficial aos 11 anos, no III Rio Chess Open",
       "selo": "Destaque!",
-      "tipo": "inedito"
+      "tipo": "inedito",
+      "texto_en": "Beat a Grandmaster in an official classical game at 11, at the III Rio Chess Open",
+      "texto_it": "Ha battuto un Grande Maestro in una partita ufficiale a cadenza lunga a 11 anni, al III Rio Chess Open",
+      "selo_en": "Highlight!",
+      "selo_it": "In evidenza!"
     },
     {
       "ano": "2024",
       "texto": "Derrotou um jogador de 2550+ de rating em clássica e levou o 2º prêmio de melhor partida do torneio",
       "selo": "Destaque!",
-      "tipo": "inedito"
+      "tipo": "inedito",
+      "texto_en": "Beat a 2550+ rated player in a classical game and took the tournament's second best-game prize",
+      "texto_it": "Ha battuto un giocatore da 2550+ in una partita a cadenza lunga e ha vinto il secondo premio come miglior partita del torneo",
+      "selo_en": "Highlight!",
+      "selo_it": "In evidenza!"
     },
     {
       "ano": "2024",
-      "texto": "Ultrapassou os 2200 de rating"
+      "texto": "Ultrapassou os 2200 de rating",
+      "texto_en": "Passed the 2200 rating mark",
+      "texto_it": "Ha superato quota 2200 Elo"
     },
     {
       "ano": "2023",
       "texto": "Candidate Master (CM) pela FIDE",
       "selo": "Título FIDE",
-      "tipo": "fide"
+      "tipo": "fide",
+      "texto_en": "Candidate Master (CM) awarded by FIDE",
+      "texto_it": "Candidate Master (CM) assegnato dalla FIDE",
+      "selo_en": "FIDE title",
+      "selo_it": "Titolo FIDE"
     },
     {
-      "ano": "2019–23",
-      "texto": "Pentacampeão Paulista Escolar. Venceu o Sub-10 aos 7 anos e os Sub-18 e Sub-20 aos 10, contra adversários com o dobro da idade"
+      "ano": "2023",
+      "texto": "Pentacampeão Paulista Escolar de 2019 a 2023. Venceu o Sub-10 aos 7 anos e os Sub-18 e Sub-20 aos 10, contra adversários com o dobro da idade",
+      "texto_en": "Five-time São Paulo Schools champion, 2019 to 2023. Won the U10 at age 7 and the U18 and U20 at age 10, against opponents twice his age",
+      "texto_it": "Cinque volte campione scolastico di San Paolo, dal 2019 al 2023. Ha vinto l'Under 10 a 7 anni e l'Under 18 e Under 20 a 10 anni, contro avversari con il doppio della sua età"
     },
     {
       "ano": "2022",
       "texto": "Campeão Sul-Americano de Blitz Sub-10",
-      "local": "Assunção, Paraguai"
+      "local": "Assunção, Paraguai",
+      "texto_en": "South American U10 blitz champion",
+      "texto_it": "Campione sudamericano blitz U10",
+      "local_en": "Asunción, Paraguay",
+      "local_it": "Asunción, Paraguay"
     },
     {
       "ano": "2022",
       "texto": "Derrotou seu primeiro Grande Mestre, em simultânea, aos 9 anos",
       "selo": "Destaque!",
-      "tipo": "inedito"
+      "tipo": "inedito",
+      "texto_en": "Beat his first Grandmaster, in a simul, at 9",
+      "texto_it": "Ha battuto il suo primo Grande Maestro, in una simultanea, a 9 anni",
+      "selo_en": "Highlight!",
+      "selo_it": "In evidenza!"
     }
   ],
   "imprensa": [
@@ -152,7 +219,9 @@
           "veiculo": "Candido Nóbrega",
           "url": "https://candidonobrega.com.br/brasil-estreia-com-brilho-na-olimpiada-de-xadrez-sub-16-e-garante-16o-lugar-em-barranquilla/"
         }
-      ]
+      ],
+      "grupo_en": "World U16 Olympiad · Barranquilla, 2025",
+      "grupo_it": "Olimpiadi U16 · Barranquilla, 2025"
     },
     {
       "grupo": "COB Expo 2025 · São Paulo",
@@ -162,7 +231,9 @@
           "veiculo": "Lance!",
           "url": "https://www.lance.com.br/mais-esportes/xadrez-marca-presenca-na-cob-expo-2025-em-sao-paulo.html"
         }
-      ]
+      ],
+      "grupo_en": "COB Expo 2025 · São Paulo",
+      "grupo_it": "COB Expo 2025 · San Paolo"
     },
     {
       "grupo": "Xadrez na educação",
@@ -172,45 +243,76 @@
           "veiculo": "Educador 21",
           "url": "https://educador21.com/xadrez-na-educacao-evento-pascoa-aprendizagem/"
         }
-      ]
+      ],
+      "grupo_en": "Chess in education",
+      "grupo_it": "Scacchi nell'istruzione"
     }
   ],
   "contato": {
     "whatsapp": "5511999610210",
     "whatsappRotulo": "(11) 99961-0210",
-    "email": "contato@mathiascasalaspro.com.br",
-    "instagram": "https://www.instagram.com/mathiascasalaspro/",
-    "youtube": "https://www.youtube.com/@mathiascasalaspro"
+    "email": "maurizio.casalaspro@gmail.com",
+    "instagram": "https://www.instagram.com/matecommathias/"
   },
   "custeio": [
-    "Treinamento com bons treinadores",
-    "Inscrições em torneios internacionais",
-    "Passagens aéreas",
-    "Hospedagem e alimentação",
-    "Livros, cursos e licença de softwares"
+    {
+      "texto": "Treinamento com bons treinadores",
+      "texto_en": "Coaching with strong trainers",
+      "texto_it": "Allenamento con bravi allenatori"
+    },
+    {
+      "texto": "Inscrições em torneios internacionais",
+      "texto_en": "Entry fees for international tournaments",
+      "texto_it": "Iscrizioni a tornei internazionali"
+    },
+    {
+      "texto": "Passagens aéreas",
+      "texto_en": "Flights",
+      "texto_it": "Biglietti aerei"
+    },
+    {
+      "texto": "Hospedagem e alimentação",
+      "texto_en": "Accommodation and meals",
+      "texto_it": "Alloggio e pasti"
+    },
+    {
+      "texto": "Livros, cursos e licença de softwares",
+      "texto_en": "Books, courses and software licences",
+      "texto_it": "Libri, corsi e licenze software"
+    }
   ],
   "_apoios": "CONFERIR: cada url é um plano de assinatura do Mercado Pago. Confirme qual plan_id corresponde a qual valor antes de publicar.",
   "apoios": [
     {
       "valor": "R$ 10",
       "descricao": "Toda ajuda conta e se soma às outras",
-      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc"
+      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc",
+      "descricao_en": "Every bit helps and adds to the rest",
+      "descricao_it": "Ogni aiuto conta e si somma agli altri"
     },
     {
       "valor": "R$ 50",
       "descricao": "Ajuda a manter treino e material de estudo",
-      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a"
+      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a",
+      "descricao_en": "Helps cover coaching and study material",
+      "descricao_it": "Aiuta a coprire allenamento e materiale di studio"
     },
     {
       "valor": "R$ 100",
       "descricao": "Contribui direto com viagens e inscrições",
-      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c"
+      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c",
+      "descricao_en": "Goes straight into travel and entry fees",
+      "descricao_it": "Va direttamente in viaggi e iscrizioni"
     },
     {
       "valor": "Outro valor",
       "descricao": "Você decide quanto e por quanto tempo",
       "livre": true,
-      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba"
+      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba",
+      "descricao_en": "You decide how much and for how long",
+      "descricao_it": "Decidi tu quanto e per quanto tempo",
+      "valor_en": "Another amount",
+      "valor_it": "Un altro importo"
     }
   ],
   "_loja": "Para pôr foto num produto, salve a imagem em assets/loja/ e escreva o nome do arquivo em \"imagem\". Sem imagem, o card mostra o padrão de peças.",
@@ -219,25 +321,42 @@
       "nome": "Partidas de treinamento",
       "descricao": "1 hora de jogos online no Lichess",
       "imagem": "partidas-de-treinamento.jpg",
-      "url": "https://form.respondi.app/oemyel9l"
+      "url": "https://form.respondi.app/oemyel9l",
+      "nome_en": "Training games",
+      "nome_it": "Partite di allenamento",
+      "descricao_en": "1 hour of online games on Lichess",
+      "descricao_it": "1 ora di partite online su Lichess"
     },
     {
       "nome": "Terapia e Orientação Educacional",
       "descricao": "Com Maurizio Casalaspro · sessões individuais ou familiares",
       "imagem": "terapia-orientacao-educacional.jpg",
-      "url": "https://form.respondi.app/mg3mwzPj"
+      "url": "https://form.respondi.app/mg3mwzPj",
+      "nome_en": "Therapy and Educational Guidance",
+      "nome_it": "Terapia e orientamento educativo",
+      "descricao_en": "With Maurizio Casalaspro · individual or family sessions",
+      "descricao_it": "Con Maurizio Casalaspro · sedute individuali o familiari"
     },
     {
       "nome": "Apoio de copos",
       "descricao": "Produto artesanal em borracha · Mercado Livre",
       "imagem": "apoio-de-copos.jpg",
-      "url": "https://produto.mercadolivre.com.br/MLB-1837673983-porta-copos-de-xadrez-_JM"
+      "url": "https://produto.mercadolivre.com.br/MLB-1837673983-porta-copos-de-xadrez-_JM",
+      "nome_en": "Chess coasters",
+      "nome_it": "Sottobicchieri di scacchi",
+      "descricao_en": "Handmade rubber · Mercado Livre",
+      "descricao_it": "Fatti a mano in gomma · Mercado Livre"
     },
     {
       "nome": "Jogo dos Hábitos",
       "descricao": "Disponível na Amazon",
-      "imagem": "",
-      "url": "https://amzn.to/46Ae2RE"
+      "imagem": "jogo-dos-habitos.jpg",
+      "url": "https://amzn.to/46Ae2RE",
+      "nome_en": "The Habits Game",
+      "nome_it": "Il gioco delle abitudini",
+      "descricao_en": "Available on Amazon",
+      "descricao_it": "Disponibile su Amazon"
     }
-  ]
+  ],
+  "anoNascimento": 2012
 }
