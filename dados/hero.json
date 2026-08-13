@@ -1,0 +1,14 @@
+{
+  "_leia": "Gerado automaticamente pela GitHub Action quando você adiciona ou remove imagens em assets/hero/. O site sorteia uma delas a cada visita e troca as demais em sequência.",
+  "intervaloSegundos": 7,
+  "fotos": [
+    {
+      "arquivo": "01_floripa-blitz-abertura.jpg",
+      "credito": "Brazil Chess Series · Floripa 2026"
+    },
+    {
+      "arquivo": "02_panamericano-volta-redonda.jpg",
+      "credito": "Campeonato Panamericano · Volta Redonda, RJ, 2023"
+    }
+  ]
+}

@@ -17,12 +17,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#071523">
 
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/icone-180.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="assets/mathias-hero.jpg">
+<link rel="preload" as="image" href="assets/hero/01_floripa-blitz-abertura.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@400;700&family=Newsreader:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
@@ -110,7 +110,7 @@ a{ color:inherit; }
 .env{ width:100%; max-width:var(--max); margin-inline:auto; padding-inline:var(--gutter); }
 
 .faixa{ padding-block:var(--bloco); position:relative; }
-section[id], div[id]{ scroll-margin-top:88px; }
+section[id], div[id]{ scroll-margin-top:94px; }
 .faixa--escura{ background:var(--noite); color:var(--marfim); }
 .faixa--azul{   background:var(--tabuleiro); color:var(--marfim); }
 .faixa--clara{  background:var(--marfim); color:var(--grafite); }
@@ -165,18 +165,12 @@ p{ margin:0 0 1em; }
   border-bottom:1px solid transparent;
 }
 .topo.fixado{ background:rgba(7,21,35,.9); backdrop-filter:blur(14px); border-bottom-color:var(--linha-esc); }
-.topo__int{ display:flex; align-items:center; gap:24px; height:70px; }
+.topo__int{ display:flex; align-items:center; gap:24px; height:76px; }
 
 .marca{ display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--marfim); flex-shrink:0; }
 .marca__selo{
-  width:32px; height:32px; flex-shrink:0;
-  background:
-    linear-gradient(135deg, var(--ouro) 0 50%, transparent 50% 100%),
-    var(--tabuleiro2);
-  border:1px solid var(--ouro); border-radius:2px;
-  display:grid; place-items:center;
-  font-family:var(--display); font-weight:800; font-size:.82rem; color:var(--marfim);
-  text-shadow:0 1px 2px rgba(0,0,0,.5);
+  width:auto; height:46px; flex-shrink:0;
+  filter:drop-shadow(0 0 12px rgba(201,162,75,.28)) brightness(1.1);
 }
 .marca__txt{ font-family:var(--display); font-weight:800; font-size:.9rem; letter-spacing:.02em; line-height:1.05; }
 .marca__txt small{ display:block; font-family:var(--mono); font-weight:400; font-size:.6rem; letter-spacing:.18em; color:var(--ouro); text-transform:uppercase; }
@@ -213,55 +207,49 @@ p{ margin:0 0 1em; }
 .hamb span::before{ top:-6px; } .hamb span::after{ top:6px; }
 
 /* ============ HERO ============ */
-.hero{ position:relative; padding-top:120px; padding-bottom:0; overflow:hidden; }
-.hero::before{
-  content:""; position:absolute; inset:0; opacity:.5; pointer-events:none;
-  background-image:
-    linear-gradient(rgba(201,162,75,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,162,75,.08) 1px, transparent 1px);
-  background-size:calc(100%/8) calc(100%/8), calc(100%/8) calc(100%/8);
-  -webkit-mask-image:linear-gradient(to bottom, #000 0%, transparent 78%);
-          mask-image:linear-gradient(to bottom, #000 0%, transparent 78%);
+.hero{
+  position:relative; overflow:hidden; background:var(--tabuleiro);
+  min-height:min(94vh,940px); display:flex; align-items:flex-end;
+  padding:150px 0 clamp(54px,7vw,104px);
 }
-.hero__grid{
-  display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(28px,4vw,56px);
-  align-items:end; position:relative; z-index:2;
+.hero__fundo{ position:absolute; inset:0; z-index:0; }
+.hero__fundo img{
+  position:absolute; inset:0; width:100%; height:100%; max-width:none;
+  object-fit:cover; object-position:center 30%;
+  filter:saturate(.9) contrast(1.04);
+  opacity:0; transition:opacity 1.4s ease;
 }
-.hero__txt{ grid-area:1/2/2/3; padding-bottom:clamp(48px,7vw,96px); }
+.hero__fundo img.on{ opacity:1; }
+.hero::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(100deg, rgba(7,21,35,.97) 0%, rgba(7,21,35,.9) 32%, rgba(7,21,35,.52) 66%, rgba(7,21,35,.3) 100%),
+    linear-gradient(to top, var(--noite) 0%, rgba(7,21,35,0) 46%),
+    linear-gradient(to bottom, rgba(7,21,35,.85) 0%, rgba(7,21,35,0) 26%);
+}
+.hero__int{ position:relative; z-index:2; width:100%; }
+.hero__txt{ max-width:62ch; }
 .hero h1{
-  font-size:clamp(2.1rem,4.2vw,3.6rem);
-  margin:0 0 26px; text-wrap:balance;
+  font-size:clamp(2.1rem,4.4vw,3.7rem);
+  margin:0 0 26px; max-width:17ch; text-wrap:balance;
 }
 .hero h1 em{ font-style:normal; color:var(--ouro); }
-.hero .lede{ color:var(--nevoa); margin-bottom:32px; }
+.hero .lede{ color:#B9CBDC; margin-bottom:32px; max-width:52ch; }
 .hero .lede strong{ color:var(--marfim); font-weight:600; }
+.hero__cred{
+  position:absolute; right:var(--gutter); bottom:16px; z-index:3; margin:0;
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; color:var(--nevoa); opacity:.7;
+}
 
 .selo-abertura{
   display:inline-flex; align-items:center; gap:10px; margin-bottom:26px;
   border:1px solid var(--linha-esc); border-radius:100px; padding:7px 16px 7px 10px;
+  background:rgba(7,21,35,.5); backdrop-filter:blur(6px);
   font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--nevoa);
 }
 .selo-abertura b{ color:var(--ouro); font-weight:700; }
 .pulso{ width:7px; height:7px; border-radius:50%; background:var(--ouro); box-shadow:0 0 0 0 rgba(201,162,75,.6); animation:pulso 2.4s infinite; }
 @keyframes pulso{ 70%{ box-shadow:0 0 0 9px rgba(201,162,75,0);} 100%{ box-shadow:0 0 0 0 rgba(201,162,75,0);} }
-
-.hero__foto{ grid-area:1/1/2/2; position:relative; align-self:end; margin-left:calc(-1 * var(--fuga)); }
-.hero__foto img{
-  width:100%; height:auto; max-height:min(92vh,980px); object-fit:cover; object-position:center 30%;
-  border-radius:0 2px 2px 0;
-  filter:saturate(.86) contrast(1.06);
-  -webkit-mask-image:linear-gradient(to bottom, #000 72%, transparent 100%);
-          mask-image:linear-gradient(to bottom, #000 72%, transparent 100%);
-}
-.hero__foto::after{
-  content:""; position:absolute; inset:auto 0 0 0; height:46%;
-  background:linear-gradient(to top, var(--noite), transparent);
-  pointer-events:none;
-}
-.hero__cred{
-  position:absolute; left:var(--fuga); bottom:14px; z-index:3;
-  font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; color:var(--nevoa); opacity:.75;
-}
 
 /* ============ TICKER ============ */
 .ticker{ background:var(--ouro); color:var(--noite); overflow:hidden; padding:13px 0; position:relative; z-index:3; }
@@ -494,10 +482,9 @@ p{ margin:0 0 1em; }
 
 /* --- custos --- */
 .custeio{ list-style:none; margin:14px 0 0; padding:0; display:grid; gap:2px; }
-.custeio li{ display:grid; grid-template-columns:auto 1fr; gap:14px; padding:13px 0; border-bottom:1px solid var(--linha-esc); align-items:start; }
-.custeio li::before{ content:""; width:7px; height:7px; margin-top:8px; background:var(--ouro); transform:rotate(45deg); }
-.custeio b{ grid-column:2; font-weight:600; color:var(--marfim); font-size:1rem; }
-.custeio span{ grid-column:2; color:var(--nevoa); font-size:.9rem; line-height:1.5; }
+.custeio li{ display:grid; grid-template-columns:auto 1fr; gap:14px; padding:15px 0; border-bottom:1px solid var(--linha-esc); align-items:center; }
+.custeio li::before{ content:""; width:7px; height:7px; background:var(--ouro); transform:rotate(45deg); }
+.custeio b{ font-weight:600; color:var(--marfim); font-size:1.02rem; }
 
 .custos{ margin-top:clamp(46px,5.5vw,68px); display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,4vw,56px); align-items:start; }
 .tabela{ width:100%; border-collapse:collapse; font-size:.95rem; }
@@ -543,14 +530,25 @@ p{ margin:0 0 1em; }
 .recado{ font-size:1rem; color:var(--grafite2); max-width:60ch; margin-bottom:clamp(46px,5vw,66px); }
 
 .loja{ border-top:1px solid var(--linha-cla); padding-top:clamp(38px,4.5vw,54px); }
-.loja__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin-top:24px; }
+.loja__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:26px; }
 .prod{
-  display:flex; align-items:center; justify-content:space-between; gap:14px; text-decoration:none;
-  padding:19px 20px; border:1px solid var(--linha-cla); border-radius:var(--raio); background:#fff;
-  color:var(--grafite); font-weight:600; font-size:.95rem; line-height:1.3;
-  transition:border-color .2s ease, transform .2s ease;
+  display:flex; flex-direction:column; text-decoration:none; overflow:hidden;
+  border:1px solid var(--linha-cla); border-radius:var(--raio); background:#fff;
+  color:var(--grafite); line-height:1.3; position:relative;
+  transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
-.prod:hover{ border-color:var(--ouro); transform:translateY(-2px); }
+.prod:hover{ border-color:var(--ouro); transform:translateY(-3px); box-shadow:0 14px 34px -20px rgba(30,42,52,.5); }
+.prod__foto{
+  display:grid; place-items:center; aspect-ratio:1/1; background:
+    url("assets/padrao-xadrez.png") repeat center/120px 120px, var(--tabuleiro);
+  background-blend-mode:soft-light, normal;
+}
+.prod__foto:empty::after{ content:"\265F"; font-size:3.2rem; line-height:1; color:var(--ouro); opacity:.5; }
+.prod__foto img{ width:100%; height:100%; object-fit:cover; }
+.prod__txt{ display:block; padding:17px 20px 19px; }
+.prod__txt b{ display:block; font-weight:600; font-size:1rem; }
+.prod__txt i{ display:block; font-style:normal; font-size:.86rem; color:var(--grafite2); margin-top:4px; }
+.prod > svg{ position:absolute; top:14px; right:14px; background:rgba(255,255,255,.92); border-radius:2px; padding:5px; box-sizing:content-box; }
 .prod svg{ width:15px; height:15px; flex-shrink:0; color:var(--ouro-esc); }
 
 /* ============ PATROCÍNIO ============ */
@@ -558,7 +556,8 @@ p{ margin:0 0 1em; }
 .patro__txt p{ color:var(--nevoa); }
 .razoes{ list-style:none; margin:26px 0 0; padding:0; display:grid; gap:16px; }
 .razoes li{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
-.razoes li::before{ content:""; width:7px; height:7px; margin-top:9px; background:var(--ouro); transform:rotate(45deg); }
+.razoes li::before{ content:""; width:7px; height:7px; margin-top:8px; background:var(--ouro); transform:rotate(45deg); }
+.razoes b{ font-size:1.04rem; }
 .razoes li > b, .razoes li > span{ grid-column:2; }
 .razoes b{ display:block; color:var(--marfim); font-weight:600; }
 .razoes span{ color:var(--nevoa); font-size:.93rem; }
@@ -567,37 +566,38 @@ p{ margin:0 0 1em; }
 
 .planos{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
 .plano{
-  border:1px solid var(--linha-esc); border-radius:var(--raio); padding:clamp(24px,3vw,32px);
+  border:1px solid var(--linha-esc); border-radius:var(--raio); padding:clamp(26px,3vw,34px);
   display:flex; flex-direction:column; background:rgba(14,42,68,.35);
 }
+.plano__n{ padding-bottom:16px; margin-bottom:18px; border-bottom:1px solid var(--linha-esc); }
 .plano--destaque{
   border-color:var(--ouro); position:relative; overflow:hidden;
   background:url("assets/padrao-xadrez.png") repeat 0 0/190px 190px, rgba(201,162,75,.07);
   background-blend-mode:soft-light, normal;
 }
 .plano__n{ font-family:var(--display); font-weight:800; font-size:1.25rem; letter-spacing:-.01em; }
-.plano__p{ font-family:var(--mono); font-size:.8rem; color:var(--ouro); margin:8px 0 22px; letter-spacing:.06em; }
-.plano ul{ list-style:none; margin:0 0 26px; padding:0; display:grid; gap:11px; font-size:.92rem; }
+.plano__p{
+  font-family:var(--mono); font-size:.68rem; color:var(--ouro); letter-spacing:.12em;
+  text-transform:uppercase; margin:-8px 0 18px;
+}
+.plano ul{ list-style:none; margin:0; padding:0; display:grid; gap:11px; font-size:.92rem; }
 .plano li{ display:grid; grid-template-columns:auto 1fr; gap:11px; color:var(--nevoa); align-items:start; }
 .plano li b{ color:var(--marfim); font-weight:500; }
 .plano li::before{ content:"✓"; color:var(--ouro); font-size:.85rem; line-height:1.6; }
 .plano li.nao{ opacity:.4; }
 .plano li.nao::before{ content:"—"; color:var(--nevoa); }
-.plano .btn{ margin-top:auto; }
 
-.incentivo{
-  margin-top:clamp(34px,4vw,48px); padding:24px clamp(22px,3vw,30px);
-  border:1px dashed var(--linha-esc); border-radius:var(--raio);
-  display:grid; grid-template-columns:1fr auto; gap:22px; align-items:center;
-}
-.incentivo p{ margin:0; color:var(--nevoa); font-size:.95rem; max-width:64ch; }
-.incentivo b{ color:var(--marfim); }
+
+.planos__cta{ margin-top:clamp(30px,3.6vw,44px); display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
 
 /* ============ ALCANCE ============ */
 .alcance__topo{
   display:grid; grid-template-columns:auto 1fr; gap:clamp(28px,5vw,70px); align-items:end;
-  padding-bottom:clamp(34px,4vw,50px); margin-bottom:clamp(34px,4vw,50px);
-  border-bottom:1px solid var(--linha-esc);
+  margin-bottom:clamp(30px,3.6vw,44px);
+}
+.alcance__chamada{
+  font-family:var(--display); font-weight:800; letter-spacing:-.02em;
+  font-size:clamp(1.15rem,2vw,1.6rem); color:var(--marfim); margin:0 0 22px;
 }
 .alcance__num{
   font-family:var(--display); font-weight:800; line-height:.86; letter-spacing:-.04em;
@@ -630,11 +630,16 @@ p{ margin:0 0 1em; }
 .link-zap:hover{ color:var(--ouro-claro); border-bottom-color:var(--ouro-claro); }
 
 /* ============ VÍDEOS + IMPRENSA ============ */
+.videos{ margin-inline:calc(-1 * var(--fuga)); }
 .videos__grid{
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(min(196px,100%),1fr));
-  grid-auto-rows:auto; gap:9px;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));
+  grid-auto-rows:var(--linhaVideo, 112px); grid-auto-flow:row dense; gap:6px;
 }
+.videos__grid .video{ aspect-ratio:auto; height:100%; }
 .videos__grid .video--grande{ grid-column:span 2; grid-row:span 2; }
+.videos__grid .video--larga{ grid-column:span 2; }
+.videos__grid .video--alta{ grid-row:span 2; }
+.video{ border-radius:0; border-color:rgba(201,162,75,.12); }
 .video{
   position:relative; display:block; width:100%; padding:0; border:1px solid var(--linha-esc);
   border-radius:var(--raio); overflow:hidden; cursor:pointer; background:var(--tabuleiro);
@@ -691,13 +696,14 @@ p{ margin:0 0 1em; }
           mask-image:radial-gradient(ellipse at center, #000 5%, transparent 68%);
 }
 .promocao .env{ position:relative; z-index:2; }
-.promo__divisor{ width:min(560px,84%); margin:0 auto 34px; opacity:.95; }
-.promocao h2{ max-width:20ch; margin-inline:auto; margin-bottom:20px; }
-.promocao p{ color:var(--nevoa); max-width:52ch; margin-inline:auto; margin-bottom:34px; }
+.promo__divisor{ width:min(520px,80%); margin:0 auto; opacity:.9; }
+.promocao{ padding-block:clamp(46px,5vw,78px); }
+.promo__divisor{ margin-bottom:28px; }
 .promocao .duplo{ justify-content:center; }
 
 .rodape{ border-top:1px solid var(--linha-esc); padding-block:52px 40px; background:var(--noite); }
 .rodape__grid{ display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:36px; margin-bottom:44px; }
+.rodape__logo{ width:auto; height:58px; margin-bottom:18px; }
 .rodape h4{ font-family:var(--mono); font-weight:700; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ouro); margin-bottom:16px; }
 .rodape ul{ list-style:none; margin:0; padding:0; display:grid; gap:9px; }
 .rodape a{ color:var(--nevoa); text-decoration:none; font-size:.92rem; transition:color .18s ease; }
@@ -718,12 +724,6 @@ p{ margin:0 0 1em; }
 
 /* ============ RESPONSIVO ============ */
 @media (max-width:1024px){
-  .hero__grid{ display:flex; flex-direction:column; }
-  .hero__txt{ grid-area:auto; order:1; padding-bottom:0; }
-  .hero__foto{ grid-area:auto; order:2; }
-  .hero__foto{ margin-top:34px; margin-left:calc(-1 * var(--fuga)); margin-right:calc(-1 * var(--fuga)); }
-  .hero__foto img{ max-height:56vh; object-position:center 22%; border-radius:0; }
-  .hero__cred{ bottom:2px; left:var(--fuga); }
   .historia__grid, .custos, .patro__grid, .midia{ grid-template-columns:1fr; }
   .historia__foto{ margin-left:calc(-1 * var(--fuga)); margin-right:calc(-1 * var(--fuga)); }
   .historia__foto img{ border-radius:0; height:clamp(340px,62vw,520px); }
@@ -743,7 +743,7 @@ p{ margin:0 0 1em; }
 }
 @media (max-width:860px){
   .menu{
-    position:fixed; inset:70px 0 auto 0; flex-direction:column; align-items:stretch; gap:0;
+    position:fixed; inset:76px 0 auto 0; flex-direction:column; align-items:stretch; gap:0;
     background:rgba(7,21,35,.98); backdrop-filter:blur(16px);
     border-bottom:1px solid var(--linha-esc); padding:8px var(--gutter) 22px;
     transform:translateY(-12px); opacity:0; pointer-events:none; transition:opacity .22s ease, transform .22s ease;
@@ -755,7 +755,6 @@ p{ margin:0 0 1em; }
   .topo__int .btn{ display:none; }
   .menu .btn{ display:inline-flex; margin-top:16px; }
   .normas{ grid-template-columns:1fr; }
-  .incentivo{ grid-template-columns:1fr; }
   .rodape__grid{ grid-template-columns:1fr 1fr; }
   .palmares li{ grid-template-columns:4.4rem 1fr; row-gap:8px; }
   .videos__grid{ grid-template-columns:repeat(auto-fill,minmax(min(148px,100%),1fr)); gap:7px; }
@@ -764,6 +763,15 @@ p{ margin:0 0 1em; }
   .palmares .tag{ grid-column:2; justify-self:start; }
 }
 @media (max-width:560px){
+  .marca__selo{ height:38px; }
+  .marca__txt{ font-size:.82rem; }
+  .marca__txt small{ font-size:.55rem; }
+  .hero{ min-height:auto; padding:126px 0 clamp(44px,9vw,68px); }
+  .hero__fundo img{ object-position:center 24%; }
+  .hero::after{ background:
+    linear-gradient(to top, var(--noite) 6%, rgba(7,21,35,.82) 46%, rgba(7,21,35,.68) 100%),
+    linear-gradient(to bottom, rgba(7,21,35,.92) 0%, rgba(7,21,35,.2) 34%); }
+  .hero__cred{ position:static; margin:24px 0 0; }
   .trilho{ margin-top:70px; }
   .marco__lb{ max-width:78px; font-size:.6rem; }
   .marco__lb b{ font-size:.88rem; }
@@ -785,8 +793,8 @@ p{ margin:0 0 1em; }
 <!-- ==================== NAV ==================== -->
 <header class="topo" id="topo">
   <div class="env topo__int">
-    <a class="marca" href="#topo" aria-label="Mathias Casalaspro — início">
-      <span class="marca__selo" aria-hidden="true">M</span>
+    <a class="marca" href="#hero" aria-label="Mathias Casalaspro — início">
+      <img class="marca__selo" src="assets/logo-mc.png" width="420" height="390" alt="">
       <span class="marca__txt">MATHIAS CASALASPRO<small>Mestre FIDE · Brasil</small></span>
     </a>
 
@@ -813,8 +821,11 @@ p{ margin:0 0 1em; }
 <main id="conteudo">
 
 <!-- ==================== HERO ==================== -->
-<section class="faixa hero faixa--escura">
-  <div class="env hero__grid">
+<section class="hero faixa--escura" id="hero">
+  <div class="hero__fundo" id="heroFundo" aria-hidden="true">
+    <img src="assets/hero/01_floripa-blitz-abertura.jpg" alt="" class="on" fetchpriority="high">
+  </div>
+  <div class="env hero__int">
     <div class="hero__txt">
       <!-- CONFERIR: confirmar a norma de MI no certificado antes de publicar este selo -->
       <p class="selo-abertura"><span class="pulso" aria-hidden="true"></span> Agosto de 2026 · <b>1ª norma de MI conquistada em Portugal</b></p>
@@ -834,12 +845,8 @@ p{ margin:0 0 1em; }
       </div>
     </div>
 
-    <figure class="hero__foto">
-      <img src="assets/mathias-hero.jpg" width="900" height="1687"
-           alt="Mathias Casalaspro concentrado diante do tabuleiro no Campeonato Panamericano de 2023." fetchpriority="high">
-      <figcaption class="hero__cred">Campeonato Panamericano · Volta Redonda, RJ, novembro de 2023</figcaption>
-    </figure>
   </div>
+  <p class="hero__cred" id="heroCred">Brazil Chess Series · Floripa 2026</p>
 </section>
 
 <!-- ==================== TICKER ==================== -->
@@ -890,13 +897,13 @@ p{ margin:0 0 1em; }
         <p>Aos 9, derrotei meu primeiro Grande Mestre numa simultânea. Aos 11, derrotei um GM numa partida
         clássica oficial — <strong>o mais jovem brasileiro a conseguir isso</strong>. Aos 12, me tornei Mestre FIDE.</p>
 
-        <p>Em 2026 cruzei o Atlântico para jogar o circuito europeu. Em Portugal, no Leça Chess Open,
-        terminei empatado em pontos com o campeão, com performance de 2554, e fechei minha
-        <strong>primeira norma de Mestre Internacional</strong>.</p>
+        <p>Em Portugal, no Leça Chess Open, terminei empatado em pontos com o campeão, com
+        performance de 2554, e fechei minha <strong>primeira norma de Mestre Internacional</strong>.</p>
 
-        <p>No xadrez não existe sorte. Existe estudo, disciplina e estar no tabuleiro certo, na hora certa.
-        As duas primeiras partes dependem de mim. A terceira depende de conseguir chegar lá — e é aí que
-        a sua ajuda faz diferença.</p>
+        <p>No xadrez não existe sorte. Existe estudo, disciplina e oportunidade. As duas primeiras
+        dependem de mim — treino todos os dias por elas. <strong>A terceira é a que eu não consigo
+        sozinho:</strong> estar sentado nos tabuleiros certos, contra os adversários certos, é o que
+        transforma preparo em título. É aí que a sua ajuda entra.</p>
 
         <p class="assinatura">— Mathias</p>
       </div>
@@ -936,20 +943,20 @@ p{ margin:0 0 1em; }
     <ol class="palmares rev" id="palmares">
       <li><span class="ano">2026</span><span class="feito">5º lugar no geral do Leça Chess Open, empatado em pontos com o campeão e com performance de 2554 — o resultado que fechou a primeira norma de Mestre Internacional <i>· Portugal</i></span><span class="tag tag--fide">Norma de MI</span></li>
       <li><span class="ano">2026</span><span class="feito">Campeão do Blitz de Abertura do Brazil Chess Series — Floripa, entre 114 participantes</span></li>
-      <li><span class="ano">2025</span><span class="feito">Mesa 1 da seleção brasileira Sub-16 na Olimpíada Mundial <i>· Barranquilla, Colômbia</i></span><span class="tag tag--inedito">Estreia do Brasil</span></li>
+      <li><span class="ano">2025</span><span class="feito">Mesa 1 da seleção brasileira Sub-16 na Olimpíada Mundial <i>· Barranquilla, Colômbia</i></span><span class="tag tag--inedito">Destaque!</span></li>
       <li><span class="ano">2025</span><span class="feito">Campeão invicto do Manaus Chess Open, com 7 pontos em 9 e performance de 2492</span></li>
       <li><span class="ano">2025</span><span class="feito">Convidado a representar o xadrez na COB Expo <i>· São Paulo</i></span></li>
       <li><span class="ano">2024</span><span class="feito">Mestre FIDE (FM) aos 12 anos, atingindo 2341 de rating</span><span class="tag tag--fide">Título FIDE</span></li>
-      <li><span class="ano">2024</span><span class="feito">Derrotou um Grande Mestre em partida clássica oficial aos 11 anos, no III Rio Chess Open</span><span class="tag tag--inedito">Inédito no Brasil</span></li>
-      <li><span class="ano">2024</span><span class="feito">Derrotou um jogador de 2550+ de rating em clássica e levou o 2º prêmio de melhor partida do torneio</span><span class="tag tag--inedito">Inédito no Brasil</span></li>
+      <li><span class="ano">2024</span><span class="feito">Derrotou um Grande Mestre em partida clássica oficial aos 11 anos, no III Rio Chess Open</span><span class="tag tag--inedito">Destaque!</span></li>
+      <li><span class="ano">2024</span><span class="feito">Derrotou um jogador de 2550+ de rating em clássica e levou o 2º prêmio de melhor partida do torneio</span><span class="tag tag--inedito">Destaque!</span></li>
       <li><span class="ano">2024</span><span class="feito">Ultrapassou os 2200 de rating</span></li>
       <li><span class="ano">2023</span><span class="feito">Candidate Master (CM) pela FIDE</span><span class="tag tag--fide">Título FIDE</span></li>
       <li><span class="ano">2019–23</span><span class="feito">Pentacampeão Paulista Escolar. Venceu o Sub-10 aos 7 anos e os Sub-18 e Sub-20 aos 10, contra adversários com o dobro da idade</span></li>
       <li><span class="ano">2022</span><span class="feito">Campeão Sul-Americano de Blitz Sub-10 <i>· Assunção, Paraguai</i></span></li>
-      <li><span class="ano">2022</span><span class="feito">Derrotou seu primeiro Grande Mestre, em simultânea, aos 9 anos</span><span class="tag tag--inedito">Inédito no Brasil</span></li>
+      <li><span class="ano">2022</span><span class="feito">Derrotou seu primeiro Grande Mestre, em simultânea, aos 9 anos</span><span class="tag tag--inedito">Destaque!</span></li>
     </ol>
 
-    <!-- CONFERIR: número de GMs brasileiros no glossário e os três selos "Inédito no Brasil" antes de publicar -->
+    <!-- CONFERIR: número de GMs brasileiros no glossário antes de publicar -->
   </div>
 </section>
 
@@ -1005,14 +1012,13 @@ p{ margin:0 0 1em; }
     <div class="custos">
       <div class="rev">
         <p class="rotulo">O que uma temporada exige</p>
-        <ul class="custeio">
-          <li><b>Treinamento com Grande Mestre</b><span>As aulas particulares que sustentam a evolução técnica.</span></li>
-          <li><b>Inscrições em torneios internacionais</b><span>Só neles existem as normas que faltam.</span></li>
-          <li><b>Passagens aéreas</b><span>Para o jogador e para um responsável — ele ainda é menor de idade.</span></li>
-          <li><b>Hospedagem e alimentação</b><span>Torneios duram de sete a dez dias.</span></li>
-          <li><b>Material e plataformas de estudo</b><span>Bases de dados, livros e assinaturas de análise.</span></li>
+        <ul class="custeio" id="custeio">
+          <li><b>Treinamento com bons treinadores</b></li>
+          <li><b>Inscrições em torneios internacionais</b></li>
+          <li><b>Passagens aéreas</b></li>
+          <li><b>Hospedagem e alimentação</b></li>
+          <li><b>Livros, cursos e licença de softwares</b></li>
         </ul>
-        <p class="nota">Toda a prestação de contas é enviada aos apoiadores mensais.</p>
       </div>
 
       <div class="meta rev">
@@ -1034,31 +1040,26 @@ p{ margin:0 0 1em; }
 <section class="faixa faixa--clara" id="apoiar">
   <div class="env">
     <p class="casa rev"><b>e5</b> <span>Como apoiar</span></p>
-    <h2 class="rev" style="max-width:20ch;margin-bottom:18px">Sua contribuição tem endereço</h2>
-    <p class="lede rev recado">Escolha o que você quer bancar. Nenhuma contribuição é pequena: somadas, elas
-    compram exatamente aquilo que não se compra sozinho — a chance de jogar contra os melhores.</p>
+    <h2 class="rev" style="max-width:20ch;margin-bottom:18px">Seu apoio faz a diferença</h2>
+    <p class="lede rev recado">Escolha um valor que cabe no seu orçamento. Nenhuma contribuição é pequena:
+    somadas, elas podem tornar esse sonho realidade.</p>
 
     <!-- Os links abaixo são os planos de assinatura já existentes no Mercado Pago.
          CONFERIR: qual plan_id corresponde a qual valor. -->
-    <div class="apoios rev">
+    <div class="apoios rev" id="apoios">
       <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 30<small>/mês</small></span>
-        <span class="apoio__d">Uma inscrição em torneio nacional</span>
+        <span class="apoio__v">R$ 10<small>/mês</small></span>
+        <span class="apoio__d">Toda ajuda conta e se soma às outras</span>
         <span class="apoio__pe">Apoiar →</span>
       </a>
       <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 100<small>/mês</small></span>
-        <span class="apoio__d">Uma hora de treino com Grande Mestre</span>
+        <span class="apoio__v">R$ 50<small>/mês</small></span>
+        <span class="apoio__d">Ajuda a manter treino e material de estudo</span>
         <span class="apoio__pe">Apoiar →</span>
       </a>
       <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 300<small>/mês</small></span>
-        <span class="apoio__d">Uma diária de hospedagem em torneio internacional</span>
-        <span class="apoio__pe">Apoiar →</span>
-      </a>
-      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=23beb383d65645d5880d34e6199a97f1" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 1.500<small>/mês</small></span>
-        <span class="apoio__d">Uma passagem para o exterior</span>
+        <span class="apoio__v">R$ 100<small>/mês</small></span>
+        <span class="apoio__d">Contribui direto com viagens e inscrições</span>
         <span class="apoio__pe">Apoiar →</span>
       </a>
       <a class="apoio apoio--livre" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba" target="_blank" rel="noopener">
@@ -1068,16 +1069,32 @@ p{ margin:0 0 1em; }
       </a>
     </div>
 
-    <p class="nota">Apoiadores mensais recebem o relatório das partidas, as análises do Mathias e acesso antecipado às transmissões.</p>
-
     <div class="loja rev">
       <h3>Apoiar levando algo em troca</h3>
       <p class="recado" style="margin-bottom:0">Aulas, produtos e serviços que financiam diretamente a preparação. Você ganha, ele avança.</p>
-      <div class="loja__grid">
-        <a class="prod" href="https://produto.mercadolivre.com.br/MLB-1837673983-porta-copos-de-xadrez-_JM" target="_blank" rel="noopener">Porta-copos de xadrez <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-        <a class="prod" href="https://amzn.to/46Ae2RE" target="_blank" rel="noopener">Apoio de copos (Amazon) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-        <a class="prod" href="https://form.respondi.app/oemyel9l" target="_blank" rel="noopener">Aula particular de xadrez <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-        <a class="prod" href="https://form.respondi.app/mg3mwzPj" target="_blank" rel="noopener">Simultânea ou palestra <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <!-- Produtos vêm de dados/conteudo.json > loja. Para cada um, basta pôr a imagem
+           em assets/loja/ e apontar o campo "imagem". Sem imagem, o card mostra o padrão. -->
+      <div class="loja__grid" id="loja">
+        <a class="prod" href="https://form.respondi.app/oemyel9l" target="_blank" rel="noopener">
+          <span class="prod__foto"><img src="assets/loja/partidas-de-treinamento.jpg" alt="" loading="lazy"></span>
+          <span class="prod__txt"><b>Partidas de treinamento</b><i>1 hora de jogos online no Lichess</i></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="prod" href="https://form.respondi.app/mg3mwzPj" target="_blank" rel="noopener">
+          <span class="prod__foto"><img src="assets/loja/terapia-orientacao-educacional.jpg" alt="" loading="lazy"></span>
+          <span class="prod__txt"><b>Terapia e Orientação Educacional</b><i>Com Maurizio Casalaspro · sessões individuais ou familiares</i></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="prod" href="https://produto.mercadolivre.com.br/MLB-1837673983-porta-copos-de-xadrez-_JM" target="_blank" rel="noopener">
+          <span class="prod__foto"><img src="assets/loja/apoio-de-copos.jpg" alt="" loading="lazy"></span>
+          <span class="prod__txt"><b>Apoio de copos</b><i>Produto artesanal em borracha · Mercado Livre</i></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="prod" href="https://amzn.to/46Ae2RE" target="_blank" rel="noopener">
+          <span class="prod__foto"></span>
+          <span class="prod__txt"><b>Jogo dos Hábitos</b><i>Disponível na Amazon</i></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -1097,13 +1114,16 @@ p{ margin:0 0 1em; }
       </div>
       <div>
         <h2 style="margin-bottom:18px">Veja como ele joga</h2>
-        <p class="alcance__txt">O xadrez virou conteúdo. Cada partida vira análise, transmissão e recorte — e cada um desses vídeos carrega junto o nome de quem apoia.</p>
+        <p class="alcance__txt">O xadrez tem grande alcance na internet. Inúmeros vídeos e transmissões
+        ao vivo chegam a muita gente — e quem apoia o atleta ganha projeção junto.</p>
         <div class="alcance__mini">
           <div><b id="miniVideos">—</b><span>vídeos sobre ele</span></div>
           <div><b id="miniImprensa">7</b><span>matérias na imprensa</span></div>
         </div>
       </div>
     </div>
+
+    <p class="alcance__chamada rev">Veja alguns vídeos em que o Mathias aparece.</p>
 
     <!-- Os cartões são montados a partir de dados/videos.json.
          O bloco abaixo é a cópia de reserva: entra em cena quando o site é aberto
@@ -1131,7 +1151,7 @@ p{ margin:0 0 1em; }
   "https://www.youtube.com/watch?v=fAcmRCU627A"
 ] }
     </script>
-    <div id="videos" class="rev"></div>
+    <div id="videos" class="rev videos"></div>
 
     <div class="midia">
       <div class="rev">
@@ -1176,16 +1196,14 @@ p{ margin:0 0 1em; }
 
     <div class="patro__grid">
       <div class="patro__txt rev">
-        <h2 style="margin-bottom:20px">Sua marca no primeiro tabuleiro</h2>
-        <p class="lede">O xadrez é o esporte da inteligência, da estratégia e da paciência — os mesmos atributos
-        que a sua empresa quer associar à própria marca. E, diferente dos esportes de massa, ele ainda tem
-        espaço para quem chega primeiro.</p>
+        <h2 style="margin-bottom:20px">Sua marca junto aos tabuleiros</h2>
+        <p class="lede">O xadrez é o esporte da inteligência, da estratégia e da paciência — os mesmos
+        atributos que a sua empresa quer associar à própria marca.</p>
 
         <ul class="razoes">
-          <li><b>Custo de entrada baixo, valor simbólico alto.</b><span>Uma fração do que custa patrocinar categorias de base de outros esportes.</span></li>
-          <li><b>Público qualificado.</b><span>A comunidade enxadrística brasileira concentra pais, educadores e profissionais de alta escolaridade.</span></li>
-          <li><b>Mídia espontânea comprovada.</b><span>Matérias em veículos como Lance!, Ponta Negra News e Blog Esporte — sem investimento em assessoria.</span></li>
-          <li><b>História em construção.</b><span>Patrocinar um campeão pronto custa caro. Patrocinar quem está virando um custa a metade e vale o dobro em narrativa.</span></li>
+          <li><b>Custo de entrada baixo, valor simbólico alto.</b></li>
+          <li><b>Mídia espontânea comprovada.</b></li>
+          <li><b>História em construção.</b><span>Patrocinar quem está virando um campeão custa a metade e vale o dobro em narrativa.</span></li>
         </ul>
       </div>
 
@@ -1199,7 +1217,6 @@ p{ margin:0 0 1em; }
     <div class="planos rev">
       <article class="plano">
         <h3 class="plano__n">Apoiador</h3>
-        <p class="plano__p">R$ ___ / mês</p>
         <ul>
           <li><b>Logomarca no site</b></li>
           <li class="nao">Menção em posts e vídeos</li>
@@ -1207,12 +1224,10 @@ p{ margin:0 0 1em; }
           <li class="nao">Conteúdo exclusivo</li>
           <li class="nao">Simultânea corporativa</li>
         </ul>
-        <a class="btn btn--linha btn--peq" href="https://wa.me/5511999610210?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20Apoiador." target="_blank" rel="noopener">Falar com a equipe</a>
       </article>
 
       <article class="plano">
         <h3 class="plano__n">Patrocinador</h3>
-        <p class="plano__p">R$ ___ / mês</p>
         <ul>
           <li><b>Logomarca no site</b></li>
           <li><b>Menção em posts e vídeos</b></li>
@@ -1220,12 +1235,11 @@ p{ margin:0 0 1em; }
           <li><b>1 conteúdo exclusivo por trimestre</b></li>
           <li><b>1 simultânea ou palestra por ano</b></li>
         </ul>
-        <a class="btn btn--linha btn--peq" href="https://wa.me/5511999610210?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20Patrocinador." target="_blank" rel="noopener">Falar com a equipe</a>
       </article>
 
       <article class="plano plano--destaque">
         <h3 class="plano__n">Patrocinador Oficial</h3>
-        <p class="plano__p">R$ ___ / mês · exclusividade de segmento</p>
+        <p class="plano__p">Exclusividade de segmento</p>
         <ul>
           <li><b>Logomarca no site, em destaque</b></li>
           <li><b>Menção em destaque em posts e vídeos</b></li>
@@ -1233,19 +1247,13 @@ p{ margin:0 0 1em; }
           <li><b>1 conteúdo exclusivo por mês</b></li>
           <li><b>2 simultâneas ou palestras por ano</b></li>
         </ul>
-        <a class="btn btn--ouro btn--peq" href="https://wa.me/5511999610210?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20Patrocinador%20Oficial." target="_blank" rel="noopener">Falar com a equipe</a>
       </article>
     </div>
     <!-- PREENCHER: valores dos três planos -->
 
-    <div class="incentivo rev" id="falar">
-      <p><b>Apoiar sem desembolso adicional.</b> Projetos esportivos habilitados na Lei de Incentivo ao Esporte
-      permitem destinar parte do Imposto de Renda devido ao patrocínio. Podemos enviar a documentação do projeto
-      para o seu contador avaliar. <!-- CONFIRMAR habilitação na LIE antes de publicar esta frase --></p>
-      <div class="duplo">
-        <a class="btn btn--ouro" href="https://wa.me/5511999610210?text=Gostaria%20de%20conversar%20sobre%20patroc%C3%ADnio%20ao%20Mathias" target="_blank" rel="noopener">Falar no WhatsApp</a>
-        <a class="btn btn--linha" href="assets/midia-kit-mathias.pdf" download>Baixar o mídia kit</a>
-      </div>
+    <div class="planos__cta rev" id="falar">
+      <a class="btn btn--ouro" href="https://wa.me/5511999610210?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20patroc%C3%ADnio%20ao%20Mathias." target="_blank" rel="noopener">Entrar em contato</a>
+      <a class="btn btn--linha" href="assets/midia-kit-mathias.pdf" download>Baixar o mídia kit</a>
     </div>
 
     <p class="nota">Atendimento comercial com os responsáveis legais do atleta:
@@ -1257,9 +1265,6 @@ p{ margin:0 0 1em; }
 <section class="faixa faixa--escura promocao" id="promocao">
   <div class="env">
     <img class="promo__divisor" src="assets/divisor-peao.png" width="1400" height="78" alt="" loading="lazy">
-    <h2>Seu apoio faz a diferença</h2>
-    <p>Cada contribuição vira hora de treino, inscrição de torneio e passagem de avião.
-    É assim, na prática, que uma carreira de xadrez avança.</p>
     <div class="duplo">
       <a class="btn btn--ouro" href="#apoiar">Apoiar agora</a>
       <a class="btn btn--linha" href="#patrocinio">Falar sobre patrocínio</a>
@@ -1274,7 +1279,7 @@ p{ margin:0 0 1em; }
   <div class="env">
     <div class="rodape__grid">
       <div>
-        <h4>Mathias Casalaspro</h4>
+        <img class="rodape__logo" src="assets/logo-mc.png" width="420" height="390" alt="Mathias Casalaspro" loading="lazy">
         <p>Mestre FIDE, a caminho do título de Mestre Internacional. Projeto conduzido pelos responsáveis legais do atleta.</p>
         <!-- PREENCHER: nome dos responsáveis legais e CNPJ, se houver -->
       </div>
@@ -1424,6 +1429,36 @@ const PADRAO = {
     }).join("");
   }
 
+  function montaCusteio(itens){
+    if (!Array.isArray(itens) || !itens.length) return;
+    $("#custeio").innerHTML = itens.map(t=> "<li><b>"+esc(t)+"</b></li>").join("");
+  }
+
+  function montaLoja(produtos){
+    if (!Array.isArray(produtos) || !produtos.length) return;
+    const seta = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+    $("#loja").innerHTML = produtos.map(p=>{
+      const foto = p.imagem
+        ? '<span class="prod__foto"><img src="assets/loja/'+esc(p.imagem)+'" alt="" loading="lazy"></span>'
+        : '<span class="prod__foto"></span>';
+      const sub = p.descricao ? "<i>"+esc(p.descricao)+"</i>" : "";
+      return '<a class="prod" href="'+esc(p.url)+'" target="_blank" rel="noopener">'+foto+
+             '<span class="prod__txt"><b>'+esc(p.nome)+'</b>'+sub+'</span>'+seta+'</a>';
+    }).join("");
+  }
+
+  function montaApoios(itens){
+    if (!Array.isArray(itens) || !itens.length) return;
+    $("#apoios").innerHTML = itens.map(a=>{
+      const livre = a.livre ? " apoio--livre" : "";
+      const valor = a.livre ? esc(a.valor) : esc(a.valor) + '<small>/mês</small>';
+      return '<a class="apoio'+livre+'" href="'+esc(a.url)+'" target="_blank" rel="noopener">'+
+             '<span class="apoio__v">'+valor+'</span>'+
+             '<span class="apoio__d">'+esc(a.descricao)+'</span>'+
+             '<span class="apoio__pe">'+(a.livre ? "Escolher" : "Apoiar")+' →</span></a>';
+    }).join("");
+  }
+
   function montaImprensa(grupos){
     if (!Array.isArray(grupos) || !grupos.length) return;
     let total = 0;
@@ -1497,6 +1532,49 @@ const PADRAO = {
     }
     if (ct.instagram) $$('a[href*="instagram.com"]').forEach(a=> a.href = ct.instagram);
     if (ct.youtube)   $$('a[href*="youtube.com"]:not(.video)').forEach(a=> a.href = ct.youtube);
+  }
+
+  /* ---------------- hero: imagens da pasta assets/hero/ ---------------- */
+  function montaHero(cfg){
+    const fotos = (cfg && cfg.fotos || []).filter(f=> f && f.arquivo);
+    if (!fotos.length) return;
+
+    const fundo = $("#heroFundo"), cred = $("#heroCred");
+    /* Começa numa foto sorteada: cada visita abre com uma imagem diferente. */
+    let i = Math.floor(Math.random() * fotos.length);
+
+    fundo.innerHTML = "";
+    const camadas = fotos.map((f,k)=>{
+      const img = document.createElement("img");
+      img.alt = "";
+      img.decoding = "async";
+      if (k === i){ img.src = "assets/hero/" + f.arquivo; img.className = "on"; img.fetchPriority = "high"; }
+      fundo.appendChild(img);
+      return img;
+    });
+    if (cred) cred.textContent = fotos[i].credito || "";
+
+    if (fotos.length < 2) return;
+
+    /* Pré-carrega a próxima antes de trocar, para a transição não piscar. */
+    function carrega(k){
+      const img = camadas[k];
+      if (!img.src) img.src = "assets/hero/" + fotos[k].arquivo;
+    }
+    carrega((i + 1) % fotos.length);
+
+    if (calmo) return;   /* quem pediu menos animação não vê a troca */
+
+    const intervalo = Math.max(3, Number(cfg.intervaloSegundos) || 7) * 1000;
+    setInterval(()=>{
+      const prox = (i + 1) % fotos.length;
+      carrega(prox);
+      camadas[i].classList.remove("on");
+      camadas[prox].classList.add("on");
+      i = prox;
+      if (cred) cred.textContent = fotos[i].credito || "";
+      carrega((i + 1) % fotos.length);
+    }, intervalo);
   }
 
   /* ---------------- galeria ---------------- */
@@ -1584,24 +1662,45 @@ const PADRAO = {
 
     const grade = document.createElement("div");
     grade.className = "videos__grid";
-    lista.forEach((v,i)=> grade.appendChild(cartao(v, i === 0 && lista.length >= 5)));
+    lista.forEach((v,i)=>{
+      const c = cartao(v, i === 0 && lista.length >= 5);
+      /* Peças de formatos diferentes quebram a monotonia da grade. */
+      if (i > 0 && i < lista.length - 4 && lista.length >= 10){
+        if (i % 7 === 0) c.classList.add("video--larga");
+        else if (i % 5 === 0) c.classList.add("video--alta");
+      }
+      grade.appendChild(c);
+    });
     const caixa = $("#videos"); caixa.innerHTML = ""; caixa.appendChild(grade);
     $("#miniVideos").textContent = lista.length;
 
     /* Uma miniatura sozinha na última linha fica com cara de erro.
        Quando isso acontece, a última passa a ocupar duas colunas. */
-    function fechaGrade(){
+    function ajustaGrade(){
       const filhos = Array.from(grade.children);
+      const colunas = getComputedStyle(grade).gridTemplateColumns.split(" ").filter(Boolean);
+      const cols = colunas.length;
+      if (!cols) return;
+
+      /* Altura da linha = 16:9 de uma coluna. Sem isso, peças de tamanhos
+         diferentes desalinham e a grade fica cheia de buracos. */
+      const larguraCol = parseFloat(colunas[0]) || (grade.clientWidth / cols);
+      grade.style.setProperty("--linhaVideo", Math.round(larguraCol * 9 / 16) + "px");
+
+      /* Uma miniatura sozinha na última linha fica com cara de erro. */
       const ultimo = filhos[filhos.length-1];
       if (!ultimo || ultimo.classList.contains("video--grande")) return;
       ultimo.style.gridColumn = "";
-      const cols = getComputedStyle(grade).gridTemplateColumns.split(" ").filter(Boolean).length;
       if (cols < 3) return;
-      const ocupadas = filhos.length + (filhos[0].classList.contains("video--grande") ? 3 : 0);
+      let ocupadas = 0;
+      filhos.forEach(f=>{
+        ocupadas += f.classList.contains("video--grande") ? 4
+                  : f.classList.contains("video--larga")  ? 2 : 1;
+      });
       if (ocupadas % cols === 1) ultimo.style.gridColumn = "span 2";
     }
-    fechaGrade();
-    let t; addEventListener("resize", ()=>{ clearTimeout(t); t = setTimeout(fechaGrade, 150); }, {passive:true});
+    ajustaGrade();
+    let t; addEventListener("resize", ()=>{ clearTimeout(t); t = setTimeout(ajustaGrade, 120); }, {passive:true});
 
     const chave = (cfg && cfg.apiKeyYouTube) || PADRAO.alcance.apiKeyYouTube;
     const manual = Number((cfg && cfg.viewsManual) || PADRAO.alcance.viewsManual || 0);
@@ -1652,6 +1751,9 @@ const PADRAO = {
     montaNumeros(c.numeros, c.atualizadoEm);
     montaConquistas(c.conquistas);
     montaImprensa(c.imprensa);
+    montaCusteio(c.custeio);
+    montaApoios(c.apoios);
+    montaLoja(c.loja);
     montaCaminho(Object.assign({ atualizadoEm: c.atualizadoEm }, c.caminho));
     aplicaContato(c.contato);
     return c;
@@ -1675,6 +1777,7 @@ const PADRAO = {
     );
   }
   dados("galeria.json").then(montaGaleria).catch(()=>{});
+  dados("hero.json").then(montaHero).catch(()=>{});
 })();
 </script>
 </body>

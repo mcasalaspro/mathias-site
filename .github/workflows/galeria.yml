@@ -1,11 +1,13 @@
-name: Atualizar galeria
+name: Atualizar imagens
 
-# Roda sempre que alguém adiciona ou remove fotos em assets/galeria/.
-# Lê a pasta, reescreve dados/galeria.json e preserva as legendas já escritas.
+# Roda sempre que alguém adiciona ou remove imagens em assets/galeria/ ou assets/hero/.
+# Lê as pastas, reescreve dados/galeria.json e dados/hero.json, e preserva os textos
+# que você já tiver escrito.
 on:
   push:
     paths:
       - 'assets/galeria/**'
+      - 'assets/hero/**'
       - '.github/workflows/galeria.yml'
   workflow_dispatch:
 
@@ -18,72 +20,70 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Gerar dados/galeria.json
+      - name: Indexar as pastas de imagens
         run: |
           python3 - <<'PY'
           import json, os, re
 
-          PASTA = "assets/galeria"
-          SAIDA = "dados/galeria.json"
           EXT = (".jpg", ".jpeg", ".png", ".webp", ".avif")
-
-          os.makedirs(PASTA, exist_ok=True)
-          arquivos = sorted(
-              (f for f in os.listdir(PASTA) if f.lower().endswith(EXT) and not f.startswith((".", "_"))),
-              reverse=True,   # nomes começando com a data deixam as mais recentes na frente
-          )
-
-          # Preserva o que já foi escrito à mão
-          antigo = {}
-          cabeca = None
-          if os.path.exists(SAIDA):
-              try:
-                  d = json.load(open(SAIDA, encoding="utf-8"))
-                  cabeca = d.get("_leia")
-                  antigo = {f.get("arquivo"): f for f in d.get("fotos", []) if f.get("arquivo")}
-              except Exception:
-                  pass
 
           def legenda_do_nome(nome):
               """2026-08_leca-chess-open_primeira-norma.jpg -> 'Leça Chess Open · Primeira norma'"""
               base = re.sub(r"\.[^.]+$", "", nome)
               partes = [p for p in base.split("_") if p]
-              if partes and re.fullmatch(r"\d{4}(-\d{2})?", partes[0]):
+              if partes and re.fullmatch(r"\d{2,4}(-\d{2})?", partes[0]):
                   partes = partes[1:]
-              texto = " · ".join(p.replace("-", " ").strip().capitalize() for p in partes)
-              return texto
+              return " · ".join(p.replace("-", " ").strip().capitalize() for p in partes)
 
-          fotos = []
-          for nome in arquivos:
-              if nome in antigo:
-                  fotos.append(antigo[nome])
-              else:
-                  fotos.append({
-                      "arquivo": nome,
-                      "destaque": "",
-                      "legenda": legenda_do_nome(nome),
-                      "alt": "Mathias Casalaspro em torneio de xadrez",
-                  })
+          def indexar(pasta, saida, campo_texto, molde):
+              os.makedirs(pasta, exist_ok=True)
+              arquivos = sorted(
+                  (f for f in os.listdir(pasta)
+                   if f.lower().endswith(EXT) and not f.startswith((".", "_"))),
+                  reverse=(campo_texto == "legenda"),   # galeria: mais recentes primeiro
+              )
 
-          saida = {
-              "_leia": cabeca or ("Gerado automaticamente pela GitHub Action quando você adiciona ou remove "
-                                  "fotos em assets/galeria/. Você só precisa editar as legendas — elas são "
-                                  "preservadas a cada atualização."),
-              "fotos": fotos,
-          }
-          json.dump(saida, open(SAIDA, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-          open(SAIDA, "a", encoding="utf-8").write("\n")
-          print(f"{len(fotos)} foto(s) indexada(s)")
+              antigo, extras = {}, {}
+              if os.path.exists(saida):
+                  try:
+                      d = json.load(open(saida, encoding="utf-8"))
+                      extras = {k: v for k, v in d.items() if k != "fotos"}
+                      antigo = {f.get("arquivo"): f for f in d.get("fotos", []) if f.get("arquivo")}
+                  except Exception:
+                      pass
+
+              fotos = []
+              for nome in arquivos:
+                  if nome in antigo:
+                      fotos.append(antigo[nome])
+                  else:
+                      novo = dict(molde)
+                      novo["arquivo"] = nome
+                      novo[campo_texto] = legenda_do_nome(nome)
+                      fotos.append(novo)
+
+              saida_json = dict(extras)
+              saida_json["fotos"] = fotos
+              json.dump(saida_json, open(saida, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+              open(saida, "a", encoding="utf-8").write("\n")
+              print(f"{saida}: {len(fotos)} imagem(ns)")
+
+          indexar("assets/galeria", "dados/galeria.json", "legenda",
+                  {"arquivo": "", "destaque": "", "legenda": "",
+                   "alt": "Mathias Casalaspro em torneio de xadrez"})
+
+          indexar("assets/hero", "dados/hero.json", "credito",
+                  {"arquivo": "", "credito": ""})
           PY
 
       - name: Publicar mudanças
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet dados/galeria.json; then
+          if git diff --quiet dados/galeria.json dados/hero.json; then
             echo "Nada mudou."
           else
-            git add dados/galeria.json
-            git commit -m "Atualiza índice da galeria [skip ci]"
+            git add dados/galeria.json dados/hero.json
+            git commit -m "Atualiza índice de imagens [skip ci]"
             git push
           fi

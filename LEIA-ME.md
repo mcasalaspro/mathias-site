@@ -7,6 +7,7 @@ repositório do GitHub e ser servido pela Cloudflare.
 Tudo que muda está em `dados/`, em três arquivos de texto simples.
 
 ```
+CONFIGURAR-GIT.bat            prepara o Git na sua máquina (uma vez só)
 PUBLICAR.bat                  envia tudo para o GitHub (Windows)
 VER-LOCAL.bat                 abre o site na sua máquina para conferir
 index.html                    o site (não precisa ser editado)
@@ -14,7 +15,10 @@ dados/conteudo.json           números, conquistas, imprensa, contato
 dados/videos.json             lista de vídeos do YouTube
 dados/galeria.json            legendas das fotos (gerado sozinho)
 assets/                       imagens fixas
+assets/hero/                  imagens de fundo da primeira dobra
 assets/galeria/               é só jogar fotos aqui
+assets/loja/                  fotos dos produtos
+assets/logo-mc.png            o logo, usado no topo e no rodapé
 .github/workflows/galeria.yml a rotina que indexa a pasta de fotos
 _headers                      regras de cache da Cloudflare
 ```
@@ -23,10 +27,79 @@ _headers                      regras de cache da Cloudflare
 
 ## 1. Publicar (Windows, com o PUBLICAR.bat)
 
-### Antes de tudo: instalar o Git, uma vez só
+### Passo 0 — instalar o Git, uma vez só
 
-Baixe em <https://git-scm.com/download/win> e instale aceitando todas as opções padrão.
-São uns três minutos. É o programa que leva os arquivos daqui até o GitHub.
+O Git é o programa que leva os arquivos daqui até o GitHub.
+
+**Versão recomendada: 2.55.0(4)**, arquivo `Git-2.55.0.4-64-bit.exe`. Não é capricho: essa
+versão corrige a CVE-2026-62960, uma falha em que um servidor malicioso podia fazer o Windows
+autenticar via NTLM sem você perceber e vazar o hash da sua senha. A 2.55.0(3) já tinha
+corrigido estouros de memória no gerenciador de credenciais. Se for instalar hoje, instale
+essa.
+
+**Caminho 1 — instalador.** Baixe em <https://git-scm.com/download/win>, clique em
+*Click here to download*, e rode o `Git-2.55.0.4-64-bit.exe`.
+
+**Caminho 2 — uma linha.** Abra o Prompt de Comando e cole:
+
+```
+winget install --id Git.Git -e --source winget
+```
+
+#### As telas do instalador que importam
+
+São umas quinze telas. Em quase todas, *Next* resolve. Estas quatro merecem atenção:
+
+| Tela | O que escolher | Por quê |
+|---|---|---|
+| **Choosing the default editor** | **Use Notepad as Git's default editor** | O padrão é o Vim, um editor de terminal do qual é famosamente difícil sair. |
+| **Adjusting the name of the initial branch** | **Override → `main`** | É o nome que o GitHub usa. Com o padrão antigo (`master`), o envio falha. |
+| **Adjusting your PATH environment** | **Git from the command line and also from 3rd-party software** (a do meio, já marcada) | Sem isso o `PUBLICAR.bat` não encontra o Git. |
+| **Choose a credential helper** | **Git Credential Manager** (já marcada) | É o que abre o login do GitHub no navegador e guarda a sessão. Sem ele, o Git pede senha toda vez — e o GitHub não aceita mais senha. |
+
+Nas demais, o padrão está certo: *Checkout Windows-style, commit Unix-style line endings*,
+*Use bundled OpenSSH*, *Use the OpenSSL library*, *Use MinTTY*, *Default (fast-forward or
+merge)* e *Enable file system caching*. Não marque nada em *Configuring experimental options*.
+
+Para conferir depois, abra o Prompt de Comando e digite `git --version`. Deve responder
+`git version 2.55.0.windows.4`.
+
+Para atualizar no futuro: `git update-git-for-windows`.
+
+### Passo 0b — configurar o Git
+
+Dê dois cliques em **CONFIGURAR-GIT.bat**. Ele pergunta seu nome e e-mail (use o mesmo da
+conta do GitHub) e aplica de uma vez tudo o que evita dor de cabeça depois:
+
+| Configuração | Para quê |
+|---|---|
+| `user.name` e `user.email` | Assinam cada alteração no histórico. |
+| `init.defaultBranch main` | Novos repositórios já nascem com a branch certa. |
+| `core.editor notepad` | Um commit sem mensagem abre o Bloco de Notas, não o Vim. |
+| `credential.helper manager` | Guarda o login do GitHub com segurança no Windows. |
+| `core.autocrlf true` | Quebra de linha Windows no seu disco, Unix no repositório. |
+| `pull.rebase false` | Some com o aviso de "divergent branches". |
+| `core.quotepath false` | Mostra acentos nos nomes de arquivo em vez de `\303\247`. |
+| `core.longpaths true` | Evita o limite antigo de caminho longo do Windows. |
+| `push.default simple` | Envia só a branch atual, nunca todas sem querer. |
+
+Tudo isso vai parar num arquivo de texto em `C:\Users\SEU-USUARIO\.gitconfig`. Dá para abrir
+e conferir quando quiser.
+
+Se preferir digitar à mão, são estes comandos:
+
+```bash
+git config --global user.name "Seu Nome"
+git config --global user.email "voce@exemplo.com"
+git config --global init.defaultBranch main
+git config --global core.editor "notepad"
+git config --global credential.helper manager
+git config --global core.autocrlf true
+git config --global pull.rebase false
+git config --global core.quotepath false
+git config --global core.longpaths true
+git config --global push.default simple
+```
 
 ### Passo 1 — criar a conta e o repositório
 
@@ -47,8 +120,14 @@ coisas:
 - **Seu nome e e-mail** — é a assinatura que fica no histórico de alterações.
 - **A URL do repositório** — cole a que você copiou no passo 1.
 
-Depois disso, o Windows abre uma janela pedindo para entrar na sua conta do GitHub. Faça o
-login e pronto: os arquivos sobem. Da segunda vez em diante, o login não é mais pedido.
+Depois disso, o Git Credential Manager abre uma janela pedindo para entrar na sua conta do
+GitHub — escolha **Sign in with your browser**, autorize e feche a aba. Os arquivos sobem. A
+sessão fica guardada no Gerenciador de Credenciais do Windows, então da segunda vez em diante
+o login não é mais pedido.
+
+> **Não use senha.** O GitHub não aceita mais senha em envios desde 2021. Se alguma tela pedir
+> senha em vez de abrir o navegador, cancele e confira se o `credential.helper` está como
+> `manager` — o `CONFIGURAR-GIT.bat` resolve isso.
 
 > Se o Windows avisar que "protegeu o computador", clique em **Mais informações → Executar
 > assim mesmo**. É o aviso padrão para qualquer arquivo `.bat` baixado da internet.
@@ -166,7 +245,33 @@ os outros preenchem a grade, que se fecha sozinha para nunca sobrar uma miniatur
 Não precisam ser do canal do Mathias: qualquer vídeo público entra, e um vídeo de canal grande
 falando dele vale mais para patrocinador do que um vídeo do próprio Mathias.
 
-### Fotos → é só jogar na pasta
+### Imagem do topo → `assets/hero/`
+
+A primeira dobra usa uma foto de fundo que ocupa a tela inteira, com um degradê azul por cima
+para o texto continuar legível. **A cada visita o site sorteia uma das imagens da pasta** e,
+depois, troca para a seguinte a cada 7 segundos, com transição suave.
+
+Para testar outras fotos, largue os arquivos em `assets/hero/` e faça o commit — a mesma
+rotina do GitHub indexa a pasta. O intervalo e as legendas ficam em `dados/hero.json`:
+
+```json
+{
+  "intervaloSegundos": 7,
+  "fotos": [
+    { "arquivo": "01_floripa-blitz-abertura.jpg", "credito": "Brazil Chess Series · Floripa 2026" }
+  ]
+}
+```
+
+O `credito` aparece pequeno no canto inferior e acompanha a troca de imagem.
+
+**Use fotos horizontais.** Uma foto vertical esticada para a largura da tela fica muito
+ampliada — as duas que estão lá agora servem de teste, mas o ideal são imagens largas, de 1600
+a 2400px, com espaço vazio do lado esquerdo, que é onde o texto fica.
+
+Quem tem "reduzir movimento" ligado no sistema vê uma imagem fixa, sem troca.
+
+### Fotos da galeria → é só jogar na pasta
 
 Arraste as imagens para `assets/galeria/` e faça o commit. Uma rotina do GitHub roda sozinha,
 lê a pasta e reescreve `dados/galeria.json`. **Você não precisa mexer em nada além de largar o
@@ -219,8 +324,12 @@ página que um patrocinador vai conferir.
 - [ ] **Conferir os quatro selos de recorde:** três "Inédito no Brasil" (primeiro GM aos 9 em
       simultânea, GM em clássica aos 11, jogador 2550+ em clássica) e um "Estreia do Brasil"
       (Olimpíada Sub-16). Selo de recorde é o que alguém confere primeiro.
-- [ ] **Valores dos três planos de patrocínio** — estão como `R$ ___` no `index.html`, na seção
-      de patrocínio. São os únicos textos que ainda pedem edição no HTML.
+- [ ] **Foto do "Jogo dos Hábitos"** — é o único produto sem imagem. Salve em `assets/loja/`
+      e escreva o nome do arquivo no campo `imagem`, em `dados/conteudo.json`. Enquanto não
+      houver, o card mostra um peão dourado sobre o padrão de peças.
+- [ ] **Conferir os links de apoio.** Os quatro valores (R$ 10, R$ 50, R$ 100 e Outro) apontam
+      para planos do Mercado Pago herdados do site antigo. Confirme qual `plan_id` corresponde a
+      qual valor.
 - [ ] **Meta e valor arrecadado da temporada**, em `dados/conteudo.json`.
 - [ ] **E-mail de contato**, em `dados/conteudo.json` (o WhatsApp já está ligado ao número
       (11) 99961-0210 em todos os botões).
