@@ -1,0 +1,78 @@
+{
+  "_leia": "Edite este arquivo para atualizar o site. Não é preciso mexer no index.html. Depois de salvar, o GitHub publica sozinho em cerca de um minuto.",
+
+  "atualizadoEm": "agosto de 2026",
+
+  "numeros": [
+    { "valor": 2341, "rotulo": "Rating FIDE" },
+    { "valor": 489,  "rotulo": "Partidas clássicas" },
+    { "valor": 311,  "rotulo": "Torneios disputados" },
+    { "valor": 1,    "rotulo": "Norma de MI conquistada" }
+  ],
+
+  "caminho": {
+    "ratingAtual": 2341,
+    "escala": [2100, 2440],
+    "marcos": [
+      { "valor": 2200, "titulo": "2200", "nota": "jun/2024" },
+      { "valor": 2341, "titulo": "2341", "nota": "FM · dez/2024" },
+      { "valor": 2400, "titulo": "2400", "nota": "meta · MI", "meta": true }
+    ],
+    "normasFeitas": 1,
+    "normasNecessarias": 3,
+    "temporada": "2027",
+    "metaResumo": "4 torneios internacionais · 2 normas restantes",
+    "metaValor": 60000,
+    "arrecadado": 12500,
+    "apoiadores": 0
+  },
+
+  "conquistas": [
+    { "ano": "2026", "texto": "5º lugar no geral do Leça Chess Open, empatado em pontos com o campeão e com performance de 2554 — o resultado que fechou a primeira norma de Mestre Internacional", "local": "Portugal", "selo": "Norma de MI", "tipo": "fide" },
+    { "ano": "2026", "texto": "Campeão do Blitz de Abertura do Brazil Chess Series — Floripa, entre 114 participantes" },
+    { "ano": "2025", "texto": "Mesa 1 da seleção brasileira Sub-16 na Olimpíada Mundial", "local": "Barranquilla, Colômbia", "selo": "Estreia do Brasil", "tipo": "inedito" },
+    { "ano": "2025", "texto": "Campeão invicto do Manaus Chess Open, com 7 pontos em 9 e performance de 2492" },
+    { "ano": "2025", "texto": "Convidado a representar o xadrez na COB Expo", "local": "São Paulo" },
+    { "ano": "2024", "texto": "Mestre FIDE (FM) aos 12 anos, atingindo 2341 de rating", "selo": "Título FIDE", "tipo": "fide" },
+    { "ano": "2024", "texto": "Derrotou um Grande Mestre em partida clássica oficial aos 11 anos, no III Rio Chess Open", "selo": "Inédito no Brasil", "tipo": "inedito" },
+    { "ano": "2024", "texto": "Derrotou um jogador de 2550+ de rating em clássica e levou o 2º prêmio de melhor partida do torneio", "selo": "Inédito no Brasil", "tipo": "inedito" },
+    { "ano": "2024", "texto": "Ultrapassou os 2200 de rating" },
+    { "ano": "2023", "texto": "Candidate Master (CM) pela FIDE", "selo": "Título FIDE", "tipo": "fide" },
+    { "ano": "2019–23", "texto": "Pentacampeão Paulista Escolar. Venceu o Sub-10 aos 7 anos e os Sub-18 e Sub-20 aos 10, contra adversários com o dobro da idade" },
+    { "ano": "2022", "texto": "Campeão Sul-Americano de Blitz Sub-10", "local": "Assunção, Paraguai" },
+    { "ano": "2022", "texto": "Derrotou seu primeiro Grande Mestre, em simultânea, aos 9 anos", "selo": "Inédito no Brasil", "tipo": "inedito" }
+  ],
+
+  "imprensa": [
+    {
+      "grupo": "Olimpíada Mundial Sub-16 · Barranquilla, 2025",
+      "itens": [
+        { "titulo": "Brasil estreia com brilho na Olimpíada de Xadrez Sub-16", "veiculo": "Ponta Negra News", "url": "https://pontanegranews.com.br/2025/08/24/brasil-estreia-com-brilho-na-olimpiada-de-xadrez-sub-16-e-garante-16o-lugar-em-barranquilla/" },
+        { "titulo": "Marco histórico: Brasil estreia na Olimpíada de Xadrez Sub-16", "veiculo": "Blog do Amarildo", "url": "https://blogdoamarildo.com.br/marco-historico-brasil-estreia-na-olimpiada-de-xadrez-sub-16/" },
+        { "titulo": "Brasil estreia com brilho na Olimpíada de Xadrez Sub-16", "veiculo": "Blog Esporte", "url": "https://blogesporte.com.br/brasil-estreia-com-brilho-na-olimpiada-de-xadrez-sub-16/" },
+        { "titulo": "16º lugar em Barranquilla", "veiculo": "PB News", "url": "https://pbnews.com.br/noticia/52973/brasil-estreia-com-brilho-na-olimpiada-de-xadrez-sub-16-e-garante-16o-lugar-em-barranquilla" },
+        { "titulo": "Brasil garante 16º lugar na Olimpíada Sub-16", "veiculo": "Candido Nóbrega", "url": "https://candidonobrega.com.br/brasil-estreia-com-brilho-na-olimpiada-de-xadrez-sub-16-e-garante-16o-lugar-em-barranquilla/" }
+      ]
+    },
+    {
+      "grupo": "COB Expo 2025 · São Paulo",
+      "itens": [
+        { "titulo": "Xadrez marca presença na COB Expo 2025", "veiculo": "Lance!", "url": "https://www.lance.com.br/mais-esportes/xadrez-marca-presenca-na-cob-expo-2025-em-sao-paulo.html" }
+      ]
+    },
+    {
+      "grupo": "Xadrez na educação",
+      "itens": [
+        { "titulo": "Xadrez na educação transforma aprendizagem e engaja alunos", "veiculo": "Educador 21", "url": "https://educador21.com/xadrez-na-educacao-evento-pascoa-aprendizagem/" }
+      ]
+    }
+  ],
+
+  "contato": {
+    "whatsapp": "5511999610210",
+    "whatsappRotulo": "(11) 99961-0210",
+    "email": "contato@mathiascasalaspro.com.br",
+    "instagram": "https://www.instagram.com/mathiascasalaspro/",
+    "youtube": "https://www.youtube.com/@mathiascasalaspro"
+  }
+}

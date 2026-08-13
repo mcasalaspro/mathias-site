@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mathias Casalaspro — Mestre FIDE de xadrez</title>
+<meta name="description" content="Aos 11 anos derrotou um Grande Mestre. Aos 12 virou Mestre FIDE. Mathias Casalaspro treina para o título de Mestre Internacional — e você pode fazer parte disso.">
+<link rel="canonical" href="https://www.mathiascasalaspro.com.br/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Mathias Casalaspro">
+<meta property="og:title" content="Mathias Casalaspro — Mestre FIDE de xadrez">
+<meta property="og:description" content="Aos 11 anos derrotou um Grande Mestre. Hoje treina para o título de Mestre Internacional.">
+<meta property="og:url" content="https://www.mathiascasalaspro.com.br/">
+<meta property="og:image" content="https://www.mathiascasalaspro.com.br/assets/og-mathias.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#071523">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icone-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/mathias-hero.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@400;700&family=Newsreader:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mathias André Casalaspro",
+  "url": "https://www.mathiascasalaspro.com.br/",
+  "nationality": "BR",
+  "jobTitle": "Enxadrista — Mestre FIDE",
+  "sport": "Xadrez",
+  "award": [
+    "Mestre FIDE (FM), 2024",
+    "Mais jovem brasileiro a derrotar um Grande Mestre em partida clássica oficial",
+    "Pentacampeão Paulista Escolar (2019–2023)",
+    "Campeão Sul-Americano de Blitz Sub-10 (2022)"
+  ]
+}
+</script>
+
+<style>
+/* ============================================================
+   MATHIAS CASALASPRO — folha de estilo única
+   Paleta derivada da camisa oficial: azul-marinho + ouro + marfim.
+   Estrutura da página: a diagonal a1→h8 do tabuleiro.
+   ============================================================ */
+
+:root{
+  /* --- cor --- */
+  --noite:      #071523;
+  --tabuleiro:  #0E2A44;
+  --tabuleiro2: #143A5C;
+  --ouro:       #C9A24B;
+  --ouro-claro: #E6C77A;
+  --marfim:     #F1EBDF;
+  --marfim2:    #FBF8F3;
+  --nevoa:      #8FA6BD;
+  --grafite:    #1E2A34;
+  --grafite2:   #5A6B78;
+  --ouro-esc:   #8A6A22;
+  --linha-esc:  rgba(201,162,75,.22);
+  --linha-cla:  rgba(30,42,52,.14);
+
+  /* --- tipo --- */
+  --display: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --texto:   "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --serif:   "Newsreader", Georgia, "Times New Roman", serif;
+  --mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* --- ritmo --- */
+  --gutter: clamp(20px, 5vw, 72px);
+  --bloco:  clamp(66px, 7.6vw, 116px);
+  --max:    1220px;
+  --fuga:   calc((100vw - min(100vw, var(--max)))/2 + var(--gutter));
+  --raio:   3px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  background:var(--noite);
+  color:var(--marfim);
+  font-family:var(--texto);
+  font-size:clamp(15.5px,1.02vw,17px);
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; }
+
+::selection{ background:var(--ouro); color:var(--noite); }
+
+.pular{
+  position:absolute; left:-9999px; top:0; z-index:200;
+  background:var(--ouro); color:var(--noite); padding:12px 20px; font-weight:700;
+}
+.pular:focus{ left:12px; top:12px; }
+
+:focus-visible{ outline:2px solid var(--ouro-claro); outline-offset:3px; }
+
+/* ---------- utilitários de estrutura ---------- */
+.env{ width:100%; max-width:var(--max); margin-inline:auto; padding-inline:var(--gutter); }
+
+.faixa{ padding-block:var(--bloco); position:relative; }
+section[id], div[id]{ scroll-margin-top:88px; }
+.faixa--escura{ background:var(--noite); color:var(--marfim); }
+.faixa--azul{   background:var(--tabuleiro); color:var(--marfim); }
+.faixa--clara{  background:var(--marfim); color:var(--grafite); }
+.faixa--clara2{ background:var(--marfim2); color:var(--grafite); }
+.faixa--clara .casa b, .faixa--clara2 .casa b,
+.faixa--clara .rotulo, .faixa--clara2 .rotulo{ color:var(--ouro-esc); }
+.faixa--clara .datado, .faixa--clara2 .datado{ color:var(--grafite2); opacity:1; }
+
+/* eyebrow: coordenada da casa + nome da seção */
+.casa{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+  display:flex; align-items:center; gap:12px; margin:0 0 22px;
+}
+.casa b{ font-weight:700; color:var(--ouro); text-transform:none; }
+.casa span{ opacity:.62; font-weight:400; }
+.casa::after{ content:""; height:1px; flex:1; background:currentColor; opacity:.18; }
+
+h1,h2,h3,h4{ font-family:var(--display); font-weight:800; line-height:.98; letter-spacing:-.025em; margin:0; }
+h2{ font-size:clamp(2rem,4.6vw,3.5rem); text-wrap:balance; }
+h3{ font-size:clamp(1.15rem,1.9vw,1.5rem); line-height:1.15; letter-spacing:-.015em; }
+p{ margin:0 0 1em; }
+.lede{ font-size:clamp(1.05rem,1.55vw,1.28rem); line-height:1.55; max-width:56ch; }
+
+.rotulo{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ouro); font-weight:700;
+}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:10px; justify-content:center;
+  font-family:var(--display); font-weight:700; font-size:.94rem; letter-spacing:.01em;
+  padding:15px 26px; border-radius:var(--raio); text-decoration:none;
+  border:1.5px solid transparent; cursor:pointer;
+  transition:transform .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn--ouro{ background:var(--ouro); color:var(--noite); }
+.btn--ouro:hover{ background:var(--ouro-claro); }
+.btn--linha{ border-color:currentColor; color:inherit; }
+.btn--linha:hover{ background:var(--ouro); border-color:var(--ouro); color:var(--noite); }
+.btn--peq{ padding:11px 18px; font-size:.82rem; }
+.btn svg{ width:15px; height:15px; }
+
+.duplo{ display:flex; flex-wrap:wrap; gap:12px; }
+
+/* ============ NAV ============ */
+.topo{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  background:rgba(7,21,35,0); backdrop-filter:blur(0px);
+  transition:background-color .3s ease, backdrop-filter .3s ease, border-color .3s ease;
+  border-bottom:1px solid transparent;
+}
+.topo.fixado{ background:rgba(7,21,35,.9); backdrop-filter:blur(14px); border-bottom-color:var(--linha-esc); }
+.topo__int{ display:flex; align-items:center; gap:24px; height:70px; }
+
+.marca{ display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--marfim); flex-shrink:0; }
+.marca__selo{
+  width:32px; height:32px; flex-shrink:0;
+  background:
+    linear-gradient(135deg, var(--ouro) 0 50%, transparent 50% 100%),
+    var(--tabuleiro2);
+  border:1px solid var(--ouro); border-radius:2px;
+  display:grid; place-items:center;
+  font-family:var(--display); font-weight:800; font-size:.82rem; color:var(--marfim);
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+.marca__txt{ font-family:var(--display); font-weight:800; font-size:.9rem; letter-spacing:.02em; line-height:1.05; }
+.marca__txt small{ display:block; font-family:var(--mono); font-weight:400; font-size:.6rem; letter-spacing:.18em; color:var(--ouro); text-transform:uppercase; }
+
+.menu{ display:flex; gap:22px; margin-left:auto; align-items:center; flex-wrap:nowrap; }
+.menu a{
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
+  text-decoration:none; color:var(--nevoa); padding:6px 0; position:relative;
+  white-space:nowrap; transition:color .18s ease;
+}
+.menu a:hover, .menu a.ativo{ color:var(--marfim); }
+.menu a.ativo::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:1.5px; background:var(--ouro); }
+.menu a.btn{
+  font-family:var(--display); font-size:.8rem; text-transform:none; letter-spacing:.01em;
+  color:var(--noite); padding:11px 18px;
+}
+.menu a.btn:hover{ color:var(--noite); }
+.menu a.btn::after{ display:none; }
+
+.topo__int > .btn{ flex-shrink:0; display:none; }
+@media (min-width:1180px){ .topo__int > .btn{ display:inline-flex; } }
+
+/* mini tabuleiro = progresso de leitura (só desktop) */
+.diagonal{ display:grid; grid-template-columns:repeat(8,6px); gap:2px; margin-left:6px; }
+.diagonal i{ width:6px; height:6px; background:rgba(255,255,255,.16); border-radius:1px; transition:background-color .3s ease; }
+.diagonal i.on{ background:var(--ouro); }
+
+.hamb{
+  display:none; margin-left:auto; background:none; border:1px solid var(--linha-esc);
+  border-radius:2px; width:42px; height:38px; cursor:pointer; padding:0; place-items:center;
+}
+.hamb span{ display:block; width:18px; height:1.5px; background:var(--marfim); position:relative; }
+.hamb span::before,.hamb span::after{ content:""; position:absolute; left:0; width:18px; height:1.5px; background:var(--marfim); }
+.hamb span::before{ top:-6px; } .hamb span::after{ top:6px; }
+
+/* ============ HERO ============ */
+.hero{ position:relative; padding-top:120px; padding-bottom:0; overflow:hidden; }
+.hero::before{
+  content:""; position:absolute; inset:0; opacity:.5; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(201,162,75,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,162,75,.08) 1px, transparent 1px);
+  background-size:calc(100%/8) calc(100%/8), calc(100%/8) calc(100%/8);
+  -webkit-mask-image:linear-gradient(to bottom, #000 0%, transparent 78%);
+          mask-image:linear-gradient(to bottom, #000 0%, transparent 78%);
+}
+.hero__grid{
+  display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(28px,4vw,56px);
+  align-items:end; position:relative; z-index:2;
+}
+.hero__txt{ grid-area:1/2/2/3; padding-bottom:clamp(48px,7vw,96px); }
+.hero h1{
+  font-size:clamp(2.1rem,4.2vw,3.6rem);
+  margin:0 0 26px; text-wrap:balance;
+}
+.hero h1 em{ font-style:normal; color:var(--ouro); }
+.hero .lede{ color:var(--nevoa); margin-bottom:32px; }
+.hero .lede strong{ color:var(--marfim); font-weight:600; }
+
+.selo-abertura{
+  display:inline-flex; align-items:center; gap:10px; margin-bottom:26px;
+  border:1px solid var(--linha-esc); border-radius:100px; padding:7px 16px 7px 10px;
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--nevoa);
+}
+.selo-abertura b{ color:var(--ouro); font-weight:700; }
+.pulso{ width:7px; height:7px; border-radius:50%; background:var(--ouro); box-shadow:0 0 0 0 rgba(201,162,75,.6); animation:pulso 2.4s infinite; }
+@keyframes pulso{ 70%{ box-shadow:0 0 0 9px rgba(201,162,75,0);} 100%{ box-shadow:0 0 0 0 rgba(201,162,75,0);} }
+
+.hero__foto{ grid-area:1/1/2/2; position:relative; align-self:end; margin-left:calc(-1 * var(--fuga)); }
+.hero__foto img{
+  width:100%; height:auto; max-height:min(92vh,980px); object-fit:cover; object-position:center 30%;
+  border-radius:0 2px 2px 0;
+  filter:saturate(.86) contrast(1.06);
+  -webkit-mask-image:linear-gradient(to bottom, #000 72%, transparent 100%);
+          mask-image:linear-gradient(to bottom, #000 72%, transparent 100%);
+}
+.hero__foto::after{
+  content:""; position:absolute; inset:auto 0 0 0; height:46%;
+  background:linear-gradient(to top, var(--noite), transparent);
+  pointer-events:none;
+}
+.hero__cred{
+  position:absolute; left:var(--fuga); bottom:14px; z-index:3;
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; color:var(--nevoa); opacity:.75;
+}
+
+/* ============ TICKER ============ */
+.ticker{ background:var(--ouro); color:var(--noite); overflow:hidden; padding:13px 0; position:relative; z-index:3; }
+.ticker__pista{ display:flex; width:max-content; animation:desliza 46s linear infinite; }
+.ticker__grupo{ display:flex; align-items:center; flex-shrink:0; }
+.ticker__grupo span{
+  font-family:var(--mono); font-weight:700; font-size:.75rem; letter-spacing:.15em; text-transform:uppercase;
+  padding:0 22px; white-space:nowrap; display:flex; align-items:center; gap:22px;
+}
+.ticker__grupo span::after{ content:"◆"; font-size:.55rem; opacity:.5; }
+@keyframes desliza{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+.ticker:hover .ticker__pista{ animation-play-state:paused; }
+
+/* ============ NÚMEROS ============ */
+.numeros{ border-bottom:1px solid var(--linha-esc); }
+.numeros::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.55;
+  background:url("assets/padrao-xadrez.png") repeat 0 0/300px 300px;
+  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 45%, transparent);
+          mask-image:linear-gradient(to bottom, transparent, #000 45%, transparent);
+}
+.numeros .env{ position:relative; z-index:2; }
+.numeros__grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+  border-top:1px solid var(--linha-esc); border-left:1px solid var(--linha-esc);
+}
+.num{ padding:30px 22px; border-right:1px solid var(--linha-esc); border-bottom:1px solid var(--linha-esc); }
+.num__v{
+  font-family:var(--display); font-weight:800; font-size:clamp(2.1rem,4vw,3.1rem);
+  line-height:1; letter-spacing:-.03em; color:var(--marfim); display:block;
+  font-variant-numeric:tabular-nums;
+}
+.num__v i{ font-style:normal; color:var(--ouro); }
+.num__r{ font-family:var(--mono); font-size:.68rem; letter-spacing:.11em; text-transform:uppercase; color:var(--nevoa); margin-top:9px; display:block; }
+.nota{ font-size:.87rem; line-height:1.55; color:var(--nevoa); margin-top:16px; max-width:62ch; }
+.faixa--clara .nota, .faixa--clara2 .nota{ color:var(--grafite2); }
+.datado{ font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--nevoa); opacity:.7; margin-top:22px; }
+
+/* ============ HISTÓRIA ============ */
+.historia__grid{ display:grid; grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr); gap:clamp(30px,4.5vw,64px); align-items:center; }
+.historia__foto{ position:relative; margin-left:calc(-1 * var(--fuga)); }
+.historia__foto img{ width:100%; height:clamp(420px,50vw,760px); object-fit:cover; object-position:center 30%; border-radius:0 2px 2px 0; }
+.historia__foto figcaption{ padding-left:var(--fuga);
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--grafite2); margin-top:12px; line-height:1.5;
+}
+.historia__txt p{ font-size:clamp(1rem,1.25vw,1.1rem); max-width:60ch; color:#3B4854; }
+.historia__txt p:first-of-type{
+  font-family:var(--serif); font-size:clamp(1.4rem,2.5vw,1.95rem); line-height:1.32;
+  color:var(--grafite); letter-spacing:-.01em; margin-bottom:1.1em;
+}
+.historia__txt strong{ color:var(--grafite); font-weight:600; }
+.assinatura{
+  font-family:var(--serif); font-style:italic; font-size:1.5rem; color:var(--grafite);
+  margin-top:26px; opacity:.8;
+}
+
+/* ============ CONQUISTAS ============ */
+.destaque{
+  display:grid; grid-template-columns:1fr .9fr; align-items:end;
+  margin-bottom:clamp(52px,6vw,84px);
+}
+.destaque img{
+  grid-area:1/2/2/3; max-width:none;
+  width:calc(100% + var(--fuga)); margin-right:calc(-1 * var(--fuga));
+  height:clamp(520px,64vw,880px); object-fit:cover; object-position:center 20%;
+  border-radius:2px 0 0 2px;
+}
+.destaque__col{
+  grid-area:1/1/2/2; position:relative; z-index:2; margin-right:clamp(-96px,-6vw,-40px);
+  display:flex; flex-direction:column; justify-content:flex-end; gap:clamp(30px,4.5vw,58px);
+}
+.destaque__col h2{ max-width:14ch; }
+.destaque__txt{
+  padding:clamp(26px,3vw,40px);
+  background:rgba(7,21,35,.9); backdrop-filter:blur(14px);
+  border:1px solid var(--linha-esc); border-radius:var(--raio);
+}
+.destaque h3{ font-size:clamp(1.5rem,2.9vw,2.2rem); margin:14px 0 12px; }
+.destaque p{ color:var(--nevoa); max-width:52ch; margin-bottom:18px; }
+.fita{
+  display:inline-block; background:var(--ouro); color:var(--noite);
+  font-family:var(--mono); font-weight:700; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase;
+  padding:5px 11px; border-radius:2px;
+}
+
+.grupos{ display:grid; gap:clamp(34px,4vw,52px); }
+.grupo__cab{ display:flex; align-items:baseline; gap:14px; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--linha-esc); }
+.grupo__cab h3{ font-size:1.02rem; letter-spacing:.02em; text-transform:uppercase; }
+.grupo__cab em{ font-family:var(--mono); font-style:normal; font-size:.68rem; color:var(--ouro); letter-spacing:.1em; }
+
+.itens{ list-style:none; margin:0; padding:0; display:grid; gap:2px; }
+.itens li{
+  display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start;
+  padding:15px 16px; border-radius:2px; transition:background-color .2s ease;
+}
+.itens li:hover{ background:rgba(201,162,75,.06); }
+.itens li::before{
+  content:attr(data-peca); font-size:1.15rem; line-height:1.3; color:var(--ouro); opacity:.85;
+}
+.itens li > b, .itens li > span{ grid-column:2; }
+.itens b{ display:block; font-weight:600; font-size:1.02rem; color:var(--marfim); letter-spacing:-.005em; }
+.itens span{ display:block; color:var(--nevoa); font-size:.92rem; line-height:1.5; margin-top:3px; }
+
+.contexto{
+  margin-top:clamp(38px,5vw,58px); padding:26px clamp(22px,3vw,34px);
+  border-left:2px solid var(--ouro); background:rgba(201,162,75,.05);
+  font-family:var(--serif); font-style:italic; font-size:clamp(1.05rem,1.6vw,1.28rem);
+  color:var(--marfim); line-height:1.5; max-width:66ch;
+}
+
+/* ============ FAIXA DE FOTO ============ */
+.galeria{ position:relative; background:var(--tabuleiro); }
+.galeria__pista{
+  display:flex; gap:2px; overflow-x:auto; overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity; scrollbar-width:thin;
+  scrollbar-color:var(--ouro) rgba(255,255,255,.08);
+}
+.galeria__pista::-webkit-scrollbar{ height:5px; }
+.galeria__pista::-webkit-scrollbar-thumb{ background:var(--ouro); }
+.galeria__pista::-webkit-scrollbar-track{ background:rgba(255,255,255,.08); }
+.galeria figure{ position:relative; margin:0; flex:0 0 auto; scroll-snap-align:start; }
+.galeria img{
+  height:clamp(300px,52vw,660px); width:auto; max-width:none; object-fit:cover; object-position:center 45%;
+  display:block;
+}
+.galeria figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:60px 22px 20px;
+  background:linear-gradient(to top, rgba(7,21,35,.94), transparent);
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--nevoa); line-height:1.5;
+}
+.galeria figcaption b{ color:var(--ouro); font-weight:700; }
+.galeria--unica .galeria__pista{ overflow:visible; }
+.galeria--unica figure{ flex:1 1 100%; }
+.galeria--unica img{ width:100%; }
+.galeria--unica figcaption{ padding-inline:var(--gutter); }
+.galeria__dica{
+  position:absolute; top:16px; right:var(--gutter); z-index:2; pointer-events:none;
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--nevoa); background:rgba(7,21,35,.7); border:1px solid var(--linha-esc);
+  padding:5px 10px; border-radius:2px;
+}
+
+/* --- tradutor para leigos --- */
+.glossario{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(226px,1fr)); gap:1px;
+  background:var(--linha-esc); border:1px solid var(--linha-esc); border-radius:var(--raio);
+  overflow:hidden; margin-bottom:clamp(38px,4.5vw,56px);
+}
+.glossario__t{ grid-column:1/-1; background:var(--noite); padding:16px clamp(18px,2.2vw,24px); margin:0; }
+.glossario__t span{ font-family:var(--mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ouro); font-weight:700; }
+.verbete{ background:var(--noite); padding:20px clamp(18px,2.2vw,24px); margin:0; }
+.verbete dt{ font-weight:700; font-size:.98rem; color:var(--marfim); margin-bottom:6px; }
+.verbete dd{ margin:0; font-size:.9rem; line-height:1.5; color:var(--nevoa); }
+.verbete b{ color:var(--ouro); font-weight:600; }
+
+/* --- palmarés: uma linha por conquista --- */
+.palmares{ list-style:none; margin:0; padding:0; border-top:1px solid var(--linha-esc); }
+.palmares li{
+  display:grid; grid-template-columns:5.4rem 1fr auto; gap:clamp(14px,2vw,26px); align-items:baseline;
+  padding:15px 12px 15px 0; border-bottom:1px solid var(--linha-esc);
+  transition:background-color .18s ease, padding-left .18s ease;
+}
+.palmares li:hover{ background:rgba(201,162,75,.05); padding-left:12px; }
+.palmares .ano{
+  font-family:var(--mono); font-size:.8rem; font-weight:700; letter-spacing:.02em;
+  color:var(--ouro); white-space:nowrap; font-variant-numeric:tabular-nums;
+}
+.palmares .feito{ font-size:1.02rem; line-height:1.42; color:var(--marfim); }
+.palmares .feito i{ font-style:normal; color:var(--nevoa); }
+.tag{
+  font-family:var(--mono); font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  padding:5px 9px; border-radius:2px; white-space:nowrap; border:1px solid var(--linha-esc); color:var(--nevoa);
+}
+.tag--inedito{ background:var(--ouro); border-color:var(--ouro); color:var(--noite); }
+.tag--fide{ border-color:rgba(201,162,75,.55); color:var(--ouro-claro); }
+
+/* ============ CAMINHO (assinatura) ============ */
+.caminho{ position:relative; overflow:hidden; }
+.caminho::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
+  background-image:radial-gradient(circle at 78% 12%, rgba(201,162,75,.16), transparent 55%);
+}
+.caminho .env{ position:relative; z-index:2; }
+.caminho__cab{ margin-bottom:clamp(42px,5vw,64px); }
+.caminho__cab h2{ max-width:22ch; }
+.caminho__cab h2 em{ font-style:normal; color:var(--ouro); }
+.caminho__cab p{ color:var(--nevoa); font-size:clamp(1rem,1.4vw,1.16rem); max-width:62ch; }
+
+/* --- escada de rating --- */
+.escada{
+  border:1px solid var(--linha-esc); border-radius:var(--raio);
+  padding:clamp(26px,3.6vw,42px); background:rgba(14,42,68,.42);
+}
+.escada__topo{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:baseline; margin-bottom:38px; }
+.escada__topo h3{ font-size:1.05rem; text-transform:uppercase; letter-spacing:.04em; }
+.escada__topo .datado{ margin:0; }
+
+.trilho{ position:relative; height:8px; background:rgba(255,255,255,.09); border-radius:100px; margin:56px 0 0; }
+.trilho__preenche{
+  position:absolute; inset:0 auto 0 0; width:0; border-radius:100px;
+  background:linear-gradient(90deg,var(--tabuleiro2),var(--ouro));
+  transition:width 1.5s cubic-bezier(.22,.8,.28,1);
+}
+.marco{ position:absolute; top:50%; transform:translate(-50%,-50%); text-align:center; }
+.marco__pt{ width:13px; height:13px; border-radius:50%; background:var(--noite); border:2px solid var(--ouro); margin-inline:auto; }
+.marco--vazio .marco__pt{ border-style:dashed; opacity:.55; }
+.marco--meta .marco__pt{ background:var(--ouro); box-shadow:0 0 0 5px rgba(201,162,75,.18); }
+.marco__lb{
+  position:absolute; left:50%; transform:translateX(-50%); bottom:26px; width:max-content; max-width:130px;
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--nevoa); line-height:1.45;
+}
+.marco__lb b{ display:block; font-size:1.02rem; letter-spacing:-.01em; color:var(--marfim); font-weight:700; }
+.marco--meta .marco__lb b{ color:var(--ouro); }
+.marco--baixo .marco__lb{ bottom:auto; top:26px; }
+.marco--fim .marco__lb{ left:auto; right:-4px; transform:none; text-align:right; }
+
+/* --- normas --- */
+.normas{ margin-top:clamp(52px,6vw,72px); display:grid; grid-template-columns:auto 1fr; gap:clamp(20px,3vw,38px); align-items:center; }
+.normas__casas{ display:flex; gap:8px; }
+.norma{
+  width:clamp(54px,7vw,72px); aspect-ratio:1; border-radius:2px; display:grid; place-items:center;
+  border:1.5px solid var(--ouro); font-size:clamp(1.5rem,3vw,2rem); line-height:1;
+}
+.norma--ok{ background:var(--ouro); color:var(--noite); }
+.norma--falta{ border-style:dashed; color:var(--ouro); opacity:.45; background:rgba(201,162,75,.05); }
+.normas__txt p{ color:var(--nevoa); margin:0; max-width:44ch; font-size:.95rem; }
+.normas__txt b{ color:var(--marfim); font-weight:600; }
+
+/* --- custos --- */
+.custeio{ list-style:none; margin:14px 0 0; padding:0; display:grid; gap:2px; }
+.custeio li{ display:grid; grid-template-columns:auto 1fr; gap:14px; padding:13px 0; border-bottom:1px solid var(--linha-esc); align-items:start; }
+.custeio li::before{ content:""; width:7px; height:7px; margin-top:8px; background:var(--ouro); transform:rotate(45deg); }
+.custeio b{ grid-column:2; font-weight:600; color:var(--marfim); font-size:1rem; }
+.custeio span{ grid-column:2; color:var(--nevoa); font-size:.9rem; line-height:1.5; }
+
+.custos{ margin-top:clamp(46px,5.5vw,68px); display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,4vw,56px); align-items:start; }
+.tabela{ width:100%; border-collapse:collapse; font-size:.95rem; }
+.tabela caption{ text-align:left; font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ouro); padding-bottom:14px; }
+.tabela th, .tabela td{ text-align:left; padding:13px 0; border-bottom:1px solid var(--linha-esc); }
+.tabela td:last-child, .tabela th:last-child{ text-align:right; font-family:var(--mono); white-space:nowrap; }
+.tabela th{ font-weight:600; color:var(--marfim); font-size:.95rem; }
+.tabela td{ color:var(--nevoa); }
+
+.meta{ border:1px solid var(--linha-esc); border-radius:var(--raio); padding:clamp(24px,3vw,34px); background:rgba(7,21,35,.5); }
+.meta h3{ font-size:1.02rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+.meta__sub{ font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--nevoa); margin-bottom:26px; }
+.barra{ height:10px; background:rgba(255,255,255,.09); border-radius:100px; overflow:hidden; }
+.barra i{ display:block; height:100%; width:0; background:linear-gradient(90deg,var(--ouro),var(--ouro-claro)); border-radius:100px; transition:width 1.6s cubic-bezier(.22,.8,.28,1); }
+.meta__cifras{ display:flex; justify-content:space-between; gap:12px; margin-top:14px; font-family:var(--mono); font-size:.76rem; }
+.meta__cifras b{ color:var(--ouro); font-size:1.02rem; }
+.meta__cifras span{ color:var(--nevoa); }
+.meta .btn{ width:100%; margin-top:24px; }
+.meta__prova{ font-family:var(--mono); font-size:.68rem; letter-spacing:.06em; color:var(--nevoa); text-align:center; margin:14px 0 0; }
+
+/* ============ APOIAR ============ */
+.apoios{ display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:14px; margin-bottom:20px; }
+.apoio{
+  display:flex; flex-direction:column; gap:8px; text-decoration:none;
+  border:1px solid var(--linha-cla); border-radius:var(--raio); padding:24px 22px 22px;
+  background:#fff; color:var(--grafite);
+  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.apoio:hover{ transform:translateY(-3px); border-color:var(--ouro); box-shadow:0 12px 34px -18px rgba(30,42,52,.45); }
+.apoio__v{ font-family:var(--display); font-weight:800; font-size:1.75rem; letter-spacing:-.03em; line-height:1; }
+.apoio__v small{ font-size:.9rem; font-weight:600; opacity:.55; }
+.apoio__d{ font-size:.93rem; color:var(--grafite2); line-height:1.45; }
+.apoio__pe{ margin-top:auto; padding-top:14px; font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ouro-esc); font-weight:700; }
+.apoio--livre{
+  background:var(--grafite); color:var(--marfim); border-color:var(--grafite);
+  grid-column:1/-1; flex-direction:row; align-items:center; gap:22px; flex-wrap:wrap;
+}
+.apoio--livre .apoio__d{ flex:1; min-width:180px; }
+.apoio--livre .apoio__pe{ margin:0; padding:0; }
+.apoio--livre .apoio__d{ color:rgba(241,235,223,.7); }
+.apoio--livre .apoio__pe{ color:var(--ouro); }
+
+.recado{ font-size:1rem; color:var(--grafite2); max-width:60ch; margin-bottom:clamp(46px,5vw,66px); }
+
+.loja{ border-top:1px solid var(--linha-cla); padding-top:clamp(38px,4.5vw,54px); }
+.loja__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin-top:24px; }
+.prod{
+  display:flex; align-items:center; justify-content:space-between; gap:14px; text-decoration:none;
+  padding:19px 20px; border:1px solid var(--linha-cla); border-radius:var(--raio); background:#fff;
+  color:var(--grafite); font-weight:600; font-size:.95rem; line-height:1.3;
+  transition:border-color .2s ease, transform .2s ease;
+}
+.prod:hover{ border-color:var(--ouro); transform:translateY(-2px); }
+.prod svg{ width:15px; height:15px; flex-shrink:0; color:var(--ouro-esc); }
+
+/* ============ PATROCÍNIO ============ */
+.patro__grid{ display:grid; grid-template-columns:1fr .9fr; gap:clamp(30px,5vw,64px); align-items:center; margin-bottom:clamp(48px,6vw,72px); }
+.patro__txt p{ color:var(--nevoa); }
+.razoes{ list-style:none; margin:26px 0 0; padding:0; display:grid; gap:16px; }
+.razoes li{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
+.razoes li::before{ content:""; width:7px; height:7px; margin-top:9px; background:var(--ouro); transform:rotate(45deg); }
+.razoes li > b, .razoes li > span{ grid-column:2; }
+.razoes b{ display:block; color:var(--marfim); font-weight:600; }
+.razoes span{ color:var(--nevoa); font-size:.93rem; }
+.patro__foto img{ width:100%; border-radius:2px; border:1px solid var(--linha-esc); background:var(--tabuleiro); }
+.patro__foto figcaption{ font-family:var(--mono); font-size:.66rem; letter-spacing:.09em; text-transform:uppercase; color:var(--nevoa); margin-top:12px; }
+
+.planos{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
+.plano{
+  border:1px solid var(--linha-esc); border-radius:var(--raio); padding:clamp(24px,3vw,32px);
+  display:flex; flex-direction:column; background:rgba(14,42,68,.35);
+}
+.plano--destaque{
+  border-color:var(--ouro); position:relative; overflow:hidden;
+  background:url("assets/padrao-xadrez.png") repeat 0 0/190px 190px, rgba(201,162,75,.07);
+  background-blend-mode:soft-light, normal;
+}
+.plano__n{ font-family:var(--display); font-weight:800; font-size:1.25rem; letter-spacing:-.01em; }
+.plano__p{ font-family:var(--mono); font-size:.8rem; color:var(--ouro); margin:8px 0 22px; letter-spacing:.06em; }
+.plano ul{ list-style:none; margin:0 0 26px; padding:0; display:grid; gap:11px; font-size:.92rem; }
+.plano li{ display:grid; grid-template-columns:auto 1fr; gap:11px; color:var(--nevoa); align-items:start; }
+.plano li b{ color:var(--marfim); font-weight:500; }
+.plano li::before{ content:"✓"; color:var(--ouro); font-size:.85rem; line-height:1.6; }
+.plano li.nao{ opacity:.4; }
+.plano li.nao::before{ content:"—"; color:var(--nevoa); }
+.plano .btn{ margin-top:auto; }
+
+.incentivo{
+  margin-top:clamp(34px,4vw,48px); padding:24px clamp(22px,3vw,30px);
+  border:1px dashed var(--linha-esc); border-radius:var(--raio);
+  display:grid; grid-template-columns:1fr auto; gap:22px; align-items:center;
+}
+.incentivo p{ margin:0; color:var(--nevoa); font-size:.95rem; max-width:64ch; }
+.incentivo b{ color:var(--marfim); }
+
+/* ============ ALCANCE ============ */
+.alcance__topo{
+  display:grid; grid-template-columns:auto 1fr; gap:clamp(28px,5vw,70px); align-items:end;
+  padding-bottom:clamp(34px,4vw,50px); margin-bottom:clamp(34px,4vw,50px);
+  border-bottom:1px solid var(--linha-esc);
+}
+.alcance__num{
+  font-family:var(--display); font-weight:800; line-height:.86; letter-spacing:-.04em;
+  font-size:clamp(3.6rem,10vw,7.4rem); color:var(--ouro); margin:6px 0 10px;
+  font-variant-numeric:tabular-nums;
+}
+.alcance__mais{ font-family:var(--mono); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--nevoa); margin:0; }
+.alcance__sub{ font-size:1.02rem; color:var(--marfim); margin:0; max-width:30ch; }
+.alcance__sub small{ display:block; font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--nevoa); margin-top:10px; }
+.alcance__txt{ color:var(--nevoa); font-size:clamp(1rem,1.35vw,1.14rem); max-width:44ch; margin:0 0 4px; }
+.alcance__mini{ display:flex; flex-wrap:wrap; gap:26px; margin-top:22px; }
+.alcance__mini div{ border-left:1px solid var(--linha-esc); padding-left:14px; }
+.alcance__mini b{ display:block; font-family:var(--display); font-weight:800; font-size:1.5rem; letter-spacing:-.02em; color:var(--marfim); }
+.alcance__mini span{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--nevoa); }
+
+.video--grande .video__play i{ width:78px; height:78px; }
+.video--grande .video__play svg{ width:25px; height:25px; }
+.video--grande .video__lb{
+  padding:56px 22px 20px; font-size:clamp(1rem,1.7vw,1.32rem);
+  font-family:var(--display); font-weight:800; letter-spacing:-.015em;
+}
+.video__views{
+  position:absolute; top:14px; left:14px; z-index:2; pointer-events:none;
+  font-family:var(--mono); font-size:.64rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  background:rgba(7,21,35,.82); color:var(--ouro); border:1px solid var(--linha-esc);
+  padding:5px 9px; border-radius:2px;
+}
+
+.link-zap{ color:var(--ouro); text-decoration:none; border-bottom:1px solid rgba(201,162,75,.45); }
+.link-zap:hover{ color:var(--ouro-claro); border-bottom-color:var(--ouro-claro); }
+
+/* ============ VÍDEOS + IMPRENSA ============ */
+.videos__grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(min(196px,100%),1fr));
+  grid-auto-rows:auto; gap:9px;
+}
+.videos__grid .video--grande{ grid-column:span 2; grid-row:span 2; }
+.video{
+  position:relative; display:block; width:100%; padding:0; border:1px solid var(--linha-esc);
+  border-radius:var(--raio); overflow:hidden; cursor:pointer; background:var(--tabuleiro);
+  aspect-ratio:16/9; color:inherit; font:inherit; text-align:left;
+}
+.video img{ width:100%; height:100%; object-fit:cover; opacity:.72; transition:opacity .25s ease, transform .5s ease; }
+.video:hover img{ opacity:.92; transform:scale(1.03); }
+.video__play{
+  position:absolute; inset:0; display:grid; place-items:center; pointer-events:none;
+}
+.video__play i{
+  width:58px; height:58px; border-radius:50%; background:rgba(201,162,75,.94); display:grid; place-items:center;
+  transition:transform .25s ease;
+}
+.video:hover .video__play i{ transform:scale(1.09); }
+.video__play svg{ width:18px; height:18px; color:var(--noite); margin-left:3px; }
+.video__lb{
+  position:absolute; left:0; right:0; bottom:0; padding:30px 13px 12px; pointer-events:none;
+  background:linear-gradient(to top, rgba(7,21,35,.95), transparent);
+  font-weight:600; font-size:.82rem; line-height:1.32; color:var(--marfim); overflow:hidden;
+}
+.video__lb span{
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+.video--grande .video__lb span{ -webkit-line-clamp:3; }
+.video__play i{ width:40px; height:40px; }
+.video__play svg{ width:15px; height:15px; }
+.video iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+.midia{ margin-top:clamp(58px,7vw,86px); display:grid; grid-template-columns:.62fr 1.38fr; gap:clamp(26px,4vw,58px); align-items:start; }
+.midia h3{ font-size:clamp(1.5rem,2.6vw,2rem); }
+.midia__intro{ color:var(--nevoa); font-size:.98rem; margin-top:14px; }
+.pautas{ display:grid; gap:30px; }
+.pauta__t{ font-family:var(--mono); font-size:.7rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ouro); font-weight:700; margin-bottom:12px; }
+.pauta ul{ list-style:none; margin:0; padding:0; display:grid; gap:1px; }
+.pauta a{
+  display:flex; justify-content:space-between; align-items:baseline; gap:18px;
+  padding:13px 14px 13px 0; text-decoration:none; border-bottom:1px solid var(--linha-esc);
+  transition:padding-left .2s ease, background-color .2s ease;
+}
+.pauta a:hover{ padding-left:12px; background:rgba(201,162,75,.05); }
+.pauta a b{ font-weight:500; font-size:.98rem; color:var(--marfim); line-height:1.4; }
+.pauta a span{ font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--nevoa); white-space:nowrap; flex-shrink:0; }
+
+/* ============ CTA FINAL + RODAPÉ ============ */
+.promocao{ text-align:center; padding-block:clamp(84px,10vw,150px); position:relative; overflow:hidden; }
+.promocao::before{
+  content:""; position:absolute; inset:0; opacity:.55; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(201,162,75,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,162,75,.06) 1px, transparent 1px);
+  background-size:80px 80px, 80px 80px;
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 5%, transparent 68%);
+          mask-image:radial-gradient(ellipse at center, #000 5%, transparent 68%);
+}
+.promocao .env{ position:relative; z-index:2; }
+.promo__divisor{ width:min(560px,84%); margin:0 auto 34px; opacity:.95; }
+.promocao h2{ max-width:20ch; margin-inline:auto; margin-bottom:20px; }
+.promocao p{ color:var(--nevoa); max-width:52ch; margin-inline:auto; margin-bottom:34px; }
+.promocao .duplo{ justify-content:center; }
+
+.rodape{ border-top:1px solid var(--linha-esc); padding-block:52px 40px; background:var(--noite); }
+.rodape__grid{ display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:36px; margin-bottom:44px; }
+.rodape h4{ font-family:var(--mono); font-weight:700; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ouro); margin-bottom:16px; }
+.rodape ul{ list-style:none; margin:0; padding:0; display:grid; gap:9px; }
+.rodape a{ color:var(--nevoa); text-decoration:none; font-size:.92rem; transition:color .18s ease; }
+.rodape a:hover{ color:var(--marfim); }
+.rodape p{ color:var(--nevoa); font-size:.92rem; max-width:38ch; }
+.rodape__fim{
+  border-top:1px solid var(--linha-esc); padding-top:24px;
+  display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center;
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; color:var(--nevoa);
+}
+.idiomas{ display:flex; gap:10px; }
+.idiomas a{ border:1px solid var(--linha-esc); border-radius:2px; padding:5px 11px; font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
+.idiomas a:hover{ border-color:var(--ouro); color:var(--ouro); }
+
+/* ============ REVELAÇÃO NO SCROLL ============ */
+.rev{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s cubic-bezier(.22,.8,.28,1); }
+.rev.vis{ opacity:1; transform:none; }
+
+/* ============ RESPONSIVO ============ */
+@media (max-width:1024px){
+  .hero__grid{ display:flex; flex-direction:column; }
+  .hero__txt{ grid-area:auto; order:1; padding-bottom:0; }
+  .hero__foto{ grid-area:auto; order:2; }
+  .hero__foto{ margin-top:34px; margin-left:calc(-1 * var(--fuga)); margin-right:calc(-1 * var(--fuga)); }
+  .hero__foto img{ max-height:56vh; object-position:center 22%; border-radius:0; }
+  .hero__cred{ bottom:2px; left:var(--fuga); }
+  .historia__grid, .custos, .patro__grid, .midia{ grid-template-columns:1fr; }
+  .historia__foto{ margin-left:calc(-1 * var(--fuga)); margin-right:calc(-1 * var(--fuga)); }
+  .historia__foto img{ border-radius:0; height:clamp(340px,62vw,520px); }
+  .historia__foto figcaption{ padding-inline:var(--fuga); }
+  .alcance__topo{ grid-template-columns:1fr; align-items:start; gap:26px; }
+  .destaque{ display:flex; flex-direction:column; }
+  .destaque__col{ display:contents; }
+  .destaque__col h2{ order:1; margin-bottom:28px; max-width:18ch; }
+  .destaque img{
+    order:2; grid-area:auto; max-width:none; height:clamp(400px,86vw,620px); object-position:center 16%;
+    width:calc(100% + 2 * var(--fuga)); margin-inline:calc(-1 * var(--fuga)); border-radius:0;
+  }
+  .destaque__txt{
+    order:3; margin:-56px clamp(0px,2vw,20px) 0; backdrop-filter:none; background:var(--noite);
+  }
+  .diagonal{ display:none; }
+}
+@media (max-width:860px){
+  .menu{
+    position:fixed; inset:70px 0 auto 0; flex-direction:column; align-items:stretch; gap:0;
+    background:rgba(7,21,35,.98); backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--linha-esc); padding:8px var(--gutter) 22px;
+    transform:translateY(-12px); opacity:0; pointer-events:none; transition:opacity .22s ease, transform .22s ease;
+  }
+  .menu.aberto{ transform:none; opacity:1; pointer-events:auto; }
+  .menu a{ padding:14px 0; border-bottom:1px solid var(--linha-esc); font-size:.82rem; }
+  .menu a.btn{ padding:15px 18px; border-bottom:0; justify-content:center; font-size:.9rem; }
+  .hamb{ display:grid; }
+  .topo__int .btn{ display:none; }
+  .menu .btn{ display:inline-flex; margin-top:16px; }
+  .normas{ grid-template-columns:1fr; }
+  .incentivo{ grid-template-columns:1fr; }
+  .rodape__grid{ grid-template-columns:1fr 1fr; }
+  .palmares li{ grid-template-columns:4.4rem 1fr; row-gap:8px; }
+  .videos__grid{ grid-template-columns:repeat(auto-fill,minmax(min(148px,100%),1fr)); gap:7px; }
+  .video__lb{ font-size:.72rem; padding:24px 10px 9px; }
+  .video__play i{ width:36px; height:36px; }
+  .palmares .tag{ grid-column:2; justify-self:start; }
+}
+@media (max-width:560px){
+  .trilho{ margin-top:70px; }
+  .marco__lb{ max-width:78px; font-size:.6rem; }
+  .marco__lb b{ font-size:.88rem; }
+  .rodape__grid{ grid-template-columns:1fr; }
+  .ticker__grupo span{ font-size:.68rem; padding:0 15px; gap:15px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+  html{ scroll-behavior:auto; }
+  .rev{ opacity:1; transform:none; }
+}
+</style>
+</head>
+
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ==================== NAV ==================== -->
+<header class="topo" id="topo">
+  <div class="env topo__int">
+    <a class="marca" href="#topo" aria-label="Mathias Casalaspro — início">
+      <span class="marca__selo" aria-hidden="true">M</span>
+      <span class="marca__txt">MATHIAS CASALASPRO<small>Mestre FIDE · Brasil</small></span>
+    </a>
+
+    <div class="diagonal" id="diagonal" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+
+    <button class="hamb" id="hamb" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><span></span></button>
+
+    <nav class="menu" id="menu">
+      <a href="#historia">História</a>
+      <a href="#conquistas">Conquistas</a>
+      <a href="#caminho">O caminho</a>
+      <a href="#apoiar">Apoiar</a>
+      <a href="#alcance">Alcance</a>
+      <a href="#patrocinio">Patrocínio</a>
+      <a class="btn btn--ouro btn--peq" href="#apoiar">Apoiar o Mathias</a>
+    </nav>
+
+    <a class="btn btn--linha btn--peq" href="#patrocinio">Quero patrocinar</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- ==================== HERO ==================== -->
+<section class="faixa hero faixa--escura">
+  <div class="env hero__grid">
+    <div class="hero__txt">
+      <!-- CONFERIR: confirmar a norma de MI no certificado antes de publicar este selo -->
+      <p class="selo-abertura"><span class="pulso" aria-hidden="true"></span> Agosto de 2026 · <b>1ª norma de MI conquistada em Portugal</b></p>
+
+      <h1>Mestre FIDE aos 12 anos. <em>Mestre Internacional</em> é o próximo passo.</h1>
+
+      <p class="lede">
+        Em agosto de 2026, no Leça Chess Open, <strong>Mathias Casalaspro</strong> terminou em
+        <strong>5º lugar no geral</strong> — empatado em pontos com o campeão, com performance de
+        <strong>2554</strong> — e fechou sua primeira norma de Mestre Internacional.
+        Faltam duas normas e 59 pontos de rating.
+      </p>
+
+      <div class="duplo">
+        <a class="btn btn--ouro" href="#apoiar">Apoiar o Mathias</a>
+        <a class="btn btn--linha" href="#patrocinio">Quero patrocinar</a>
+      </div>
+    </div>
+
+    <figure class="hero__foto">
+      <img src="assets/mathias-hero.jpg" width="900" height="1687"
+           alt="Mathias Casalaspro concentrado diante do tabuleiro no Campeonato Panamericano de 2023." fetchpriority="high">
+      <figcaption class="hero__cred">Campeonato Panamericano · Volta Redonda, RJ, novembro de 2023</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ==================== TICKER ==================== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__pista" id="ticker">
+    <div class="ticker__grupo">
+      <span>Mestre FIDE</span><span>Rating 2341</span><span>1ª norma de MI · Leça 2026</span>
+      <span>Pentacampeão Paulista Escolar</span><span>Campeão Sul-Americano Sub-10</span>
+      <span>Mesa 1 · Seleção Sub-16</span><span>Mais jovem brasileiro a vencer um GM</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== b2 · NÚMEROS ==================== -->
+<section class="faixa faixa--azul numeros" id="numeros">
+  <div class="env">
+    <p class="casa rev"><b>b2</b> <span>Os números</span></p>
+    <h2 class="rev" style="max-width:16ch;margin-bottom:38px">Uma carreira que começou aos 7 anos</h2>
+
+    <div class="numeros__grid rev" id="numerosGrid">
+      <div class="num"><span class="num__v" data-conta="2341">0</span><span class="num__r">Rating FIDE</span></div>
+      <div class="num"><span class="num__v" data-conta="489">0</span><span class="num__r">Partidas clássicas</span></div>
+      <div class="num"><span class="num__v" data-conta="311">0</span><span class="num__r">Torneios disputados</span></div>
+      <!-- SUGESTÃO: quando tiverem os números fechados, acrescente aqui
+           "Grandes Mestres derrotados" e "Países onde competiu" — são os que mais impressionam. -->
+      <div class="num"><span class="num__v" data-conta="1">0</span><span class="num__r">Norma de MI conquistada</span></div>
+    </div>
+
+    <p class="datado rev" id="datadoNumeros">Atualizado em agosto de 2026</p>
+  </div>
+</section>
+
+<!-- ==================== a1 · HISTÓRIA ==================== -->
+<section class="faixa faixa--clara" id="historia">
+  <div class="env">
+    <p class="casa rev"><b>a1</b> <span>A história</span></p>
+
+    <div class="historia__grid">
+      <figure class="historia__foto rev">
+        <img src="assets/mathias-retrato.jpg" width="1000" height="1250" loading="lazy"
+             alt="Mathias sentado diante do tabuleiro no Torneo Internacional Cidade de Pontevedra, na Espanha.">
+        <figcaption>Torneo Internacional Cidade de Pontevedra · Espanha, 4 a 11 de julho de 2026</figcaption>
+      </figure>
+
+      <div class="historia__txt rev">
+        <p>Aprendi a mover as peças aos 7 anos. Quatro meses depois, disputei meu primeiro torneio oficial.</p>
+
+        <p>Aos 9, derrotei meu primeiro Grande Mestre numa simultânea. Aos 11, derrotei um GM numa partida
+        clássica oficial — <strong>o mais jovem brasileiro a conseguir isso</strong>. Aos 12, me tornei Mestre FIDE.</p>
+
+        <p>Em 2026 cruzei o Atlântico para jogar o circuito europeu. Em Portugal, no Leça Chess Open,
+        terminei empatado em pontos com o campeão, com performance de 2554, e fechei minha
+        <strong>primeira norma de Mestre Internacional</strong>.</p>
+
+        <p>No xadrez não existe sorte. Existe estudo, disciplina e estar no tabuleiro certo, na hora certa.
+        As duas primeiras partes dependem de mim. A terceira depende de conseguir chegar lá — e é aí que
+        a sua ajuda faz diferença.</p>
+
+        <p class="assinatura">— Mathias</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== c3 · CONQUISTAS ==================== -->
+<section class="faixa faixa--escura" id="conquistas">
+  <div class="env">
+    <p class="casa rev"><b>c3</b> <span>As conquistas</span></p>
+    <article class="destaque rev">
+      <img src="assets/mathias-leca.jpg" width="1000" height="1563" loading="lazy"
+           alt="Mathias com a medalha, o troféu e o certificado de norma do Leça Chess Open, em Portugal.">
+      <div class="destaque__col">
+        <h2>O que ele já fez no tabuleiro</h2>
+        <div class="destaque__txt">
+          <span class="fita">Última conquista · agosto de 2026</span>
+          <h3>5º no geral, performance de 2554 e a primeira norma de MI</h3>
+          <p>No Leça Chess Open, em Portugal, Mathias terminou empatado em pontos com o campeão e ficou
+          em 5º apenas no desempate — entre 20 federações, enfrentando quatro Grandes Mestres. Foi esse
+          resultado que fechou sua primeira norma de Mestre Internacional. Levou junto o troféu de 1º
+          lugar da categoria Sub-14.</p>
+          <a class="btn btn--linha btn--peq" href="#caminho">Ver o que falta para o título</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="glossario rev">
+      <p class="glossario__t"><span>Para quem não joga xadrez</span></p>
+      <dl class="verbete"><dt>Grande Mestre (GM)</dt><dd>O título mais alto do xadrez. O mundo tem cerca de <b>2.000</b>; o Brasil, menos de 20.</dd></dl>
+      <dl class="verbete"><dt>Mestre FIDE (FM)</dt><dd>Título internacional da federação mundial. Mathias conquistou aos <b>12 anos</b>.</dd></dl>
+      <dl class="verbete"><dt>Rating</dt><dd>A pontuação oficial. 2000 é forte, 2200 é elite nacional, <b>2400</b> abre a porta do título de Mestre Internacional.</dd></dl>
+      <dl class="verbete"><dt>Norma</dt><dd>Resultado de alto nível num torneio internacional contra titulados. São precisas <b>três</b> para virar Mestre Internacional.</dd></dl>
+    </div>
+
+    <ol class="palmares rev" id="palmares">
+      <li><span class="ano">2026</span><span class="feito">5º lugar no geral do Leça Chess Open, empatado em pontos com o campeão e com performance de 2554 — o resultado que fechou a primeira norma de Mestre Internacional <i>· Portugal</i></span><span class="tag tag--fide">Norma de MI</span></li>
+      <li><span class="ano">2026</span><span class="feito">Campeão do Blitz de Abertura do Brazil Chess Series — Floripa, entre 114 participantes</span></li>
+      <li><span class="ano">2025</span><span class="feito">Mesa 1 da seleção brasileira Sub-16 na Olimpíada Mundial <i>· Barranquilla, Colômbia</i></span><span class="tag tag--inedito">Estreia do Brasil</span></li>
+      <li><span class="ano">2025</span><span class="feito">Campeão invicto do Manaus Chess Open, com 7 pontos em 9 e performance de 2492</span></li>
+      <li><span class="ano">2025</span><span class="feito">Convidado a representar o xadrez na COB Expo <i>· São Paulo</i></span></li>
+      <li><span class="ano">2024</span><span class="feito">Mestre FIDE (FM) aos 12 anos, atingindo 2341 de rating</span><span class="tag tag--fide">Título FIDE</span></li>
+      <li><span class="ano">2024</span><span class="feito">Derrotou um Grande Mestre em partida clássica oficial aos 11 anos, no III Rio Chess Open</span><span class="tag tag--inedito">Inédito no Brasil</span></li>
+      <li><span class="ano">2024</span><span class="feito">Derrotou um jogador de 2550+ de rating em clássica e levou o 2º prêmio de melhor partida do torneio</span><span class="tag tag--inedito">Inédito no Brasil</span></li>
+      <li><span class="ano">2024</span><span class="feito">Ultrapassou os 2200 de rating</span></li>
+      <li><span class="ano">2023</span><span class="feito">Candidate Master (CM) pela FIDE</span><span class="tag tag--fide">Título FIDE</span></li>
+      <li><span class="ano">2019–23</span><span class="feito">Pentacampeão Paulista Escolar. Venceu o Sub-10 aos 7 anos e os Sub-18 e Sub-20 aos 10, contra adversários com o dobro da idade</span></li>
+      <li><span class="ano">2022</span><span class="feito">Campeão Sul-Americano de Blitz Sub-10 <i>· Assunção, Paraguai</i></span></li>
+      <li><span class="ano">2022</span><span class="feito">Derrotou seu primeiro Grande Mestre, em simultânea, aos 9 anos</span><span class="tag tag--inedito">Inédito no Brasil</span></li>
+    </ol>
+
+    <!-- CONFERIR: número de GMs brasileiros no glossário e os três selos "Inédito no Brasil" antes de publicar -->
+  </div>
+</section>
+
+<!-- Galeria: as fotos vêm de assets/galeria/ via dados/galeria.json.
+     Uma foto vira faixa larga; duas ou mais viram uma tira que rola de lado. -->
+<section class="galeria galeria--unica" id="galeria" aria-label="Momentos de torneio">
+  <div class="galeria__pista" id="galeriaPista">
+    <figure>
+      <img src="assets/galeria/2026-02_floripa-blitz-abertura.jpg" width="1600" height="960" loading="lazy"
+           alt="Mathias na mesa 1 do Blitz de Abertura do Floripa 2026, cercado de público.">
+      <figcaption><b>Mesa 1</b> · Brazil Chess Series — Floripa 2026, Blitz de Abertura. Mathias foi o campeão do evento.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ==================== d4 · O CAMINHO (assinatura) ==================== -->
+<section class="faixa faixa--escura caminho" id="caminho">
+  <div class="env">
+    <p class="casa rev"><b>d4</b> <span>O caminho até o Mestre Internacional</span></p>
+
+    <div class="caminho__cab rev">
+      <h2 style="margin-bottom:20px">Para seguir avançando, ele precisa de oportunidade e investimento.<br>
+      <em>E você pode ajudar.</em></h2>
+      <p>Para se tornar Mestre Internacional é preciso atingir <strong>2400 de rating FIDE</strong> e conquistar
+      <strong>3 normas de MI</strong>: resultados de alto nível em torneios com enxadristas titulados de
+      diferentes federações. Talento e treino ele já tem. O que falta é estar sentado nos tabuleiros certos,
+      e isso tem custo.</p>
+    </div>
+
+    <!-- escada de rating -->
+    <div class="escada rev">
+      <div class="escada__topo">
+        <h3>Rating FIDE · onde ele está</h3>
+        <p class="datado" id="datado-rating">Atualizado em agosto de 2026</p>
+      </div>
+
+      <div class="trilho" id="trilho">
+        <div class="trilho__preenche" id="preenche"></div>
+        <!-- marcos inseridos via JS a partir da configuração -->
+      </div>
+
+      <div class="normas">
+        <div class="normas__casas" id="normas" aria-label="Normas de Mestre Internacional conquistadas"></div>
+        <div class="normas__txt">
+          <p><b>Normas de MI.</b> A primeira veio em Leça, Portugal, em agosto de 2026. Faltam duas — e cada
+          uma exige um torneio com titulados de pelo menos três federações diferentes. Existem poucos assim
+          por ano, e chegar até eles é justamente a parte que não depende de talento.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- custos + meta -->
+    <div class="custos">
+      <div class="rev">
+        <p class="rotulo">O que uma temporada exige</p>
+        <ul class="custeio">
+          <li><b>Treinamento com Grande Mestre</b><span>As aulas particulares que sustentam a evolução técnica.</span></li>
+          <li><b>Inscrições em torneios internacionais</b><span>Só neles existem as normas que faltam.</span></li>
+          <li><b>Passagens aéreas</b><span>Para o jogador e para um responsável — ele ainda é menor de idade.</span></li>
+          <li><b>Hospedagem e alimentação</b><span>Torneios duram de sete a dez dias.</span></li>
+          <li><b>Material e plataformas de estudo</b><span>Bases de dados, livros e assinaturas de análise.</span></li>
+        </ul>
+        <p class="nota">Toda a prestação de contas é enviada aos apoiadores mensais.</p>
+      </div>
+
+      <div class="meta rev">
+        <h3 id="metaTitulo">Meta da temporada 2027</h3>
+        <p class="meta__sub" id="metaSub">4 torneios internacionais · 2 normas restantes</p>
+        <div class="barra"><i id="barra"></i></div>
+        <div class="meta__cifras">
+          <span><b id="arrecadado">R$ 0</b> arrecadados</span>
+          <span>meta <b id="metaValor">R$ 0</b></span>
+        </div>
+        <a class="btn btn--ouro" href="#apoiar">Contribuir com a temporada</a>
+        <p class="meta__prova" id="prova">— pessoas já apoiaram</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== e5 · APOIAR ==================== -->
+<section class="faixa faixa--clara" id="apoiar">
+  <div class="env">
+    <p class="casa rev"><b>e5</b> <span>Como apoiar</span></p>
+    <h2 class="rev" style="max-width:20ch;margin-bottom:18px">Sua contribuição tem endereço</h2>
+    <p class="lede rev recado">Escolha o que você quer bancar. Nenhuma contribuição é pequena: somadas, elas
+    compram exatamente aquilo que não se compra sozinho — a chance de jogar contra os melhores.</p>
+
+    <!-- Os links abaixo são os planos de assinatura já existentes no Mercado Pago.
+         CONFERIR: qual plan_id corresponde a qual valor. -->
+    <div class="apoios rev">
+      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc" target="_blank" rel="noopener">
+        <span class="apoio__v">R$ 30<small>/mês</small></span>
+        <span class="apoio__d">Uma inscrição em torneio nacional</span>
+        <span class="apoio__pe">Apoiar →</span>
+      </a>
+      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a" target="_blank" rel="noopener">
+        <span class="apoio__v">R$ 100<small>/mês</small></span>
+        <span class="apoio__d">Uma hora de treino com Grande Mestre</span>
+        <span class="apoio__pe">Apoiar →</span>
+      </a>
+      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c" target="_blank" rel="noopener">
+        <span class="apoio__v">R$ 300<small>/mês</small></span>
+        <span class="apoio__d">Uma diária de hospedagem em torneio internacional</span>
+        <span class="apoio__pe">Apoiar →</span>
+      </a>
+      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=23beb383d65645d5880d34e6199a97f1" target="_blank" rel="noopener">
+        <span class="apoio__v">R$ 1.500<small>/mês</small></span>
+        <span class="apoio__d">Uma passagem para o exterior</span>
+        <span class="apoio__pe">Apoiar →</span>
+      </a>
+      <a class="apoio apoio--livre" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba" target="_blank" rel="noopener">
+        <span class="apoio__v">Outro valor</span>
+        <span class="apoio__d">Você decide quanto e por quanto tempo</span>
+        <span class="apoio__pe">Escolher →</span>
+      </a>
+    </div>
+
+    <p class="nota">Apoiadores mensais recebem o relatório das partidas, as análises do Mathias e acesso antecipado às transmissões.</p>
+
+    <div class="loja rev">
+      <h3>Apoiar levando algo em troca</h3>
+      <p class="recado" style="margin-bottom:0">Aulas, produtos e serviços que financiam diretamente a preparação. Você ganha, ele avança.</p>
+      <div class="loja__grid">
+        <a class="prod" href="https://produto.mercadolivre.com.br/MLB-1837673983-porta-copos-de-xadrez-_JM" target="_blank" rel="noopener">Porta-copos de xadrez <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        <a class="prod" href="https://amzn.to/46Ae2RE" target="_blank" rel="noopener">Apoio de copos (Amazon) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        <a class="prod" href="https://form.respondi.app/oemyel9l" target="_blank" rel="noopener">Aula particular de xadrez <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        <a class="prod" href="https://form.respondi.app/mg3mwzPj" target="_blank" rel="noopener">Simultânea ou palestra <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== f6 · ALCANCE (vídeos + imprensa) ==================== -->
+<section class="faixa faixa--azul" id="alcance">
+  <div class="env">
+    <p class="casa rev"><b>f6</b> <span>Alcance</span></p>
+
+    <div class="alcance__topo rev">
+      <div id="blocoViews">
+        <p class="alcance__mais" id="viewsMais">Mais de</p>
+        <p class="alcance__num" id="viewsNum">—</p>
+        <p class="alcance__sub">visualizações em vídeos publicados sobre o Mathias
+          <small id="viewsFonte">somadas direto do YouTube a cada visita</small></p>
+      </div>
+      <div>
+        <h2 style="margin-bottom:18px">Veja como ele joga</h2>
+        <p class="alcance__txt">O xadrez virou conteúdo. Cada partida vira análise, transmissão e recorte — e cada um desses vídeos carrega junto o nome de quem apoia.</p>
+        <div class="alcance__mini">
+          <div><b id="miniVideos">—</b><span>vídeos sobre ele</span></div>
+          <div><b id="miniImprensa">7</b><span>matérias na imprensa</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Os cartões são montados a partir de dados/videos.json.
+         O bloco abaixo é a cópia de reserva: entra em cena quando o site é aberto
+         direto do arquivo (file://), onde o navegador bloqueia a leitura de JSON
+         local, ou se o arquivo estiver com erro de digitação. No ar, o JSON manda. -->
+    <script type="application/json" id="videosReserva">
+{ "videos": [
+  "https://www.youtube.com/watch?v=lKhA28R0QIs",
+  "https://youtu.be/ftgrqlXNrY8",
+  "https://www.youtube.com/shorts/0eeKo62eTi8",
+  "https://www.youtube.com/watch?v=AmvA3eCG3l8",
+  "https://www.youtube.com/watch?v=lnODrptVyjM",
+  "https://youtu.be/PXNqbpB43B0",
+  "https://youtu.be/4stdMgFnZRE",
+  "https://youtu.be/eghtAzUiYaE",
+  "https://youtu.be/8_Jt8zbgVIA",
+  "https://youtu.be/E33cI7qPPms",
+  "https://youtu.be/3Ju6xEw3-lI",
+  "https://youtu.be/qYCVlmi8V10",
+  "https://youtu.be/2RSO7HEPQA4",
+  "https://youtu.be/IX_kqO0Ri8g",
+  "https://www.youtube.com/watch?v=_jfNoxM1KCs",
+  "https://youtu.be/cGn_qyrobpw",
+  "https://youtu.be/-trPrkdpdnw",
+  "https://www.youtube.com/watch?v=fAcmRCU627A"
+] }
+    </script>
+    <div id="videos" class="rev"></div>
+
+    <div class="midia">
+      <div class="rev">
+        <h3>Na imprensa</h3>
+        <p class="midia__intro"><span id="qtdImprensa">Sete</span> matérias sobre a trajetória do Mathias, em veículos esportivos e regionais.</p>
+      </div>
+
+      <div class="pautas rev" id="pautas">
+        <div class="pauta">
+          <p class="pauta__t">Olimpíada Mundial Sub-16 · Barranquilla, 2025</p>
+          <ul>
+            <li><a href="https://pontanegranews.com.br/2025/08/24/brasil-estreia-com-brilho-na-olimpiada-de-xadrez-sub-16-e-garante-16o-lugar-em-barranquilla/" target="_blank" rel="noopener"><b>Brasil estreia com brilho na Olimpíada de Xadrez Sub-16</b><span>Ponta Negra News</span></a></li>
+            <li><a href="https://blogdoamarildo.com.br/marco-historico-brasil-estreia-na-olimpiada-de-xadrez-sub-16/" target="_blank" rel="noopener"><b>Marco histórico: Brasil estreia na Olimpíada de Xadrez Sub-16</b><span>Blog do Amarildo</span></a></li>
+            <li><a href="https://blogesporte.com.br/brasil-estreia-com-brilho-na-olimpiada-de-xadrez-sub-16/" target="_blank" rel="noopener"><b>Brasil estreia com brilho na Olimpíada de Xadrez Sub-16</b><span>Blog Esporte</span></a></li>
+            <li><a href="https://pbnews.com.br/noticia/52973/brasil-estreia-com-brilho-na-olimpiada-de-xadrez-sub-16-e-garante-16o-lugar-em-barranquilla" target="_blank" rel="noopener"><b>16º lugar em Barranquilla</b><span>PB News</span></a></li>
+            <li><a href="https://candidonobrega.com.br/brasil-estreia-com-brilho-na-olimpiada-de-xadrez-sub-16-e-garante-16o-lugar-em-barranquilla/" target="_blank" rel="noopener"><b>Brasil garante 16º lugar na Olimpíada Sub-16</b><span>Candido Nóbrega</span></a></li>
+          </ul>
+        </div>
+
+        <div class="pauta">
+          <p class="pauta__t">COB Expo 2025 · São Paulo</p>
+          <ul>
+            <li><a href="https://www.lance.com.br/mais-esportes/xadrez-marca-presenca-na-cob-expo-2025-em-sao-paulo.html" target="_blank" rel="noopener"><b>Xadrez marca presença na COB Expo 2025</b><span>Lance!</span></a></li>
+          </ul>
+        </div>
+
+        <div class="pauta">
+          <p class="pauta__t">Xadrez na educação</p>
+          <ul>
+            <li><a href="https://educador21.com/xadrez-na-educacao-evento-pascoa-aprendizagem/" target="_blank" rel="noopener"><b>Xadrez na educação transforma aprendizagem e engaja alunos</b><span>Educador 21</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== g7 · PATROCÍNIO ==================== -->
+<section class="faixa faixa--escura" id="patrocinio">
+  <div class="env">
+    <p class="casa rev"><b>g7</b> <span>Patrocínio para empresas</span></p>
+
+    <div class="patro__grid">
+      <div class="patro__txt rev">
+        <h2 style="margin-bottom:20px">Sua marca no primeiro tabuleiro</h2>
+        <p class="lede">O xadrez é o esporte da inteligência, da estratégia e da paciência — os mesmos atributos
+        que a sua empresa quer associar à própria marca. E, diferente dos esportes de massa, ele ainda tem
+        espaço para quem chega primeiro.</p>
+
+        <ul class="razoes">
+          <li><b>Custo de entrada baixo, valor simbólico alto.</b><span>Uma fração do que custa patrocinar categorias de base de outros esportes.</span></li>
+          <li><b>Público qualificado.</b><span>A comunidade enxadrística brasileira concentra pais, educadores e profissionais de alta escolaridade.</span></li>
+          <li><b>Mídia espontânea comprovada.</b><span>Matérias em veículos como Lance!, Ponta Negra News e Blog Esporte — sem investimento em assessoria.</span></li>
+          <li><b>História em construção.</b><span>Patrocinar um campeão pronto custa caro. Patrocinar quem está virando um custa a metade e vale o dobro em narrativa.</span></li>
+        </ul>
+      </div>
+
+      <figure class="patro__foto rev">
+        <img src="assets/camisa-oficial.jpg" width="600" height="400" loading="lazy"
+             alt="Frente e costas da camisa oficial de competição do Mathias, azul-marinho com detalhes dourados e espaços para logomarcas de patrocinadores.">
+        <figcaption>Camisa oficial de competição · espaços disponíveis para logomarca</figcaption>
+      </figure>
+    </div>
+
+    <div class="planos rev">
+      <article class="plano">
+        <h3 class="plano__n">Apoiador</h3>
+        <p class="plano__p">R$ ___ / mês</p>
+        <ul>
+          <li><b>Logomarca no site</b></li>
+          <li class="nao">Menção em posts e vídeos</li>
+          <li class="nao">Logomarca na camisa</li>
+          <li class="nao">Conteúdo exclusivo</li>
+          <li class="nao">Simultânea corporativa</li>
+        </ul>
+        <a class="btn btn--linha btn--peq" href="https://wa.me/5511999610210?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20Apoiador." target="_blank" rel="noopener">Falar com a equipe</a>
+      </article>
+
+      <article class="plano">
+        <h3 class="plano__n">Patrocinador</h3>
+        <p class="plano__p">R$ ___ / mês</p>
+        <ul>
+          <li><b>Logomarca no site</b></li>
+          <li><b>Menção em posts e vídeos</b></li>
+          <li><b>Logomarca na manga da camisa</b></li>
+          <li><b>1 conteúdo exclusivo por trimestre</b></li>
+          <li><b>1 simultânea ou palestra por ano</b></li>
+        </ul>
+        <a class="btn btn--linha btn--peq" href="https://wa.me/5511999610210?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20Patrocinador." target="_blank" rel="noopener">Falar com a equipe</a>
+      </article>
+
+      <article class="plano plano--destaque">
+        <h3 class="plano__n">Patrocinador Oficial</h3>
+        <p class="plano__p">R$ ___ / mês · exclusividade de segmento</p>
+        <ul>
+          <li><b>Logomarca no site, em destaque</b></li>
+          <li><b>Menção em destaque em posts e vídeos</b></li>
+          <li><b>Logomarca no peito da camisa</b></li>
+          <li><b>1 conteúdo exclusivo por mês</b></li>
+          <li><b>2 simultâneas ou palestras por ano</b></li>
+        </ul>
+        <a class="btn btn--ouro btn--peq" href="https://wa.me/5511999610210?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20Patrocinador%20Oficial." target="_blank" rel="noopener">Falar com a equipe</a>
+      </article>
+    </div>
+    <!-- PREENCHER: valores dos três planos -->
+
+    <div class="incentivo rev" id="falar">
+      <p><b>Apoiar sem desembolso adicional.</b> Projetos esportivos habilitados na Lei de Incentivo ao Esporte
+      permitem destinar parte do Imposto de Renda devido ao patrocínio. Podemos enviar a documentação do projeto
+      para o seu contador avaliar. <!-- CONFIRMAR habilitação na LIE antes de publicar esta frase --></p>
+      <div class="duplo">
+        <a class="btn btn--ouro" href="https://wa.me/5511999610210?text=Gostaria%20de%20conversar%20sobre%20patroc%C3%ADnio%20ao%20Mathias" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn btn--linha" href="assets/midia-kit-mathias.pdf" download>Baixar o mídia kit</a>
+      </div>
+    </div>
+
+    <p class="nota">Atendimento comercial com os responsáveis legais do atleta:
+      <a class="link-zap" href="https://wa.me/5511999610210?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20patroc%C3%ADnio%20ao%20Mathias." target="_blank" rel="noopener">WhatsApp (11) 99961-0210</a>.</p>
+  </div>
+</section>
+
+<!-- ==================== h8 · PROMOÇÃO (CTA final) ==================== -->
+<section class="faixa faixa--escura promocao" id="promocao">
+  <div class="env">
+    <img class="promo__divisor" src="assets/divisor-peao.png" width="1400" height="78" alt="" loading="lazy">
+    <h2>Seu apoio faz a diferença</h2>
+    <p>Cada contribuição vira hora de treino, inscrição de torneio e passagem de avião.
+    É assim, na prática, que uma carreira de xadrez avança.</p>
+    <div class="duplo">
+      <a class="btn btn--ouro" href="#apoiar">Apoiar agora</a>
+      <a class="btn btn--linha" href="#patrocinio">Falar sobre patrocínio</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ==================== RODAPÉ ==================== -->
+<footer class="rodape">
+  <div class="env">
+    <div class="rodape__grid">
+      <div>
+        <h4>Mathias Casalaspro</h4>
+        <p>Mestre FIDE, a caminho do título de Mestre Internacional. Projeto conduzido pelos responsáveis legais do atleta.</p>
+        <!-- PREENCHER: nome dos responsáveis legais e CNPJ, se houver -->
+      </div>
+      <div>
+        <h4>Navegar</h4>
+        <ul>
+          <li><a href="#historia">A história</a></li>
+          <li><a href="#conquistas">As conquistas</a></li>
+          <li><a href="#caminho">O caminho até o MI</a></li>
+          <li><a href="#apoiar">Como apoiar</a></li>
+          <li><a href="#alcance">Vídeos e alcance</a></li>
+          <li><a href="#patrocinio">Patrocínio</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5511999610210?text=Gostaria%20de%20apoiar%20o%20Mathias!" target="_blank" rel="noopener">WhatsApp (11) 99961-0210</a></li>
+          <li><a href="mailto:contato@mathiascasalaspro.com.br">contato@mathiascasalaspro.com.br</a></li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a></li>
+        </ul>
+        <!-- PREENCHER: e-mail real e URLs das redes sociais -->
+      </div>
+    </div>
+
+    <div class="rodape__fim">
+      <span>© <span id="ano">2026</span> Mathias André Casalaspro</span>
+      <div class="idiomas">
+        <a href="/" aria-current="page">PT</a>
+        <a href="/mathias-chess">EN</a>
+        <a href="/mathias-scacchi">IT</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ==================================================================
+   Todo o conteúdo que muda vive em dados/*.json.
+   Este arquivo não precisa ser editado para atualizar o site.
+   O que está abaixo é só o padrão de segurança, usado se algum
+   JSON não carregar.
+   ================================================================== */
+const PADRAO = {
+  atualizadoEm: "agosto de 2026",
+  caminho: {
+    ratingAtual: 2341, escala: [2100, 2440],
+    marcos: [
+      { valor:2200, titulo:"2200", nota:"jun/2024" },
+      { valor:2341, titulo:"2341", nota:"FM · dez/2024" },
+      { valor:2400, titulo:"2400", nota:"meta · MI", meta:true }
+    ],
+    normasFeitas: 1, normasNecessarias: 3,
+    temporada: "2027", metaResumo: "4 torneios internacionais · 2 normas restantes",
+    metaValor: 60000, arrecadado: 12500, apoiadores: 0
+  },
+  alcance: { apiKeyYouTube: "", viewsManual: 0 }
+};
+
+(function(){
+  "use strict";
+  const calmo = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $  = (s,c)=> (c||document).querySelector(s);
+  const $$ = (s,c)=> Array.from((c||document).querySelectorAll(s));
+  const esc = t => String(t == null ? "" : t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  /* Busca um JSON de dados/. O sufixo troca a cada 5 min: garante que uma
+     edição apareça rápido sem bater no servidor a cada visita. */
+  async function dados(arquivo){
+    const r = await fetch("dados/" + arquivo + "?v=" + Math.floor(Date.now()/300000));
+    if (!r.ok) throw new Error(arquivo + " " + r.status);
+    return r.json();
+  }
+
+  /* ---------------- básico da página ---------------- */
+  $("#ano").textContent = new Date().getFullYear();
+
+  const topo = $("#topo"), menu = $("#menu"), hamb = $("#hamb");
+  const aoRolar = ()=> topo.classList.toggle("fixado", window.scrollY > 40);
+  aoRolar(); addEventListener("scroll", aoRolar, {passive:true});
+  hamb.addEventListener("click", ()=>{
+    const aberto = menu.classList.toggle("aberto");
+    hamb.setAttribute("aria-expanded", String(aberto));
+    hamb.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+  });
+  $$("#menu a").forEach(a=> a.addEventListener("click", ()=>{
+    menu.classList.remove("aberto"); hamb.setAttribute("aria-expanded","false");
+  }));
+
+  const pista = $("#ticker");
+  if (pista) pista.appendChild(pista.firstElementChild.cloneNode(true));
+
+  const secoes = ["historia","conquistas","caminho","apoiar","alcance","patrocinio"];
+  const links  = {}; secoes.forEach(id => links[id] = $('#menu a[href="#'+id+'"]'));
+  const casas  = $$("#diagonal i");
+  const espia = new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      Object.values(links).forEach(l=> l && l.classList.remove("ativo"));
+      if (links[e.target.id]) links[e.target.id].classList.add("ativo");
+      const n = secoes.indexOf(e.target.id);
+      casas.forEach((c,i)=> c.classList.toggle("on", i <= n + 2));
+    });
+  }, { rootMargin:"-45% 0px -50% 0px" });
+  secoes.forEach(id => { const el = $("#"+id); if (el) espia.observe(el); });
+
+  const revela = new IntersectionObserver((es,obs)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("vis"); obs.unobserve(e.target); }});
+  }, { rootMargin:"0px 0px -8% 0px", threshold:.08 });
+  const observarRev = el => calmo ? el.classList.add("vis") : revela.observe(el);
+  $$(".rev").forEach(observarRev);
+
+  /* ---------------- contadores ---------------- */
+  function conta(el){
+    const alvo = +el.dataset.conta, dur = 1400, ini = performance.now();
+    if (calmo){ el.textContent = alvo.toLocaleString("pt-BR"); return; }
+    (function passo(t){
+      const p = Math.min((t-ini)/dur, 1), e = 1 - Math.pow(1-p, 3);
+      el.textContent = Math.round(alvo*e).toLocaleString("pt-BR");
+      if (p < 1) requestAnimationFrame(passo);
+    })(ini);
+  }
+  const obsConta = new IntersectionObserver((es,obs)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ conta(e.target); obs.unobserve(e.target); }});
+  }, { threshold:.4 });
+  $$("[data-conta]").forEach(el=> obsConta.observe(el));
+
+  /* ---------------- conteudo.json ---------------- */
+  function montaNumeros(lista, quando){
+    if (!Array.isArray(lista) || !lista.length) return;
+    const g = $("#numerosGrid");
+    g.innerHTML = lista.map(n =>
+      '<div class="num"><span class="num__v" data-conta="'+Number(n.valor||0)+'">0</span>' +
+      '<span class="num__r">'+esc(n.rotulo)+'</span></div>').join("");
+    $$("[data-conta]", g).forEach(el=> obsConta.observe(el));
+    if (quando) $("#datadoNumeros").textContent = "Atualizado em " + quando;
+  }
+
+  function montaConquistas(lista){
+    if (!Array.isArray(lista) || !lista.length) return;
+    const classe = { inedito:"tag tag--inedito", fide:"tag tag--fide" };
+    $("#palmares").innerHTML = lista.map(c=>{
+      const local = c.local ? ' <i>· '+esc(c.local)+'</i>' : "";
+      const selo  = c.selo ? '<span class="'+(classe[c.tipo] || "tag")+'">'+esc(c.selo)+'</span>' : "";
+      return '<li><span class="ano">'+esc(c.ano)+'</span><span class="feito">'+esc(c.texto)+local+'</span>'+selo+'</li>';
+    }).join("");
+  }
+
+  function montaImprensa(grupos){
+    if (!Array.isArray(grupos) || !grupos.length) return;
+    let total = 0;
+    $("#pautas").innerHTML = grupos.map(g=>{
+      const itens = (g.itens||[]).map(i=>{
+        total++;
+        return '<li><a href="'+esc(i.url)+'" target="_blank" rel="noopener"><b>'+esc(i.titulo)+
+               '</b><span>'+esc(i.veiculo)+'</span></a></li>';
+      }).join("");
+      return '<div class="pauta"><p class="pauta__t">'+esc(g.grupo)+'</p><ul>'+itens+'</ul></div>';
+    }).join("");
+    $("#miniImprensa").textContent = total;
+    $("#qtdImprensa").textContent  = total;
+  }
+
+  let C = PADRAO.caminho;
+  function montaCaminho(c){
+    C = Object.assign({}, PADRAO.caminho, c || {});
+    const [min,max] = C.escala || [2100,2440];
+    const pct = v => ((v - min) / (max - min)) * 100;
+
+    const trilho = $("#trilho");
+    $$(".marco", trilho).forEach(e=> e.remove());
+    (C.marcos||[]).forEach((m,i)=>{
+      const x = pct(m.valor);
+      const el = document.createElement("div");
+      el.className = "marco" + (m.meta ? " marco--meta" : "") + (i%2 ? " marco--baixo" : "") + (x > 80 ? " marco--fim" : "");
+      el.style.left = x + "%";
+      el.innerHTML = '<span class="marco__pt"></span><span class="marco__lb"><b>'+esc(m.titulo)+'</b>'+esc(m.nota)+'</span>';
+      trilho.appendChild(el);
+    });
+
+    const cx = $("#normas"); cx.innerHTML = "";
+    for (let i = 0; i < (C.normasNecessarias||3); i++){
+      const ok = i < (C.normasFeitas||0);
+      const d = document.createElement("div");
+      d.className = "norma " + (ok ? "norma--ok" : "norma--falta");
+      d.textContent = ok ? "\u265F" : "\u00B7";
+      d.title = ok ? "Norma conquistada" : "Norma pendente";
+      cx.appendChild(d);
+    }
+
+    const brl = n => Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
+    if (C.temporada)  $("#metaTitulo").textContent = "Meta da temporada " + C.temporada;
+    if (C.metaResumo) $("#metaSub").textContent    = C.metaResumo;
+    $("#arrecadado").textContent = brl(C.arrecadado);
+    $("#metaValor").textContent  = brl(C.metaValor);
+    const prova = $("#prova");
+    if (prova){ if (C.apoiadores > 0) prova.textContent = C.apoiadores + " pessoas já apoiaram"; else prova.remove(); }
+    if (C.atualizadoEm) $("#datado-rating").textContent = "Atualizado em " + C.atualizadoEm;
+
+    const obsBarra = new IntersectionObserver((es,obs)=>{
+      es.forEach(e=>{
+        if(!e.isIntersecting) return;
+        $("#preenche").style.width = Math.max(0, Math.min(pct(C.ratingAtual),100)) + "%";
+        $("#barra").style.width = Math.min((C.arrecadado||0) / (C.metaValor||1) * 100, 100) + "%";
+        obs.unobserve(e.target);
+      });
+    }, { threshold:.25 });
+    obsBarra.observe($("#caminho"));
+  }
+
+  function aplicaContato(ct){
+    if (!ct || !ct.whatsapp) return;
+    $$('a[href*="wa.me/"]').forEach(a=>{
+      a.href = a.href.replace(/wa\.me\/\d+/, "wa.me/" + ct.whatsapp);
+      if (ct.whatsappRotulo && /\(\d{2}\)/.test(a.textContent)) a.textContent = a.textContent.replace(/\(\d{2}\)[\d\s-]+/, ct.whatsappRotulo);
+    });
+    if (ct.email){
+      $$('a[href^="mailto:"]').forEach(a=>{ a.href = "mailto:" + ct.email; a.textContent = ct.email; });
+    }
+    if (ct.instagram) $$('a[href*="instagram.com"]').forEach(a=> a.href = ct.instagram);
+    if (ct.youtube)   $$('a[href*="youtube.com"]:not(.video)').forEach(a=> a.href = ct.youtube);
+  }
+
+  /* ---------------- galeria ---------------- */
+  function montaGaleria(g){
+    const fotos = (g && g.fotos || []).filter(f=> f && f.arquivo);
+    if (!fotos.length) return;
+    const secao = $("#galeria"), pista = $("#galeriaPista");
+    pista.innerHTML = fotos.map(f=>{
+      const leg = f.legenda
+        ? '<figcaption>' + (f.destaque ? '<b>'+esc(f.destaque)+'</b> · ' : '') + esc(f.legenda) + '</figcaption>'
+        : "";
+      return '<figure><img src="assets/galeria/'+esc(f.arquivo)+'" loading="lazy" alt="'+
+             esc(f.alt || f.legenda || "Mathias Casalaspro em torneio")+'">'+leg+'</figure>';
+    }).join("");
+    secao.classList.toggle("galeria--unica", fotos.length === 1);
+    $$(".galeria__dica", secao).forEach(e=> e.remove());
+    if (fotos.length > 1){
+      const dica = document.createElement("span");
+      dica.className = "galeria__dica";
+      dica.textContent = fotos.length + " fotos · arraste para o lado";
+      secao.appendChild(dica);
+    }
+  }
+
+  /* ---------------- vídeos ---------------- */
+  const PLAY = '<span class="video__play" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></span>';
+
+  /* Aceita watch?v=, youtu.be/, /shorts/, /embed/ ou o id puro. */
+  function idDoYoutube(v){
+    const s = String(v || "").trim();
+    const m = s.match(/(?:v=|youtu\.be\/|\/shorts\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);
+    if (m) return m[1];
+    return /^[A-Za-z0-9_-]{11}$/.test(s) ? s : null;
+  }
+
+  function cartao(v, grande){
+    const b = document.createElement("button");
+    b.className = "video" + (grande ? " video--grande" : "");
+    b.dataset.yt = v.id;
+    b.setAttribute("aria-label", v.titulo ? "Assistir: " + v.titulo : "Assistir vídeo");
+    b.innerHTML =
+      '<img alt="" loading="lazy">' + PLAY +
+      (v.titulo ? '<span class="video__lb"><span>'+esc(v.titulo)+'</span></span>' : '');
+
+    /* maxres nem sempre existe: cai para hq e depois mq antes de desistir */
+    const img = b.querySelector("img");
+    const fila = (grande ? ["maxresdefault","hqdefault","mqdefault"] : ["mqdefault","hqdefault"]).slice();
+    (function proxima(){
+      const q = fila.shift();
+      if (!q){ img.remove(); b.style.background = "url('assets/padrao-xadrez.png') repeat 0 0/150px 150px, #0E2A44"; return; }
+      img.onerror = proxima;
+      img.src = "https://i.ytimg.com/vi/" + v.id + "/" + q + ".jpg";
+    })();
+
+    b.addEventListener("click", ()=>{
+      b.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/'+v.id+
+        '?autoplay=1" title="'+esc(v.titulo||"Vídeo")+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    });
+    return b;
+  }
+
+  function arredonda(n){
+    if (n >= 1e6) return Math.floor(n/1e5)*1e5;
+    if (n >= 1e5) return Math.floor(n/1e4)*1e4;
+    if (n >= 1e4) return Math.floor(n/1e3)*1e3;
+    return n;
+  }
+  function mostraViews(total, aproximado){
+    const bloco = $("#blocoViews");
+    if (!total){ if (bloco) bloco.remove(); return; }
+    $("#viewsMais").style.visibility = aproximado ? "visible" : "hidden";
+    const el = $("#viewsNum");
+    el.dataset.conta = aproximado ? arredonda(total) : total;
+    obsConta.observe(el);
+  }
+
+  async function montaVideos(cfg){
+    const lista = (cfg && cfg.videos || []).map(v=>{
+      const bruto = typeof v === "string" ? v : (v.url || v.id);
+      const id = idDoYoutube(bruto);
+      return id ? { id, titulo: (typeof v === "object" && v.titulo) || "" } : null;
+    }).filter(Boolean);
+
+    if (!lista.length){ mostraViews(0); return; }
+
+    const grade = document.createElement("div");
+    grade.className = "videos__grid";
+    lista.forEach((v,i)=> grade.appendChild(cartao(v, i === 0 && lista.length >= 5)));
+    const caixa = $("#videos"); caixa.innerHTML = ""; caixa.appendChild(grade);
+    $("#miniVideos").textContent = lista.length;
+
+    /* Uma miniatura sozinha na última linha fica com cara de erro.
+       Quando isso acontece, a última passa a ocupar duas colunas. */
+    function fechaGrade(){
+      const filhos = Array.from(grade.children);
+      const ultimo = filhos[filhos.length-1];
+      if (!ultimo || ultimo.classList.contains("video--grande")) return;
+      ultimo.style.gridColumn = "";
+      const cols = getComputedStyle(grade).gridTemplateColumns.split(" ").filter(Boolean).length;
+      if (cols < 3) return;
+      const ocupadas = filhos.length + (filhos[0].classList.contains("video--grande") ? 3 : 0);
+      if (ocupadas % cols === 1) ultimo.style.gridColumn = "span 2";
+    }
+    fechaGrade();
+    let t; addEventListener("resize", ()=>{ clearTimeout(t); t = setTimeout(fechaGrade, 150); }, {passive:true});
+
+    const chave = (cfg && cfg.apiKeyYouTube) || PADRAO.alcance.apiKeyYouTube;
+    const manual = Number((cfg && cfg.viewsManual) || PADRAO.alcance.viewsManual || 0);
+
+    if (!chave){
+      $("#viewsFonte").textContent = "contagem informada manualmente";
+      mostraViews(manual, true);
+      return;
+    }
+    try{
+      /* a API aceita 50 ids por chamada */
+      let total = 0, vistos = 0;
+      for (let i = 0; i < lista.length; i += 50){
+        const ids = lista.slice(i, i+50).map(v=>v.id).join(",");
+        const r = await fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id="+ids+"&key="+chave);
+        const d = await r.json();
+        if (!d.items) throw new Error("resposta sem itens");
+        d.items.forEach(v=>{
+          vistos++;
+          const n = Number(v.statistics && v.statistics.viewCount || 0);
+          total += n;
+          const b = $('.video[data-yt="'+v.id+'"]');
+          if (!b) return;
+          if (v.snippet && v.snippet.title){
+            let lb = b.querySelector(".video__lb");
+            if (!lb){ lb = document.createElement("span"); lb.className = "video__lb"; b.appendChild(lb); }
+            lb.innerHTML = '<span>'+esc(v.snippet.title)+'</span>';
+            b.setAttribute("aria-label", "Assistir: " + v.snippet.title);
+          }
+          if (n && b.classList.contains("video--grande")){
+            const s = document.createElement("span");
+            s.className = "video__views";
+            s.textContent = n.toLocaleString("pt-BR") + " views";
+            b.appendChild(s);
+          }
+        });
+      }
+      if (!vistos) throw new Error("nenhum vídeo retornado");
+      mostraViews(total, true);
+    }catch(e){
+      $("#viewsFonte").textContent = "contagem informada manualmente";
+      mostraViews(manual, true);
+    }
+  }
+
+  /* ---------------- carga ---------------- */
+  dados("conteudo.json").then(c=>{
+    montaNumeros(c.numeros, c.atualizadoEm);
+    montaConquistas(c.conquistas);
+    montaImprensa(c.imprensa);
+    montaCaminho(Object.assign({ atualizadoEm: c.atualizadoEm }, c.caminho));
+    aplicaContato(c.contato);
+    return c;
+  }).catch(()=> montaCaminho(PADRAO.caminho));
+
+  function reserva(id){
+    const el = document.getElementById(id);
+    try { return el ? JSON.parse(el.textContent) : null; } catch(e){ return null; }
+  }
+  dados("videos.json")
+    .then(montaVideos)
+    .catch(()=> montaVideos(Object.assign({}, PADRAO.alcance, reserva("videosReserva"))));
+
+  if (location.protocol === "file:"){
+    console.info(
+      "Pré-visualização local: o navegador não deixa ler dados/*.json em file://, " +
+      "então o site está usando as cópias de reserva do próprio HTML.\n" +
+      "Para ver os dados reais, rode um servidor na pasta do site:\n" +
+      "  python3 -m http.server 8000\n" +
+      "e abra http://localhost:8000"
+    );
+  }
+  dados("galeria.json").then(montaGaleria).catch(()=>{});
+})();
+</script>
+</body>
+</html>

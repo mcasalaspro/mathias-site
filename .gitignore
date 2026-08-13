@@ -1,0 +1,12 @@
+# Lixo do sistema operacional
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
+._*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~

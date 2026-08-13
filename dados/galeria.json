@@ -1,0 +1,11 @@
+{
+  "_leia": "Gerado automaticamente pela GitHub Action quando você adiciona ou remove fotos em assets/galeria/. Você só precisa editar as legendas — elas são preservadas a cada atualização.",
+  "fotos": [
+    {
+      "arquivo": "2026-02_floripa-blitz-abertura.jpg",
+      "destaque": "Mesa 1",
+      "legenda": "Brazil Chess Series — Floripa 2026, Blitz de Abertura. Mathias foi o campeão do evento.",
+      "alt": "Mathias na mesa 1 do Blitz de Abertura do Floripa 2026, cercado de público."
+    }
+  ]
+}

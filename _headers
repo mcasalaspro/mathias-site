@@ -1,0 +1,15 @@
+# Cabeçalhos para Cloudflare Pages.
+# O GitHub Pages ignora este arquivo; nesse caso configure as regras de cache
+# no painel da Cloudflare (Rules > Cache Rules) com os mesmos valores.
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Os dados precisam de cache curto, senão uma edição demora a aparecer.
+/dados/*
+  Cache-Control: public, max-age=60, must-revalidate
+
+/*
+  Cache-Control: public, max-age=600
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

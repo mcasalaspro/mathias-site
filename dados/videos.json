@@ -1,0 +1,31 @@
+{
+  "_leia": "Cole a URL do vídeo em 'videos' e salve. Aceita qualquer formato do YouTube: youtube.com/watch?v=, youtu.be/, /shorts/ ou /embed/. Não precisam ser do canal do Mathias — qualquer vídeo público sobre ele entra. O primeiro da lista aparece grande no mosaico.",
+
+  "_titulos": "Se 'apiKeyYouTube' estiver preenchida, os títulos vêm direto do YouTube e você não precisa escrever nada. Sem a chave, use a forma { \"url\": \"...\", \"titulo\": \"...\" } para dar nome ao vídeo.",
+
+  "apiKeyYouTube": "",
+
+  "_viewsManual": "Total de visualizações somado à mão. Só é usado quando não há chave de API. Enquanto for 0, o número grande da seção Alcance não aparece — de propósito, para o site nunca mostrar um número inventado.",
+  "viewsManual": 0,
+
+  "videos": [
+    "https://www.youtube.com/watch?v=lKhA28R0QIs",
+    "https://youtu.be/ftgrqlXNrY8",
+    "https://www.youtube.com/shorts/0eeKo62eTi8",
+    "https://www.youtube.com/watch?v=AmvA3eCG3l8",
+    "https://www.youtube.com/watch?v=lnODrptVyjM",
+    "https://youtu.be/PXNqbpB43B0",
+    "https://youtu.be/4stdMgFnZRE",
+    "https://youtu.be/eghtAzUiYaE",
+    "https://youtu.be/8_Jt8zbgVIA",
+    "https://youtu.be/E33cI7qPPms",
+    "https://youtu.be/3Ju6xEw3-lI",
+    "https://youtu.be/qYCVlmi8V10",
+    "https://youtu.be/2RSO7HEPQA4",
+    "https://youtu.be/IX_kqO0Ri8g",
+    "https://www.youtube.com/watch?v=_jfNoxM1KCs",
+    "https://youtu.be/cGn_qyrobpw",
+    "https://youtu.be/-trPrkdpdnw",
+    "https://www.youtube.com/watch?v=fAcmRCU627A"
+  ]
+}
