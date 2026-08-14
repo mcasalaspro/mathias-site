@@ -35,37 +35,31 @@
   ],
   "caminho": {
     "ratingAtual": 2341,
-    "escala": [
-      2100,
-      2440
-    ],
-    "marcos": [
-      {
-        "valor": 2200,
-        "titulo": "2200",
-        "nota": "jun/2024"
-      },
-      {
-        "valor": 2341,
-        "titulo": "2341",
-        "nota": "FM · dez/2024"
-      },
-      {
-        "valor": 2400,
-        "titulo": "2400",
-        "nota": "meta · MI",
-        "meta": true
-      }
-    ],
     "normasFeitas": 1,
     "normasNecessarias": 3,
     "temporada": "2027",
-    "metaResumo": "4 torneios internacionais · 2 normas restantes",
-    "metaValor": 60000,
-    "arrecadado": 0,
+    "metaResumo": "O que sustenta treino, viagens e inscrições ao longo do ano",
     "apoiadores": 0,
-    "metaResumo_en": "4 international tournaments · 2 norms to go",
-    "metaResumo_it": "4 tornei internazionali · 2 norme da ottenere"
+    "metaResumo_en": "What keeps training, travel and entry fees going through the year",
+    "metaResumo_it": "Ciò che sostiene allenamento, viaggi e iscrizioni durante l'anno",
+    "_meta": "metaMensal: quanto se pretende arrecadar POR MÊS. apoioMensal: quanto já está garantido por mês.",
+    "metaMensal": 2500,
+    "apoioMensal": 0,
+    "_historico": "Histórico de rating para o gráfico. Pegue a lista completa em ratings.fide.com (ficha do jogador > Rating chart) e cole aqui: quanto mais pontos, melhor a curva. Formato: data no padrão AAAA-MM e o rating clássico do mês.",
+    "historico": [
+      {
+        "data": "2024-06",
+        "rating": 2203
+      },
+      {
+        "data": "2024-12",
+        "rating": 2341
+      },
+      {
+        "data": "2026-08",
+        "rating": 2341
+      }
+    ]
   },
   "conquistas": [
     {

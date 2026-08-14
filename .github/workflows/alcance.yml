@@ -1,0 +1,59 @@
+name: Atualizar alcance
+
+# Soma views e curtidas de todos os vídeos e grava em dados/alcance.json.
+# Roda toda madrugada, quando a lista de vídeos muda, e sob demanda pelo botão
+# "Run workflow" na aba Actions.
+#
+# ANTES DE FUNCIONAR, faça uma vez:
+#   1. No repositório: Settings > Secrets and variables > Actions > New repository secret
+#   2. Name:   YOUTUBE_API_KEY
+#      Secret: a sua chave da YouTube Data API v3
+#
+# A chave usada aqui NÃO pode estar restrita por "Referenciadores HTTP": uma
+# chamada de servidor não envia referenciador e o Google recusa. Deixe
+# "Restrições de aplicativo" em "Nenhuma" e mantenha a restrição de API na
+# YouTube Data API v3. Como ela fica guardada num Secret, não aparece no site
+# nem no código.
+
+on:
+  schedule:
+    - cron: '17 6 * * *'      # 06:17 UTC = 03:17 em Brasília
+  push:
+    paths:
+      - 'dados/videos.json'
+      - 'ferramentas/atualizar-alcance.py'
+      - '.github/workflows/alcance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  somar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Conferir se a chave existe
+        run: |
+          if [ -z "${{ secrets.YOUTUBE_API_KEY }}" ]; then
+            echo "::error::Falta o secret YOUTUBE_API_KEY. Veja as instruções no topo deste arquivo."
+            exit 1
+          fi
+
+      - name: Somar views e curtidas
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python3 ferramentas/atualizar-alcance.py
+
+      - name: Publicar se mudou
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet dados/alcance.json; then
+            echo "Os números não mudaram."
+          else
+            git add dados/alcance.json
+            git commit -m "Atualiza alcance dos vídeos [skip ci]"
+            git push
+          fi

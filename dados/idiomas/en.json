@@ -106,5 +106,17 @@
   "btn.apoiarAgora": "Support now",
   "alcance.atualizadoEm": "updated on",
   "alcance.fonteManual": "manually entered count",
-  "alcance.assistir": "Watch"
+  "alcance.assistir": "Watch",
+  "meta.titulo": "Monthly goal",
+  "meta.porMes": "per month",
+  "meta.garantido": "already secured each month",
+  "calc.titulo": "Do the math",
+  "calc.se": "If each person contributes",
+  "calc.bastam": "then it takes",
+  "calc.pessoas": "people a month",
+  "calc.pessoa": "person a month",
+  "calc.nota": "This amount does not cover every travel and tournament expense, but it is a very significant help.",
+  "grafico.titulo": "FIDE rating over time",
+  "grafico.meta": "2400 · IM title threshold",
+  "alcance.exato": "exact figure measured on"
 }

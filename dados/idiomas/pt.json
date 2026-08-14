@@ -106,5 +106,17 @@
   "btn.apoiarAgora": "Apoiar agora",
   "alcance.atualizadoEm": "atualizado em",
   "alcance.fonteManual": "contagem informada manualmente",
-  "alcance.assistir": "Assistir"
+  "alcance.assistir": "Assistir",
+  "meta.titulo": "Meta mensal",
+  "meta.porMes": "por mês",
+  "meta.garantido": "já garantidos por mês",
+  "calc.titulo": "Faça a conta",
+  "calc.se": "Se cada pessoa contribuir com",
+  "calc.bastam": "bastam",
+  "calc.pessoas": "pessoas por mês",
+  "calc.pessoa": "pessoa por mês",
+  "calc.nota": "Esse valor não cobre todas as despesas de viagens e torneios, mas é uma ajuda muito significativa.",
+  "grafico.titulo": "Evolução do rating FIDE",
+  "grafico.meta": "2400 · meta para o título de MI",
+  "alcance.exato": "valor exato medido em"
 }

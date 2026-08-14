@@ -230,17 +230,31 @@ atualiza sozinho em cerca de um minuto.
 Subiu o rating? Troque `2341` nos dois lugares e salve. A régua, as casas de norma e a barra
 de meta se redesenham sozinhas.
 
-**A meta da temporada fica nesse mesmo bloco `caminho`:**
+**A meta é mensal**, e fica nesse mesmo bloco `caminho`:
 
 | Campo | O que é |
 |---|---|
-| `temporada` | O ano que aparece no título ("Meta da temporada 2027") |
-| `metaResumo` | A linha abaixo do título ("4 torneios internacionais · 2 normas restantes") |
-| `metaValor` | Quanto se pretende arrecadar, em reais |
-| `arrecadado` | Quanto já entrou. Começa em `0` |
-| `apoiadores` | Nº de pessoas que já apoiaram. Em `0`, a linha não aparece |
+| `metaMensal` | Quanto se pretende arrecadar **por mês**. Está em `2500` |
+| `apoioMensal` | Quanto já está garantido por mês. Começa em `0` |
+| `metaResumo` | A linha abaixo do título |
+| `apoiadores` | Nº de pessoas que já apoiam. Em `0`, a linha não aparece |
 
-A barra de progresso é a divisão de `arrecadado` por `metaValor` — não precisa calcular nada.
+A barra é a divisão de `apoioMensal` por `metaMensal`. A calculadora ao lado ("se cada pessoa
+contribuir com R$ X, bastam N pessoas") também sai de `metaMensal` — não há nada a configurar.
+
+**O gráfico de rating** usa a lista `historico`, no mesmo bloco:
+
+```json
+"historico": [
+  { "data": "2024-06", "rating": 2203 },
+  { "data": "2024-12", "rating": 2341 }
+]
+```
+
+Hoje há só três pontos, e por isso a curva sai quase reta. **Pegue a lista completa em
+`ratings.fide.com`** — abra a ficha do Mathias, seção *Rating chart*, e transcreva mês a mês.
+Quanto mais pontos, mais a linha ganha os altos e baixos de uma carreira de verdade, que é o
+que torna o gráfico interessante. O eixo, a escala e a linha dos 2400 se ajustam sozinhos.
 
 Nova conquista? Acrescente uma linha no topo da lista `conquistas`:
 

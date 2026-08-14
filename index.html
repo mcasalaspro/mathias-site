@@ -486,6 +486,18 @@ p{ margin:0 0 1em; }
 .escada__topo h3{ font-size:1.05rem; text-transform:uppercase; letter-spacing:.04em; }
 .escada__topo .datado{ margin:0; }
 
+.grafico{ margin:34px 0 0; }
+.grafico svg{ width:100%; height:auto; display:block; overflow:visible; }
+.grafico__linha{ fill:none; stroke:var(--ouro); stroke-width:2.5; stroke-linejoin:round; stroke-linecap:round; }
+.grafico__area{ fill:url(#gradRating); }
+.grafico__ponto{ fill:var(--noite); stroke:var(--ouro); stroke-width:2; }
+.grafico__ultimo{ fill:var(--ouro); stroke:var(--ouro); }
+.grafico__meta{ stroke:var(--ouro-claro); stroke-width:1; stroke-dasharray:5 5; opacity:.65; }
+.grafico__eixo{ stroke:rgba(255,255,255,.12); stroke-width:1; }
+.grafico text{ font-family:var(--mono); font-size:10px; fill:var(--nevoa); }
+.grafico .grafico__rot{ fill:var(--ouro-claro); }
+.grafico .grafico__val{ fill:var(--marfim); font-weight:700; font-size:12px; }
+
 .trilho{ position:relative; height:8px; background:rgba(255,255,255,.09); border-radius:100px; margin:56px 0 0; }
 .trilho__preenche{
   position:absolute; inset:0 auto 0 0; width:0; border-radius:100px;
@@ -533,7 +545,21 @@ p{ margin:0 0 1em; }
 
 .meta{ border:1px solid var(--linha-esc); border-radius:var(--raio); padding:clamp(24px,3vw,34px); background:rgba(7,21,35,.5); }
 .meta h3{ font-size:1.02rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
-.meta__sub{ font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--nevoa); margin-bottom:26px; }
+.meta__sub{ font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--nevoa); margin-bottom:22px; }
+.meta__valor{ margin:0 0 14px; font-family:var(--mono); font-size:.78rem; color:var(--nevoa); }
+.meta__valor b{ font-family:var(--display); font-weight:800; font-size:clamp(2rem,3.4vw,2.7rem); letter-spacing:-.03em; color:var(--ouro); display:block; line-height:1; margin-bottom:4px; }
+
+.calc{ margin-top:26px; padding-top:24px; border-top:1px solid var(--linha-esc); }
+.calc__t{ font-family:var(--mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ouro); margin:0 0 14px; }
+.calc__linha{ display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; font-size:.94rem; color:var(--nevoa); margin-bottom:10px; }
+.calc__linha b{ font-family:var(--mono); font-size:1.1rem; color:var(--marfim); }
+.calc__range{ width:100%; accent-color:var(--ouro); cursor:pointer; margin:0 0 16px; }
+.calc__res{ margin:0 0 14px; font-size:.94rem; color:var(--nevoa); }
+.calc__res b{ font-family:var(--display); font-weight:800; font-size:1.7rem; letter-spacing:-.02em; color:var(--ouro); margin-right:4px; }
+.calc__gente{ display:flex; flex-wrap:wrap; gap:3px; line-height:1; }
+.calc__gente i{ font-style:normal; font-size:.82rem; color:var(--ouro); opacity:.85; }
+.calc__gente i.mais{ font-family:var(--mono); font-size:.66rem; color:var(--nevoa); align-self:center; margin-left:4px; }
+.calc__nota{ margin:16px 0 0; font-size:.8rem; line-height:1.5; color:var(--nevoa); opacity:.85; }
 .barra{ height:10px; background:rgba(255,255,255,.09); border-radius:100px; overflow:hidden; }
 .barra i{ display:block; height:100%; width:0; background:linear-gradient(90deg,var(--ouro),var(--ouro-claro)); border-radius:100px; transition:width 1.6s cubic-bezier(.22,.8,.28,1); }
 .meta__cifras{ display:flex; justify-content:space-between; gap:12px; margin-top:14px; font-family:var(--mono); font-size:.76rem; }
@@ -565,6 +591,7 @@ p{ margin:0 0 1em; }
 
 .loja{ border-top:1px solid var(--linha-cla); padding-top:clamp(38px,4.5vw,54px); }
 .loja__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:26px; }
+@media (max-width:660px){ .loja__grid{ grid-template-columns:1fr 1fr; gap:10px; } }
 .prod{
   display:block; position:relative; overflow:hidden; text-decoration:none;
   border:1px solid var(--linha-cla); border-radius:var(--raio); background:var(--tabuleiro);
@@ -589,17 +616,17 @@ p{ margin:0 0 1em; }
 .patro{ position:relative; overflow:hidden; }
 .patro__camisa{
   position:absolute; z-index:0; pointer-events:none; user-select:none;
-  right:calc(-1 * var(--fuga) - 3%); top:clamp(78px,11vw,180px);
-  width:min(1020px,80%); max-width:none; height:auto;
-  opacity:.62; filter:saturate(.9) contrast(1.06);
-  -webkit-mask-image:radial-gradient(105% 95% at 70% 45%, #000 30%, transparent 78%);
-          mask-image:radial-gradient(105% 95% at 70% 45%, #000 30%, transparent 78%);
+  right:calc(-1 * var(--fuga)); top:clamp(70px,9vw,150px);
+  width:min(920px,72%); max-width:none; height:auto;
+  opacity:1; filter:saturate(1.05) contrast(1.12) brightness(1.3);
+  -webkit-mask-image:radial-gradient(88% 90% at 66% 46%, #000 48%, transparent 88%);
+          mask-image:radial-gradient(88% 90% at 66% 46%, #000 48%, transparent 88%);
 }
 .patro::after{
   content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
   background:
-    linear-gradient(100deg, var(--noite) 0%, rgba(7,21,35,.94) 30%, rgba(7,21,35,.6) 62%, rgba(7,21,35,.45) 100%),
-    linear-gradient(to bottom, var(--noite) 0%, rgba(7,21,35,0) 22%, rgba(7,21,35,0) 68%, var(--noite) 100%);
+    linear-gradient(100deg, var(--noite) 0%, rgba(7,21,35,.95) 26%, rgba(7,21,35,.5) 54%, rgba(7,21,35,.08) 100%),
+    linear-gradient(to bottom, var(--noite) 0%, rgba(7,21,35,0) 20%, rgba(7,21,35,0) 74%, var(--noite) 100%);
 }
 .patro > .env{ position:relative; z-index:2; }
 .patro__grid{ display:grid; grid-template-columns:1fr; gap:clamp(30px,5vw,64px); margin-bottom:clamp(48px,6vw,72px); }
@@ -692,7 +719,7 @@ p{ margin:0 0 1em; }
 .link-zap:hover{ color:var(--ouro-claro); border-bottom-color:var(--ouro-claro); }
 
 /* ============ VÍDEOS + IMPRENSA ============ */
-.videos{ margin-inline:calc(-1 * var(--fuga)); }
+.videos{ margin-inline:0; }
 .videos__grid{
   display:grid; grid-template-columns:repeat(var(--colsVideo, 3), 1fr);
   gap:clamp(6px,.8vw,12px);
@@ -788,7 +815,7 @@ p{ margin:0 0 1em; }
 /* ============ RESPONSIVO ============ */
 @media (max-width:1024px){
   .historia__grid, .custos, .midia{ grid-template-columns:1fr; }
-  .patro__camisa{ right:auto; left:50%; transform:translateX(-50%); width:150%; opacity:.3; }
+  .patro__camisa{ right:auto; left:50%; transform:translateX(-50%); width:128%; top:auto; bottom:5%; opacity:.55; }
   .historia__foto{ margin-left:calc(-1 * var(--fuga)); margin-right:calc(-1 * var(--fuga)); }
   .historia__foto img{ border-radius:0; height:clamp(340px,62vw,520px); }
   .historia__foto figcaption{ padding-inline:var(--fuga); }
@@ -835,15 +862,21 @@ p{ margin:0 0 1em; }
   .marca__txt small{ display:none; }
   .idioma__b{ width:24px; height:17px; }
   .idioma{ gap:4px; }
-  .hero{ min-height:auto; padding:126px 0 clamp(44px,9vw,68px); }
-  .hero__fundo img{ object-position:center 24%; }
+  .hero{ min-height:min(88vh,720px); padding:100px 0 clamp(32px,7vw,52px); }
+  .hero__fundo img{ object-position:center 22%; }
+  .hero h1{ font-size:clamp(1.85rem,8.4vw,2.5rem); line-height:1.03; max-width:none; margin-bottom:18px; }
+  .hero .lede{ font-size:.97rem; line-height:1.5; margin-bottom:24px; }
+  .selo-abertura{
+    display:block; border-radius:var(--raio); padding:9px 14px 9px 27px; margin-bottom:20px;
+    font-size:.6rem; letter-spacing:.09em; line-height:1.55; position:relative;
+  }
+  .selo-abertura .pulso{ position:absolute; left:11px; top:1.15em; }
+  .hero .duplo .btn{ flex:1 1 100%; }
   .hero::after{ background:
     linear-gradient(to top, var(--noite) 6%, rgba(7,21,35,.82) 46%, rgba(7,21,35,.68) 100%),
     linear-gradient(to bottom, rgba(7,21,35,.92) 0%, rgba(7,21,35,.2) 34%); }
   .hero__cred{ position:static; margin:24px 0 0; }
-  .trilho{ margin-top:70px; }
-  .marco__lb{ max-width:78px; font-size:.6rem; }
-  .marco__lb b{ font-size:.88rem; }
+  .grafico text{ font-size:11px; }
   .rodape__grid{ grid-template-columns:1fr; }
   .ticker__grupo span{ font-size:.68rem; padding:0 15px; gap:15px; }
 }
@@ -1073,14 +1106,13 @@ p{ margin:0 0 1em; }
     <!-- escada de rating -->
     <div class="escada rev">
       <div class="escada__topo">
-        <h3 data-t="escada.titulo">Rating FIDE · onde ele está</h3>
+        <h3 data-t="grafico.titulo">Evolução do rating FIDE</h3>
         <p class="datado" id="datado-rating">Atualizado em agosto de 2026</p>
       </div>
 
-      <div class="trilho" id="trilho">
-        <div class="trilho__preenche" id="preenche"></div>
-        <!-- marcos inseridos via JS a partir da configuração -->
-      </div>
+      <figure class="grafico" id="grafico">
+        <!-- desenhado em SVG pelo JS, a partir de caminho.historico -->
+      </figure>
 
       <div class="normas">
         <div class="normas__casas" id="normas" aria-label="Normas de Mestre Internacional conquistadas"></div>
@@ -1106,15 +1138,29 @@ p{ margin:0 0 1em; }
       </div>
 
       <div class="meta rev">
-        <h3 id="metaTitulo">Meta da temporada 2027</h3>
-        <p class="meta__sub" id="metaSub">4 torneios internacionais · 2 normas restantes</p>
+        <h3 id="metaTitulo" data-t="meta.titulo">Meta mensal</h3>
+        <p class="meta__sub" id="metaSub">O que sustenta treino, viagens e inscrições ao longo do ano</p>
+
+        <p class="meta__valor"><b id="metaMensal">R$ 0</b> <span data-t="meta.porMes">por mês</span></p>
         <div class="barra"><i id="barra"></i></div>
-        <div class="meta__cifras">
-          <span><b id="arrecadado">R$ 0</b> <span data-t="meta.arrecadados">arrecadados</span></span>
-          <span><span data-t="meta.meta">meta</span> <b id="metaValor">R$ 0</b></span>
+        <p class="meta__cifras"><b id="apoioMensal">R$ 0</b> <span data-t="meta.garantido">já garantidos por mês</span></p>
+
+        <div class="calc">
+          <p class="calc__t" data-t="calc.titulo">Faça a conta</p>
+          <label class="calc__linha" for="calcValor">
+            <span data-t="calc.se">Se cada pessoa contribuir com</span>
+            <b id="calcValor">R$ 50</b>
+          </label>
+          <input class="calc__range" id="calcRange" type="range" min="10" max="250" step="5" value="50"
+                 aria-label="Valor da contribuição mensal">
+          <p class="calc__res"><span data-t="calc.bastam">bastam</span>
+            <b id="calcPessoas">50</b> <span id="calcRotulo" data-t="calc.pessoas">pessoas por mês</span></p>
+          <div class="calc__gente" id="calcGente" aria-hidden="true"></div>
         </div>
+
         <a class="btn btn--ouro" href="#apoiar" data-t="meta.btn">Contribuir com a temporada</a>
         <p class="meta__prova" id="prova">— pessoas já apoiaram</p>
+        <p class="calc__nota" data-t="calc.nota">Esse valor não cobre todas as despesas de viagens e torneios, mas é uma ajuda muito significativa.</p>
       </div>
     </div>
   </div>
@@ -1640,48 +1686,128 @@ const PADRAO = {
   let C = PADRAO.caminho;
   function montaCaminho(c){
     C = Object.assign({}, PADRAO.caminho, c || {});
-    const [min,max] = C.escala || [2100,2440];
-    const pct = v => ((v - min) / (max - min)) * 100;
+    const brl = n => Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
 
-    const trilho = $("#trilho");
-    $$(".marco", trilho).forEach(e=> e.remove());
-    (C.marcos||[]).forEach((m,i)=>{
-      const x = pct(m.valor);
-      const el = document.createElement("div");
-      el.className = "marco" + (m.meta ? " marco--meta" : "") + (i%2 ? " marco--baixo" : "") + (x > 80 ? " marco--fim" : "");
-      el.style.left = x + "%";
-      el.innerHTML = '<span class="marco__pt"></span><span class="marco__lb"><b>'+esc(m.titulo)+'</b>'+esc(m.nota)+'</span>';
-      trilho.appendChild(el);
-    });
+    /* ---------- gráfico de rating ---------- */
+    desenhaGrafico(C.historico, C.ratingAtual);
 
+    /* ---------- casas de norma ---------- */
     const cx = $("#normas"); cx.innerHTML = "";
     for (let i = 0; i < (C.normasNecessarias||3); i++){
       const ok = i < (C.normasFeitas||0);
       const d = document.createElement("div");
       d.className = "norma " + (ok ? "norma--ok" : "norma--falta");
       d.textContent = ok ? "\u265F" : "\u00B7";
-      d.title = ok ? T("_meta.normaOk","Norma conquistada") : T("_meta.normaFalta","Norma pendente");
+      d.title = ok ? "Norma conquistada" : "Norma pendente";
       cx.appendChild(d);
     }
 
-    const brl = n => Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
-    if (C.temporada)  $("#metaTitulo").textContent = T("_meta.metaTemporada","Meta da temporada") + " " + C.temporada;
-    if (C.metaResumo) $("#metaSub").textContent    = TR(C,"metaResumo");
-    $("#arrecadado").textContent = brl(C.arrecadado);
-    $("#metaValor").textContent  = brl(C.metaValor);
+    /* ---------- meta mensal ---------- */
+    const meta = Number(C.metaMensal || 0);
+    const jaTem = Number(C.apoioMensal || 0);
+    if (C.metaResumo) $("#metaSub").textContent = TR(C, "metaResumo");
+    $("#metaMensal").textContent = brl(meta);
+    $("#apoioMensal").textContent = brl(jaTem);
     const prova = $("#prova");
-    if (prova){ if (C.apoiadores > 0) prova.textContent = C.apoiadores + " " + T("_meta.pessoasApoiaram","pessoas já apoiaram"); else prova.remove(); }
-    if (C.atualizadoEm) $("#datado-rating").textContent = T("_meta.atualizadoEm","Atualizado em") + " " + C.atualizadoEm;
+    if (prova){ if (C.apoiadores > 0) prova.textContent = C.apoiadores + " pessoas já apoiaram"; else prova.remove(); }
+    if (C.atualizadoEm) $("#datado-rating").textContent = "Atualizado em " + C.atualizadoEm;
 
     const obsBarra = new IntersectionObserver((es,obs)=>{
       es.forEach(e=>{
         if(!e.isIntersecting) return;
-        $("#preenche").style.width = Math.max(0, Math.min(pct(C.ratingAtual),100)) + "%";
-        $("#barra").style.width = Math.min((C.arrecadado||0) / (C.metaValor||1) * 100, 100) + "%";
+        $("#barra").style.width = Math.min(meta ? jaTem/meta*100 : 0, 100) + "%";
         obs.unobserve(e.target);
       });
     }, { threshold:.25 });
     obsBarra.observe($("#caminho"));
+
+    /* ---------- calculadora: quantas pessoas fecham a meta ---------- */
+    const range = $("#calcRange");
+    function recalcula(){
+      const valor = Number(range.value);
+      const pessoas = meta ? Math.ceil(meta / valor) : 0;
+      $("#calcValor").textContent = brl(valor);
+      $("#calcPessoas").textContent = pessoas;
+      $("#calcRotulo").textContent = pessoas === 1
+        ? T("calc.pessoa","pessoa por mês") : T("calc.pessoas","pessoas por mês");
+      /* Peões desenhando o tamanho do grupo. Acima de 80 vira número, senão
+         a lista fica maior que a própria seção. */
+      const teto = 80, mostra = Math.min(pessoas, teto);
+      let html = "";
+      for (let i = 0; i < mostra; i++) html += '<i>\u265F</i>';
+      if (pessoas > teto) html += '<i class="mais">+' + (pessoas - teto) + '</i>';
+      $("#calcGente").innerHTML = html;
+    }
+    range.oninput = recalcula;
+    recalcula();
+  }
+
+  /* Gráfico de rating: linha simples que sobe e desce, com a marca dos 2400. */
+  function T_(k,alt){ try { return T(k,alt); } catch(e){ return alt; } }
+  function desenhaGrafico(historico, atual){
+    const alvo = $("#grafico");
+    if (!alvo) return;
+    let pts = (historico || []).filter(p=> p && p.rating).slice();
+    if (!pts.length){ alvo.innerHTML = ""; return; }
+    pts.sort((a,b)=> String(a.data).localeCompare(String(b.data)));
+
+    const L = 46, R = 16, T = 22, B = 26, W = 700, H = 240;
+    const META = 2400;
+    const vals = pts.map(p=>p.rating).concat([META]);
+    let min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    const folga = Math.max(40, (max - min) * 0.18);
+    min = Math.floor((min - folga)/50)*50;
+    max = Math.ceil((max + folga)/50)*50;
+
+    const x = i => L + (W - L - R) * (pts.length < 2 ? .5 : i/(pts.length-1));
+    const y = v => T + (H - T - B) * (1 - (v - min)/(max - min));
+
+    const linha = pts.map((p,i)=> (i ? "L" : "M") + x(i).toFixed(1) + " " + y(p.rating).toFixed(1)).join(" ");
+    const area  = linha + " L" + x(pts.length-1).toFixed(1) + " " + (H-B) + " L" + x(0).toFixed(1) + " " + (H-B) + " Z";
+
+    const rotulo = d => {
+      const m = String(d||"").match(/^(\d{4})-(\d{2})/);
+      if (!m) return String(d||"");
+      const meses = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+      return meses[+m[2]-1] + "/" + m[1].slice(2);
+    };
+
+    /* Com muitos pontos, só alguns rótulos no eixo, senão vira borrão. */
+    const passo = Math.max(1, Math.ceil(pts.length / 6));
+    let eixoX = "";
+    pts.forEach((p,i)=>{
+      if (i % passo === 0 || i === pts.length-1)
+        eixoX += '<text x="'+x(i).toFixed(1)+'" y="'+(H-B+16)+'" text-anchor="middle">'+esc(rotulo(p.data))+'</text>';
+    });
+
+    let grade = "";
+    for (let v = min; v <= max; v += 100){
+      grade += '<line class="grafico__eixo" x1="'+L+'" y1="'+y(v).toFixed(1)+'" x2="'+(W-R)+'" y2="'+y(v).toFixed(1)+'"/>' +
+               '<text x="'+(L-8)+'" y="'+(y(v)+3.5).toFixed(1)+'" text-anchor="end">'+v+'</text>';
+    }
+
+    const ult = pts[pts.length-1];
+    alvo.innerHTML =
+      '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+
+        esc(T_("grafico.titulo","Evolução do rating FIDE"))+': '+pts[0].rating+' em '+rotulo(pts[0].data)+
+        ', '+ult.rating+' em '+rotulo(ult.data)+'">' +
+        '<defs><linearGradient id="gradRating" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="#C9A24B" stop-opacity=".28"/>' +
+          '<stop offset="100%" stop-color="#C9A24B" stop-opacity="0"/>' +
+        '</linearGradient></defs>' +
+        grade +
+        '<line class="grafico__meta" x1="'+L+'" y1="'+y(META).toFixed(1)+'" x2="'+(W-R)+'" y2="'+y(META).toFixed(1)+'"/>' +
+        '<text class="grafico__rot" x="'+(W-R)+'" y="'+(y(META)-7).toFixed(1)+'" text-anchor="end">'+
+          esc(T_("grafico.meta","2400 · meta para o título de MI"))+'</text>' +
+        '<path class="grafico__area" d="'+area+'"/>' +
+        '<path class="grafico__linha" d="'+linha+'"/>' +
+        pts.map((p,i)=> '<circle class="grafico__ponto'+(i===pts.length-1?" grafico__ultimo":"")+
+          '" cx="'+x(i).toFixed(1)+'" cy="'+y(p.rating).toFixed(1)+'" r="'+(i===pts.length-1?5:3.5)+'"><title>'+
+          esc(rotulo(p.data)+": "+p.rating)+'</title></circle>').join("") +
+        '<text class="grafico__val" x="'+x(pts.length-1).toFixed(1)+'" y="'+(y(ult.rating)-12).toFixed(1)+
+          '" text-anchor="end">'+ult.rating+'</text>' +
+        eixoX +
+      '</svg>';
   }
 
   function aplicaContato(ct){
@@ -1805,14 +1931,14 @@ const PADRAO = {
     if (n >= 1e4) return Math.floor(n/1e3)*1e3;
     return n;
   }
-  function mostraMetrica(bloco, campo, total, aproximado){
+  function mostraMetrica(bloco, campo, total){
     const cx = $(bloco);
     if (!total){ if (cx) cx.remove(); return; }
-    const v = aproximado ? arredonda(total) : total;
+    /* Número exato. Arredondado, parecia estimativa — e o dado é medido. */
     const mais = $(".alcance__mais", cx);
-    if (mais) mais.style.visibility = aproximado ? "visible" : "hidden";
+    if (mais) mais.remove();
     const el = $(campo);
-    el.dataset.conta = v;
+    el.dataset.conta = total;
     obsConta.observe(el);
   }
   /* Em produção, sem dado o bloco some — melhor nada do que número inventado.
@@ -1821,7 +1947,7 @@ const PADRAO = {
   const emPreview = location.hostname === "localhost" || location.hostname === "127.0.0.1"
                  || location.protocol === "file:";
 
-  function mostraViews(views, curtidas, aproximado){
+  function mostraViews(views, curtidas){
     if (!views && !curtidas){
       const f = $("#viewsFonte");
       const m = $(".alcance__metricas");
@@ -1844,8 +1970,8 @@ const PADRAO = {
       console.warn("Alcance: sem views nem curtidas. Preencha viewsManual/curtidasManual em dados/videos.json ou informe apiKeyYouTube.");
       return;
     }
-    mostraMetrica("#blocoViews", "#viewsNum", views, aproximado);
-    mostraMetrica("#blocoCurtidas", "#curtidasNum", curtidas, aproximado);
+    mostraMetrica("#blocoViews", "#viewsNum", views);
+    mostraMetrica("#blocoCurtidas", "#curtidasNum", curtidas);
   }
 
 
@@ -1856,7 +1982,7 @@ const PADRAO = {
       return id ? { id, titulo: (typeof v === "object" && v.titulo) || "" } : null;
     }).filter(Boolean);
 
-    if (!lista.length){ mostraViews(0, 0, true); return; }
+    if (!lista.length){ mostraViews(0, 0); return; }
 
     const grade = document.createElement("div");
     grade.className = "videos__grid";
@@ -1902,10 +2028,10 @@ const PADRAO = {
       const f = $("#viewsFonte");
       if (f && pronto.atualizadoEm){
         const d = new Date(pronto.atualizadoEm);
-        if (!isNaN(d)) f.textContent = T("alcance.atualizadoEm","atualizado em") + " " +
+        if (!isNaN(d)) f.textContent = T("alcance.exato","valor exato medido em") + " " +
           d.toLocaleDateString(LANG === "pt" ? "pt-BR" : LANG);
       }
-      mostraViews(pronto.views, pronto.curtidas, true);
+      mostraViews(pronto.views, pronto.curtidas);
       return;
     }
 
@@ -1915,7 +2041,7 @@ const PADRAO = {
 
     if (!chave){
       $("#viewsFonte").textContent = T("alcance.fonteManual","contagem informada manualmente");
-      mostraViews(manual, manualCurtidas, true);
+      mostraViews(manual, manualCurtidas);
       return;
     }
 
@@ -1939,12 +2065,12 @@ const PADRAO = {
       }
       if (!vistos) throw new Error("nenhum vídeo retornado");
       $("#viewsFonte").textContent = T("alcance.fonteAuto","somadas direto do YouTube a cada visita");
-      mostraViews(total, curtidas, true);
+      mostraViews(total, curtidas);
     }catch(e){
       erroDaApi = String((e && e.message) || e);
       console.warn("YouTube: a chave do site não funcionou —", erroDaApi);
       $("#viewsFonte").textContent = T("alcance.fonteManual","contagem informada manualmente");
-      mostraViews(manual, manualCurtidas, true);
+      mostraViews(manual, manualCurtidas);
     }
   }
 

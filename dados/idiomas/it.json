@@ -106,5 +106,17 @@
   "btn.apoiarAgora": "Sostieni ora",
   "alcance.atualizadoEm": "aggiornato il",
   "alcance.fonteManual": "conteggio inserito a mano",
-  "alcance.assistir": "Guarda"
+  "alcance.assistir": "Guarda",
+  "meta.titulo": "Obiettivo mensile",
+  "meta.porMes": "al mese",
+  "meta.garantido": "già garantiti al mese",
+  "calc.titulo": "Fai il conto",
+  "calc.se": "Se ogni persona contribuisce con",
+  "calc.bastam": "bastano",
+  "calc.pessoas": "persone al mese",
+  "calc.pessoa": "persona al mese",
+  "calc.nota": "Questa cifra non copre tutte le spese di viaggi e tornei, ma è un aiuto molto significativo.",
+  "grafico.titulo": "Andamento del rating FIDE",
+  "grafico.meta": "2400 · soglia per il titolo di MI",
+  "alcance.exato": "valore esatto rilevato il"
 }
