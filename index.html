@@ -173,8 +173,8 @@ p{ margin:0 0 1em; }
 
 .marca{ display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--marfim); flex-shrink:0; }
 .marca__selo{
-  width:auto; height:46px; flex-shrink:0;
-  filter:drop-shadow(0 0 12px rgba(201,162,75,.28)) brightness(1.1);
+  width:auto; height:50px; flex-shrink:0;
+  filter:drop-shadow(0 0 14px rgba(201,162,75,.35));
 }
 .marca__txt{ font-family:var(--display); font-weight:800; font-size:.9rem; letter-spacing:.02em; line-height:1.05; }
 .marca__txt small{ display:block; font-family:var(--mono); font-weight:400; font-size:.6rem; letter-spacing:.18em; color:var(--ouro); text-transform:uppercase; }
@@ -398,14 +398,19 @@ p{ margin:0 0 1em; }
 .galeria__pista::-webkit-scrollbar{ height:5px; }
 .galeria__pista::-webkit-scrollbar-thumb{ background:var(--ouro); }
 .galeria__pista::-webkit-scrollbar-track{ background:rgba(255,255,255,.08); }
-.galeria figure{ position:relative; margin:0; flex:0 0 auto; scroll-snap-align:start; }
+.galeria figure{ position:relative; margin:0; flex:0 0 auto; scroll-snap-align:start; overflow:hidden; }
+.galeria figure::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(to top, rgba(7,21,35,.94) 0%, rgba(7,21,35,.45) 30%, rgba(7,21,35,.05) 60%),
+    linear-gradient(to right, rgba(7,21,35,.55) 0%, rgba(7,21,35,.06) 34%, rgba(7,21,35,.28) 100%);
+}
 .galeria img{
-  height:clamp(300px,52vw,660px); width:auto; max-width:none; object-fit:cover; object-position:center 45%;
-  display:block;
+  height:clamp(300px,52vw,660px); width:auto; max-width:none; object-fit:cover; object-position:center 42%;
+  display:block; filter:saturate(.92) contrast(1.04);
 }
 .galeria figcaption{
-  position:absolute; left:0; right:0; bottom:0; padding:60px 22px 20px;
-  background:linear-gradient(to top, rgba(7,21,35,.94), transparent);
+  position:absolute; left:0; right:0; bottom:0; z-index:2; padding:60px 22px 20px;
   font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
   color:var(--nevoa); line-height:1.5;
 }
@@ -553,9 +558,8 @@ p{ margin:0 0 1em; }
 .calc__range{ width:100%; accent-color:var(--ouro); cursor:pointer; margin:0 0 16px; }
 .calc__res{ margin:0 0 14px; font-size:.94rem; color:var(--nevoa); }
 .calc__res b{ font-family:var(--display); font-weight:800; font-size:1.7rem; letter-spacing:-.02em; color:var(--ouro); margin-right:4px; }
-.calc__gente{ display:flex; flex-wrap:wrap; gap:3px; line-height:1; }
-.calc__gente i{ font-style:normal; font-size:.82rem; color:var(--ouro); opacity:.85; }
-.calc__gente i.mais{ font-family:var(--mono); font-size:.66rem; color:var(--nevoa); align-self:center; margin-left:4px; }
+.calc__gente{ display:flex; flex-wrap:wrap; gap:2px 3px; line-height:1; margin-top:2px; }
+.calc__gente i{ font-style:normal; font-size:.74rem; color:var(--ouro); opacity:.82; }
 .calc__nota{ margin:16px 0 0; font-size:.8rem; line-height:1.5; color:var(--nevoa); opacity:.85; }
 .barra{ height:10px; background:rgba(255,255,255,.09); border-radius:100px; overflow:hidden; }
 .barra i{ display:block; height:100%; width:0; background:linear-gradient(90deg,var(--ouro),var(--ouro-claro)); border-radius:100px; transition:width 1.6s cubic-bezier(.22,.8,.28,1); }
@@ -797,7 +801,7 @@ p{ margin:0 0 1em; }
 
 .rodape{ border-top:1px solid var(--linha-esc); padding-block:52px 40px; background:var(--noite); }
 .rodape__grid{ display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:36px; margin-bottom:44px; }
-.rodape__logo{ width:auto; height:58px; margin-bottom:18px; }
+.rodape__logo{ width:auto; height:86px; margin-bottom:18px; }
 .rodape h4{ font-family:var(--mono); font-weight:700; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ouro); margin-bottom:16px; }
 .rodape ul{ list-style:none; margin:0; padding:0; display:grid; gap:9px; }
 .rodape a{ color:var(--nevoa); text-decoration:none; font-size:.92rem; transition:color .18s ease; }
@@ -860,9 +864,13 @@ p{ margin:0 0 1em; }
   .palmares__itens .tag{ justify-self:start; }
 }
 @media (max-width:560px){
+  .galeria img{ height:clamp(260px,62vw,340px); }
+  .galeria figcaption{ padding:44px 14px 14px; font-size:.6rem; letter-spacing:.08em; line-height:1.45; }
+  .galeria__dica{ top:10px; bottom:auto; right:10px; font-size:.55rem; padding:4px 8px; }
+  .galeria figcaption{ max-height:none; }
   .topo__int{ gap:10px; }
   .marca{ gap:8px; }
-  .marca__selo{ height:34px; }
+  .marca__selo{ height:42px; }
   .marca__txt{ font-size:.74rem; letter-spacing:0; }
   .marca__txt small{ display:none; }
   .idioma__b{ width:24px; height:17px; }
@@ -907,7 +915,7 @@ p{ margin:0 0 1em; }
 <header class="topo" id="topo">
   <div class="env topo__int">
     <a class="marca" href="#hero" aria-label="Mathias Casalaspro — início">
-      <img class="marca__selo" src="assets/logo-mc.png" width="420" height="390" alt="">
+      <img class="marca__selo" src="assets/logo-marca.png" width="367" height="400" alt="">
       <span class="marca__txt">MATHIAS CASALASPRO<small data-t="marca.sub">Mestre FIDE · Brasil</small></span>
     </a>
 
@@ -1410,7 +1418,7 @@ p{ margin:0 0 1em; }
   <div class="env">
     <div class="rodape__grid">
       <div>
-        <img class="rodape__logo" src="assets/logo-mc.png" width="420" height="390" alt="Mathias Casalaspro" loading="lazy">
+        <img class="rodape__logo" src="assets/logo-mc.png" width="480" height="388" alt="Mathias Casalaspro" loading="lazy">
         <p data-t="rodape.p">Mestre FIDE, a caminho do título de Mestre Internacional. Projeto conduzido pelos responsáveis legais do atleta.</p>
         <!-- PREENCHER: nome dos responsáveis legais e CNPJ, se houver -->
       </div>
@@ -1758,13 +1766,8 @@ const PADRAO = {
       $("#calcPessoas").textContent = pessoas;
       $("#calcRotulo").textContent = pessoas === 1
         ? T("calc.pessoa","pessoa por mês") : T("calc.pessoas","pessoas por mês");
-      /* Peões desenhando o tamanho do grupo. Acima de 80 vira número, senão
-         a lista fica maior que a própria seção. */
-      const teto = 80, mostra = Math.min(pessoas, teto);
-      let html = "";
-      for (let i = 0; i < mostra; i++) html += '<i>\u265F</i>';
-      if (pessoas > teto) html += '<i class="mais">+' + (pessoas - teto) + '</i>';
-      $("#calcGente").innerHTML = html;
+      /* Um peão para cada pessoa, sem compactar: é a imagem do grupo inteiro. */
+      $("#calcGente").innerHTML = '<i>\u265F</i>'.repeat(pessoas);
     }
     range.oninput = recalcula;
     recalcula();

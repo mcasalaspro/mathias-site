@@ -302,7 +302,29 @@ a 2400px, com espaço vazio do lado esquerdo, que é onde o texto fica.
 
 Quem tem "reduzir movimento" ligado no sistema vê uma imagem fixa, sem troca.
 
-### Fotos da galeria → é só jogar na pasta
+### Fotos da galeria → `assets/galeria/` + `dados/galeria.json`
+
+**O arquivo das legendas é `dados/galeria.json`.** Cada foto tem uma entrada assim:
+
+```json
+{
+  "arquivo": "2026-08_leca-chess-open_certificado-de-norma.jpg",
+  "destaque": "Agosto de 2026",
+  "legenda": "Leça Chess Open, Portugal. O certificado da primeira norma...",
+  "alt": "Mathias e seu treinador diante do painel do Leça Chess Open..."
+}
+```
+
+| Campo | Onde aparece |
+|---|---|
+| `destaque` | O trecho dourado, no começo da legenda. Pode ficar vazio |
+| `legenda` | O texto que aparece sobre a foto |
+| `alt` | Descrição para leitores de tela e para quando a imagem não carrega |
+
+A ordem das fotos na tira é a ordem da lista — e a rotina do GitHub ordena pelo nome do
+arquivo, do mais recente para o mais antigo. Por isso o padrão `AAAA-MM_evento_descricao.jpg`.
+
+### Como acrescentar fotos
 
 Arraste as imagens para `assets/galeria/` e faça o commit. Uma rotina do GitHub roda sozinha,
 lê a pasta e reescreve `dados/galeria.json`. **Você não precisa mexer em nada além de largar o
