@@ -254,6 +254,14 @@ p{ margin:0 0 1em; }
 }
 .hero h1 em{ font-style:normal; color:var(--ouro); }
 .hero .lede{ color:#B9CBDC; margin-bottom:32px; max-width:52ch; }
+.hero__link{ margin:20px 0 0; }
+.hero__link a{
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--nevoa); text-decoration:none; border-bottom:1px solid rgba(143,166,189,.4);
+  padding-bottom:3px; transition:color .2s ease, border-color .2s ease;
+}
+.hero__link a::after{ content:" \2192"; }
+.hero__link a:hover{ color:var(--ouro); border-color:var(--ouro); }
 .hero .lede strong{ color:var(--marfim); font-weight:600; }
 .hero__cred{
   position:absolute; right:var(--gutter); bottom:16px; z-index:3; margin:0;
@@ -427,6 +435,7 @@ p{ margin:0 0 1em; }
 .verbete b{ color:var(--ouro); font-weight:600; }
 
 /* --- palmarés: uma linha por conquista --- */
+.palmares__h2{ margin:clamp(46px,5.5vw,72px) 0 clamp(22px,2.6vw,34px); max-width:18ch; }
 .palmares{ list-style:none; margin:0; padding:0; }
 .palmares__ano{
   display:flex; align-items:baseline; gap:12px; padding:26px 0 12px;
@@ -485,18 +494,6 @@ p{ margin:0 0 1em; }
 .escada__topo{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:baseline; margin-bottom:38px; }
 .escada__topo h3{ font-size:1.05rem; text-transform:uppercase; letter-spacing:.04em; }
 .escada__topo .datado{ margin:0; }
-
-.grafico{ margin:34px 0 0; }
-.grafico svg{ width:100%; height:auto; display:block; overflow:visible; }
-.grafico__linha{ fill:none; stroke:var(--ouro); stroke-width:2.5; stroke-linejoin:round; stroke-linecap:round; }
-.grafico__area{ fill:url(#gradRating); }
-.grafico__ponto{ fill:var(--noite); stroke:var(--ouro); stroke-width:2; }
-.grafico__ultimo{ fill:var(--ouro); stroke:var(--ouro); }
-.grafico__meta{ stroke:var(--ouro-claro); stroke-width:1; stroke-dasharray:5 5; opacity:.65; }
-.grafico__eixo{ stroke:rgba(255,255,255,.12); stroke-width:1; }
-.grafico text{ font-family:var(--mono); font-size:10px; fill:var(--nevoa); }
-.grafico .grafico__rot{ fill:var(--ouro-claro); }
-.grafico .grafico__val{ fill:var(--marfim); font-weight:700; font-size:12px; }
 
 .trilho{ position:relative; height:8px; background:rgba(255,255,255,.09); border-radius:100px; margin:56px 0 0; }
 .trilho__preenche{
@@ -613,7 +610,7 @@ p{ margin:0 0 1em; }
 .prod svg{ width:15px; height:15px; flex-shrink:0; color:var(--ouro-esc); }
 
 /* ============ PATROCÍNIO ============ */
-.patro{ position:relative; overflow:hidden; }
+.patro{ position:relative; overflow:hidden; padding-bottom:clamp(26px,2.8vw,44px); }
 .patro__camisa{
   position:absolute; z-index:0; pointer-events:none; user-select:none;
   right:calc(-1 * var(--fuga)); top:clamp(70px,9vw,150px);
@@ -773,6 +770,14 @@ p{ margin:0 0 1em; }
 .pauta a b{ font-weight:500; font-size:.98rem; color:var(--marfim); line-height:1.4; }
 .pauta a span{ font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--nevoa); white-space:nowrap; flex-shrink:0; }
 
+/* ============ VIRADA ENTRE OS DOIS ATOS ============ */
+.virada{ background:var(--noite); text-align:center; padding-block:clamp(52px,6.5vw,104px); }
+.virada__divisor{ width:min(460px,74%); margin:0 auto clamp(24px,3vw,36px); opacity:.85; }
+.virada__txt{
+  font-family:var(--serif); font-size:clamp(1.15rem,2.1vw,1.6rem); line-height:1.5;
+  color:var(--nevoa); max-width:34ch; margin:0 auto;
+}
+
 /* ============ CTA FINAL + RODAPÉ ============ */
 .promocao{ text-align:center; padding-block:clamp(84px,10vw,150px); position:relative; overflow:hidden; }
 .promocao::before{
@@ -786,8 +791,8 @@ p{ margin:0 0 1em; }
 }
 .promocao .env{ position:relative; z-index:2; }
 .promo__divisor{ width:min(520px,80%); margin:0 auto; opacity:.9; }
-.promocao{ padding-block:clamp(46px,5vw,78px); }
-.promo__divisor{ margin-bottom:28px; }
+.promocao{ padding-block:clamp(24px,2.6vw,42px); }
+.promo__divisor{ margin-bottom:22px; }
 .promocao .duplo{ justify-content:center; }
 
 .rodape{ border-top:1px solid var(--linha-esc); padding-block:52px 40px; background:var(--noite); }
@@ -876,7 +881,9 @@ p{ margin:0 0 1em; }
     linear-gradient(to top, var(--noite) 6%, rgba(7,21,35,.82) 46%, rgba(7,21,35,.68) 100%),
     linear-gradient(to bottom, rgba(7,21,35,.92) 0%, rgba(7,21,35,.2) 34%); }
   .hero__cred{ position:static; margin:24px 0 0; }
-  .grafico text{ font-size:11px; }
+  .trilho{ margin-top:70px; }
+  .marco__lb{ max-width:78px; font-size:.6rem; }
+  .marco__lb b{ font-size:.88rem; }
   .rodape__grid{ grid-template-columns:1fr; }
   .ticker__grupo span{ font-size:.68rem; padding:0 15px; gap:15px; }
 }
@@ -925,11 +932,10 @@ p{ margin:0 0 1em; }
     <nav class="menu" id="menu">
       <a href="#historia" data-t="nav.historia">História</a>
       <a href="#conquistas" data-t="nav.conquistas">Conquistas</a>
+      <a href="#alcance" data-t="nav.alcance">Alcance</a>
       <a href="#caminho" data-t="nav.caminho">Caminho</a>
       <a href="#apoiar" data-t="nav.apoiar">Apoiar</a>
-      <a href="#alcance" data-t="nav.alcance">Alcance</a>
       <a href="#patrocinio" data-t="nav.patrocinio">Patrocínio</a>
-      <a class="btn btn--linha btn--peq btn--soMobile" href="#patrocinio" data-t="btn.patrocinar">Quero patrocinar</a>
       <a class="btn btn--ouro btn--peq" href="#apoiar" data-t="btn.apoiar">Apoiar o Mathias</a>
     </nav>
 
@@ -958,9 +964,9 @@ p{ margin:0 0 1em; }
       </p>
 
       <div class="duplo">
-        <a class="btn btn--ouro" href="#apoiar" data-t="btn.apoiar">Apoiar o Mathias</a>
-        <a class="btn btn--linha" href="#patrocinio" data-t="btn.patrocinar">Quero patrocinar</a>
+        <a class="btn btn--ouro" href="#conquistas" data-t="hero.btn">Conheça a trajetória</a>
       </div>
+      <p class="hero__link"><a href="#apoiar" data-t="hero.link">Quero apoiar o Mathias</a></p>
     </div>
 
   </div>
@@ -1019,8 +1025,7 @@ p{ margin:0 0 1em; }
         <p data-t="historia.p3">Em Portugal, no Leça Chess Open, terminei empatado em pontos com o campeão, com
         performance de 2553, e fechei minha <strong>primeira norma de Mestre Internacional</strong>.</p>
 
-        <p data-t="historia.p4">No xadrez não existe sorte. Existe estudo, disciplina e oportunidade.
-        <strong>Para ter mais oportunidades, preciso do seu apoio.</strong></p>
+        <p data-t="historia.p4">No xadrez não existe sorte. Existe estudo, disciplina e oportunidade.</p>
 
         <p class="assinatura" data-t="historia.assinatura">— Mathias</p>
       </div>
@@ -1057,6 +1062,8 @@ p{ margin:0 0 1em; }
       <dl class="verbete" data-t="glossario.norma"><dt>Norma</dt><dd>Resultado de alto nível num torneio internacional contra titulados. São precisos <b>três</b> para virar Mestre Internacional.</dd></dl>
     </div>
 
+    <h2 class="palmares__h2 rev" data-t="palmares.titulo">Principais conquistas</h2>
+
     <ol class="palmares rev" id="palmares">
       <li><span class="ano">2026</span><span class="feito">5º lugar no geral do Leça Chess Open, empatado em pontos com o campeão e com performance de 2553 — o resultado que fechou a primeira norma de Mestre Internacional <i>· Portugal</i></span><span class="tag tag--fide">Norma de MI</span></li>
       <li><span class="ano">2026</span><span class="feito"><a class="feito__link" href="https://s1.chess-results.com/tnr1331756.aspx?lan=10&amp;art=1&amp;rd=9&amp;fed=BRA&amp;turdet=YES&amp;flag=30&amp;SNode=S0" target="_blank" rel="noopener">Campeão do Blitz de Abertura do Brazil Chess Series — Floripa, entre 114 participantes</a></span></li>
@@ -1089,143 +1096,10 @@ p{ margin:0 0 1em; }
   </div>
 </section>
 
-<!-- ==================== d4 · O CAMINHO (assinatura) ==================== -->
-<section class="faixa faixa--escura caminho" id="caminho">
-  <div class="env">
-    <p class="casa rev"><b>d4</b> <span data-t="casa.d4">O caminho até o Mestre Internacional</span></p>
-
-    <div class="caminho__cab rev">
-      <h2 style="margin-bottom:20px" data-t="caminho.h2">Para seguir avançando, ele precisa de oportunidade e investimento.<br>
-      <em>E você pode ajudar.</em></h2>
-      <p data-t="caminho.p">Para se tornar Mestre Internacional é preciso atingir <strong>2400 de rating FIDE</strong> e conquistar
-      <strong>3 normas de MI</strong>: resultados de alto nível em torneios com enxadristas titulados de
-      diferentes federações. Talento e treino ele já tem. O que falta é estar sentado nos tabuleiros certos,
-      e isso tem custo.</p>
-    </div>
-
-    <!-- escada de rating -->
-    <div class="escada rev">
-      <div class="escada__topo">
-        <h3 data-t="grafico.titulo">Evolução do rating FIDE</h3>
-        <p class="datado" id="datado-rating">Atualizado em agosto de 2026</p>
-      </div>
-
-      <figure class="grafico" id="grafico">
-        <!-- desenhado em SVG pelo JS, a partir de caminho.historico -->
-      </figure>
-
-      <div class="normas">
-        <div class="normas__casas" id="normas" aria-label="Normas de Mestre Internacional conquistadas"></div>
-        <div class="normas__txt">
-          <p data-t="normas.txt"><b>Normas de MI.</b> A primeira veio em Leça, Portugal, em agosto de 2026. Faltam duas — e cada
-          uma exige um torneio com titulados de pelo menos três federações diferentes. Existem poucos assim
-          por ano, e chegar até eles é justamente a parte que não depende de talento.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- custos + meta -->
-    <div class="custos">
-      <div class="rev">
-        <p class="rotulo" data-t="custeio.titulo">O que uma temporada exige</p>
-        <ul class="custeio" id="custeio">
-          <li><b>Treinamento com bons treinadores</b></li>
-          <li><b>Inscrições em torneios internacionais</b></li>
-          <li><b>Passagens aéreas</b></li>
-          <li><b>Hospedagem e alimentação</b></li>
-          <li><b>Livros, cursos e licença de softwares</b></li>
-        </ul>
-      </div>
-
-      <div class="meta rev">
-        <h3 id="metaTitulo" data-t="meta.titulo">Meta mensal</h3>
-        <p class="meta__sub" id="metaSub">O que sustenta treino, viagens e inscrições ao longo do ano</p>
-
-        <p class="meta__valor"><b id="metaMensal">R$ 0</b> <span data-t="meta.porMes">por mês</span></p>
-        <div class="barra"><i id="barra"></i></div>
-        <p class="meta__cifras"><b id="apoioMensal">R$ 0</b> <span data-t="meta.garantido">já garantidos por mês</span></p>
-
-        <div class="calc">
-          <p class="calc__t" data-t="calc.titulo">Faça a conta</p>
-          <label class="calc__linha" for="calcValor">
-            <span data-t="calc.se">Se cada pessoa contribuir com</span>
-            <b id="calcValor">R$ 50</b>
-          </label>
-          <input class="calc__range" id="calcRange" type="range" min="10" max="250" step="5" value="50"
-                 aria-label="Valor da contribuição mensal">
-          <p class="calc__res"><span data-t="calc.bastam">bastam</span>
-            <b id="calcPessoas">50</b> <span id="calcRotulo" data-t="calc.pessoas">pessoas por mês</span></p>
-          <div class="calc__gente" id="calcGente" aria-hidden="true"></div>
-        </div>
-
-        <a class="btn btn--ouro" href="#apoiar" data-t="meta.btn">Contribuir com a temporada</a>
-        <p class="meta__prova" id="prova">— pessoas já apoiaram</p>
-        <p class="calc__nota" data-t="calc.nota">Esse valor não cobre todas as despesas de viagens e torneios, mas é uma ajuda muito significativa.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== e5 · APOIAR ==================== -->
-<section class="faixa faixa--clara" id="apoiar">
-  <div class="env">
-    <p class="casa rev"><b>e5</b> <span data-t="casa.e5">Como apoiar</span></p>
-    <h2 class="rev" style="max-width:20ch;margin-bottom:18px" data-t="apoiar.h2">Seu apoio faz a diferença</h2>
-    <p class="lede rev recado" data-t="apoiar.lede">Escolha um valor que cabe no seu orçamento. Nenhuma contribuição é pequena:
-    somadas, elas podem tornar esse sonho realidade.</p>
-
-    <!-- Os links abaixo são os planos de assinatura já existentes no Mercado Pago.
-         CONFERIR: qual plan_id corresponde a qual valor. -->
-    <div class="apoios rev" id="apoios">
-      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 20<small>/mês</small></span>
-        <span class="apoio__d">Toda ajuda conta e se soma às outras</span>
-        <span class="apoio__pe">Apoiar →</span>
-      </a>
-      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 50<small>/mês</small></span>
-        <span class="apoio__d">Ajuda a manter treino e material de estudo</span>
-        <span class="apoio__pe">Apoiar →</span>
-      </a>
-      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 100<small>/mês</small></span>
-        <span class="apoio__d">Contribui direto com viagens e inscrições</span>
-        <span class="apoio__pe">Apoiar →</span>
-      </a>
-      <a class="apoio apoio--livre" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba" target="_blank" rel="noopener">
-        <span class="apoio__v">Outro valor</span>
-        <span class="apoio__d">Você decide quanto e por quanto tempo</span>
-        <span class="apoio__pe">Escolher →</span>
-      </a>
-    </div>
-
-    <div class="loja rev">
-      <h3 data-t="loja.h3">Apoiar levando algo em troca</h3>
-      <p class="recado" data-t="loja.p" style="margin-bottom:0">Aulas, produtos e serviços que financiam diretamente a preparação. Você ganha, ele avança.</p>
-      <!-- Produtos vêm de dados/conteudo.json > loja. Para cada um, basta pôr a imagem
-           em assets/loja/ e apontar o campo "imagem". Sem imagem, o card mostra o padrão. -->
-      <div class="loja__grid" id="loja">
-        <a class="prod" href="https://form.respondi.app/oemyel9l" target="_blank" rel="noopener" aria-label="Partidas de treinamento — 1 hora de jogos online no Lichess">
-          <img src="assets/loja/partidas-de-treinamento.jpg" alt="Partidas de treinamento — 1 hora de jogos online no Lichess" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-        <a class="prod" href="https://form.respondi.app/mg3mwzPj" target="_blank" rel="noopener" aria-label="Terapia e Orientação Educacional com Maurizio Casalaspro">
-          <img src="assets/loja/terapia-orientacao-educacional.jpg" alt="Terapia e Orientação Educacional com Maurizio Casalaspro" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-        <a class="prod" href="https://produto.mercadolivre.com.br/MLB-1837673983-porta-copos-de-xadrez-_JM" target="_blank" rel="noopener" aria-label="Apoio de copos artesanal em borracha, no Mercado Livre">
-          <img src="assets/loja/apoio-de-copos.jpg" alt="Apoio de copos artesanal em borracha, no Mercado Livre" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-        <a class="prod" href="https://amzn.to/46Ae2RE" target="_blank" rel="noopener" aria-label="Jogo dos Hábitos, de Maurizio Casalaspro, na Amazon">
-          <img src="assets/loja/jogo-dos-habitos.jpg" alt="Jogo dos Hábitos, de Maurizio Casalaspro, na Amazon" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== f6 · ALCANCE (vídeos + imprensa) ==================== -->
+<!-- ==================== d4 · ALCANCE (vídeos + imprensa) ==================== -->
 <section class="faixa faixa--azul" id="alcance">
   <div class="env">
-    <p class="casa rev"><b>f6</b> <span data-t="casa.f6">Alcance</span></p>
+    <p class="casa rev"><b>d4</b> <span data-t="casa.f6">Alcance</span></p>
 
     <div class="alcance__topo rev">
       <div class="alcance__metricas">
@@ -1318,6 +1192,149 @@ p{ margin:0 0 1em; }
   </div>
 </section>
 
+<!-- ==================== VIRADA: fim do atleta, começo do apoio ==================== -->
+<section class="virada" aria-hidden="false">
+  <div class="env">
+    <img class="virada__divisor" src="assets/divisor-peao.png" width="1400" height="78" alt="" loading="lazy">
+    <p class="virada__txt" data-t="virada.txt">Até aqui, o que ele já fez.<br>
+    Daqui em diante, o que ainda falta — e como você pode fazer parte.</p>
+  </div>
+</section>
+
+<!-- ==================== e5 · O CAMINHO (assinatura) ==================== -->
+<section class="faixa faixa--escura caminho" id="caminho">
+  <div class="env">
+    <p class="casa rev"><b>e5</b> <span data-t="casa.d4">O caminho até o Mestre Internacional</span></p>
+
+    <div class="caminho__cab rev">
+      <h2 style="margin-bottom:20px" data-t="caminho.h2">Para seguir avançando, ele precisa de oportunidade e investimento.<br>
+      <em>E você pode ajudar.</em></h2>
+      <p data-t="caminho.p">Para se tornar Mestre Internacional é preciso atingir <strong>2400 de rating FIDE</strong> e conquistar
+      <strong>3 normas de MI</strong>: resultados de alto nível em torneios com enxadristas titulados de
+      diferentes federações. Talento e treino ele já tem. O que falta é estar sentado nos tabuleiros certos,
+      e isso tem custo.</p>
+    </div>
+
+    <!-- escada de rating -->
+    <div class="escada rev">
+      <div class="escada__topo">
+        <h3 data-t="escada.titulo">Rating FIDE · onde ele está</h3>
+        <p class="datado" id="datado-rating">Atualizado em agosto de 2026</p>
+      </div>
+
+      <div class="trilho" id="trilho">
+        <div class="trilho__preenche" id="preenche"></div>
+        <!-- marcos inseridos via JS a partir de caminho.marcos -->
+      </div>
+
+      <div class="normas">
+        <div class="normas__casas" id="normas" aria-label="Normas de Mestre Internacional conquistadas"></div>
+        <div class="normas__txt">
+          <p data-t="normas.txt"><b>Normas de MI.</b> A primeira veio em Leça, Portugal, em agosto de 2026. Faltam duas — e cada
+          uma exige um torneio com titulados de pelo menos três federações diferentes. Existem poucos assim
+          por ano, e chegar até eles é justamente a parte que não depende de talento.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- custos + meta -->
+    <div class="custos">
+      <div class="rev">
+        <p class="rotulo" data-t="custeio.titulo">O que uma temporada exige</p>
+        <ul class="custeio" id="custeio">
+          <li><b>Treinamento com bons treinadores</b></li>
+          <li><b>Inscrições em torneios internacionais</b></li>
+          <li><b>Passagens aéreas</b></li>
+          <li><b>Hospedagem e alimentação</b></li>
+          <li><b>Livros, cursos e licença de softwares</b></li>
+        </ul>
+      </div>
+
+      <div class="meta rev">
+        <h3 id="metaTitulo" data-t="meta.titulo">Meta mensal</h3>
+        <p class="meta__sub" id="metaSub">O que sustenta treino, viagens e inscrições ao longo do ano</p>
+
+        <p class="meta__valor"><b id="metaMensal">R$ 0</b> <span data-t="meta.porMes">por mês</span></p>
+        <div class="barra"><i id="barra"></i></div>
+        <p class="meta__cifras"><b id="apoioMensal">R$ 0</b> <span data-t="meta.garantido">já garantidos por mês</span></p>
+
+        <div class="calc">
+          <p class="calc__t" data-t="calc.titulo">Faça a conta</p>
+          <label class="calc__linha" for="calcValor">
+            <span data-t="calc.se">Se cada pessoa contribuir com</span>
+            <b id="calcValor">R$ 50</b>
+          </label>
+          <input class="calc__range" id="calcRange" type="range" min="10" max="250" step="5" value="50"
+                 aria-label="Valor da contribuição mensal">
+          <p class="calc__res"><span data-t="calc.bastam">bastam</span>
+            <b id="calcPessoas">50</b> <span id="calcRotulo" data-t="calc.pessoas">pessoas por mês</span></p>
+          <div class="calc__gente" id="calcGente" aria-hidden="true"></div>
+        </div>
+
+        <a class="btn btn--ouro" href="#apoiar" data-t="meta.btn">Contribuir com a temporada</a>
+        <p class="meta__prova" id="prova">— pessoas já apoiaram</p>
+        <p class="calc__nota" data-t="calc.nota">Esse valor não cobre todas as despesas de viagens e torneios, mas é uma ajuda muito significativa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== f6 · APOIAR ==================== -->
+<section class="faixa faixa--clara" id="apoiar">
+  <div class="env">
+    <p class="casa rev"><b>f6</b> <span data-t="casa.e5">Como apoiar</span></p>
+    <h2 class="rev" style="max-width:20ch;margin-bottom:18px" data-t="apoiar.h2">Seu apoio faz a diferença</h2>
+    <p class="lede rev recado" data-t="apoiar.lede">Escolha um valor que cabe no seu orçamento. Nenhuma contribuição é pequena:
+    somadas, elas podem tornar esse sonho realidade.</p>
+
+    <!-- Os links abaixo são os planos de assinatura já existentes no Mercado Pago.
+         CONFERIR: qual plan_id corresponde a qual valor. -->
+    <div class="apoios rev" id="apoios">
+      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc" target="_blank" rel="noopener">
+        <span class="apoio__v">R$ 20<small>/mês</small></span>
+        <span class="apoio__d">Toda ajuda conta e se soma às outras</span>
+        <span class="apoio__pe">Apoiar →</span>
+      </a>
+      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a" target="_blank" rel="noopener">
+        <span class="apoio__v">R$ 50<small>/mês</small></span>
+        <span class="apoio__d">Ajuda a manter treino e material de estudo</span>
+        <span class="apoio__pe">Apoiar →</span>
+      </a>
+      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c" target="_blank" rel="noopener">
+        <span class="apoio__v">R$ 100<small>/mês</small></span>
+        <span class="apoio__d">Contribui direto com viagens e inscrições</span>
+        <span class="apoio__pe">Apoiar →</span>
+      </a>
+      <a class="apoio apoio--livre" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba" target="_blank" rel="noopener">
+        <span class="apoio__v">Outro valor</span>
+        <span class="apoio__d">Você decide quanto e por quanto tempo</span>
+        <span class="apoio__pe">Escolher →</span>
+      </a>
+    </div>
+
+    <div class="loja rev">
+      <h3 data-t="loja.h3">Apoiar levando algo em troca</h3>
+      <p class="recado" data-t="loja.p" style="margin-bottom:0">Aulas, produtos e serviços que financiam diretamente a preparação. Você ganha, ele avança.</p>
+      <!-- Produtos vêm de dados/conteudo.json > loja. Para cada um, basta pôr a imagem
+           em assets/loja/ e apontar o campo "imagem". Sem imagem, o card mostra o padrão. -->
+      <div class="loja__grid" id="loja">
+        <a class="prod" href="https://form.respondi.app/oemyel9l" target="_blank" rel="noopener" aria-label="Partidas de treinamento — 1 hora de jogos online no Lichess">
+          <img src="assets/loja/partidas-de-treinamento.jpg" alt="Partidas de treinamento — 1 hora de jogos online no Lichess" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="prod" href="https://form.respondi.app/mg3mwzPj" target="_blank" rel="noopener" aria-label="Terapia e Orientação Educacional com Maurizio Casalaspro">
+          <img src="assets/loja/terapia-orientacao-educacional.jpg" alt="Terapia e Orientação Educacional com Maurizio Casalaspro" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="prod" href="https://produto.mercadolivre.com.br/MLB-1837673983-porta-copos-de-xadrez-_JM" target="_blank" rel="noopener" aria-label="Apoio de copos artesanal em borracha, no Mercado Livre">
+          <img src="assets/loja/apoio-de-copos.jpg" alt="Apoio de copos artesanal em borracha, no Mercado Livre" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="prod" href="https://amzn.to/46Ae2RE" target="_blank" rel="noopener" aria-label="Jogo dos Hábitos, de Maurizio Casalaspro, na Amazon">
+          <img src="assets/loja/jogo-dos-habitos.jpg" alt="Jogo dos Hábitos, de Maurizio Casalaspro, na Amazon" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== g7 · PATROCÍNIO ==================== -->
 <section class="faixa faixa--escura patro" id="patrocinio">
   <img class="patro__camisa" src="assets/camisa-oficial.png" width="1194" height="768" loading="lazy"
@@ -1372,7 +1389,6 @@ p{ margin:0 0 1em; }
     </div>
     <!-- PREENCHER: valores dos três planos -->
 
-    <div id="falar"></div>
   </div>
 </section>
 
@@ -1559,7 +1575,7 @@ const PADRAO = {
     pista.appendChild(pista.firstElementChild.cloneNode(true));
   }
 
-  const secoes = ["historia","conquistas","caminho","apoiar","alcance","patrocinio"];
+  const secoes = ["historia","conquistas","alcance","caminho","apoiar","patrocinio"];
   const links  = {}; secoes.forEach(id => links[id] = $('#menu a[href="#'+id+'"]'));
   const casas  = $$("#diagonal i");
   const espia = new IntersectionObserver(es=>{
@@ -1688,8 +1704,19 @@ const PADRAO = {
     C = Object.assign({}, PADRAO.caminho, c || {});
     const brl = n => Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
 
-    /* ---------- gráfico de rating ---------- */
-    desenhaGrafico(C.historico, C.ratingAtual);
+    /* ---------- régua de rating ---------- */
+    const [minR, maxR] = C.escala || [2100, 2440];
+    const pct = v => ((v - minR) / (maxR - minR)) * 100;
+    const trilho = $("#trilho");
+    $$(".marco", trilho).forEach(e=> e.remove());
+    (C.marcos || []).forEach((m,i)=>{
+      const x = pct(m.valor);
+      const el = document.createElement("div");
+      el.className = "marco" + (m.meta ? " marco--meta" : "") + (i%2 ? " marco--baixo" : "") + (x > 80 ? " marco--fim" : "");
+      el.style.left = x + "%";
+      el.innerHTML = '<span class="marco__pt"></span><span class="marco__lb"><b>'+esc(m.titulo)+'</b>'+esc(m.nota)+'</span>';
+      trilho.appendChild(el);
+    });
 
     /* ---------- casas de norma ---------- */
     const cx = $("#normas"); cx.innerHTML = "";
@@ -1715,6 +1742,7 @@ const PADRAO = {
     const obsBarra = new IntersectionObserver((es,obs)=>{
       es.forEach(e=>{
         if(!e.isIntersecting) return;
+        $("#preenche").style.width = Math.max(0, Math.min(pct(C.ratingAtual), 100)) + "%";
         $("#barra").style.width = Math.min(meta ? jaTem/meta*100 : 0, 100) + "%";
         obs.unobserve(e.target);
       });
@@ -1743,72 +1771,6 @@ const PADRAO = {
   }
 
   /* Gráfico de rating: linha simples que sobe e desce, com a marca dos 2400. */
-  function T_(k,alt){ try { return T(k,alt); } catch(e){ return alt; } }
-  function desenhaGrafico(historico, atual){
-    const alvo = $("#grafico");
-    if (!alvo) return;
-    let pts = (historico || []).filter(p=> p && p.rating).slice();
-    if (!pts.length){ alvo.innerHTML = ""; return; }
-    pts.sort((a,b)=> String(a.data).localeCompare(String(b.data)));
-
-    const L = 46, R = 16, T = 22, B = 26, W = 700, H = 240;
-    const META = 2400;
-    const vals = pts.map(p=>p.rating).concat([META]);
-    let min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
-    const folga = Math.max(40, (max - min) * 0.18);
-    min = Math.floor((min - folga)/50)*50;
-    max = Math.ceil((max + folga)/50)*50;
-
-    const x = i => L + (W - L - R) * (pts.length < 2 ? .5 : i/(pts.length-1));
-    const y = v => T + (H - T - B) * (1 - (v - min)/(max - min));
-
-    const linha = pts.map((p,i)=> (i ? "L" : "M") + x(i).toFixed(1) + " " + y(p.rating).toFixed(1)).join(" ");
-    const area  = linha + " L" + x(pts.length-1).toFixed(1) + " " + (H-B) + " L" + x(0).toFixed(1) + " " + (H-B) + " Z";
-
-    const rotulo = d => {
-      const m = String(d||"").match(/^(\d{4})-(\d{2})/);
-      if (!m) return String(d||"");
-      const meses = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
-      return meses[+m[2]-1] + "/" + m[1].slice(2);
-    };
-
-    /* Com muitos pontos, só alguns rótulos no eixo, senão vira borrão. */
-    const passo = Math.max(1, Math.ceil(pts.length / 6));
-    let eixoX = "";
-    pts.forEach((p,i)=>{
-      if (i % passo === 0 || i === pts.length-1)
-        eixoX += '<text x="'+x(i).toFixed(1)+'" y="'+(H-B+16)+'" text-anchor="middle">'+esc(rotulo(p.data))+'</text>';
-    });
-
-    let grade = "";
-    for (let v = min; v <= max; v += 100){
-      grade += '<line class="grafico__eixo" x1="'+L+'" y1="'+y(v).toFixed(1)+'" x2="'+(W-R)+'" y2="'+y(v).toFixed(1)+'"/>' +
-               '<text x="'+(L-8)+'" y="'+(y(v)+3.5).toFixed(1)+'" text-anchor="end">'+v+'</text>';
-    }
-
-    const ult = pts[pts.length-1];
-    alvo.innerHTML =
-      '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+
-        esc(T_("grafico.titulo","Evolução do rating FIDE"))+': '+pts[0].rating+' em '+rotulo(pts[0].data)+
-        ', '+ult.rating+' em '+rotulo(ult.data)+'">' +
-        '<defs><linearGradient id="gradRating" x1="0" y1="0" x2="0" y2="1">' +
-          '<stop offset="0%" stop-color="#C9A24B" stop-opacity=".28"/>' +
-          '<stop offset="100%" stop-color="#C9A24B" stop-opacity="0"/>' +
-        '</linearGradient></defs>' +
-        grade +
-        '<line class="grafico__meta" x1="'+L+'" y1="'+y(META).toFixed(1)+'" x2="'+(W-R)+'" y2="'+y(META).toFixed(1)+'"/>' +
-        '<text class="grafico__rot" x="'+(W-R)+'" y="'+(y(META)-7).toFixed(1)+'" text-anchor="end">'+
-          esc(T_("grafico.meta","2400 · meta para o título de MI"))+'</text>' +
-        '<path class="grafico__area" d="'+area+'"/>' +
-        '<path class="grafico__linha" d="'+linha+'"/>' +
-        pts.map((p,i)=> '<circle class="grafico__ponto'+(i===pts.length-1?" grafico__ultimo":"")+
-          '" cx="'+x(i).toFixed(1)+'" cy="'+y(p.rating).toFixed(1)+'" r="'+(i===pts.length-1?5:3.5)+'"><title>'+
-          esc(rotulo(p.data)+": "+p.rating)+'</title></circle>').join("") +
-        '<text class="grafico__val" x="'+x(pts.length-1).toFixed(1)+'" y="'+(y(ult.rating)-12).toFixed(1)+
-          '" text-anchor="end">'+ult.rating+'</text>' +
-        eixoX +
-      '</svg>';
-  }
 
   function aplicaContato(ct){
     if (!ct || !ct.whatsapp) return;

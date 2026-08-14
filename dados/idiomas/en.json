@@ -41,7 +41,7 @@
   "historia.p1": "I learned to move the pieces at 7. Four months later, I played my first official tournament.",
   "historia.p2": "At 9, I beat my first Grandmaster in a simul. At 11, I beat a GM in an official classical game — <strong>the youngest Brazilian ever to do it</strong>. At 12, I became a FIDE Master.",
   "historia.p3": "In Portugal, at the Leça Chess Open, I finished level on points with the winner, with a 2553 performance, and secured my <strong>first International Master norm</strong>.",
-  "historia.p4": "There is no luck in chess. There is study, discipline and opportunity. <strong>To have more opportunities, I need your support.</strong>",
+  "historia.p4": "There is no luck in chess. There is study, discipline and opportunity.",
   "historia.assinatura": "— Mathias",
   "destaque.fita": "Latest result · August 2026",
   "destaque.h3": "5th overall, a 2553 performance and the first IM norm",
@@ -118,5 +118,9 @@
   "calc.nota": "This amount does not cover every travel and tournament expense, but it is a very significant help.",
   "grafico.titulo": "FIDE rating over time",
   "grafico.meta": "2400 · IM title threshold",
-  "alcance.exato": "exact figure measured on"
+  "alcance.exato": "exact figure measured on",
+  "palmares.titulo": "Main achievements",
+  "virada.txt": "That is what he has done so far.<br>From here on, what is still missing — and how you can be part of it.",
+  "hero.btn": "See the career so far",
+  "hero.link": "I want to support Mathias"
 }

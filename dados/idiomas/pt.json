@@ -19,7 +19,7 @@
   "historia.p1": "Aprendi a mover as peças aos 7 anos. Quatro meses depois, disputei meu primeiro torneio oficial.",
   "historia.p2": "Aos 9, derrotei meu primeiro Grande Mestre numa simultânea. Aos 11, derrotei um GM numa partida clássica oficial — <strong>o mais jovem brasileiro a conseguir isso</strong>. Aos 12, me tornei Mestre FIDE.",
   "historia.p3": "Em Portugal, no Leça Chess Open, terminei empatado em pontos com o campeão, com performance de 2553, e fechei minha <strong>primeira norma de Mestre Internacional</strong>.",
-  "historia.p4": "No xadrez não existe sorte. Existe estudo, disciplina e oportunidade. <strong>Para ter mais oportunidades, preciso do seu apoio.</strong>",
+  "historia.p4": "No xadrez não existe sorte. Existe estudo, disciplina e oportunidade.",
   "historia.assinatura": "— Mathias",
   "casa.c3": "As conquistas",
   "conquistas.h2": "O que ele já fez no tabuleiro",
@@ -118,5 +118,9 @@
   "calc.nota": "Esse valor não cobre todas as despesas de viagens e torneios, mas é uma ajuda muito significativa.",
   "grafico.titulo": "Evolução do rating FIDE",
   "grafico.meta": "2400 · meta para o título de MI",
-  "alcance.exato": "valor exato medido em"
+  "alcance.exato": "valor exato medido em",
+  "palmares.titulo": "Principais conquistas",
+  "virada.txt": "Até aqui, o que ele já fez.<br>Daqui em diante, o que ainda falta — e como você pode fazer parte.",
+  "hero.btn": "Conheça a trajetória",
+  "hero.link": "Quero apoiar o Mathias"
 }

@@ -235,26 +235,27 @@ de meta se redesenham sozinhas.
 | Campo | O que é |
 |---|---|
 | `metaMensal` | Quanto se pretende arrecadar **por mês**. Está em `2500` |
-| `apoioMensal` | Quanto já está garantido por mês. Começa em `0` |
+| `apoioMensal` | Quanto já está garantido por mês. Está em `220` |
 | `metaResumo` | A linha abaixo do título |
 | `apoiadores` | Nº de pessoas que já apoiam. Em `0`, a linha não aparece |
 
 A barra é a divisão de `apoioMensal` por `metaMensal`. A calculadora ao lado ("se cada pessoa
 contribuir com R$ X, bastam N pessoas") também sai de `metaMensal` — não há nada a configurar.
 
-**O gráfico de rating** usa a lista `historico`, no mesmo bloco:
+**A régua de rating** usa `escala` e `marcos`, no mesmo bloco. Cada marco tem o valor, o
+rótulo e uma nota:
 
 ```json
-"historico": [
-  { "data": "2024-06", "rating": 2203 },
-  { "data": "2024-12", "rating": 2341 }
+"escala": [2100, 2440],
+"marcos": [
+  { "valor": 2200, "titulo": "2200", "nota": "jun/2024" },
+  { "valor": 2341, "titulo": "2341", "nota": "FM · dez/2024" },
+  { "valor": 2400, "titulo": "2400", "nota": "meta · MI", "meta": true }
 ]
 ```
 
-Hoje há só três pontos, e por isso a curva sai quase reta. **Pegue a lista completa em
-`ratings.fide.com`** — abra a ficha do Mathias, seção *Rating chart*, e transcreva mês a mês.
-Quanto mais pontos, mais a linha ganha os altos e baixos de uma carreira de verdade, que é o
-que torna o gráfico interessante. O eixo, a escala e a linha dos 2400 se ajustam sozinhos.
+A barra dourada se enche até `ratingAtual`. Quando ele passar dos 2341, é só atualizar o
+`ratingAtual` e acrescentar um marco novo.
 
 Nova conquista? Acrescente uma linha no topo da lista `conquistas`:
 
@@ -408,7 +409,18 @@ inflado.
 
 ---
 
-## 5. Três decisões que valem explicar
+## 5. Quatro decisões que valem explicar
+
+**A página tem dois atos.** Do topo até a seção de vídeos e imprensa, é um site de atleta: sem
+botão de doação, sem pedido no meio do texto. A faixa com o peão dourado marca a virada, e só
+então vem o bloco de apoio — caminho, contribuição e patrocínio, os três seguidos. O visitante
+conhece a trajetória inteira antes de qualquer pedido, e quem quiser apoiar encontra tudo
+reunido num lugar só.
+
+Isso reduz a doação por impulso e aumenta a credibilidade. Foi uma troca deliberada: o site
+passa a servir melhor ao patrocinador, que é onde está o dinheiro grande.
+
+
 
 **A idade não aparece em nenhum texto corrido.** Só as idades dos feitos ("aos 11 anos,
 derrotou um GM"), que nunca desatualizam. Um site que diz "tenho 13 anos" está errado em

@@ -44,20 +44,27 @@
     "metaResumo_it": "Ciò che sostiene allenamento, viaggi e iscrizioni durante l'anno",
     "_meta": "metaMensal: quanto se pretende arrecadar POR MÊS. apoioMensal: quanto já está garantido por mês.",
     "metaMensal": 2500,
-    "apoioMensal": 0,
-    "_historico": "Histórico de rating para o gráfico. Pegue a lista completa em ratings.fide.com (ficha do jogador > Rating chart) e cole aqui: quanto mais pontos, melhor a curva. Formato: data no padrão AAAA-MM e o rating clássico do mês.",
-    "historico": [
+    "apoioMensal": 220,
+    "escala": [
+      2100,
+      2440
+    ],
+    "marcos": [
       {
-        "data": "2024-06",
-        "rating": 2203
+        "valor": 2200,
+        "titulo": "2200",
+        "nota": "jun/2024"
       },
       {
-        "data": "2024-12",
-        "rating": 2341
+        "valor": 2341,
+        "titulo": "2341",
+        "nota": "FM · dez/2024"
       },
       {
-        "data": "2026-08",
-        "rating": 2341
+        "valor": 2400,
+        "titulo": "2400",
+        "nota": "meta · MI",
+        "meta": true
       }
     ]
   },

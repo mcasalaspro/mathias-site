@@ -41,7 +41,7 @@
   "historia.p1": "Ho imparato a muovere i pezzi a 7 anni. Quattro mesi dopo ho giocato il mio primo torneo ufficiale.",
   "historia.p2": "A 9 anni ho battuto il mio primo Grande Maestro in una simultanea. A 11 ho battuto un GM in una partita ufficiale a cadenza lunga — <strong>il più giovane brasiliano a riuscirci</strong>. A 12 sono diventato Maestro FIDE.",
   "historia.p3": "In Portogallo, al Leça Chess Open, ho chiuso a pari punti con il vincitore, con una performance di 2553, ottenendo la mia <strong>prima norma di Maestro Internazionale</strong>.",
-  "historia.p4": "Negli scacchi non esiste la fortuna. Esistono studio, disciplina e opportunità. <strong>Per avere più opportunità, ho bisogno del tuo sostegno.</strong>",
+  "historia.p4": "Negli scacchi non esiste la fortuna. Esistono studio, disciplina e opportunità.",
   "historia.assinatura": "— Mathias",
   "destaque.fita": "Ultimo risultato · agosto 2026",
   "destaque.h3": "5º assoluto, performance di 2553 e la prima norma di MI",
@@ -118,5 +118,9 @@
   "calc.nota": "Questa cifra non copre tutte le spese di viaggi e tornei, ma è un aiuto molto significativo.",
   "grafico.titulo": "Andamento del rating FIDE",
   "grafico.meta": "2400 · soglia per il titolo di MI",
-  "alcance.exato": "valore esatto rilevato il"
+  "alcance.exato": "valore esatto rilevato il",
+  "palmares.titulo": "Principali risultati",
+  "virada.txt": "Fin qui, ciò che ha già fatto.<br>Da qui in avanti, ciò che manca — e come puoi farne parte.",
+  "hero.btn": "Scopri il percorso",
+  "hero.link": "Voglio sostenere Mathias"
 }
