@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.mathiascasalaspro.com.br/sitemap.xml
+Sitemap: https://www.mathiascasalaspro.com/sitemap.xml

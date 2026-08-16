@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mathias Casalaspro — Mestre FIDE de xadrez</title>
 <meta name="description" content="Aos 11 anos derrotou um Grande Mestre. Aos 12 virou Mestre FIDE. Mathias Casalaspro treina para o título de Mestre Internacional — e você pode fazer parte disso.">
-<link rel="canonical" href="https://www.mathiascasalaspro.com.br/">
-<link rel="alternate" hreflang="pt-BR" href="https://www.mathiascasalaspro.com.br/?lang=pt">
-<link rel="alternate" hreflang="en" href="https://www.mathiascasalaspro.com.br/?lang=en">
-<link rel="alternate" hreflang="it" href="https://www.mathiascasalaspro.com.br/?lang=it">
-<link rel="alternate" hreflang="x-default" href="https://www.mathiascasalaspro.com.br/">
+<link rel="canonical" href="https://www.mathiascasalaspro.com/">
+<link rel="alternate" hreflang="pt-BR" href="https://www.mathiascasalaspro.com/?lang=pt">
+<link rel="alternate" hreflang="en" href="https://www.mathiascasalaspro.com/?lang=en">
+<link rel="alternate" hreflang="it" href="https://www.mathiascasalaspro.com/?lang=it">
+<link rel="alternate" hreflang="x-default" href="https://www.mathiascasalaspro.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Mathias Casalaspro">
 <meta property="og:title" content="Mathias Casalaspro — Mestre FIDE de xadrez">
 <meta property="og:description" content="Aos 11 anos derrotou um Grande Mestre. Hoje treina para o título de Mestre Internacional.">
-<meta property="og:url" content="https://www.mathiascasalaspro.com.br/">
-<meta property="og:image" content="https://www.mathiascasalaspro.com.br/assets/og-mathias.jpg">
+<meta property="og:url" content="https://www.mathiascasalaspro.com/">
+<meta property="og:image" content="https://www.mathiascasalaspro.com/assets/og-mathias.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#071523">
 
@@ -34,7 +34,7 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Mathias André Casalaspro",
-  "url": "https://www.mathiascasalaspro.com.br/",
+  "url": "https://www.mathiascasalaspro.com/",
   "nationality": "BR",
   "jobTitle": "Enxadrista — Mestre FIDE",
   "sport": "Xadrez",
@@ -1437,7 +1437,7 @@ p{ margin:0 0 1em; }
         <h4 data-t="rodape.contato">Contato</h4>
         <ul>
           <li><a href="https://wa.me/5511999610210?text=Gostaria%20de%20apoiar%20o%20Mathias!" target="_blank" rel="noopener">WhatsApp (11) 99961-0210</a></li>
-          <li><a href="mailto:contato@mathiascasalaspro.com.br">contato@mathiascasalaspro.com.br</a></li>
+          <li><a href="mailto:maurizio.casalaspro@gmail.com">maurizio.casalaspro@gmail.com</a></li>
           <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
         <!-- PREENCHER: e-mail real e URLs das redes sociais -->
@@ -1599,9 +1599,18 @@ const PADRAO = {
 
   const revela = new IntersectionObserver((es,obs)=>{
     es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("vis"); obs.unobserve(e.target); }});
-  }, { rootMargin:"0px 0px -8% 0px", threshold:.08 });
+  }, { rootMargin:"0px 0px -6% 0px", threshold:0 });
   const observarRev = el => calmo ? el.classList.add("vis") : revela.observe(el);
   $$(".rev").forEach(observarRev);
+
+  /* Rede de segurança: se por qualquer motivo o observador não disparar para
+     algum elemento, ele aparece assim que a rolagem passar dele. */
+  addEventListener("scroll", ()=>{
+    const limite = scrollY + innerHeight;
+    $$(".rev:not(.vis)").forEach(el=>{
+      if (el.getBoundingClientRect().top + scrollY < limite) el.classList.add("vis");
+    });
+  }, { passive:true });
 
   /* ---------------- contadores ---------------- */
   function conta(el){

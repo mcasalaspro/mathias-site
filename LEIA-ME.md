@@ -1,520 +1,156 @@
-# Site do Mathias — publicar e manter
+# Site do Mathias — como publicar e manter
 
-HTML puro, sem WordPress, sem Elementor, sem framework, sem build. Feito para viver num
-repositório do GitHub e ser servido pela Cloudflare.
+HTML puro. Sem WordPress, sem framework, sem build. Publicado no **GitHub Pages**, no
+repositório `mcasalaspro/mathias-site`, no domínio **www.mathiascasalaspro.com**.
 
-**A regra mais importante: você não precisa abrir o `index.html` para atualizar o site.**
-Tudo que muda está em `dados/`, em três arquivos de texto simples.
+**Você não precisa abrir o `index.html` para atualizar o site.** Tudo que muda está em `dados/`.
 
 ```
-CONFIGURAR-GIT.bat            prepara o Git na sua máquina (uma vez só)
+CNAME                         o domínio do site
+DOMINIO.md                    passo a passo para ligar o domínio no GoDaddy
+PUBLICAR.bat                  envia tudo para o GitHub
+CONFIGURAR-GIT.bat            prepara o Git na máquina (uma vez só)
 ATUALIZAR-ALCANCE.bat         soma views e curtidas dos vídeos
-ferramentas/                  o script que consulta o YouTube
-PUBLICAR.bat                  envia tudo para o GitHub (Windows)
 VER-LOCAL.bat                 abre o site na sua máquina para conferir
+
 index.html                    o site (não precisa ser editado)
 dados/conteudo.json           números, conquistas, imprensa, contato
 dados/videos.json             lista de vídeos do YouTube
-dados/galeria.json            legendas das fotos (gerado sozinho)
-dados/hero.json               imagens do topo (gerado sozinho)
-dados/idiomas/                pt.json, en.json, it.json
-assets/                       imagens fixas
+dados/galeria.json            legendas das fotos
+dados/hero.json               legendas das imagens do topo
+dados/alcance.json            views e curtidas (gerado pelo script)
+dados/idiomas/                traduções: pt.json, en.json, it.json
+
 assets/hero/                  imagens de fundo da primeira dobra
-assets/galeria/               é só jogar fotos aqui
+assets/galeria/               fotos da tira de momentos
 assets/loja/                  fotos dos produtos
-assets/logo-mc.png            o logo, usado no topo e no rodapé
-.github/workflows/galeria.yml a rotina que indexa a pasta de fotos
-_headers                      regras de cache da Cloudflare
+ferramentas/                  o script que consulta o YouTube
+.github/workflows/            rotinas que rodam sozinhas no GitHub
 ```
 
 ---
 
-## 1. Publicar (Windows, com o PUBLICAR.bat)
+## 1. Publicar uma alteração
 
-### Passo 0 — instalar o Git, uma vez só
+Edite o que quiser e dê dois cliques em **PUBLICAR.bat**. Descreva a mudança ou só tecle Enter.
+O site no ar se atualiza em cerca de um minuto.
 
-O Git é o programa que leva os arquivos daqui até o GitHub.
+Se nada tiver mudado, o script avisa e não faz nada.
 
-**Versão recomendada: 2.55.0(4)**, arquivo `Git-2.55.0.4-64-bit.exe`. Não é capricho: essa
-versão corrige a CVE-2026-62960, uma falha em que um servidor malicioso podia fazer o Windows
-autenticar via NTLM sem você perceber e vazar o hash da sua senha. A 2.55.0(3) já tinha
-corrigido estouros de memória no gerenciador de credenciais. Se for instalar hoje, instale
-essa.
+## 2. Ver na sua máquina antes de publicar
 
-**Caminho 1 — instalador.** Baixe em <https://git-scm.com/download/win>, clique em
-*Click here to download*, e rode o `Git-2.55.0.4-64-bit.exe`.
+Dois cliques em **VER-LOCAL.bat**. Ele sobe um servidor e abre o navegador em
+`http://localhost:8000`.
 
-**Caminho 2 — uma linha.** Abra o Prompt de Comando e cole:
+Abrir o `index.html` com dois cliques mostra o site pela metade: o navegador não deixa uma
+página em `file://` ler os arquivos de dados. O site não quebra — cai nas cópias de reserva
+que estão dentro do próprio HTML —, mas o que você vê pode não refletir suas edições.
 
-```
-winget install --id Git.Git -e --source winget
-```
+---
 
-#### As telas do instalador que importam
+## 3. O que fica em cada arquivo
 
-São umas quinze telas. Em quase todas, *Next* resolve. Estas quatro merecem atenção:
+### `dados/conteudo.json`
 
-| Tela | O que escolher | Por quê |
-|---|---|---|
-| **Choosing the default editor** | **Use Notepad as Git's default editor** | O padrão é o Vim, um editor de terminal do qual é famosamente difícil sair. |
-| **Adjusting the name of the initial branch** | **Override → `main`** | É o nome que o GitHub usa. Com o padrão antigo (`master`), o envio falha. |
-| **Adjusting your PATH environment** | **Git from the command line and also from 3rd-party software** (a do meio, já marcada) | Sem isso o `PUBLICAR.bat` não encontra o Git. |
-| **Choose a credential helper** | **Git Credential Manager** (já marcada) | É o que abre o login do GitHub no navegador e guarda a sessão. Sem ele, o Git pede senha toda vez — e o GitHub não aceita mais senha. |
-
-Nas demais, o padrão está certo: *Checkout Windows-style, commit Unix-style line endings*,
-*Use bundled OpenSSH*, *Use the OpenSSL library*, *Use MinTTY*, *Default (fast-forward or
-merge)* e *Enable file system caching*. Não marque nada em *Configuring experimental options*.
-
-Para conferir depois, abra o Prompt de Comando e digite `git --version`. Deve responder
-`git version 2.55.0.windows.4`.
-
-Para atualizar no futuro: `git update-git-for-windows`.
-
-### Passo 0b — configurar o Git
-
-Dê dois cliques em **CONFIGURAR-GIT.bat**. Ele pergunta seu nome e e-mail (use o mesmo da
-conta do GitHub) e aplica de uma vez tudo o que evita dor de cabeça depois:
-
-| Configuração | Para quê |
+| Bloco | O que controla |
 |---|---|
-| `user.name` e `user.email` | Assinam cada alteração no histórico. |
-| `init.defaultBranch main` | Novos repositórios já nascem com a branch certa. |
-| `core.editor notepad` | Um commit sem mensagem abre o Bloco de Notas, não o Vim. |
-| `credential.helper manager` | Guarda o login do GitHub com segurança no Windows. |
-| `core.autocrlf true` | Quebra de linha Windows no seu disco, Unix no repositório. |
-| `pull.rebase false` | Some com o aviso de "divergent branches". |
-| `core.quotepath false` | Mostra acentos nos nomes de arquivo em vez de `\303\247`. |
-| `core.longpaths true` | Evita o limite antigo de caminho longo do Windows. |
-| `push.default simple` | Envia só a branch atual, nunca todas sem querer. |
+| `numeros` | Os cinco números da faixa azul |
+| `caminho` | Rating, normas, meta mensal e a régua |
+| `conquistas` | A linha do tempo, agrupada por ano |
+| `imprensa` | As matérias, agrupadas por assunto |
+| `custeio` | A lista "o que uma temporada exige" |
+| `apoios` | Os quatro valores de contribuição mensal |
+| `loja` | Os produtos de "apoiar levando algo em troca" |
+| `contato` | WhatsApp, e-mail e Instagram |
+| `anoNascimento` | Calcula a idade em cada ano da linha do tempo |
 
-Tudo isso vai parar num arquivo de texto em `C:\Users\SEU-USUARIO\.gitconfig`. Dá para abrir
-e conferir quando quiser.
+**A meta é mensal.** `metaMensal` é quanto se pretende arrecadar por mês; `apoioMensal` é
+quanto já está garantido. A barra e a calculadora saem daí — não há nada a calcular.
 
-Se preferir digitar à mão, são estes comandos:
+**A régua de rating** usa `escala` e `marcos`. A barra dourada enche até `ratingAtual`.
 
-```bash
-git config --global user.name "Seu Nome"
-git config --global user.email "voce@exemplo.com"
-git config --global init.defaultBranch main
-git config --global core.editor "notepad"
-git config --global credential.helper manager
-git config --global core.autocrlf true
-git config --global pull.rebase false
-git config --global core.quotepath false
-git config --global core.longpaths true
-git config --global push.default simple
-```
+### `dados/videos.json`
 
-### Passo 1 — criar a conta e o repositório
+Cole a URL do YouTube e pronto — aceita `watch?v=`, `youtu.be/`, `/shorts/` e `/embed/`. O
+primeiro da lista aparece grande no mosaico. Não precisam ser do canal dele: qualquer vídeo
+público entra.
 
-1. Se ainda não tiver conta, crie em <https://github.com/signup> (grátis).
-2. Abra <https://github.com/new>.
-3. **Repository name:** `mathias-site`
-4. Marque **Public**. Precisa ser público para o GitHub Pages funcionar de graça.
-5. **Não marque** "Add a README file". O repositório precisa nascer vazio.
-6. Clique em **Create repository**.
-7. Na tela seguinte, copie a URL — algo como
-   `https://github.com/SEU-USUARIO/mathias-site.git`
+### `dados/galeria.json` e `dados/hero.json`
 
-### Passo 2 — rodar o PUBLICAR.bat
+São os arquivos das **legendas**. Cada foto tem `destaque` (o trecho dourado), `legenda` e
+`alt` (para leitores de tela). As rotinas do GitHub reescrevem esses arquivos quando você
+adiciona ou remove imagens, **mas sempre preservam os textos que você escreveu**.
 
-Dê dois cliques em **PUBLICAR.bat**, dentro desta pasta. Na primeira vez ele pergunta três
-coisas:
+Para acrescentar fotos, largue os arquivos em `assets/galeria/` ou `assets/hero/` e publique.
+Use o padrão `AAAA-MM_evento_descricao.jpg`: a ordem da tira segue o nome, do mais recente
+para o mais antigo.
 
-- **Seu nome e e-mail** — é a assinatura que fica no histórico de alterações.
-- **A URL do repositório** — cole a que você copiou no passo 1.
-
-Depois disso, o Git Credential Manager abre uma janela pedindo para entrar na sua conta do
-GitHub — escolha **Sign in with your browser**, autorize e feche a aba. Os arquivos sobem. A
-sessão fica guardada no Gerenciador de Credenciais do Windows, então da segunda vez em diante
-o login não é mais pedido.
-
-> **Não use senha.** O GitHub não aceita mais senha em envios desde 2021. Se alguma tela pedir
-> senha em vez de abrir o navegador, cancele e confira se o `credential.helper` está como
-> `manager` — o `CONFIGURAR-GIT.bat` resolve isso.
-
-> Se o Windows avisar que "protegeu o computador", clique em **Mais informações → Executar
-> assim mesmo**. É o aviso padrão para qualquer arquivo `.bat` baixado da internet.
-
-### Passo 3 — ligar o GitHub Pages, uma vez só
-
-1. Abra o repositório no GitHub.
-2. **Settings → Pages**.
-3. Em *Source*, escolha **Deploy from a branch**.
-4. Branch: **main**. Pasta: **/ (root)**. Clique em **Save**.
-5. Espere um minuto e recarregue: o endereço do site aparece no topo da página, no formato
-   `https://SEU-USUARIO.github.io/mathias-site/`.
-
-### Nas próximas vezes
-
-Edite o que quiser, dê dois cliques em **PUBLICAR.bat**, descreva a mudança (ou só tecle
-Enter) e pronto. O site no ar se atualiza em cerca de um minuto.
-
-Se nada tiver mudado desde o último envio, o script avisa e não faz nada.
-
-> **Por que usar o .bat em vez de arrastar os arquivos no site do GitHub?** Porque o
-> arrastar-e-soltar ignora arquivos que começam com ponto — e este projeto tem dois que são
-> essenciais: `.nojekyll` (sem ele o GitHub processa o site com Jekyll e alguns arquivos
-> somem) e `.github/` (a rotina que indexa as fotos da galeria). O `.bat` envia tudo.
-
-### Se preferir fazer pelo terminal
-
-Os quatro comandos que o `.bat` executa por baixo, caso um dia queira rodar à mão:
-
-```bash
-git init
-git branch -M main
-git remote add origin https://github.com/SEU-USUARIO/mathias-site.git
-git add -A && git commit -m "Publica o site" && git push -u origin main
-```
-
-### Domínio próprio pela Cloudflare
-
-Duas formas, ambas gratuitas:
-
-**A) Cloudflare Pages (recomendada).** Em *Workers & Pages → Create → Pages → Connect to Git*,
-aponte para o repositório. Build command: deixe vazio. Output directory: `/`. Cada push
-publica sozinho, o `_headers` passa a valer e você ganha o CDN da Cloudflare.
-
-**B) GitHub Pages + DNS da Cloudflare.** Em *Settings → Pages → Custom domain*, coloque
-`www.mathiascasalaspro.com.br` (isso cria um arquivo `CNAME` no repositório). Na Cloudflare,
-crie um registro `CNAME` de `www` para `SEU-USUARIO.github.io`. Nessa opção o `_headers` é
-ignorado — configure o cache em *Rules → Cache Rules* com os mesmos valores do arquivo.
-
-Em qualquer das duas, marque **Enforce HTTPS**.
+Fotos grandes deixam o site lento. Redimensione para no máximo 1600px de largura, JPG
+qualidade 80.
 
 ---
 
-## 1b. Ver o site na sua máquina antes de publicar
+## 4. Views e curtidas
 
-**Abrir o `index.html` com dois cliques funciona só pela metade.** Por segurança, todo
-navegador proíbe uma página aberta em `file://` de ler arquivos da própria pasta. Ou seja: os
-`dados/*.json` não carregam. O site não quebra — ele cai nas cópias de reserva que estão
-dentro do próprio HTML —, mas o que você vê pode não refletir as suas edições nos JSON.
+A seção **Alcance** mostra a soma exata das visualizações e curtidas de todos os vídeos da
+lista, com a data da medição.
 
-Para ver o site de verdade, dê dois cliques em **VER-LOCAL.bat**. Ele sobe um servidor na
-pasta e abre o navegador sozinho em `http://localhost:8000`. Para encerrar, feche a janela
-preta.
+Para atualizar, dois cliques em **ATUALIZAR-ALCANCE.bat** e depois **PUBLICAR.bat**. O script
+consulta o YouTube, soma tudo e grava em `dados/alcance.json`.
 
-O script usa o Python ou o Node, se algum dos dois estiver instalado. Se não houver nenhum,
-ele avisa e explica as opções — mas nesse caso o mais simples é publicar com o
-`PUBLICAR.bat` e conferir o site já no ar.
+A chave da API fica em `ferramentas/chave.txt`, que está no `.gitignore` e **nunca vai para o
+GitHub**. Se algum dia precisar recriá-la: no Google Cloud, ative a YouTube Data API v3, crie
+uma chave de API, deixe *Restrições de aplicativo* em **Nenhuma** e marque só a YouTube Data
+API v3 em *Restrições de API*.
 
-No macOS ou Linux, o equivalente é `python3 -m http.server 8000` dentro da pasta.
+Também dá para automatizar: guarde a chave em *Settings → Secrets and variables → Actions* com
+o nome `YOUTUBE_API_KEY`, e a rotina roda toda madrugada sozinha.
 
-Quando o site estiver publicado (GitHub Pages ou Cloudflare), nada disso é necessário: lá os
-JSON carregam normalmente e sempre vencem as cópias de reserva.
-
----
-
-## 2. Atualizar o conteúdo
-
-Dá para editar direto no site do GitHub: abra o arquivo, clique no lápis, salve. O site se
-atualiza sozinho em cerca de um minuto.
-
-### Números, conquistas, imprensa → `dados/conteudo.json`
-
-```json
-"numeros": [
-  { "valor": 2341, "rotulo": "Rating FIDE" }
-],
-"caminho": {
-  "ratingAtual": 2341,
-  "normasFeitas": 1,
-  "metaValor": 60000,
-  "arrecadado": 12500,
-  "apoiadores": 0
-}
-```
-
-Subiu o rating? Troque `2341` nos dois lugares e salve. A régua, as casas de norma e a barra
-de meta se redesenham sozinhas.
-
-**A meta é mensal**, e fica nesse mesmo bloco `caminho`:
-
-| Campo | O que é |
-|---|---|
-| `metaMensal` | Quanto se pretende arrecadar **por mês**. Está em `2500` |
-| `apoioMensal` | Quanto já está garantido por mês. Está em `220` |
-| `metaResumo` | A linha abaixo do título |
-| `apoiadores` | Nº de pessoas que já apoiam. Em `0`, a linha não aparece |
-
-A barra é a divisão de `apoioMensal` por `metaMensal`. A calculadora ao lado ("se cada pessoa
-contribuir com R$ X, bastam N pessoas") também sai de `metaMensal` — não há nada a configurar.
-
-**A régua de rating** usa `escala` e `marcos`, no mesmo bloco. Cada marco tem o valor, o
-rótulo e uma nota:
-
-```json
-"escala": [2100, 2440],
-"marcos": [
-  { "valor": 2200, "titulo": "2200", "nota": "jun/2024" },
-  { "valor": 2341, "titulo": "2341", "nota": "FM · dez/2024" },
-  { "valor": 2400, "titulo": "2400", "nota": "meta · MI", "meta": true }
-]
-```
-
-A barra dourada se enche até `ratingAtual`. Quando ele passar dos 2341, é só atualizar o
-`ratingAtual` e acrescentar um marco novo.
-
-Nova conquista? Acrescente uma linha no topo da lista `conquistas`:
-
-```json
-{ "ano": "2027", "texto": "...", "local": "Cidade, País", "selo": "Norma de MI", "tipo": "fide" }
-```
-
-`tipo` aceita `"inedito"` (selo dourado cheio), `"fide"` (selo contornado) ou nada. `local` e
-`selo` são opcionais.
-
-### Vídeos → `dados/videos.json`
-
-Cole a URL e pronto. Aceita qualquer formato do YouTube — `watch?v=`, `youtu.be/`, `/shorts/`,
-`/embed/`. Os 18 que você mandou já estão lá. O primeiro da lista aparece grande no mosaico;
-os outros preenchem a grade, que se fecha sozinha para nunca sobrar uma miniatura solta na
-última linha.
-
-Não precisam ser do canal do Mathias: qualquer vídeo público entra, e um vídeo de canal grande
-falando dele vale mais para patrocinador do que um vídeo do próprio Mathias.
-
-### Imagem do topo → `assets/hero/`
-
-A primeira dobra usa uma foto de fundo que ocupa a tela inteira, com um degradê azul por cima
-para o texto continuar legível. **A cada visita o site sorteia uma das imagens da pasta** e,
-depois, troca para a seguinte a cada 7 segundos, com transição suave.
-
-Para testar outras fotos, largue os arquivos em `assets/hero/` e faça o commit — a mesma
-rotina do GitHub indexa a pasta. O intervalo e as legendas ficam em `dados/hero.json`:
-
-```json
-{
-  "intervaloSegundos": 7,
-  "fotos": [
-    { "arquivo": "01_floripa-blitz-abertura.jpg", "credito": "Brazil Chess Series · Floripa 2026" }
-  ]
-}
-```
-
-O `credito` aparece pequeno no canto inferior e acompanha a troca de imagem.
-
-**Use fotos horizontais.** Uma foto vertical esticada para a largura da tela fica muito
-ampliada — as duas que estão lá agora servem de teste, mas o ideal são imagens largas, de 1600
-a 2400px, com espaço vazio do lado esquerdo, que é onde o texto fica.
-
-Quem tem "reduzir movimento" ligado no sistema vê uma imagem fixa, sem troca.
-
-### Fotos da galeria → `assets/galeria/` + `dados/galeria.json`
-
-**O arquivo das legendas é `dados/galeria.json`.** Cada foto tem uma entrada assim:
-
-```json
-{
-  "arquivo": "2026-08_leca-chess-open_certificado-de-norma.jpg",
-  "destaque": "Agosto de 2026",
-  "legenda": "Leça Chess Open, Portugal. O certificado da primeira norma...",
-  "alt": "Mathias e seu treinador diante do painel do Leça Chess Open..."
-}
-```
-
-| Campo | Onde aparece |
-|---|---|
-| `destaque` | O trecho dourado, no começo da legenda. Pode ficar vazio |
-| `legenda` | O texto que aparece sobre a foto |
-| `alt` | Descrição para leitores de tela e para quando a imagem não carrega |
-
-A ordem das fotos na tira é a ordem da lista — e a rotina do GitHub ordena pelo nome do
-arquivo, do mais recente para o mais antigo. Por isso o padrão `AAAA-MM_evento_descricao.jpg`.
-
-### Como acrescentar fotos
-
-Arraste as imagens para `assets/galeria/` e faça o commit. Uma rotina do GitHub roda sozinha,
-lê a pasta e reescreve `dados/galeria.json`. **Você não precisa mexer em nada além de largar o
-arquivo lá.**
-
-Se nomear no padrão `2026-08_leca-chess-open_primeira-norma.jpg`, a legenda já sai preenchida
-como *"Leça Chess Open · Primeira norma"*. Depois é só ajustar o texto no `dados/galeria.json`
-— a rotina preserva as legendas que você escrever.
-
-Uma foto vira uma faixa larga. Duas ou mais viram uma tira que rola para o lado.
-
-Fotos grandes deixam o site lento. Antes de subir, redimensione para no máximo 1600px de
-largura e salve em JPG com qualidade 80.
+**Se um vídeo tiver as curtidas escondidas**, ele entra como zero na soma. O total fica
+subestimado, nunca inflado.
 
 ---
 
-## 3. Visualizações e curtidas
+## 5. O que ainda vale preencher
 
-A seção **Alcance** mostra a soma das visualizações e das curtidas de todos os vídeos da lista,
-arredondada **sempre para baixo** — 517.430 vira *"Mais de 510.000"*, para a frase nunca
-prometer mais do que os vídeos entregam.
-
-O site tenta três fontes, nesta ordem:
-
-1. **`dados/alcance.json`** — gerado por um script. É o caminho recomendado.
-2. **Chave da API dentro do site** (`apiKeyYouTube`, em `dados/videos.json`).
-3. **Números escritos à mão** (`viewsManual` e `curtidasManual`).
-
-### Por que a chave dentro do site costuma falhar
-
-Se você criou a chave seguindo a recomendação de segurança e marcou **Referenciadores HTTP**
-restritos ao seu domínio, ela **não funciona em `localhost`** nem em nenhum outro endereço.
-E se você deixar a chave sem restrição para funcionar, ela fica exposta no código-fonte de um
-repositório público — qualquer pessoa pode copiar e gastar a sua cota.
-
-Os dois problemas somem com o script.
-
-### Caminho recomendado: gerar `dados/alcance.json`
-
-O script `ferramentas/atualizar-alcance.py` consulta o YouTube, soma tudo e grava o resultado
-num arquivo. **A chave nunca entra no site.**
-
-**Crie a chave assim** (diferente do que eu havia recomendado antes):
-
-1. Em `console.cloud.google.com`, ative a **YouTube Data API v3** e crie uma **chave de API**.
-2. Em *Restrições de aplicativo*, deixe em **Nenhuma**. Chamadas de servidor não enviam
-   referenciador; com a restrição por domínio, o Google recusa com erro 403.
-3. Em *Restrições de API*, marque **somente** a YouTube Data API v3. É isso que limita o
-   estrago caso a chave vaze: ela só serve para ler dados públicos de vídeo.
-
-**Depois, escolha como rodar:**
-
-**A) No seu computador, quando quiser.** Dois cliques em **ATUALIZAR-ALCANCE.bat**. Ele pede a
-chave na primeira vez e oferece guardá-la em `ferramentas/chave.txt` — arquivo que já está no
-`.gitignore` e nunca vai para o GitHub. Depois é só rodar o `PUBLICAR.bat`.
-
-**B) Sozinho, toda madrugada.** Guarde a chave como segredo do repositório e a GitHub Action
-faz o resto:
-
-1. No repositório: *Settings → Secrets and variables → Actions → New repository secret*
-2. **Name:** `YOUTUBE_API_KEY` · **Secret:** a sua chave
-3. Pronto. A rotina roda às 3h17 (horário de Brasília), atualiza o arquivo e publica sozinha.
-   Para rodar na hora, vá em *Actions → Atualizar alcance → Run workflow*.
-
-Com o arquivo no lugar, o site mostra também a data da última atualização, e os títulos dos
-vídeos aparecem no mosaico sem nenhuma requisição extra do visitante.
-
-### Enquanto não houver nenhuma das três fontes
-
-Os contadores simplesmente não aparecem — melhor nada do que número inventado. Abrindo em
-`localhost` com o `VER-LOCAL.bat`, um aviso explica o que falta e, se a chave tiver sido
-recusada, mostra a mensagem exata do Google. Esse aviso nunca aparece no site publicado.
-
-**Sobre as curtidas:** quando o dono de um vídeo esconde as curtidas, aquele vídeo entra como
-zero na soma. O script avisa quantos casos assim existem. O total fica subestimado, nunca
-inflado.
-
-## 4. O que ainda falta preencher
-
-- [ ] **Confirmar o ano de nascimento.** O campo `anoNascimento` em `dados/conteudo.json`
-      está como **2012** e é o que calcula a idade em cada ano da linha do tempo
-      (2026 · 14 anos, 2025 · 13 anos, e assim por diante). Se estiver errado, todas as
-      idades saem erradas de uma vez.
-- [ ] **Confirmar a norma de MI de Leça.** Ela aparece no hero, nos números, na história, nas
-      conquistas e na seção do caminho. Se ainda não foi homologada, é a primeira coisa a ajustar.
-- [ ] **Conferir os quatro selos de recorde:** três "Inédito no Brasil" (primeiro GM aos 9 em
-      simultânea, GM em clássica aos 11, jogador 2550+ em clássica) e um "Estreia do Brasil"
-      (Olimpíada Sub-16). Selo de recorde é o que alguém confere primeiro.
-- [ ] **Foto do "Jogo dos Hábitos"** — é o único produto sem imagem. Salve em `assets/loja/`
-      e escreva o nome do arquivo no campo `imagem`, em `dados/conteudo.json`. Enquanto não
-      houver, o card mostra um peão dourado sobre o padrão de peças.
-- [ ] **Conferir os links de apoio.** Os quatro valores (R$ 10, R$ 50, R$ 100 e Outro) apontam
-      para planos do Mercado Pago herdados do site antigo. Confirme qual `plan_id` corresponde a
-      qual valor.
-- [ ] **Definir a meta da temporada** (`metaValor`) em `dados/conteudo.json`. O valor de
-      R$ 60.000 é uma estimativa minha, não um número seu.
-- [ ] **E-mail de contato**, em `dados/conteudo.json` (o WhatsApp já está ligado ao número
-      (11) 99961-0210 em todos os botões).
+- [ ] **Valores dos três planos de patrocínio** — estão como `R$ ___` no `index.html`. São os
+      únicos textos que ainda pedem edição direta no HTML.
+- [ ] **Confirmar o `anoNascimento`** (`2012`) em `dados/conteudo.json`. É ele que calcula
+      todas as idades da linha do tempo de uma vez.
+- [ ] **Confirmar os quatro selos "Destaque!"** das conquistas.
 - [ ] **PDF do mídia kit** em `assets/midia-kit-mathias.pdf` — o botão já aponta para lá.
-- [ ] **Confirmar a habilitação na Lei de Incentivo ao Esporte.** Se o projeto não estiver
-      habilitado, apague esse parágrafo: é a única frase da página que pode gerar problema jurídico.
-- [ ] **Trocar `assets/og-mathias.jpg`** pela versão definitiva (prompt no
-      `PROMPTS-DE-IMAGEM.md`). É a imagem que aparece quando alguém manda o link no WhatsApp.
+- [ ] **Trocar `assets/og-mathias.jpg`** pela versão definitiva. É a imagem que aparece quando
+      alguém manda o link no WhatsApp.
+- [ ] **Definir a meta mensal.** Os R$ 2.500 são uma estimativa, não um número seu.
 
 ---
 
-## 5. Quatro decisões que valem explicar
+## 6. Quatro decisões que valem explicar
 
-**A página tem dois atos.** Do topo até a seção de vídeos e imprensa, é um site de atleta: sem
-botão de doação, sem pedido no meio do texto. A faixa com o peão dourado marca a virada, e só
-então vem o bloco de apoio — caminho, contribuição e patrocínio, os três seguidos. O visitante
-conhece a trajetória inteira antes de qualquer pedido, e quem quiser apoiar encontra tudo
-reunido num lugar só.
-
-Isso reduz a doação por impulso e aumenta a credibilidade. Foi uma troca deliberada: o site
-passa a servir melhor ao patrocinador, que é onde está o dinheiro grande.
-
-
+**A página tem dois atos.** Do topo até vídeos e imprensa, é um site de atleta: sem botão de
+doação, sem pedido no meio do texto. A faixa com o peão dourado marca a virada, e só então vem
+o bloco de apoio. O visitante conhece a trajetória inteira antes de qualquer pedido.
 
 **A idade não aparece em nenhum texto corrido.** Só as idades dos feitos ("aos 11 anos,
-derrotou um GM"), que nunca desatualizam. Um site que diz "tenho 13 anos" está errado em
-poucos meses, e informação desatualizada é o primeiro sinal de projeto abandonado.
+derrotou um GM"), que nunca desatualizam.
 
 **As conquistas são uma lista seca, e isso é de propósito.** Antes dela vem um quadro
-explicando GM, FM, rating e norma — porque quem assina patrocínio geralmente não joga xadrez e
-não sabe o que significa "2341". Traduzido o vocabulário uma vez, a lista pode ser direta.
+explicando GM, FM, rating e norma — porque quem assina patrocínio geralmente não joga xadrez.
 
-**A seção "O caminho até o Mestre Internacional" é a mais importante da página.** Ninguém doa
-para um objetivo abstrato; doa para um objetivo com regra clara, prazo e conta aberta. Se for
-cortar algo por falta de tempo, corte outra coisa.
+**Os números de alcance são exatos, não arredondados.** Arredondado, parecia estimativa. O
+dado é medido, e a data da medição aparece ao lado.
 
 ---
 
-## 6. Detalhe técnico, para quem for mexer no código
+## 7. Detalhe técnico, para quem for mexer no código
 
-O `index.html` já vem com o conteúdo escrito dentro dele — inclusive a lista de vídeos, num
-bloco `<script type="application/json" id="videosReserva">`. Isso é a **rede de segurança**:
-se algum JSON quebrar, ou se a página for aberta em `file://`, o site continua completo com a
-versão do dia da publicação em vez de aparecer vazio. Quando os JSON carregam — o que leva
-milésimos —, eles substituem esse conteúdo.
+O `index.html` traz o conteúdo escrito dentro dele. É a rede de segurança: se algum JSON
+quebrar, ou se a página for aberta em `file://`, o site continua completo em vez de aparecer
+vazio. Quando os JSON carregam — o que leva milésimos —, eles substituem esse conteúdo.
 
-Consequência: se você editar os JSON e nunca mais tocar no HTML, o conteúdo dentro do HTML vai
-ficando velho. Isso não afeta o que as pessoas veem, só o que um robô sem JavaScript leria. De
-vez em quando vale copiar o conteúdo atual de volta para o HTML — ou simplesmente ignorar,
-porque Google e Bing executam JavaScript há anos.
+Consequência: o conteúdo dentro do HTML vai ficando velho conforme você edita os JSON. Isso
+não afeta o que as pessoas veem, só o que um robô sem JavaScript leria. Google e Bing executam
+JavaScript há anos.
 
-Os JSON são buscados com um sufixo que muda a cada cinco minutos (`?v=...`). É o que garante
-que uma edição apareça rápido mesmo com a Cloudflare cacheando na frente.
-
----
-
-## 7. Os três idiomas
-
-O site é trilíngue: português, inglês e italiano. As bandeiras ficam no topo, ao lado do menu,
-e os links `PT / EN / IT` do rodapé fazem a mesma coisa. Não existem três páginas — é a mesma
-página trocando os textos.
-
-**Qual idioma abre primeiro:** o `?lang=` da URL, se houver; senão o último escolhido pela
-pessoa; senão o idioma do navegador dela; senão português. Cada troca grava `?lang=xx` no
-endereço, então dá para mandar `mathiascasalaspro.com.br/?lang=it` direto para um contato
-italiano.
-
-### Onde ficam os textos
-
-**Interface** (menus, títulos, botões, textos fixos): `dados/idiomas/pt.json`, `en.json` e
-`it.json`. As três chaves são idênticas nos três arquivos. Corrigiu uma frase em português?
-Edite `pt.json`. **Se uma chave faltar em `en.json` ou `it.json`, o site usa a versão em
-português** — nada quebra, só não fica traduzido.
-
-**Conteúdo** (conquistas, produtos, números): fica em `dados/conteudo.json`, com o campo
-principal em português e sufixos `_en` e `_it` para as traduções:
-
-```json
-{
-  "ano": "2026",
-  "texto": "5º lugar no geral do Leça Chess Open...",
-  "texto_en": "5th overall at the Leça Chess Open...",
-  "texto_it": "5º posto assoluto al Leça Chess Open..."
-}
-```
-
-Isso vale para `texto`, `local`, `selo`, `rotulo`, `descricao`, `nome` e `grupo`. **Adicionar
-uma conquista nova só exige o português.** As traduções podem vir depois, sem quebrar nada:
-enquanto não existirem, aquele item aparece em português nas três versões.
-
-**Títulos de matérias na imprensa não são traduzidos** — são manchetes reais e devem ficar
-como foram publicadas. Só o nome do grupo ("Olimpíada Mundial Sub-16") é traduzido.
-
-### Antes de mexer
-
-Os três arquivos de idioma aceitam HTML dentro dos textos: é assim que `<strong>` e `<em>`
-funcionam no meio das frases. Se apagar uma tag de abertura sem apagar a de fechamento, aquele
-trecho fica torto — mas o resto da página continua de pé.
+Os JSON são buscados com um sufixo que muda a cada cinco minutos (`?v=...`), para que uma
+edição apareça rápido mesmo com cache no caminho.

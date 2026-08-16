@@ -57,7 +57,7 @@ echo        Depois rode este arquivo de novo.
 echo(
 echo      Opcao 2 — nem instalar nada:
 echo        publique com o PUBLICAR.bat e veja o site no ar.
-echo        No GitHub e na Cloudflare tudo funciona sem servidor local.
+echo        No GitHub Pages tudo funciona sem servidor local.
 echo(
 pause
 
