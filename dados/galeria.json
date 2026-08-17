@@ -2,34 +2,16 @@
   "_leia": "ESTE É O ARQUIVO DAS LEGENDAS. Cada foto de assets/galeria/ tem uma entrada aqui: 'destaque' é o trecho dourado no começo, 'legenda' é o texto, e 'alt' descreve a imagem para leitores de tela. A GitHub Action reescreve este arquivo quando você adiciona ou remove fotos, mas SEMPRE preserva os textos que você já escreveu.",
   "fotos": [
     {
-      "arquivo": "2026-08_leca-da-palmeira_portugal.jpg",
-      "destaque": "Agosto de 2026",
-      "legenda": "Leça da Palmeira, Portugal, no fim do torneio.",
-      "alt": "Mathias na avenida à beira-mar de Leça da Palmeira, ao entardecer."
-    },
-    {
       "arquivo": "2026-08_leca-chess-open_certificado-de-norma.jpg",
       "destaque": "Agosto de 2026",
       "legenda": "Leça Chess Open, Portugal. O certificado da primeira norma de Mestre Internacional, ao lado do pai.",
       "alt": "Mathias e seu pai diante do painel do Leça Chess Open, segurando o certificado, a medalha e o troféu."
     },
     {
-      "arquivo": "2026-07_torneio_lance-em-jogo.jpg",
-      "destaque": "Julho de 2026",
-      "legenda": "Aberto de Valencia - 2026",
-      "alt": "Mathias movendo uma peça durante uma partida."
-    },
-    {
-      "arquivo": "2026-07_torneio_antes-da-partida.jpg",
-      "destaque": "Julho de 2026",
-      "legenda": "Aberto de Valencia - 2026 pouco antes da partida começar.",
-      "alt": "Mathias sorrindo atrás do tabuleiro montado, com a camisa oficial."
-    },
-    {
-      "arquivo": "2026-07_pontevedra_pavilhao.jpg",
-      "destaque": "Julho de 2026",
-      "legenda": "O pavilhão de jogo em Pontevedra, visto do outro lado do tabuleiro.",
-      "alt": "Mathias sentado à mesa de jogo no pavilhão do torneio de Pontevedra."
+      "arquivo": "2026-08_leca-da-palmeira_portugal.jpg",
+      "destaque": "Agosto de 2026",
+      "legenda": "Leça da Palmeira, Portugal, no fim do torneio.",
+      "alt": "Mathias na avenida à beira-mar de Leça da Palmeira, ao entardecer."
     },
     {
       "arquivo": "2026-07_pontevedra_escola-de-xadrez.jpg",
@@ -38,16 +20,34 @@
       "alt": "Mathias diante do painel da Escola Xadrez Pontevedra."
     },
     {
+      "arquivo": "2026-07_pontevedra_cidade.jpg",
+      "destaque": "Julho de 2026",
+      "legenda": "Pontevedra, entre uma rodada e outra.",
+      "alt": "Mathias na praça histórica de Pontevedra, na Espanha."
+    },
+    {
+      "arquivo": "2026-07_pontevedra_pavilhao.jpg",
+      "destaque": "Julho de 2026",
+      "legenda": "O pavilhão de jogo em Pontevedra, visto do outro lado do tabuleiro.",
+      "alt": "Mathias sentado à mesa de jogo no pavilhão do torneio de Pontevedra."
+    },
+    {
       "arquivo": "2026-07_pontevedra_encontro.jpg",
       "destaque": "Julho de 2026",
       "legenda": "Mathias e Daniel, organizador do torneio de Valencia.",
       "alt": "Mathias ao lado de um enxadrista, numa rua de Pontevedra."
     },
     {
-      "arquivo": "2026-07_pontevedra_cidade.jpg",
+      "arquivo": "2026-07_torneio_antes-da-partida.jpg",
       "destaque": "Julho de 2026",
-      "legenda": "Pontevedra, entre uma rodada e outra.",
-      "alt": "Mathias na praça histórica de Pontevedra, na Espanha."
+      "legenda": "Aberto de Valencia - 2026 pouco antes da partida começar.",
+      "alt": "Mathias sorrindo atrás do tabuleiro montado, com a camisa oficial."
+    },
+    {
+      "arquivo": "2026-07_torneio_lance-em-jogo.jpg",
+      "destaque": "Julho de 2026",
+      "legenda": "Aberto de Valencia - 2026",
+      "alt": "Mathias movendo uma peça durante uma partida."
     },
     {
       "arquivo": "2026-07_chiavenna_treinamento-internacional.jpg",

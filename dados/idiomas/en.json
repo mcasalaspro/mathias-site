@@ -49,10 +49,10 @@
   "destaque.btn": "See what's left for the title",
   "conquistas.h2": "What he has done at the board",
   "glossario.titulo": "For those who don't play chess",
-  "glossario.gm": "<dt>Grandmaster (GM)</dt><dd>The highest title in chess. There are around <b>2,000</b> in the world and fewer than 20 in Brazil.</dd>",
-  "glossario.fm": "<dt>FIDE Master (FM)</dt><dd>An international title awarded by the world federation. Mathias earned it at <b>12</b>.</dd>",
-  "glossario.rating": "International measure of a player's strength. <b>2000</b> is a good player, <b>2200</b> is an excellent one, and <b>2400</b> already allows the International Master title.",
-  "glossario.norma": "A high-level result in an international tournament against titled players. <b>Three</b> are required to become an International Master.",
+  "glossario.gm": "<dt>Grandmaster (GM)</dt><dd>The highest title in chess. There are around <b>1,900</b> in the world. In Brazil, only <b>15</b> — and not all of them still active.</dd>",
+  "glossario.fm": "<dt>FIDE Master (FM)</dt><dd>FIDE's first international title. Mathias earned it at <b>12</b>.</dd>",
+  "glossario.rating": "<dt>Rating</dt><dd>A measure of a player's strength. <b>2000</b> is a good player, <b>2200</b> an excellent one, <b>2400</b> allows the International Master title, and above <b>2500</b> opens the way to Grandmaster.</dd>",
+  "glossario.norma": "<dt>Norm</dt><dd>A high-level result in an international tournament against titled players. Becoming an IM or GM takes <b>three</b> of them, plus the minimum rating.</dd>",
   "caminho.h2": "To keep moving forward, he needs opportunity and investment.<br> <em>And you can help.</em>",
   "caminho.p": "To become an International Master you need to reach <strong>2400 FIDE rating</strong> and earn <strong>3 IM norms</strong>: high-level results in tournaments with titled players from different federations. He already has the talent and the training. What is missing is being seated at the right boards, and that costs money.",
   "escada.titulo": "FIDE rating · where he stands",
@@ -120,7 +120,9 @@
   "grafico.meta": "2400 · IM title threshold",
   "alcance.exato": "exact figure measured on",
   "palmares.titulo": "Main achievements",
-  "virada.txt": "That is what he has done so far.<br>From here on, what is still missing — and how you can be part of it.",
+  "virada.txt": "That is what he has done so far.<br>From here on, what is still missing — and <em>how you can be part of it</em>.",
   "hero.btn": "See the career so far",
-  "hero.link": "I want to support Mathias"
+  "hero.link": "I want to support Mathias",
+  "glossario.nota": "Every new IM or GM raises the level of the whole sport in the country.",
+  "meta.intro": "Knowing what to count on each month is what makes it possible to plan a season ahead. That is why support is monthly — and any amount counts. <b>What fits your budget comfortably?</b>"
 }

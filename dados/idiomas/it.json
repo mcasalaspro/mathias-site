@@ -49,10 +49,10 @@
   "destaque.btn": "Guarda cosa manca per il titolo",
   "conquistas.h2": "Cosa ha già fatto sulla scacchiera",
   "glossario.titulo": "Per chi non gioca a scacchi",
-  "glossario.gm": "<dt>Grande Maestro (GM)</dt><dd>Il titolo più alto negli scacchi. Nel mondo ce ne sono circa <b>2.000</b>, in Brasile meno di 20.</dd>",
-  "glossario.fm": "<dt>Maestro FIDE (FM)</dt><dd>Titolo internazionale della federazione mondiale. Mathias lo ha ottenuto a <b>12 anni</b>.</dd>",
-  "glossario.rating": "Misura internazionale della forza di un giocatore. <b>2000</b> è un buon giocatore, <b>2200</b> è un giocatore eccellente e <b>2400</b> consente già il titolo di Maestro Internazionale.",
-  "glossario.norma": "Risultato di alto livello in un torneo internazionale contro giocatori titolati. Ne servono <b>tre</b> per diventare Maestro Internazionale.",
+  "glossario.gm": "<dt>Grande Maestro (GM)</dt><dd>Il titolo più alto degli scacchi. Nel mondo ce ne sono circa <b>1.900</b>. In Brasile, solo <b>15</b> — e non tutti in attività.</dd>",
+  "glossario.fm": "<dt>Maestro FIDE (FM)</dt><dd>Il primo titolo internazionale della FIDE. Mathias l'ha ottenuto a <b>12 anni</b>.</dd>",
+  "glossario.rating": "<dt>Rating</dt><dd>Stima la forza di un giocatore. <b>2000</b> è un buon giocatore, <b>2200</b> è un giocatore eccellente, <b>2400</b> consente il titolo di Maestro Internazionale e oltre <b>2500</b> apre la strada al Grande Maestro.</dd>",
+  "glossario.norma": "<dt>Norma</dt><dd>Risultato di alto livello in un torneo internazionale contro giocatori titolati. Per diventare MI o GM ne servono <b>tre</b>, oltre al rating minimo.</dd>",
   "caminho.h2": "Per continuare a crescere gli servono opportunità e investimento.<br> <em>E tu puoi aiutare.</em>",
   "caminho.p": "Per diventare Maestro Internazionale bisogna raggiungere <strong>2400 punti Elo FIDE</strong> e ottenere <strong>3 norme di MI</strong>: risultati di alto livello in tornei con giocatori titolati di federazioni diverse. Talento e allenamento ce li ha già. Quello che manca è sedersi alle scacchiere giuste, e questo ha un costo.",
   "escada.titulo": "Rating FIDE · a che punto è",
@@ -120,7 +120,9 @@
   "grafico.meta": "2400 · soglia per il titolo di MI",
   "alcance.exato": "valore esatto rilevato il",
   "palmares.titulo": "Principali risultati",
-  "virada.txt": "Fin qui, ciò che ha già fatto.<br>Da qui in avanti, ciò che manca — e come puoi farne parte.",
+  "virada.txt": "Fin qui, ciò che ha già fatto.<br>Da qui in avanti, ciò che manca — e <em>come puoi farne parte</em>.",
   "hero.btn": "Scopri il percorso",
-  "hero.link": "Voglio sostenere Mathias"
+  "hero.link": "Voglio sostenere Mathias",
+  "glossario.nota": "Ogni nuovo MI o GM formato alza il livello di tutto il movimento nel Paese.",
+  "meta.intro": "Sapere su quanto contare ogni mese è ciò che permette di pianificare la stagione in anticipo. Per questo il sostegno è mensile — e ogni importo conta. <b>Quanto rientra nel tuo budget senza sforzo?</b>"
 }

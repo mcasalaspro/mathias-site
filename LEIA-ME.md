@@ -7,7 +7,7 @@ repositório `mcasalaspro/mathias-site`, no domínio **www.mathiascasalaspro.com
 
 ```
 CNAME                         o domínio do site
-DOMINIO.md                    passo a passo para ligar o domínio no GoDaddy
+DOMAIN-SETUP.md               passo a passo do GoDaddy (em inglês, como os painéis)
 PUBLICAR.bat                  envia tudo para o GitHub
 CONFIGURAR-GIT.bat            prepara o Git na máquina (uma vez só)
 ATUALIZAR-ALCANCE.bat         soma views e curtidas dos vídeos

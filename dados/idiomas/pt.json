@@ -28,10 +28,10 @@
   "destaque.p": "No Leça Chess Open, em Portugal, Mathias terminou empatado em pontos com o campeão e ficou em 5º apenas no desempate — entre 20 federações, enfrentando quatro Grandes Mestres. Foi esse resultado que fechou sua primeira norma de Mestre Internacional. Levou junto o troféu de 1º lugar da categoria Sub-14.",
   "destaque.btn": "Ver o que falta para o título",
   "glossario.titulo": "Para quem não joga xadrez",
-  "glossario.gm": "<dt>Grande Mestre (GM)</dt><dd>O título mais alto do xadrez. O mundo tem cerca de <b>2.000</b>; o Brasil, menos de 20.</dd>",
-  "glossario.fm": "<dt>Mestre FIDE (FM)</dt><dd>Título internacional da federação mundial. Mathias conquistou aos <b>12 anos</b>.</dd>",
-  "glossario.rating": "Medida internacional para estimar a força do jogador. <b>2000</b> é um bom jogador, <b>2200</b> é um excelente jogador e <b>2400</b> já permite a titulação de Mestre Internacional.",
-  "glossario.norma": "Resultado de alto nível num torneio internacional contra titulados. São precisos <b>três</b> para virar Mestre Internacional.",
+  "glossario.gm": "<dt>Grande Mestre (GM)</dt><dd>O título mais alto do xadrez. Existem cerca de <b>1.900</b> no mundo. No Brasil, apenas <b>15</b> — e nem todos em atividade.</dd>",
+  "glossario.fm": "<dt>Mestre FIDE (FM)</dt><dd>A primeira titulação internacional da FIDE. Mathias conquistou aos <b>12 anos</b>.</dd>",
+  "glossario.rating": "<dt>Rating</dt><dd>Estima a força de um jogador. <b>2000</b> é um bom jogador, <b>2200</b> é um excelente jogador, <b>2400</b> permite a titulação de Mestre Internacional e acima de <b>2500</b> abre caminho para Grande Mestre.</dd>",
+  "glossario.norma": "<dt>Norma</dt><dd>Resultado de alto nível num torneio internacional contra titulados. Para virar MI ou GM são precisas <b>três</b>, além do rating mínimo.</dd>",
   "casa.d4": "O caminho até o Mestre Internacional",
   "caminho.h2": "Para seguir avançando, ele precisa de oportunidade e investimento.<br/> <em>E você pode ajudar.</em>",
   "caminho.p": "Para se tornar Mestre Internacional é preciso atingir <strong>2400 de rating FIDE</strong> e conquistar <strong>3 normas de MI</strong>: resultados de alto nível em torneios com enxadristas titulados de diferentes federações. Talento e treino ele já tem. O que falta é estar sentado nos tabuleiros certos, e isso tem custo.",
@@ -120,7 +120,9 @@
   "grafico.meta": "2400 · meta para o título de MI",
   "alcance.exato": "valor exato medido em",
   "palmares.titulo": "Principais conquistas",
-  "virada.txt": "Até aqui, o que ele já fez.<br>Daqui em diante, o que ainda falta — e como você pode fazer parte.",
+  "virada.txt": "Até aqui, o que ele já fez.<br>Daqui em diante, o que ainda falta — e <em>como você pode fazer parte</em>.",
   "hero.btn": "Conheça a trajetória",
-  "hero.link": "Quero apoiar o Mathias"
+  "hero.link": "Quero apoiar o Mathias",
+  "glossario.nota": "Cada novo MI ou GM formado puxa o esporte inteiro para cima no país.",
+  "meta.intro": "Saber com quanto contar todo mês é o que permite planejar a temporada com antecedência. Por isso o apoio é mensal — e qualquer valor conta. <b>Quanto cabe no seu orçamento sem apertar?</b>"
 }

@@ -119,17 +119,16 @@ section[id], div[id]{ scroll-margin-top:94px; }
 .faixa--azul{   background:var(--tabuleiro); color:var(--marfim); }
 .faixa--clara{  background:var(--marfim); color:var(--grafite); }
 .faixa--clara2{ background:var(--marfim2); color:var(--grafite); }
-.faixa--clara .casa b, .faixa--clara2 .casa b,
+.faixa--clara .casa span, .faixa--clara2 .casa span,
 .faixa--clara .rotulo, .faixa--clara2 .rotulo{ color:var(--ouro-esc); }
 .faixa--clara .datado, .faixa--clara2 .datado{ color:var(--grafite2); opacity:1; }
 
 /* eyebrow: coordenada da casa + nome da seção */
 .casa{
-  font-family:var(--mono); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
-  display:flex; align-items:center; gap:12px; margin:0 0 22px;
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+  display:flex; align-items:center; gap:14px; margin:0 0 22px;
 }
-.casa b{ font-weight:700; color:var(--ouro); text-transform:none; }
-.casa span{ opacity:.62; font-weight:400; }
+.casa span{ color:var(--ouro); font-weight:700; }
 .casa::after{ content:""; height:1px; flex:1; background:currentColor; opacity:.18; }
 
 h1,h2,h3,h4{ font-family:var(--display); font-weight:800; line-height:.98; letter-spacing:-.025em; margin:0; }
@@ -433,6 +432,11 @@ p{ margin:0 0 1em; }
   overflow:hidden; margin-bottom:clamp(38px,4.5vw,56px);
 }
 .glossario__t{ grid-column:1/-1; background:var(--noite); padding:16px clamp(18px,2.2vw,24px); margin:0; }
+.glossario__nota{
+  grid-column:1/-1; background:var(--noite); margin:0;
+  padding:15px clamp(18px,2.2vw,24px); color:var(--ouro-claro);
+  font-size:.9rem; line-height:1.5; font-style:italic;
+}
 .glossario__t span{ font-family:var(--mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ouro); font-weight:700; }
 .verbete{ background:var(--noite); padding:20px clamp(18px,2.2vw,24px); margin:0; }
 .verbete dt{ font-weight:700; font-size:.98rem; color:var(--marfim); margin-bottom:6px; }
@@ -548,6 +552,8 @@ p{ margin:0 0 1em; }
 .meta{ border:1px solid var(--linha-esc); border-radius:var(--raio); padding:clamp(24px,3vw,34px); background:rgba(7,21,35,.5); }
 .meta h3{ font-size:1.02rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
 .meta__sub{ font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--nevoa); margin-bottom:22px; }
+.meta__intro{ font-size:.94rem; line-height:1.6; color:var(--nevoa); margin:0 0 24px; }
+.meta__intro b{ color:var(--marfim); font-weight:600; }
 .meta__valor{ margin:0 0 14px; font-family:var(--mono); font-size:.78rem; color:var(--nevoa); }
 .meta__valor b{ font-family:var(--display); font-weight:800; font-size:clamp(2rem,3.4vw,2.7rem); letter-spacing:-.03em; color:var(--ouro); display:block; line-height:1; margin-bottom:4px; }
 
@@ -778,9 +784,10 @@ p{ margin:0 0 1em; }
 .virada{ background:var(--noite); text-align:center; padding-block:clamp(52px,6.5vw,104px); }
 .virada__divisor{ width:min(460px,74%); margin:0 auto clamp(24px,3vw,36px); opacity:.85; }
 .virada__txt{
-  font-family:var(--serif); font-size:clamp(1.15rem,2.1vw,1.6rem); line-height:1.5;
-  color:var(--nevoa); max-width:34ch; margin:0 auto;
+  font-family:var(--serif); font-size:clamp(1.4rem,2.9vw,2.15rem); line-height:1.45;
+  color:var(--nevoa); max-width:30ch; margin:0 auto;
 }
+.virada__txt em{ font-style:normal; color:var(--ouro); font-weight:500; }
 
 /* ============ CTA FINAL + RODAPÉ ============ */
 .promocao{ text-align:center; padding-block:clamp(84px,10vw,150px); position:relative; overflow:hidden; }
@@ -995,7 +1002,7 @@ p{ margin:0 0 1em; }
 <!-- ==================== b2 · NÚMEROS ==================== -->
 <section class="faixa faixa--azul numeros" id="numeros">
   <div class="env">
-    <p class="casa rev"><b>b2</b> <span data-t="casa.b2">Os números</span></p>
+    <p class="casa rev"><span data-t="casa.b2">Os números</span></p>
     <h2 class="rev" style="max-width:16ch;margin-bottom:38px" data-t="numeros.h2">Uma carreira que começou aos 7 anos</h2>
 
     <div class="numeros__grid rev" id="numerosGrid">
@@ -1015,7 +1022,7 @@ p{ margin:0 0 1em; }
 <!-- ==================== a1 · HISTÓRIA ==================== -->
 <section class="faixa faixa--clara" id="historia">
   <div class="env">
-    <p class="casa rev"><b>a1</b> <span data-t="casa.a1">A história</span></p>
+    <p class="casa rev"><span data-t="casa.a1">A história</span></p>
 
     <div class="historia__grid">
       <figure class="historia__foto rev">
@@ -1044,7 +1051,7 @@ p{ margin:0 0 1em; }
 <!-- ==================== c3 · CONQUISTAS ==================== -->
 <section class="faixa faixa--escura" id="conquistas">
   <div class="env">
-    <p class="casa rev"><b>c3</b> <span data-t="casa.c3">As conquistas</span></p>
+    <p class="casa rev"><span data-t="casa.c3">As conquistas</span></p>
     <article class="destaque rev">
       <img src="assets/mathias-leca.jpg" width="1000" height="1563" loading="lazy"
            alt="Mathias com a medalha, o troféu e o certificado de norma do Leça Chess Open, em Portugal.">
@@ -1064,10 +1071,11 @@ p{ margin:0 0 1em; }
 
     <div class="glossario rev">
       <p class="glossario__t"><span data-t="glossario.titulo">Para quem não joga xadrez</span></p>
-      <dl class="verbete" data-t="glossario.gm"><dt>Grande Mestre (GM)</dt><dd>O título mais alto do xadrez. O mundo tem cerca de <b>2.000</b>; o Brasil, menos de 20.</dd></dl>
-      <dl class="verbete" data-t="glossario.fm"><dt>Mestre FIDE (FM)</dt><dd>Título internacional da federação mundial. Mathias conquistou aos <b>12 anos</b>.</dd></dl>
-      <dl class="verbete" data-t="glossario.rating"><dt>Rating</dt><dd>Medida internacional para estimar a força do jogador. <b>2000</b> é um bom jogador, <b>2200</b> é um excelente jogador e <b>2400</b> já permite a titulação de Mestre Internacional.</dd></dl>
-      <dl class="verbete" data-t="glossario.norma"><dt>Norma</dt><dd>Resultado de alto nível num torneio internacional contra titulados. São precisos <b>três</b> para virar Mestre Internacional.</dd></dl>
+      <dl class="verbete" data-t="glossario.gm"><dt>Grande Mestre (GM)</dt><dd>O título mais alto do xadrez. Existem cerca de <b>1.900</b> no mundo. No Brasil, apenas <b>15</b> — e nem todos em atividade.</dd></dl>
+      <dl class="verbete" data-t="glossario.fm"><dt>Mestre FIDE (FM)</dt><dd>A primeira titulação internacional da FIDE. Mathias conquistou aos <b>12 anos</b>.</dd></dl>
+      <dl class="verbete" data-t="glossario.rating"><dt>Rating</dt><dd>Estima a força de um jogador. <b>2000</b> é um bom jogador, <b>2200</b> é um excelente jogador, <b>2400</b> permite a titulação de Mestre Internacional e acima de <b>2500</b> abre caminho para Grande Mestre.</dd></dl>
+      <dl class="verbete" data-t="glossario.norma"><dt>Norma</dt><dd>Resultado de alto nível num torneio internacional contra titulados. Para virar MI ou GM são precisas <b>três</b>, além do rating mínimo.</dd></dl>
+      <p class="glossario__nota" data-t="glossario.nota">Cada novo MI ou GM formado puxa o esporte inteiro para cima no país.</p>
     </div>
 
     <h2 class="palmares__h2 rev" data-t="palmares.titulo">Principais conquistas</h2>
@@ -1107,7 +1115,7 @@ p{ margin:0 0 1em; }
 <!-- ==================== d4 · ALCANCE (vídeos + imprensa) ==================== -->
 <section class="faixa faixa--azul" id="alcance">
   <div class="env">
-    <p class="casa rev"><b>d4</b> <span data-t="casa.f6">Alcance</span></p>
+    <p class="casa rev"><span data-t="casa.f6">Alcance</span></p>
 
     <div class="alcance__topo rev">
       <div class="alcance__metricas">
@@ -1205,14 +1213,14 @@ p{ margin:0 0 1em; }
   <div class="env">
     <img class="virada__divisor" src="assets/divisor-peao.png" width="1400" height="78" alt="" loading="lazy">
     <p class="virada__txt" data-t="virada.txt">Até aqui, o que ele já fez.<br>
-    Daqui em diante, o que ainda falta — e como você pode fazer parte.</p>
+    Daqui em diante, o que ainda falta — e <em>como você pode fazer parte</em>.</p>
   </div>
 </section>
 
 <!-- ==================== e5 · O CAMINHO (assinatura) ==================== -->
 <section class="faixa faixa--escura caminho" id="caminho">
   <div class="env">
-    <p class="casa rev"><b>e5</b> <span data-t="casa.d4">O caminho até o Mestre Internacional</span></p>
+    <p class="casa rev"><span data-t="casa.d4">O caminho até o Mestre Internacional</span></p>
 
     <div class="caminho__cab rev">
       <h2 style="margin-bottom:20px" data-t="caminho.h2">Para seguir avançando, ele precisa de oportunidade e investimento.<br>
@@ -1261,6 +1269,9 @@ p{ margin:0 0 1em; }
       <div class="meta rev">
         <h3 id="metaTitulo" data-t="meta.titulo">Meta mensal</h3>
         <p class="meta__sub" id="metaSub">O que sustenta treino, viagens e inscrições ao longo do ano</p>
+        <p class="meta__intro" data-t="meta.intro">Saber com quanto contar todo mês é o que permite planejar
+        a temporada com antecedência. Por isso o apoio é mensal — e qualquer valor conta.
+        <b>Quanto cabe no seu orçamento sem apertar?</b></p>
 
         <p class="meta__valor"><b id="metaMensal">R$ 0</b> <span data-t="meta.porMes">por mês</span></p>
         <div class="barra"><i id="barra"></i></div>
@@ -1290,7 +1301,7 @@ p{ margin:0 0 1em; }
 <!-- ==================== f6 · APOIAR ==================== -->
 <section class="faixa faixa--clara" id="apoiar">
   <div class="env">
-    <p class="casa rev"><b>f6</b> <span data-t="casa.e5">Como apoiar</span></p>
+    <p class="casa rev"><span data-t="casa.e5">Como apoiar</span></p>
     <h2 class="rev" style="max-width:20ch;margin-bottom:18px" data-t="apoiar.h2">Seu apoio faz a diferença</h2>
     <p class="lede rev recado" data-t="apoiar.lede">Escolha um valor que cabe no seu orçamento. Nenhuma contribuição é pequena:
     somadas, elas podem tornar esse sonho realidade.</p>
@@ -1348,7 +1359,7 @@ p{ margin:0 0 1em; }
   <img class="patro__camisa" src="assets/camisa-oficial.png" width="1194" height="768" loading="lazy"
        alt="Frente e costas da camisa oficial de competição do Mathias, com os espaços disponíveis para logomarcas.">
   <div class="env">
-    <p class="casa rev"><b>g7</b> <span data-t="casa.g7">Patrocínio para empresas</span></p>
+    <p class="casa rev"><span data-t="casa.g7">Patrocínio para empresas</span></p>
 
     <div class="patro__grid">
       <div class="patro__txt rev">
