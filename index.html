@@ -578,23 +578,25 @@ p{ margin:0 0 1em; }
 /* ============ APOIAR ============ */
 .apoios{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-bottom:20px; }
 .apoio{
-  display:flex; flex-direction:column; gap:8px; text-decoration:none;
-  border:1px solid var(--linha-cla); border-radius:var(--raio); padding:24px 22px 22px;
+  display:flex; flex-direction:column; gap:10px; text-decoration:none;
+  border:1px solid var(--linha-cla); border-radius:var(--raio); padding:22px 20px 18px;
   background:#fff; color:var(--grafite);
   transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 .apoio:hover{ transform:translateY(-3px); border-color:var(--ouro); box-shadow:0 12px 34px -18px rgba(30,42,52,.45); }
-.apoio__v{ font-family:var(--display); font-weight:800; font-size:1.75rem; letter-spacing:-.03em; line-height:1; }
-.apoio__v small{ font-size:.9rem; font-weight:600; opacity:.55; }
-.apoio__d{ font-size:.93rem; color:var(--grafite2); line-height:1.45; }
-.apoio__pe{ margin-top:auto; padding-top:14px; font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ouro-esc); font-weight:700; }
+.apoio__v{ font-family:var(--display); font-weight:800; font-size:clamp(2rem,2.9vw,2.5rem); letter-spacing:-.035em; line-height:1; }
+.apoio__v small{ font-size:.86rem; font-weight:600; opacity:.5; letter-spacing:0; }
+.apoio__pe{ margin-top:auto; padding-top:0; font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ouro-esc); font-weight:700; }
 .apoio--livre{ background:var(--tabuleiro); color:var(--marfim); border-color:var(--tabuleiro); }
-.apoio--livre .apoio__d{ color:rgba(241,235,223,.72); }
+.apoio--livre .apoio__v{ font-size:clamp(1.5rem,2.1vw,1.85rem); }
 .apoio--livre .apoio__pe{ color:var(--ouro-claro); }
-.apoio--livre .apoio__d{ color:rgba(241,235,223,.7); }
 .apoio--livre .apoio__pe{ color:var(--ouro); }
 
-.recado{ font-size:1rem; color:var(--grafite2); max-width:60ch; margin-bottom:clamp(46px,5vw,66px); }
+.recado{ font-size:1.05rem; color:var(--grafite2); max-width:56ch; margin-bottom:clamp(40px,4.6vw,58px); }
+.recado b{
+  display:block; font-family:var(--display); font-weight:800; letter-spacing:-.02em;
+  font-size:clamp(1.15rem,2vw,1.5rem); line-height:1.25; color:var(--grafite); margin-bottom:8px;
+}
 
 .loja{ border-top:1px solid var(--linha-cla); padding-top:clamp(38px,4.5vw,54px); }
 .loja__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:26px; }
@@ -1303,30 +1305,26 @@ p{ margin:0 0 1em; }
   <div class="env">
     <p class="casa rev"><span data-t="casa.e5">Como apoiar</span></p>
     <h2 class="rev" style="max-width:20ch;margin-bottom:18px" data-t="apoiar.h2">Seu apoio faz a diferença</h2>
-    <p class="lede rev recado" data-t="apoiar.lede">Escolha um valor que cabe no seu orçamento. Nenhuma contribuição é pequena:
-    somadas, elas podem tornar esse sonho realidade.</p>
+    <p class="lede rev recado" data-t="apoiar.lede"><b>Escolha um valor que cabe no seu orçamento mensal.</b>
+    Nenhuma contribuição é pequena: somadas, elas podem tornar esse sonho realidade.</p>
 
     <!-- Os links abaixo são os planos de assinatura já existentes no Mercado Pago.
          CONFERIR: qual plan_id corresponde a qual valor. -->
     <div class="apoios rev" id="apoios">
       <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc" target="_blank" rel="noopener">
         <span class="apoio__v">R$ 20<small>/mês</small></span>
-        <span class="apoio__d">Toda ajuda conta e se soma às outras</span>
         <span class="apoio__pe">Apoiar →</span>
       </a>
       <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a" target="_blank" rel="noopener">
         <span class="apoio__v">R$ 50<small>/mês</small></span>
-        <span class="apoio__d">Ajuda a manter treino e material de estudo</span>
         <span class="apoio__pe">Apoiar →</span>
       </a>
       <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c" target="_blank" rel="noopener">
         <span class="apoio__v">R$ 100<small>/mês</small></span>
-        <span class="apoio__d">Contribui direto com viagens e inscrições</span>
         <span class="apoio__pe">Apoiar →</span>
       </a>
       <a class="apoio apoio--livre" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba" target="_blank" rel="noopener">
         <span class="apoio__v">Outro valor</span>
-        <span class="apoio__d">Você decide quanto e por quanto tempo</span>
         <span class="apoio__pe">Escolher →</span>
       </a>
     </div>
@@ -1337,7 +1335,7 @@ p{ margin:0 0 1em; }
       <!-- Produtos vêm de dados/conteudo.json > loja. Para cada um, basta pôr a imagem
            em assets/loja/ e apontar o campo "imagem". Sem imagem, o card mostra o padrão. -->
       <div class="loja__grid" id="loja">
-        <a class="prod" href="https://form.getformly.com/f/l0xfso" target="_blank" rel="noopener" aria-label="Partidas de treinamento — 1 hora de jogos online no Lichess">
+        <a class="prod" href="https://form.respondi.app/oemyel9l" target="_blank" rel="noopener" aria-label="Partidas de treinamento — 1 hora de jogos online no Lichess">
           <img src="assets/loja/partidas-de-treinamento.jpg" alt="Partidas de treinamento — 1 hora de jogos online no Lichess" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
         </a>
         <a class="prod" href="https://form.respondi.app/mg3mwzPj" target="_blank" rel="noopener" aria-label="Terapia e Orientação Educacional com Maurizio Casalaspro">
@@ -1707,7 +1705,6 @@ const PADRAO = {
       const valor = a.livre ? esc(TR(a,"valor")) : esc(a.valor) + '<small>'+esc(T("_meta.mes","/mês"))+'</small>';
       return '<a class="apoio'+livre+'" href="'+esc(a.url)+'" target="_blank" rel="noopener">'+
              '<span class="apoio__v">'+valor+'</span>'+
-             '<span class="apoio__d">'+esc(TR(a,"descricao"))+'</span>'+
              '<span class="apoio__pe">'+esc(a.livre ? T("_meta.escolher","Escolher") : T("_meta.apoiar","Apoiar"))+' →</span></a>';
     }).join("");
   }

@@ -44,7 +44,7 @@
     "metaResumo_it": "Ciò che sostiene allenamento, viaggi e iscrizioni durante l'anno",
     "_meta": "metaMensal: quanto se pretende arrecadar POR MÊS. apoioMensal: quanto já está garantido por mês.",
     "metaMensal": 2500,
-    "apoioMensal": 220,
+    "apoioMensal": 240,
     "escala": [
       2100,
       2440
@@ -182,6 +182,19 @@
     },
     {
       "ano": "2022",
+      "texto": "Campeão Brasileiro Sub-10 nas três modalidades: Clássico, Rápido e Blitz",
+      "texto_en": "Brazilian Under-10 champion in all three formats: Classical, Rapid and Blitz",
+      "texto_it": "Campione brasiliano Under 10 in tutte e tre le specialità: Classico, Rapid e Blitz",
+      "local": "Natal, RN",
+      "local_en": "Natal, Brazil",
+      "local_it": "Natal, Brasile",
+      "selo": "Destaque!",
+      "selo_en": "Highlight!",
+      "selo_it": "Da segnalare!",
+      "tipo": "inedito"
+    },
+    {
+      "ano": "2022",
       "texto": "Campeão Sul-Americano de Blitz Sub-10",
       "local": "Assunção, Paraguai",
       "texto_en": "South American U10 blitz champion",
@@ -295,32 +308,20 @@
   "apoios": [
     {
       "valor": "R$ 20",
-      "descricao": "Toda ajuda conta e se soma às outras",
-      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc",
-      "descricao_en": "Every bit helps and adds to the rest",
-      "descricao_it": "Ogni aiuto conta e si somma agli altri"
+      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc"
     },
     {
       "valor": "R$ 50",
-      "descricao": "Ajuda a manter treino e material de estudo",
-      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a",
-      "descricao_en": "Helps cover coaching and study material",
-      "descricao_it": "Aiuta a coprire allenamento e materiale di studio"
+      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a"
     },
     {
       "valor": "R$ 100",
-      "descricao": "Contribui direto com viagens e inscrições",
-      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c",
-      "descricao_en": "Goes straight into travel and entry fees",
-      "descricao_it": "Va direttamente in viaggi e iscrizioni"
+      "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c"
     },
     {
       "valor": "Outro valor",
-      "descricao": "Você decide quanto e por quanto tempo",
       "livre": true,
       "url": "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba",
-      "descricao_en": "You decide how much and for how long",
-      "descricao_it": "Decidi tu quanto e per quanto tempo",
       "valor_en": "Another amount",
       "valor_it": "Un altro importo"
     }
@@ -331,7 +332,7 @@
       "nome": "Partidas de treinamento",
       "descricao": "1 hora de jogos online no Lichess",
       "imagem": "partidas-de-treinamento.jpg",
-      "url": "https://form.getformly.com/f/l0xfso",
+      "url": "https://form.respondi.app/oemyel9l",
       "nome_en": "Training games",
       "nome_it": "Partite di allenamento",
       "descricao_en": "1 hour of online games on Lichess",
