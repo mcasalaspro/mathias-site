@@ -1,0 +1,887 @@
+{
+  "versao": 1,
+  "_leia_me": {
+    "onde": "mao = obrigatório na mochila (lítio, documentos, remédios) | mala = vai na mala despachada, ou na mochila 2 quando não há despacho | corpo = vestido no voo, não pesa",
+    "qtd": "Use um número fixo, ou um objeto de regra. Campos da regra: escala (fixo|dias|lavagem|pessoas|notebooks|lavagens), fator (multiplica a escala), mais (soma depois), min, max, max_merino (substitui max quando merino ligado), max_sem_lavar (substitui max quando não lava), mais_se_quente.",
+    "escalas": "dias = dias totais | lavagem = dias efetivos de roupa em circulação, limitado pelo ciclo de lavagem | pessoas = 1 ou 2 conforme o filtro | notebooks = 1 ou 2 | lavagens = número de lavagens na viagem",
+    "condicoes": "clima = array com frio/ameno/quente em que o item aparece | requer_menor = só aparece se Mathias < 18 | requer_despacho = só aparece no modo com mala | so_despacho = existe, mas é barrado na bagagem de mão",
+    "pesos": "peso_g é o peso de UMA unidade, em gramas. peso_g_merino substitui quando o ajuste merino está ligado.",
+    "veste_no_voo": "true = uma unidade deste item vai vestida no avião e não pesa na bagagem, quando o ajuste 'Vestir muda no voo' está ligado.",
+    "opcional": "true = item aparece na lista como lembrete, mas o peso NÃO entra na conta das bagagens.",
+    "pessoa": "m = jovem | z = adulto | ausente = compartilhado entre os dois"
+  },
+  "bagagens": {
+    "mala": {
+      "nome": "Mala despachada",
+      "limite_kg": 10,
+      "tara_kg": 2.6,
+      "nota": "Roupa, higiene e kit de lavanderia."
+    },
+    "mochila1": {
+      "nome": "Mochila 1 · técnica",
+      "limite_kg": 8,
+      "tara_kg": 1.1,
+      "nota": "Notebooks, documentos e remédios."
+    },
+    "mochila2": {
+      "nome": "Mochila 2 · roupa",
+      "limite_kg": 8,
+      "tara_kg": 1.0,
+      "nota": "Roupa, higiene e kit de lavanderia."
+    }
+  },
+  "categorias": [
+    {
+      "id": "doc",
+      "nome": "Documentos",
+      "cor": "doc",
+      "descricao": "Tudo aqui viaja junto do corpo. Cópia digital de cada um na nuvem e salva offline no celular."
+    },
+    {
+      "id": "ele",
+      "nome": "Eletrônicos",
+      "cor": "ele",
+      "descricao": "Lítio é bagagem de mão obrigatória. Nada nesta lista pode ser despachado."
+    },
+    {
+      "id": "rouM",
+      "nome": "Roupas · Jovem",
+      "cor": "rou",
+      "pessoa": "m",
+      "descricao": "Blazer e camisa de patrocinador não escalam com os dias. O resto sim."
+    },
+    {
+      "id": "rouZ",
+      "nome": "Roupas · Adulto",
+      "cor": "rou",
+      "pessoa": "z",
+      "descricao": "Só camiseta, sempre casual. Três de algodão mais uma técnica que seca de um banho para o outro."
+    },
+    {
+      "id": "hig",
+      "nome": "Higiene",
+      "cor": "hig",
+      "descricao": "Tudo sólido em vez de líquido: zero saquinho transparente, zero vazamento."
+    },
+    {
+      "id": "med",
+      "nome": "Remédios",
+      "cor": "med",
+      "descricao": "Embalagem original e receita em inglês. Sempre na mochila, nunca despachado."
+    },
+    {
+      "id": "sup",
+      "nome": "Suplementos",
+      "cor": "sup",
+      "pessoa": "z",
+      "descricao": "Pó branco sem rótulo gera revista secundária. Doses medidas dentro do pote original."
+    },
+    {
+      "id": "lav",
+      "nome": "Lavanderia",
+      "cor": "lav",
+      "descricao": "O kit que transforma uma viagem de 30 dias em uma de 4."
+    }
+  ],
+  "itens": [
+    {
+      "cat": "doc",
+      "nome": "Passaporte",
+      "nota": "Mínimo 6 meses de validade e páginas livres",
+      "peso_g": 45,
+      "onde": "mao",
+      "qtd": {
+        "escala": "pessoas"
+      }
+    },
+    {
+      "cat": "doc",
+      "nome": "Carta de motorista",
+      "nota": "CNH mais permissão internacional se for dirigir",
+      "peso_g": 8,
+      "onde": "mao",
+      "pessoa": "z",
+      "qtd": 1
+    },
+    {
+      "cat": "doc",
+      "nome": "Seguro viagem",
+      "nota": "Apólice impressa e salva offline",
+      "peso_g": 15,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "doc",
+      "nome": "Dinheiro em espécie",
+      "nota": "Moeda local para o primeiro dia",
+      "peso_g": 25,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "doc",
+      "nome": "Cartão principal",
+      "nota": "Multimoeda, avisado ao banco",
+      "peso_g": 6,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "doc",
+      "nome": "Cartão extra",
+      "nota": "Bandeira diferente, guardado longe do principal",
+      "peso_g": 6,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "doc",
+      "nome": "Autorização do menor",
+      "nota": "AEV ou autorização impressa no passaporte",
+      "peso_g": 12,
+      "onde": "mao",
+      "requer_menor": true,
+      "qtd": 1
+    },
+    {
+      "cat": "doc",
+      "nome": "Certidão de nascimento",
+      "nota": "Cópia — pedida em conexões",
+      "peso_g": 8,
+      "onde": "mao",
+      "requer_menor": true,
+      "qtd": 1
+    },
+    {
+      "cat": "doc",
+      "nome": "Visto ou ETA",
+      "nota": "Confirmar exigência do destino",
+      "peso_g": 8,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "doc",
+      "nome": "Reservas de voo e hotel",
+      "nota": "Salvas offline, não só no e-mail",
+      "peso_g": 5,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "doc",
+      "nome": "Cópias na nuvem",
+      "nota": "Foto de tudo em pasta compartilhada",
+      "peso_g": 0,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "ele",
+      "nome": "Notebook",
+      "nota": "Com um só, a mochila técnica alivia quase 2 kg",
+      "peso_g": 1400,
+      "onde": "mao",
+      "qtd": {
+        "escala": "notebooks"
+      }
+    },
+    {
+      "cat": "ele",
+      "nome": "Carregador do notebook",
+      "nota": "Um por máquina — os dois raramente ficam na mesma tomada",
+      "peso_g": 380,
+      "onde": "mao",
+      "qtd": {
+        "escala": "notebooks"
+      }
+    },
+    {
+      "cat": "ele",
+      "nome": "Carregador de celular",
+      "peso_g": 60,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "ele",
+      "nome": "Mouse",
+      "peso_g": 85,
+      "onde": "mao",
+      "qtd": {
+        "escala": "notebooks"
+      }
+    },
+    {
+      "cat": "ele",
+      "nome": "Mousepad",
+      "peso_g": 90,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "ele",
+      "nome": "Adaptador de tomada",
+      "nota": "Dois. É o item mais perdido de todos",
+      "peso_g": 95,
+      "onde": "mao",
+      "qtd": 2
+    },
+    {
+      "cat": "ele",
+      "nome": "Régua de tomada",
+      "nota": "Substitui os cabos longos: uma tomada distante alimenta tudo",
+      "peso_g": 160,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "ele",
+      "nome": "Power bank",
+      "nota": "Até 100 Wh (≈10.000 mAh). Nunca despachado",
+      "peso_g": 210,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "ele",
+      "nome": "Fones de ouvido",
+      "peso_g": 60,
+      "onde": "mao",
+      "qtd": {
+        "escala": "pessoas"
+      }
+    },
+    {
+      "cat": "ele",
+      "nome": "Tablet pequeno",
+      "nota": "Carregado no portão — não conte com o power bank no voo",
+      "peso_g": 300,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "ele",
+      "nome": "Barbeador elétrico",
+      "nota": "Bateria de lítio: mochila, nunca na mala",
+      "peso_g": 130,
+      "onde": "mao",
+      "pessoa": "z",
+      "qtd": 1
+    },
+    {
+      "cat": "ele",
+      "nome": "AirTag",
+      "nota": "Um em cada volume despachado",
+      "peso_g": 11,
+      "onde": "mala",
+      "requer_despacho": true,
+      "qtd": 1
+    },
+    {
+      "cat": "ele",
+      "nome": "eSIM ativado",
+      "nota": "Ativar antes de embarcar",
+      "peso_g": 0,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "rouM",
+      "nome": "Blazer",
+      "nota": "Vai no corpo se a bagagem apertar",
+      "peso_g": 720,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": 1
+    },
+    {
+      "cat": "rouM",
+      "nome": "Camisa de patrocinador",
+      "nota": "Uma no corpo, uma limpa, uma secando",
+      "peso_g": 175,
+      "onde": "mao",
+      "pessoa": "m",
+      "qtd": 3
+    },
+    {
+      "cat": "rouM",
+      "nome": "Calça social",
+      "nota": "Para o blazer",
+      "peso_g": 420,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": 1
+    },
+    {
+      "cat": "rouM",
+      "nome": "Calça casual",
+      "peso_g": 400,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": 1,
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouM",
+      "nome": "Camiseta",
+      "peso_g": 150,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": {
+        "escala": "lavagem",
+        "fator": 0.5,
+        "mais": 1,
+        "mais_se_quente": 1,
+        "min": 2,
+        "max": 5,
+        "max_sem_lavar": 12
+      },
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouM",
+      "nome": "Cueca",
+      "peso_g": 55,
+      "peso_g_merino": 40,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": {
+        "escala": "lavagem",
+        "mais": 1,
+        "min": 3,
+        "max": 6,
+        "max_merino": 4,
+        "max_sem_lavar": 14
+      },
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouM",
+      "nome": "Meias",
+      "peso_g": 55,
+      "peso_g_merino": 40,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": {
+        "escala": "lavagem",
+        "mais": 1,
+        "min": 3,
+        "max": 6,
+        "max_merino": 4,
+        "max_sem_lavar": 14
+      },
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouM",
+      "nome": "Pijama",
+      "peso_g": 290,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": {
+        "escala": "dias",
+        "fator": 0.1,
+        "min": 1,
+        "max": 2
+      }
+    },
+    {
+      "cat": "rouM",
+      "nome": "Casaco esportivo leve",
+      "peso_g": 340,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": 1,
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouM",
+      "nome": "Casaco extra",
+      "nota": "Salão de torneio é gelado. O leve não basta",
+      "peso_g": 420,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": 1
+    },
+    {
+      "cat": "rouM",
+      "nome": "Segunda pele",
+      "peso_g": 180,
+      "onde": "mala",
+      "pessoa": "m",
+      "clima": [
+        "frio"
+      ],
+      "qtd": 2
+    },
+    {
+      "cat": "rouM",
+      "nome": "Gorro e luvas",
+      "peso_g": 120,
+      "onde": "mala",
+      "pessoa": "m",
+      "clima": [
+        "frio"
+      ],
+      "qtd": 1
+    },
+    {
+      "cat": "rouM",
+      "nome": "Bermuda",
+      "peso_g": 230,
+      "onde": "mala",
+      "pessoa": "m",
+      "clima": [
+        "ameno",
+        "quente"
+      ],
+      "qtd": {
+        "escala": "fixo",
+        "mais": 1,
+        "mais_se_quente": 1,
+        "max": 2
+      }
+    },
+    {
+      "cat": "rouM",
+      "nome": "Boné",
+      "peso_g": 85,
+      "onde": "mala",
+      "pessoa": "m",
+      "clima": [
+        "ameno",
+        "quente"
+      ],
+      "qtd": 1
+    },
+    {
+      "cat": "rouM",
+      "nome": "Cinto",
+      "peso_g": 145,
+      "onde": "mala",
+      "pessoa": "m",
+      "qtd": 1,
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouM",
+      "nome": "Tênis",
+      "nota": "No pé. Único calçado",
+      "peso_g": 0,
+      "onde": "corpo",
+      "pessoa": "m",
+      "qtd": 1
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Camiseta de algodão",
+      "nota": "Seca em 8 a 12 h — pendure em cabide, não na corda",
+      "peso_g": 160,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": {
+        "escala": "lavagem",
+        "fator": 0.5,
+        "mais": 1,
+        "min": 2,
+        "max": 3
+      },
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Camiseta de secagem rápida",
+      "nota": "Poliéster técnico: lava no banho, escorre na toalha e veste em seguida",
+      "peso_g": 120,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": 1,
+      "veste_no_voo": false
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Calça",
+      "peso_g": 400,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": 1,
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Cueca",
+      "peso_g": 55,
+      "peso_g_merino": 40,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": {
+        "escala": "lavagem",
+        "mais": 1,
+        "min": 3,
+        "max": 6,
+        "max_merino": 4,
+        "max_sem_lavar": 14
+      },
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Meias",
+      "peso_g": 55,
+      "peso_g_merino": 40,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": {
+        "escala": "lavagem",
+        "mais": 1,
+        "min": 3,
+        "max": 6,
+        "max_merino": 4,
+        "max_sem_lavar": 14
+      },
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Pijama",
+      "peso_g": 290,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": {
+        "escala": "dias",
+        "fator": 0.1,
+        "min": 1,
+        "max": 2
+      }
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Casaco leve",
+      "peso_g": 340,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": 1,
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Casaco extra",
+      "nota": "Para o salão e para o avião",
+      "peso_g": 420,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": 1
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Segunda pele",
+      "peso_g": 180,
+      "onde": "mala",
+      "pessoa": "z",
+      "clima": [
+        "frio"
+      ],
+      "qtd": 2
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Bermuda",
+      "peso_g": 230,
+      "onde": "mala",
+      "pessoa": "z",
+      "clima": [
+        "ameno",
+        "quente"
+      ],
+      "qtd": {
+        "escala": "fixo",
+        "mais": 1,
+        "mais_se_quente": 1,
+        "max": 2
+      }
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Boné",
+      "peso_g": 85,
+      "onde": "mala",
+      "pessoa": "z",
+      "clima": [
+        "ameno",
+        "quente"
+      ],
+      "qtd": 1
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Cinto",
+      "peso_g": 145,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": 1,
+      "veste_no_voo": true
+    },
+    {
+      "cat": "rouZ",
+      "nome": "Tênis",
+      "nota": "No pé. Único calçado",
+      "peso_g": 0,
+      "onde": "corpo",
+      "pessoa": "z",
+      "qtd": 1
+    },
+    {
+      "cat": "hig",
+      "nome": "Pasta de dente",
+      "nota": "Em pastilhas evita o limite de 100 ml",
+      "peso_g": 45,
+      "onde": "mala",
+      "qtd": {
+        "escala": "dias",
+        "fator": 0.07,
+        "min": 1,
+        "max": 2
+      }
+    },
+    {
+      "cat": "hig",
+      "nome": "Comprar no destino",
+      "nota": "Sabonete, shampoo e hidratante — nunca levar de casa",
+      "peso_g": 0,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "hig",
+      "nome": "Escova de dentes",
+      "peso_g": 18,
+      "onde": "mala",
+      "qtd": {
+        "escala": "pessoas"
+      }
+    },
+    {
+      "cat": "hig",
+      "nome": "Fio dental",
+      "peso_g": 12,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "hig",
+      "nome": "Desodorante em barra",
+      "peso_g": 70,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "hig",
+      "nome": "Pente ou escova",
+      "peso_g": 35,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "hig",
+      "nome": "Cortador de unhas",
+      "peso_g": 28,
+      "onde": "mala",
+      "so_despacho": true,
+      "qtd": 1
+    },
+    {
+      "cat": "hig",
+      "nome": "Necessaire",
+      "nota": "Montada uma vez e nunca desmontada",
+      "peso_g": 190,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "hig",
+      "nome": "Toalha de microfibra",
+      "nota": "Seca rápido e serve de burrito para escorrer roupa",
+      "peso_g": 130,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "hig",
+      "nome": "Chinelo",
+      "nota": "Quase nunca usado — só se o banheiro pedir",
+      "peso_g": 170,
+      "onde": "mala",
+      "qtd": 1,
+      "opcional": true
+    },
+    {
+      "cat": "hig",
+      "nome": "Tampões de ouvido",
+      "nota": "Para a rodada e para dormir",
+      "peso_g": 10,
+      "onde": "mao",
+      "qtd": {
+        "escala": "pessoas"
+      }
+    },
+    {
+      "cat": "med",
+      "nome": "Kit farmácia",
+      "nota": "Montado e lacrado, nunca desmontado entre viagens",
+      "peso_g": 260,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "med",
+      "nome": "Remédios de uso contínuo",
+      "nota": "Embalagem original com bula",
+      "peso_g": 90,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "med",
+      "nome": "Receita médica em inglês",
+      "nota": "Obrigatória para controlados",
+      "peso_g": 5,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "med",
+      "nome": "Melatonina",
+      "nota": "Só nas primeiras noites, para ajustar o fuso",
+      "peso_g": 18,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "med",
+      "nome": "Porta-comprimidos",
+      "nota": "Doses da semana já separadas",
+      "peso_g": 45,
+      "onde": "mao",
+      "qtd": 1
+    },
+    {
+      "cat": "sup",
+      "nome": "Creatina em doses",
+      "nota": "Pré-medidas, dentro do pote rotulado",
+      "peso_g": 5,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": {
+        "escala": "dias"
+      }
+    },
+    {
+      "cat": "sup",
+      "nome": "Pote original rotulado",
+      "nota": "Pó branco sem rótulo gera revista secundária",
+      "peso_g": 55,
+      "onde": "mala",
+      "pessoa": "z",
+      "qtd": 1
+    },
+    {
+      "cat": "lav",
+      "nome": "Varal de elástico trançado",
+      "nota": "A torção prende o tecido — dispensa pregador",
+      "peso_g": 85,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "lav",
+      "nome": "Gancho over-the-door",
+      "nota": "A âncora mais confiável que existe",
+      "peso_g": 55,
+      "onde": "mala",
+      "qtd": 2
+    },
+    {
+      "cat": "lav",
+      "nome": "Mosquetão",
+      "nota": "Prende em qualquer barra, alça ou aro",
+      "peso_g": 14,
+      "onde": "mala",
+      "qtd": 4
+    },
+    {
+      "cat": "lav",
+      "nome": "Pregador de roupa",
+      "peso_g": 5,
+      "onde": "mala",
+      "qtd": 6
+    },
+    {
+      "cat": "lav",
+      "nome": "Cabide dobrável",
+      "nota": "Camiseta de algodão seca em cabide, não na corda",
+      "peso_g": 28,
+      "onde": "mala",
+      "qtd": 4
+    },
+    {
+      "cat": "lav",
+      "nome": "Saco impermeável 40 L",
+      "nota": "Um lava, o outro guarda a roupa suja. Encheu, lava",
+      "peso_g": 200,
+      "onde": "mala",
+      "qtd": 2
+    },
+    {
+      "cat": "lav",
+      "nome": "Tampão de pia",
+      "nota": "Silicone de 12 cm, assenta por cima da válvula click",
+      "peso_g": 38,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "lav",
+      "nome": "Sabão em folhas",
+      "nota": "Não vaza e passa na segurança",
+      "peso_g": 2,
+      "onde": "mala",
+      "qtd": {
+        "escala": "lavagens",
+        "fator": 2,
+        "min": 2
+      }
+    },
+    {
+      "cat": "lav",
+      "nome": "Packing cube de compressão",
+      "peso_g": 115,
+      "onde": "mala",
+      "qtd": {
+        "escala": "dias",
+        "fator": 0.05,
+        "mais": 2,
+        "min": 3,
+        "max": 4
+      }
+    },
+    {
+      "cat": "lav",
+      "nome": "Balança digital de mão",
+      "nota": "Evita a taxa de excesso no balcão",
+      "peso_g": 85,
+      "onde": "mala",
+      "qtd": 1
+    },
+    {
+      "cat": "sup",
+      "nome": "Garrafa térmica vazia",
+      "nota": "Vazia no raio-X, enche depois. Serve de coqueteleira",
+      "peso_g": 320,
+      "onde": "mao",
+      "pessoa": "z",
+      "qtd": 1
+    }
+  ]
+}

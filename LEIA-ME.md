@@ -14,6 +14,8 @@ ATUALIZAR-ALCANCE.bat         soma views e curtidas dos vídeos
 VER-LOCAL.bat                 abre o site na sua máquina para conferir
 
 index.html                    o site (não precisa ser editado)
+xeque-mala.html               ferramenta: lista de bagagem para torneios
+xeque-mala-dados.json         os 82 itens da lista, pesos e regras
 dados/conteudo.json           números, conquistas, imprensa, contato
 dados/videos.json             lista de vídeos do YouTube
 dados/galeria.json            legendas das fotos
@@ -142,7 +144,34 @@ dado é medido, e a data da medição aparece ao lado.
 
 ---
 
-## 7. Detalhe técnico, para quem for mexer no código
+## 7. As ferramentas
+
+O site abriga ferramentas livres para a comunidade enxadrística. A primeira é o
+**Xeque-Mala** (`xeque-mala.html`), uma lista de bagagem que calcula pesos por mala.
+
+A lógica é sempre a mesma, e vale para as próximas: **a ferramenta traz visitantes que a
+biografia nunca traria.** Ninguém pesquisa "Mathias Casalaspro" no Google, mas gente pesquisa
+"o que levar para torneio internacional de xadrez". Quem chega pela ferramenta encontra o
+convite para conhecer a trajetória — sem que isso atrapalhe quem veio direto ao site.
+
+Por isso o link fica só no rodapé, nunca no menu: a página inicial continua com uma função só.
+
+### Para acrescentar uma ferramenta nova
+
+Copie do `xeque-mala.html` os dois blocos marcados com comentário:
+
+- **`<a class="faixa">`**, logo depois do `<body>` — a barra que identifica a ferramenta como
+  parte do site
+- **`<footer class="convite">`**, antes do `</body>` — o convite para a trajetória
+
+E o bloco de CSS comentado como *FAIXA E RODAPÉ DO SITE*, no fim do `<style>`. Os três usam as
+mesmas variáveis de cor do site: `--couro` é o fundo, `--paper` os cartões, `--ink` o texto,
+`--ouro` o destaque.
+
+Depois, acrescente o link na coluna *Ferramentas* do rodapé do `index.html` e uma entrada no
+`sitemap.xml`.
+
+## 8. Detalhe técnico, para quem for mexer no código
 
 O `index.html` traz o conteúdo escrito dentro dele. É a rede de segurança: se algum JSON
 quebrar, ou se a página for aberta em `file://`, o site continua completo em vez de aparecer

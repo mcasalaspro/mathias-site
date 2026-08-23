@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xeque-Mala — lista de viagem</title>
+<meta name="description" content="Lista de bagagem para torneios internacionais de xadrez: pesos por mala, o que vai na mão, regras de lítio e documentos de menor. Calcula sozinho por dias e clima.">
+<link rel="canonical" href="https://www.mathiascasalaspro.com/xeque-mala.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Xeque-Mala — lista de bagagem para torneios de xadrez">
+<meta property="og:description" content="Pesos por mala, o que vai na mão, regras de lítio e documentos de menor. Uma ferramenta livre do site de Mathias Casalaspro.">
+<meta property="og:url" content="https://www.mathiascasalaspro.com/xeque-mala.html">
+<meta property="og:image" content="https://www.mathiascasalaspro.com/assets/og-mathias.jpg">
+<meta name="theme-color" content="#071523">
+<link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/icone-180.png">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* couro e papel */
+  /* Paleta do site do Mathias: azul-marinho, ouro e marfim. */
+  --couro:#071523;                                  /* fundo da página */
+  --paper:#0E2A44; --paper-2:#0A2138;               /* cartões */
+  --edge:rgba(201,162,75,.22); --edge-2:rgba(201,162,75,.34); --hair:rgba(201,162,75,.13);
+  --ink:#F1EBDF; --ink-2:#8FA6BD; --ink-3:#6B839B;  /* textos */
+  --cream:#F1EBDF; --cream-2:#C9A24B;               /* sobre o fundo escuro */
+  --ouro:#C9A24B; --ouro-claro:#E6C77A;
+  /* painéis rebaixados no couro */
+  --deb:rgba(3,10,18,.5);
+  --sh-deb:inset 0 2px 6px rgba(0,0,0,.45), inset 0 -1px 0 rgba(201,162,75,.12), 0 1px 0 rgba(201,162,75,.1);
+  /* categorias */
+  --doc:#E6C77A; --doc-d:#F0B429;
+  --hig:#6FB4FF; --hig-d:#4FA0FF;
+  --med:#FF7B7E; --med-d:#FF5F63;
+  --rou:#C3B49E; --rou-d:#B5A48C;
+  --ele:#B9A0FF; --ele-d:#A88BF5;
+  --lav:#4CDDA9; --lav-d:#2FCF97;
+  --sup:#FFA05C; --sup-d:#FF8A3D;
+  --sh-1:0 1px 2px rgba(0,0,0,.25), 0 16px 34px -20px rgba(0,0,0,.7);
+  --sh-in:inset 0 1px 3px rgba(0,0,0,.3), inset 0 -1px 0 rgba(201,162,75,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  color:var(--cream);
+  font-family:"Inter Tight",system-ui,-apple-system,sans-serif;
+  font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;padding-bottom:80px;
+  background-color:var(--couro);
+  background-image:
+    linear-gradient(rgba(201,162,75,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,162,75,.055) 1px, transparent 1px);
+  background-size:88px 88px, 88px 88px; background-attachment:fixed;
+  background-size:100% 100%, 512px 512px;
+  background-repeat:no-repeat, repeat;
+  background-attachment:fixed;
+}
+.wrap{max-width:1500px;margin:0 auto;padding:0 28px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--cream-2)}
+
+/* ── cabeçalho ── */
+header{padding:38px 0 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:36px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:18px;margin-top:14px}
+.brand svg{width:60px;height:auto;color:var(--cream);filter:drop-shadow(0 2px 6px rgba(25,12,2,.55));flex-shrink:0}
+h1{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 118,"wght" 800;font-size:clamp(34px,4.4vw,54px);line-height:.88;letter-spacing:-.022em;text-transform:uppercase;color:#fff;text-shadow:0 2px 10px rgba(25,12,2,.45)}
+h1 i{font-style:normal;color:var(--doc-d)}
+.tagline{color:var(--cream-2);font-size:14px;margin-top:13px;max-width:47ch}
+.readouts{display:flex;gap:12px;flex-wrap:wrap}
+.readout{background:var(--deb);border-radius:10px;box-shadow:var(--sh-deb);padding:13px 18px 15px;min-width:158px}
+.readout .lbl{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-2);margin-bottom:7px}
+.readout .big{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:29px;letter-spacing:-.035em;line-height:1;color:#fff}
+.readout .big em{font-style:normal;color:var(--cream-2);font-weight:400;opacity:.7}
+.readout .big small{font-size:13px;color:var(--cream-2);font-weight:400;margin-left:3px}
+.readout .track{height:5px;background:rgba(20,10,2,.42);border-radius:99px;margin-top:11px;overflow:hidden}
+.readout .track i{display:block;height:100%;background:var(--cream);border-radius:99px;transition:width .45s cubic-bezier(.4,0,.2,1)}
+
+/* ── barra de modo ── */
+.modebar{position:sticky;top:0;z-index:70;background:rgba(7,21,35,.9);backdrop-filter:blur(14px) saturate(1.3);border-top:1px solid rgba(201,162,75,.18);border-bottom:1px solid rgba(30,15,4,.45)}
+.modebar .wrap{display:flex;align-items:center;gap:16px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap;min-width:0}
+.modeswitch{display:flex;background:var(--deb);border-radius:9px;padding:3px;box-shadow:var(--sh-deb);gap:3px;max-width:100%;min-width:0}
+.modeswitch button{min-width:0;flex:1 1 auto}
+.modeswitch button{font:inherit;font-size:13px;font-weight:600;border:0;background:none;color:var(--cream-2);padding:9px 17px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .18s,color .18s;white-space:nowrap}
+.modeswitch button .ic{font-family:"JetBrains Mono",monospace;font-size:11px;opacity:.6}
+.modeswitch button:hover{color:#fff}
+.modeswitch button[aria-pressed="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(20,10,2,.4)}
+.modeswitch button[aria-pressed="true"] .ic{opacity:1;color:var(--doc)}
+.state{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--cream);background:rgba(30,16,4,.26);border:1px solid rgba(201,162,75,.22);padding:4px 9px;border-radius:5px;white-space:nowrap}
+.grow{flex:1}
+.btn{font:inherit;font-size:12.5px;font-weight:500;color:var(--ink-2);background:var(--paper);border:1px solid rgba(255,255,255,.25);border-radius:7px;padding:8px 13px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:color .16s,background .16s;box-shadow:0 1px 2px rgba(20,10,2,.3)}
+.btn:hover{color:var(--ink);background:#fff}
+.btn.danger:hover{color:var(--med)}
+.btn .chev{font-size:9px;transition:transform .25s;display:inline-block}
+.btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+
+/* ── parâmetros ── */
+.params{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s cubic-bezier(.4,0,.2,1)}
+.params.open{grid-template-rows:1fr}
+.params>div{overflow:hidden}
+.params-inner{background:var(--paper);border:1px solid var(--edge);border-radius:12px;box-shadow:var(--sh-1);margin:16px 0 4px;padding:20px 24px;display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:9px}
+.field>label{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-3)}
+.seg{display:flex;background:var(--paper-2);border-radius:7px;padding:3px;gap:3px;border:1px solid var(--edge)}
+.seg button{font:inherit;font-size:12.5px;font-weight:500;color:var(--ink-2);background:none;border:0;padding:6px 12px;border-radius:5px;cursor:pointer;transition:background .16s,color .16s;white-space:nowrap}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--cream);font-weight:600}
+.seg.num button{font-family:"JetBrains Mono",monospace;font-size:12px;min-width:34px}
+.stepper{display:flex;align-items:center;background:var(--paper-2);border:1px solid var(--edge);border-radius:7px;overflow:hidden}
+.stepper button{font:inherit;width:30px;height:32px;background:none;border:0;color:var(--ink-2);cursor:pointer;font-size:16px;transition:background .16s,color .16s}
+.stepper button:hover{background:var(--hair);color:var(--ink)}
+.stepper input{width:48px;height:32px;background:none;border:0;color:var(--ink);text-align:center;font-family:"JetBrains Mono",monospace;font-size:13.5px;font-weight:700;-moz-appearance:textfield}
+.stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.toggle{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;height:32px}
+.toggle input{position:absolute;opacity:0;width:0;height:0}
+.toggle .tr{width:36px;height:20px;background:#DCCFBB;border-radius:99px;position:relative;transition:background .2s;flex-shrink:0;box-shadow:var(--sh-in)}
+.toggle .tr::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(60,38,16,.4);transition:transform .2s}
+.toggle input:checked+.tr{background:var(--lav)}
+.toggle input:checked+.tr::after{transform:translateX(16px)}
+.toggle input:focus-visible+.tr{outline:2px solid var(--ink);outline-offset:2px}
+.toggle .tx{font-size:13px;color:var(--ink)}
+
+/* ── medidores ── */
+.gauges{display:grid;gap:14px;margin:24px 0 0}
+.gauges.n3{grid-template-columns:repeat(3,1fr)}
+.gauges.n2{grid-template-columns:repeat(2,1fr)}
+.gauge{background:var(--deb);border-radius:11px;box-shadow:var(--sh-deb);padding:16px 19px 17px;transition:box-shadow .3s}
+.gauge-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
+.gauge-name{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-2);display:flex;align-items:center;gap:8px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--tint);flex-shrink:0}
+.gauge-cap{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--cream-2);opacity:.72;white-space:nowrap}
+.gauge-read{display:flex;align-items:baseline;gap:6px}
+.gauge-read b{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:34px;letter-spacing:-.035em;line-height:1;color:#fff;transition:color .3s}
+.gauge-read span{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cream-2)}
+.gauge-read .pct{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--cream-2)}
+.gtrack{height:9px;border-radius:3px;margin-top:13px;overflow:hidden;background:rgba(18,9,2,.45);background-image:repeating-linear-gradient(90deg,rgba(255,235,205,.20) 0 1px,transparent 1px 10%)}
+.gtrack i{display:block;height:100%;background:var(--tint);border-radius:3px;transition:width .45s cubic-bezier(.4,0,.2,1),background .3s}
+.gauge-note{font-size:11.5px;color:var(--cream-2);margin-top:11px;line-height:1.4;opacity:.9}
+.gauge.over{box-shadow:var(--sh-deb),0 0 0 1.5px var(--med-d)}
+.gauge.over .gauge-read b{color:var(--med-d)}
+.gauge.over .gtrack i{background:var(--med-d)}
+
+/* ── avisos ── */
+.alerts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.alert{font-size:13px;line-height:1.45;background:var(--paper);color:var(--ink-2);border:1px solid var(--edge);border-left:3px solid var(--med);border-radius:8px;padding:11px 16px;box-shadow:var(--sh-1)}
+.alert.info{border-left-color:var(--hig)}
+.alert.good{border-left-color:var(--lav)}
+.alert.data{border-left-color:var(--doc)}
+.alert b{font-weight:600;color:var(--ink)}
+.alert code{font-family:"JetBrains Mono",monospace;font-size:12px;background:var(--paper-2);padding:1px 5px;border-radius:4px}
+
+/* ── seções ── */
+.shead{display:flex;align-items:center;gap:16px;margin:40px 0 18px}
+.shead h2{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 116,"wght" 700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--cream);text-shadow:0 1px 6px rgba(25,12,2,.5)}
+.shead .rule{flex:1;height:1px;background:rgba(201,162,75,.32)}
+.shead .hint{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--cream-2)}
+
+/* ── cartões ── */
+.grid{columns:3;column-gap:14px}
+@media(max-width:1180px){.grid{columns:2}.gauges.n3{grid-template-columns:1fr 1fr}}
+@media(max-width:780px){.grid{columns:1}.gauges.n3,.gauges.n2{grid-template-columns:1fr}.brand svg{width:46px}}
+.card{break-inside:avoid;background:var(--paper);color:var(--ink);border:1px solid var(--edge);border-radius:11px;margin-bottom:14px;box-shadow:var(--sh-1);overflow:hidden}
+.chead{display:flex;align-items:center;gap:10px;padding:13px 16px 11px;border-bottom:1px solid var(--hair)}
+.chead .dot{width:8px;height:8px;background:var(--accent)}
+.chead h3{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 112,"wght" 700;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;flex:1;color:var(--accent)}
+.chead .cnt{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;color:var(--ink-3)}
+.csub{padding:10px 16px;font-size:11.5px;color:var(--ink-2);line-height:1.42;background:var(--paper-2);border-bottom:1px solid var(--hair)}
+.items{list-style:none}
+.item{display:flex;align-items:flex-start;gap:10px;padding:9px 16px;border-bottom:1px solid var(--hair);cursor:pointer;transition:background .12s;position:relative}
+.item:last-child{border-bottom:0}
+.item:hover{background:var(--paper-2)}
+.item input{position:absolute;opacity:0;width:0;height:0}
+.box{width:16px;height:16px;border:1.5px solid #C3B49F;border-radius:4px;flex-shrink:0;margin-top:2px;background:#fff;position:relative;transition:background .15s,border-color .15s}
+.box::after{content:"";position:absolute;left:4.4px;top:1.2px;width:4px;height:8.4px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg) scale(.4);opacity:0;transition:opacity .15s,transform .15s}
+.item input:checked+.box{background:var(--accent);border-color:var(--accent)}
+.item input:checked+.box::after{opacity:1;transform:rotate(42deg) scale(1)}
+.item input:focus-visible+.box{outline:2px solid var(--ink);outline-offset:2px}
+.qty{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:12.5px;min-width:22px;text-align:right;flex-shrink:0;margin-top:1px}
+.qty.bump{animation:bump .45s ease}
+@keyframes bump{0%{transform:scale(1)}30%{transform:scale(1.3);color:var(--accent)}100%{transform:scale(1)}}
+.lw{flex:1;min-width:0}
+.lm{font-size:13.5px;line-height:1.32}
+.ln{font-size:11.5px;color:var(--ink-2);line-height:1.35;margin-top:2px}
+.item input:checked~.lw .lm{text-decoration:line-through;color:var(--ink-3)}
+.wt{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--ink-3);flex-shrink:0;margin-top:3px;min-width:48px;text-align:right}
+.wt.opc{opacity:.5;font-style:italic}
+.tag.opc{background:#EFE7DA;color:#8A7B66}
+.tag{font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;padding:2.5px 5px;border-radius:4px;flex-shrink:0;margin-top:3px}
+.tag.mao{background:#DCE7FB;color:#17509E}
+.tag.mala{background:#EDE5D8;color:#6E6357}
+.tag.corpo{background:#FBE7C4;color:#8A5B07}
+.tag.bloq{background:#FBDDDB;color:#A82029}
+.cfoot{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;background:var(--paper-2);border-top:1px solid var(--hair);font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--ink-2)}
+.cfoot b{font-weight:700;color:var(--ink)}
+
+/* ── referência ── */
+.ref details{background:var(--paper);color:var(--ink-2);border:1px solid var(--edge);border-radius:10px;margin-bottom:9px;overflow:hidden;box-shadow:var(--sh-1)}
+.ref summary{padding:14px 18px;cursor:pointer;font-weight:600;font-size:14px;color:var(--ink);list-style:none;display:flex;align-items:center;gap:12px;transition:background .16s}
+.ref summary:hover{background:var(--paper-2)}
+.ref summary::-webkit-details-marker{display:none}
+.ref summary::before{content:"+";font-family:"JetBrains Mono",monospace;color:var(--doc);font-size:16px;width:14px}
+.ref details[open] summary::before{content:"\2212"}
+.ref .body{padding:0 22px 20px 44px;font-size:13.5px;line-height:1.6}
+.ref .body ul{margin:0 0 12px;padding-left:16px}
+.ref .body li{margin-bottom:6px}
+.ref .body li::marker{color:var(--doc)}
+.ref .body b{color:var(--ink);font-weight:600}
+.ref .body p{margin-bottom:11px}
+.ref .body p:last-child,.ref .body ul:last-child{margin-bottom:0}
+.ref .body code{font-family:"JetBrains Mono",monospace;font-size:12px;background:var(--paper-2);border-radius:5px;padding:1px 5px}
+.ref .body pre{font-family:"JetBrains Mono",monospace;font-size:12px;background:var(--paper-2);border:1px solid var(--edge);border-radius:5px;padding:12px 14px;overflow-x:auto;margin-bottom:11px;line-height:1.5;color:var(--ink)}
+
+#drop{position:fixed;inset:0;background:rgba(30,15,4,.82);z-index:200;display:none;align-items:center;justify-content:center;color:var(--cream);font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 118,"wght" 700;font-size:22px;letter-spacing:.04em;text-transform:uppercase}
+#drop.on{display:flex}
+
+footer{margin-top:38px;padding-top:20px;border-top:1px solid rgba(201,162,75,.28);color:var(--cream-2);font-size:11.5px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* ── impressão: papel branco, sem couro ── */
+@media print{
+  body{background:#fff!important;background-image:none!important;color:#000;padding:0}
+  .modebar,.params,.btn,.ref,footer,.gtrack,.readout .track,.alert.data{display:none!important}
+  .wrap{max-width:100%;padding:0 8mm}
+  header{padding:0 0 6mm;border-bottom:2px solid #000}
+  h1,.shead h2{color:#000;text-shadow:none}
+  h1 i{color:#000}
+  .brand svg{color:#000;filter:none;width:44px}
+  .eyebrow,.tagline{color:#444}
+  .gauges{grid-template-columns:repeat(3,1fr)!important;gap:5mm}
+  .gauge,.readout{background:#fff;border:1px solid #999;box-shadow:none}
+  .gauge-read b,.readout .big,.gauge-name,.gauge-cap,.gauge-note,.readout .lbl{color:#000}
+  .grid{columns:2;column-gap:6mm}
+  .card{box-shadow:none;border:1px solid #999;page-break-inside:avoid}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+/* ============================================================
+   FAIXA E RODAPÉ DO SITE — identidade compartilhada das ferramentas
+   ============================================================ */
+.faixa{
+  display:flex; align-items:center; gap:14px; text-decoration:none;
+  max-width:1180px; margin:0 auto; padding:11px 22px;
+  border-bottom:1px solid rgba(201,162,75,.16);
+  color:var(--ink-2); transition:background-color .2s ease;
+}
+.faixa:hover{ background:rgba(201,162,75,.06); }
+.faixa__logo{ width:auto; height:30px; flex-shrink:0; filter:drop-shadow(0 0 8px rgba(201,162,75,.3)); }
+.faixa__txt{ display:flex; flex-direction:column; line-height:1.3; min-width:0; }
+.faixa__txt b{ color:var(--ink); font-size:12.5px; font-weight:600; }
+.faixa__txt i{
+  font-style:normal; font-family:"JetBrains Mono",monospace; font-size:9.5px;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin-top:2px;
+}
+.faixa__cta{
+  margin-left:auto; flex-shrink:0; font-family:"JetBrains Mono",monospace;
+  font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ouro); font-weight:700;
+}
+
+.convite{ margin-top:70px; border-top:1px solid rgba(201,162,75,.18); background:rgba(7,21,35,.6); }
+.convite__int{ text-align:center; padding-top:56px; padding-bottom:60px; }
+.convite__logo{ width:auto; height:74px; margin:0 auto 22px; display:block;
+  filter:drop-shadow(0 0 16px rgba(201,162,75,.32)); }
+.convite__olho{
+  font-family:"JetBrains Mono",monospace; font-size:9.5px; letter-spacing:.19em;
+  text-transform:uppercase; color:var(--ouro); margin:0 0 12px;
+}
+.convite__t{
+  font-size:clamp(20px,3vw,30px); line-height:1.22; color:var(--ink);
+  letter-spacing:-.02em; margin:0 0 16px; font-weight:800;
+}
+.convite__p{ color:var(--ink-2); max-width:56ch; margin:0 auto 28px; font-size:14px; line-height:1.65; }
+.convite__p b{ color:var(--ink); font-weight:600; }
+.convite__btn{
+  display:inline-block; background:var(--ouro); color:#071523; text-decoration:none;
+  font-weight:700; font-size:14px; padding:15px 30px; border-radius:4px;
+  transition:background-color .2s ease, transform .2s ease;
+}
+.convite__btn:hover{ background:var(--ouro-claro); transform:translateY(-2px); }
+.convite__nota{ color:var(--ink-3); font-size:12px; max-width:46ch; margin:26px auto 0; line-height:1.6; }
+
+@media (max-width:640px){
+  .faixa{ padding:10px 16px; gap:11px; }
+  .faixa__logo{ height:26px; }
+  .faixa__txt b{ font-size:11.5px; }
+  .faixa__txt i{ display:none; }
+  .faixa__cta{ font-size:9px; }
+  .convite__int{ padding-top:44px; padding-bottom:48px; }
+  .convite__logo{ height:60px; }
+  .convite__btn{ display:block; }
+}
+@media print{ .faixa, .convite{ display:none; } }
+</style>
+</head>
+<body>
+<div id="drop">Solte o arquivo JSON</div>
+<input type="file" id="fileIn" accept=".json,application/json" hidden>
+
+<!-- ============================================================
+     FAIXA DO SITE — padrão para as ferramentas do mathiascasalaspro.com.
+     Copie este bloco e o rodapé no fim do arquivo para cada nova ferramenta.
+     ============================================================ -->
+<a class="faixa" href="https://www.mathiascasalaspro.com/">
+  <img class="faixa__logo" src="assets/logo-marca.png" alt="" width="367" height="400">
+  <span class="faixa__txt">
+    <b>Uma ferramenta do site de Mathias Casalaspro</b>
+    <i>Mestre FIDE · a caminho do título de Mestre Internacional</i>
+  </span>
+  <span class="faixa__cta">Conhecer o site &rarr;</span>
+</a>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Torneio internacional · adulto e jovem</div>
+      <div class="brand">
+        <svg viewBox="0 0 420 603" fill="currentColor" fill-rule="evenodd" role="img" aria-label="Xeque-Mala"><g transform="translate(0.000000,603.000000) scale(0.250000,-0.250000)"><path d="M267 2385 c-10 -11 -10 -319 0 -340 32 -68 208 -130 397 -139 67 -4 82 -2 86 12 7 28 14 30 94 30 80 0 84 -1 93 -23 8 -19 12 -21 50 -21 181 0 380 63 435 137 13 18 15 333 2 344 -13 10 -229 11 -243 1 -9 -6 -9 -9 -9 -80 0 -65 -1 -73 -7 -79 -10 -9 -165 -10 -172 -2 -3 3 -5 35 -6 80 -1 97 15 87 -140 87 -157 0 -143 9 -143 -91 0 -89 9 -81 -90 -81 -98 0 -89 -8 -91 83 -1 98 13 89 -135 89 -106 0 -115 -1 -121 -7z M346 1944 c-2 -3 -1 -13 20 -128 5 -32 12 -71 14 -86 18 -111 22 -114 195 -114 l128 0 2 16 c3 22 12 35 29 42 l14 6 -1 99 -1 99 -92 5 c-124 6 -207 22 -275 53 -32 14 -30 13 -33 8z M1316 1940 c-77 -35 -157 -51 -282 -57 l-92 -5 -1 -99 c-1 -99 -1 -99 12 -105 19 -8 28 -20 31 -39 l2 -17 120 -1 c169 -2 180 3 194 91 2 17 9 54 14 84 30 167 30 160 2 148z M789 1913 c-4 -3 -5 -29 -4 -119 l1 -116 60 0 60 0 1 113 c1 98 0 113 -5 119 -7 7 -103 9 -113 3z M291 1820 c-178 -43 -283 -258 -268 -548 10 -175 20 -263 53 -449 14 -80 8 -73 49 -66 l33 5 3 42 c2 31 1 65 -5 130 -17 191 -20 265 -12 356 18 202 84 338 188 387 24 11 23 8 9 87 -13 65 -13 65 -50 56z M1354 1819 c-3 -8 -22 -118 -22 -126 0 -5 8 -11 26 -20 83 -41 141 -142 171 -296 12 -64 13 -318 1 -413 -11 -91 -13 -194 -3 -199 5 -3 56 -13 66 -13 1 0 4 11 7 25 19 108 25 148 36 223 55 403 22 613 -117 746 -53 51 -157 97 -165 73z M746 1638 c-9 -10 -9 -162 0 -170 10 -8 190 -6 199 3 12 11 10 158 -2 167 -13 9 -187 9 -197 0z m157 -99 l-1 -25 -58 0 -58 0 -1 19 c-2 32 -4 31 61 31 l58 0 -1 -25z M433 1578 c-26 -11 -32 -48 -14 -82 12 -22 12 -22 6 -84 -6 -73 -20 -237 -37 -420 -17 -191 -24 -264 -28 -322 -5 -56 -14 -153 -21 -225 -5 -54 -6 -53 37 -64 230 -63 731 -60 947 5 22 7 26 13 23 40 -6 53 -19 188 -22 232 -2 29 -7 93 -12 144 -22 237 -29 312 -32 362 -2 30 -7 79 -10 110 -4 31 -8 79 -10 108 -2 29 -5 61 -6 72 -2 18 -1 22 9 40 19 31 19 52 -1 73 l-13 15 -127 1 c-153 2 -138 8 -138 -64 0 -64 -4 -75 -27 -86 -15 -7 -15 -7 -17 -71 -2 -75 0 -70 -46 -103 -48 -35 -50 -35 -98 0 -48 35 -48 34 -48 108 0 61 0 61 -14 67 -25 10 -30 24 -30 89 0 47 -1 57 -6 59 -15 5 -252 2 -265 -4z M368 1454 c-86 -64 -124 -191 -124 -419 0 -104 -4 -97 63 -101 52 -4 47 -9 51 56 1 22 5 76 10 120 20 196 33 346 31 352 -4 9 -11 7 -31 -8z M1285 1427 c2 -23 7 -74 11 -115 8 -76 26 -272 31 -340 l3 -38 42 1 c71 1 68 -3 68 100 0 224 -44 368 -128 422 -29 18 -30 17 -27 -30z M787 1429 c-2 -1 -3 -29 -3 -61 l0 -59 27 -21 c16 -11 31 -20 35 -20 6 0 53 33 59 42 6 9 3 117 -3 120 -9 3 -112 3 -115 -1z M236 900 c-36 -23 -46 -52 -46 -132 1 -157 35 -288 91 -347 26 -27 27 -26 31 39 2 30 7 93 12 140 26 288 27 296 11 300 -31 9 -85 9 -99 0z M1370 904 c-15 -2 -29 -5 -31 -8 -5 -4 7 -170 21 -300 2 -19 6 -66 8 -106 7 -97 7 -98 32 -71 79 85 125 370 75 454 -21 34 -37 39 -105 31z M118 733 c-43 -9 -43 -10 -32 -75 8 -48 10 -49 49 -42 41 6 40 5 34 45 -2 18 -5 40 -5 48 0 18 -6 31 -13 31 -3 -1 -18 -4 -33 -7z M1525 735 c-3 -5 -17 -108 -15 -111 4 -7 70 -13 76 -8 5 5 18 72 18 91 0 17 -24 28 -75 33 0 0 -2 -2 -4 -5z M139 597 c-31 -7 -31 -6 -17 -48 32 -95 110 -192 141 -175 24 13 24 15 -2 43 -38 40 -58 81 -75 149 -10 41 -9 40 -47 31z M1506 600 c-1 -1 -5 -15 -8 -30 -14 -60 -50 -129 -84 -162 -17 -17 -17 -20 1 -31 19 -12 23 -10 60 28 43 46 72 97 91 161 8 27 10 24 -26 32 -35 7 -31 7 -34 2z M286 353 c-37 -19 -41 -32 -44 -144 -3 -86 -2 -89 6 -97 124 -124 1060 -124 1184 0 9 9 12 163 4 193 -14 51 -54 64 -136 43 -235 -59 -684 -59 -921 0 -52 13 -75 15 -93 5z"/></g></svg>
+        <h1>Xeque<i>-</i>Mala</h1>
+      </div>
+      <p class="tagline">Escolha o modo de bagagem e os dias. A lista, os pesos e os totais se recalculam sozinhos.</p>
+    </div>
+    <div class="readouts">
+      <div class="readout">
+        <div class="lbl">Guardados</div>
+        <div class="big"><span id="gDone">0</span><em>/</em><span id="gTotal">0</span></div>
+        <div class="track"><i id="gFill" style="width:0"></i></div>
+      </div>
+      <div class="readout">
+        <div class="lbl">Peso na bagagem</div>
+        <div class="big"><span id="gPeso">0,0</span><small>kg</small></div>
+        <div class="track"><i id="gPesoFill" style="width:0"></i></div>
+      </div>
+      <div class="readout">
+        <div class="lbl">Vestido no voo</div>
+        <div class="big"><span id="gCorpo">0,0</span><small>kg</small></div>
+        <div class="track"><i style="width:100%;background:var(--doc)"></i></div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="modebar">
+  <div class="wrap">
+    <div class="modeswitch" id="segModo">
+      <button data-v="mala"><span class="ic">&#9636;</span> Mala 10 kg + 2 mochilas</button>
+      <button data-v="mochilas"><span class="ic">&#9650;</span> Só 2 mochilas</button>
+    </div>
+    <div class="state" id="stateChips"></div>
+    <div class="grow"></div>
+    <button class="btn" id="btnParams" aria-expanded="false" aria-controls="paramsPanel">Parâmetros <span class="chev">&#9660;</span></button>
+    <button class="btn" id="btnLoad">Carregar JSON</button>
+    <button class="btn" id="btnSave">Baixar JSON</button>
+    <button class="btn" id="btnPrint">Imprimir</button>
+    <button class="btn danger" id="btnReset">Desmarcar</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="params" id="paramsPanel"><div><div class="params-inner">
+    <div class="field">
+      <label>Dias de viagem</label>
+      <div style="display:flex;gap:8px">
+        <div class="seg num" id="segDias"><button data-v="4">4</button><button data-v="7">7</button><button data-v="14">14</button><button data-v="21">21</button><button data-v="30">30</button></div>
+        <div class="stepper"><button id="dMinus" aria-label="Menos um dia">&minus;</button><input id="dias" type="number" min="1" max="120" value="7" aria-label="Dias de viagem"><button id="dPlus" aria-label="Mais um dia">+</button></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Lavo roupa</label>
+      <div class="seg" id="segLavar"><button data-v="2">a cada 2 dias</button><button data-v="3">3 dias</button><button data-v="4">4 dias</button><button data-v="0">nunca</button></div>
+    </div>
+    <div class="field">
+      <label>Clima</label>
+      <div class="seg" id="segClima"><button data-v="frio">frio</button><button data-v="ameno">ameno</button><button data-v="quente">quente</button></div>
+    </div>
+    <div class="field">
+      <label>Notebooks</label>
+      <div class="seg num" id="segLap"><button data-v="1">1</button><button data-v="2">2</button></div>
+    </div>
+    <div class="field">
+      <label>Mostrar</label>
+      <div class="seg" id="segQuem"><button data-v="ambos">ambos</button><button data-v="m">Jovem</button><button data-v="z">Adulto</button></div>
+    </div>
+    <div class="field">
+      <label>Ajustes</label>
+      <div style="display:flex;gap:20px">
+        <label class="toggle"><input type="checkbox" id="merino"><span class="tr"></span><span class="tx">Meias e cuecas merino</span></label>
+        <label class="toggle"><input type="checkbox" id="menor" checked><span class="tr"></span><span class="tx">Jovem &lt; 18 anos</span></label>
+        <label class="toggle"><input type="checkbox" id="vestir" checked><span class="tr"></span><span class="tx">Vestir muda no voo</span></label>
+      </div>
+    </div>
+  </div></div></div>
+
+  <div class="gauges" id="gauges"></div>
+  <div class="alerts" id="alerts"></div>
+
+  <div class="shead"><h2>A lista</h2><div class="rule"></div><div class="hint" id="hintLine"></div></div>
+  <div class="grid" id="grid"></div>
+
+  <div class="ref">
+    <div class="shead"><h2>Regras de bordo</h2><div class="rule"></div><div class="hint">o que não cabe em checkbox</div></div>
+
+    <details open>
+      <summary>Como usar</summary>
+      <div class="body">
+        <ol style="margin:0 0 12px;padding-left:18px">
+          <li style="margin-bottom:7px"><b>Escolha o modo de bagagem</b>, no topo. É a decisão que muda mais coisa: alterna entre três medidores e dois, troca as etiquetas dos itens e bloqueia o que não passa na inspeção de mão.</li>
+          <li style="margin-bottom:7px"><b>Abra <i>Parâmetros</i></b> e ajuste dias, frequência de lavagem, clima, número de notebooks e quem está viajando. As quantidades se recalculam na hora — a que muda pisca.</li>
+          <li style="margin-bottom:7px"><b>Olhe os medidores.</b> Verde ou cinza, cabe. Vermelho com contorno, estourou — e o aviso logo abaixo lista as três alavancas mais eficazes, na ordem.</li>
+          <li style="margin-bottom:7px"><b>Marque conforme guarda.</b> O contador do topo e o de cada bloco acompanham. O estado fica salvo se você fechar a página.</li>
+          <li><b>Leve a lista.</b> <i>Imprimir</i> sai em duas colunas sem os controles; <i>Copiar</i> põe tudo em texto puro, bom para o WhatsApp.</li>
+        </ol>
+        <p><b>Como ler cada linha:</b> número à esquerda é a quantidade, peso à direita é o total daquele item. Passe o mouse para ver o peso de uma unidade. A etiqueta diz onde ele viaja: <code>mão</code> é obrigatório na mochila, <code>mala</code> vai despachado, <code>no corpo</code> é vestido no voo e não pesa, <code>opcional</code> aparece como lembrete mas fica fora da conta, e <code>barrado</code> é o que a inspeção retém.</p>
+        <p><b>Dois ajustes que mudam tudo:</b> <i>merino</i> derruba o teto de meias e cuecas de 6 para 4, e <i>vestir muda no voo</i> tira uma calça, camiseta, cueca, meia, casaco e cinto de cada um da bagagem. Sem o segundo, o modo só-mochilas nunca fecha.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Ajuste fino: baixar, editar e recarregar o JSON</summary>
+      <div class="body">
+        <p>Toda a lista, os pesos e as regras de quantidade vivem em <code>xeque-mala-dados.json</code>, ao lado deste arquivo. Edite o JSON num editor de texto e recarregue a página.</p>
+        <p><b>Se você abrir o HTML com duplo clique</b> (endereço <code>file://</code>), o navegador bloqueia a leitura de arquivos vizinhos por segurança. Três saídas, da mais simples para a mais definitiva:</p>
+        <ul>
+          <li><b>Arraste o JSON para cima da página</b>, ou use o botão <b>Carregar JSON</b>. A página memoriza o arquivo e continua usando ele nas próximas vezes.</li>
+          <li><b>Rode um servidor local</b> na pasta: <code>python3 -m http.server 8000</code> e abra <code>http://localhost:8000/xeque-mala.html</code>. Aí o JSON carrega sozinho a cada recarga, e nada sai do seu computador.</li>
+          <li><b>Publique no GitHub Pages</b> num subendereço, com os dois arquivos na mesma pasta. Funciona direto — só lembre que fica público.</li>
+        </ul>
+        <p><b>O ciclo de ajuste fino</b>, quando quiser mudar quantidade, peso ou acrescentar item:</p>
+        <ol style="margin:0 0 12px;padding-left:18px">
+          <li style="margin-bottom:5px">Clique em <b>Baixar JSON</b>. Vem o arquivo com a lista exatamente como está agora.</li>
+          <li style="margin-bottom:5px">Abra num editor de texto e mude o que quiser. Dica: comece corrigindo <code>peso_g</code> dos itens que você já pesou.</li>
+          <li style="margin-bottom:5px">Salve e <b>arraste o arquivo para cima desta página</b>. Ela valida, aplica e memoriza — nas próximas vezes já abre com a sua versão.</li>
+          <li>Se o JSON tiver erro de sintaxe, aparece um alerta dizendo o que faltou e a lista anterior continua no ar.</li>
+        </ol>
+        <p>Guarde o arquivo baixado junto do HTML, com o nome <code>xeque-mala-dados.json</code>. Assim, se você usar servidor local ou GitHub Pages, ele carrega sozinho.</p>
+        <p>A anatomia de um item:</p>
+        <pre>{
+  "cat": "rouZ",
+  "nome": "Camiseta de algodão",
+  "nota": "Seca em 8 a 12 h",
+  "peso_g": 160,
+  "onde": "mala",
+  "pessoa": "z",
+  "qtd": { "escala": "lavagem", "fator": 0.7,
+           "mais": 1, "min": 3, "max": 7 }
+}</pre>
+        <p><code>peso_g</code> é o peso de <b>uma</b> unidade. <code>onde</code> aceita <code>mao</code>, <code>mala</code> ou <code>corpo</code>. Em <code>qtd</code> vai um número fixo ou a regra acima; as escalas disponíveis são <code>fixo</code>, <code>dias</code>, <code>lavagem</code>, <code>pessoas</code>, <code>notebooks</code> e <code>lavagens</code>. O bloco <code>_leia_me</code> no topo do JSON tem a referência completa.</p>
+        <p>Os limites e o peso vazio de cada bagagem também estão lá, em <code>bagagens</code>. Pese suas mochilas de verdade e corrija <code>tara_kg</code> — é o ajuste que mais muda o resultado.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Viajar só com as duas mochilas</summary>
+      <div class="body">
+        <p>É o modo mais eficiente e o mais apertado. O que faz funcionar não é levar menos roupa — é <b>lavar a cada 2 ou 3 dias</b>. Com essa frequência, 7 dias e 30 dias pedem quase a mesma bagagem.</p>
+        <ul>
+          <li><b>Nada de tesoura, cortador de unhas ou canivete</b> — barrados na mão. O app marca esses itens em vermelho quando você entra no modo mochilas.</li>
+          <li><b>Líquidos só até 100 ml</b>, num saco transparente. Por isso sabonete, shampoo, hidratante e pasta em versão sólida: você chega a zero líquidos e nem passa pela regra.</li>
+          <li><b>Vista o mais pesado</b> — tênis, casaco, cinto, blazer se preciso. O que está no corpo não pesa na balança.</li>
+          <li>Casaco com bolsos grandes engole carregador e power bank na hora do embarque.</li>
+          <li>Sem despacho não há extravio, não há espera na esteira e a conexão apertada deixa de ser problema. É o maior ganho.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Onde pendurar o varal quando não há onde pendurar</summary>
+      <div class="body">
+        <p>Não procure onde amarrar — leve duas âncoras portáteis: <b>2 ganchos over-the-door</b> e <b>4 mosquetões</b>. Resolvem 90% dos quartos.</p>
+        <ul>
+          <li><b>Barra da cortina da janela</b> — o vão mais longo do quarto, e fica perto do ar-condicionado. Melhor opção.</li>
+          <li><b>Quina superior da porta aberta</b> — laço por cima, funciona sem gancho.</li>
+          <li><b>Barra do armário</b> — protegida, mas sem circulação. Só com a porta aberta.</li>
+          <li><b>Duas maçanetas opostas</b> — quarto ↔ banheiro.</li>
+          <li><b>Barra do box</b> — pinga no lugar certo, mas ar parado. Seca devagar.</li>
+          <li><b>Bagageiro dobrável</b> aberto — já é um varal pronto.</li>
+          <li><b>Puxador telescópico</b> estendido — varal vertical de emergência.</li>
+        </ul>
+        <p>Ventosas só colam em azulejo e vidro limpos, e caem de madrugada com peso. Corda de <b>elástico trançado</b> dispensa pregador. Camiseta de algodão vai em <b>cabide</b>, nunca dobrada na corda: seca mais rápido e sai sem vinco. Posicione sempre de frente para o ar-condicionado ligado — ar seco em movimento seca mais que calor parado.</p>
+        <p><b>Burrito de toalha:</b> lave, enrole a peça na toalha de microfibra, pise em cima. Corta o tempo de secagem pela metade.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Power bank — a regra mudou em 2026</summary>
+      <div class="body">
+        <ul>
+          <li>Só na <b>bagagem de mão</b>. Despachar é proibido, sem exceção.</li>
+          <li>Máximo de <b>dois por passageiro</b>.</li>
+          <li>Até <b>100 Wh</b> liberado. Entre 100 e 160 Wh exige autorização prévia da companhia. Acima de 160 Wh é proibido e descartado no embarque.</li>
+          <li>Proibido <b>recarregar a bordo</b>, e há recomendação de não usá-lo para carregar outros aparelhos durante o voo. Lufthansa e ITA proíbem o uso ativo desde janeiro de 2026.</li>
+          <li>Terminais isolados ou aparelho na embalagem original.</li>
+        </ul>
+        <p><b>Consequência prática:</b> o tablet do avião não pode depender do power bank. Carregue tudo no portão. Leve o de 10.000 mAh (≈37 Wh), não o maior.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Autorização do menor — o erro mais caro</summary>
+      <div class="body">
+        <p>Um menor de 18 anos viajando ao exterior <b>com apenas um dos pais</b> precisa da autorização do outro. Assinatura eletrônica pelo Gov.br <b>não</b> resolve: exige firma reconhecida.</p>
+        <ul>
+          <li><b>AEV</b> pelo e-notariado.org.br — sem ir ao cartório, mas com videoconferência e certificado digital. Cobra o reconhecimento de firma por responsável.</li>
+          <li><b>Solução definitiva:</b> incluir a autorização de viagem no próprio passaporte do menor. Vale por toda a validade do passaporte. Confirme o procedimento atual com a PF.</li>
+        </ul>
+        <p>Passaportes com <b>6 meses</b> de validade mínima e páginas livres. Visto ou ETA conforme o destino.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Chegar jogando</summary>
+      <div class="body">
+        <p>Chegar <b>2 dias antes</b> da primeira rodada não é luxo, é resultado. Sol da manhã no destino, nada de cochilo longo no primeiro dia, melatonina só nas primeiras noites.</p>
+        <p>Salão de torneio costuma ser gelado — o casaco extra não é opcional. Tampões de ouvido servem para a rodada <i>e</i> para dormir.</p>
+        <p><b>eSIM</b> ativado antes de embarcar: chega conectado, sem fila de chip. <b>Cartão multimoeda</b> mais um cartão de crédito de reserva, e espécie para o primeiro dia.</p>
+      </div>
+    </details>
+  </div>
+
+  <footer><span>Xeque-Mala — lista dinâmica de viagem</span><span class="mono" id="footStamp"></span></footer>
+</div>
+
+<script type="application/json" id="dadosPadrao">
+{"versao":1,"bagagens":{"mala":{"nome":"Mala despachada","limite_kg":10,"tara_kg":2.6,"nota":"Roupa, higiene e kit de lavanderia."},"mochila1":{"nome":"Mochila 1 · técnica","limite_kg":8,"tara_kg":1.1,"nota":"Notebooks, documentos e remédios."},"mochila2":{"nome":"Mochila 2 · roupa","limite_kg":8,"tara_kg":1.0,"nota":"Roupa, higiene e kit de lavanderia."}},"categorias":[{"id":"doc","nome":"Documentos","cor":"doc","descricao":"Tudo aqui viaja junto do corpo. Cópia digital de cada um na nuvem e salva offline no celular."},{"id":"ele","nome":"Eletrônicos","cor":"ele","descricao":"Lítio é bagagem de mão obrigatória. Nada nesta lista pode ser despachado."},{"id":"rouM","nome":"Roupas · Jovem","cor":"rou","pessoa":"m","descricao":"Blazer e camisa de patrocinador não escalam com os dias. O resto sim."},{"id":"rouZ","nome":"Roupas · Adulto","cor":"rou","pessoa":"z","descricao":"Só camiseta, sempre casual. Três de algodão mais uma técnica que seca de um banho para o outro."},{"id":"hig","nome":"Higiene","cor":"hig","descricao":"Tudo sólido em vez de líquido: zero saquinho transparente, zero vazamento."},{"id":"med","nome":"Remédios","cor":"med","descricao":"Embalagem original e receita em inglês. Sempre na mochila, nunca despachado."},{"id":"sup","nome":"Suplementos","cor":"sup","pessoa":"z","descricao":"Pó branco sem rótulo gera revista secundária. Doses medidas dentro do pote original."},{"id":"lav","nome":"Lavanderia","cor":"lav","descricao":"O kit que transforma uma viagem de 30 dias em uma de 4."}],"itens":[
+{"cat":"doc","nome":"Passaporte","nota":"Mínimo 6 meses de validade e páginas livres","peso_g":45,"onde":"mao","qtd":{"escala":"pessoas"}},
+{"cat":"doc","nome":"Carta de motorista","nota":"CNH mais permissão internacional se for dirigir","peso_g":8,"onde":"mao","pessoa":"z","qtd":1},
+{"cat":"doc","nome":"Seguro viagem","nota":"Apólice impressa e salva offline","peso_g":15,"onde":"mao","qtd":1},
+{"cat":"doc","nome":"Dinheiro em espécie","nota":"Moeda local para o primeiro dia","peso_g":25,"onde":"mao","qtd":1},
+{"cat":"doc","nome":"Cartão principal","nota":"Multimoeda, avisado ao banco","peso_g":6,"onde":"mao","qtd":1},
+{"cat":"doc","nome":"Cartão extra","nota":"Bandeira diferente, guardado longe do principal","peso_g":6,"onde":"mao","qtd":1},
+{"cat":"doc","nome":"Autorização do menor","nota":"AEV ou autorização impressa no passaporte","peso_g":12,"onde":"mao","requer_menor":true,"qtd":1},
+{"cat":"doc","nome":"Certidão de nascimento","nota":"Cópia — pedida em conexões","peso_g":8,"onde":"mao","requer_menor":true,"qtd":1},
+{"cat":"doc","nome":"Visto ou ETA","nota":"Confirmar exigência do destino","peso_g":8,"onde":"mao","qtd":1},
+{"cat":"doc","nome":"Reservas de voo e hotel","nota":"Salvas offline, não só no e-mail","peso_g":5,"onde":"mao","qtd":1},
+{"cat":"doc","nome":"Cópias na nuvem","nota":"Foto de tudo em pasta compartilhada","peso_g":0,"onde":"mao","qtd":1},
+{"cat":"ele","nome":"Notebook","nota":"Com um só, a mochila técnica alivia quase 2 kg","peso_g":1400,"onde":"mao","qtd":{"escala":"notebooks"}},
+{"cat":"ele","nome":"Carregador do notebook","nota":"Um por máquina — os dois raramente ficam na mesma tomada","peso_g":380,"onde":"mao","qtd":{"escala":"notebooks"}},
+{"cat":"ele","nome":"Carregador de celular","peso_g":60,"onde":"mao","qtd":1},
+{"cat":"ele","nome":"Mouse","peso_g":85,"onde":"mao","qtd":{"escala":"notebooks"}},
+{"cat":"ele","nome":"Mousepad","peso_g":90,"onde":"mala","qtd":1},
+{"cat":"ele","nome":"Adaptador de tomada","nota":"Dois. É o item mais perdido de todos","peso_g":95,"onde":"mao","qtd":2},
+{"cat":"ele","nome":"Régua de tomada","nota":"Substitui os cabos longos: uma tomada distante alimenta tudo","peso_g":160,"onde":"mala","qtd":1},
+{"cat":"ele","nome":"Power bank","nota":"Até 100 Wh (≈10.000 mAh). Nunca despachado","peso_g":210,"onde":"mao","qtd":1},
+{"cat":"ele","nome":"Fones de ouvido","peso_g":60,"onde":"mao","qtd":{"escala":"pessoas"}},
+{"cat":"ele","nome":"Tablet pequeno","nota":"Carregado no portão — não conte com o power bank no voo","peso_g":300,"onde":"mao","qtd":1},
+{"cat":"ele","nome":"Barbeador elétrico","nota":"Bateria de lítio: mochila, nunca na mala","peso_g":130,"onde":"mao","pessoa":"z","qtd":1},
+{"cat":"ele","nome":"AirTag","nota":"Um em cada volume despachado","peso_g":11,"onde":"mala","requer_despacho":true,"qtd":1},
+{"cat":"ele","nome":"eSIM ativado","nota":"Ativar antes de embarcar","peso_g":0,"onde":"mao","qtd":1},
+{"cat":"rouM","nome":"Blazer","nota":"Vai no corpo se a bagagem apertar","peso_g":720,"onde":"mala","pessoa":"m","qtd":1},
+{"cat":"rouM","nome":"Camisa de patrocinador","nota":"Uma no corpo, uma limpa, uma secando","peso_g":175,"onde":"mao","pessoa":"m","qtd":3},
+{"cat":"rouM","nome":"Calça social","nota":"Para o blazer","peso_g":420,"onde":"mala","pessoa":"m","qtd":1},
+{"cat":"rouM","nome":"Calça casual","peso_g":400,"onde":"mala","pessoa":"m","qtd":1,"veste_no_voo":true},
+{"cat":"rouM","nome":"Camiseta","peso_g":150,"onde":"mala","pessoa":"m","qtd":{"escala":"lavagem","fator":0.5,"mais":1,"mais_se_quente":1,"min":2,"max":5,"max_sem_lavar":12},"veste_no_voo":true},
+{"cat":"rouM","nome":"Cueca","peso_g":55,"peso_g_merino":40,"onde":"mala","pessoa":"m","qtd":{"escala":"lavagem","mais":1,"min":3,"max":6,"max_merino":4,"max_sem_lavar":14},"veste_no_voo":true},
+{"cat":"rouM","nome":"Meias","peso_g":55,"peso_g_merino":40,"onde":"mala","pessoa":"m","qtd":{"escala":"lavagem","mais":1,"min":3,"max":6,"max_merino":4,"max_sem_lavar":14},"veste_no_voo":true},
+{"cat":"rouM","nome":"Pijama","peso_g":290,"onde":"mala","pessoa":"m","qtd":{"escala":"dias","fator":0.1,"min":1,"max":2}},
+{"cat":"rouM","nome":"Casaco esportivo leve","peso_g":340,"onde":"mala","pessoa":"m","qtd":1,"veste_no_voo":true},
+{"cat":"rouM","nome":"Casaco extra","nota":"Salão de torneio é gelado. O leve não basta","peso_g":420,"onde":"mala","pessoa":"m","qtd":1},
+{"cat":"rouM","nome":"Segunda pele","peso_g":180,"onde":"mala","pessoa":"m","clima":["frio"],"qtd":2},
+{"cat":"rouM","nome":"Gorro e luvas","peso_g":120,"onde":"mala","pessoa":"m","clima":["frio"],"qtd":1},
+{"cat":"rouM","nome":"Bermuda","peso_g":230,"onde":"mala","pessoa":"m","clima":["ameno","quente"],"qtd":{"escala":"fixo","mais":1,"mais_se_quente":1,"max":2}},
+{"cat":"rouM","nome":"Boné","peso_g":85,"onde":"mala","pessoa":"m","clima":["ameno","quente"],"qtd":1},
+{"cat":"rouM","nome":"Cinto","peso_g":145,"onde":"mala","pessoa":"m","qtd":1,"veste_no_voo":true},
+{"cat":"rouM","nome":"Tênis","nota":"No pé. Único calçado","peso_g":0,"onde":"corpo","pessoa":"m","qtd":1},
+{"cat":"rouZ","nome":"Camiseta de algodão","nota":"Seca em 8 a 12 h — pendure em cabide, não na corda","peso_g":160,"onde":"mala","pessoa":"z","qtd":{"escala":"lavagem","fator":0.5,"mais":1,"min":2,"max":3},"veste_no_voo":true},
+{"cat":"rouZ","nome":"Camiseta de secagem rápida","nota":"Poliéster técnico: lava no banho, escorre na toalha e veste em seguida","peso_g":120,"onde":"mala","pessoa":"z","qtd":1,"veste_no_voo":false},
+{"cat":"rouZ","nome":"Calça","peso_g":400,"onde":"mala","pessoa":"z","qtd":1,"veste_no_voo":true},
+{"cat":"rouZ","nome":"Cueca","peso_g":55,"peso_g_merino":40,"onde":"mala","pessoa":"z","qtd":{"escala":"lavagem","mais":1,"min":3,"max":6,"max_merino":4,"max_sem_lavar":14},"veste_no_voo":true},
+{"cat":"rouZ","nome":"Meias","peso_g":55,"peso_g_merino":40,"onde":"mala","pessoa":"z","qtd":{"escala":"lavagem","mais":1,"min":3,"max":6,"max_merino":4,"max_sem_lavar":14},"veste_no_voo":true},
+{"cat":"rouZ","nome":"Pijama","peso_g":290,"onde":"mala","pessoa":"z","qtd":{"escala":"dias","fator":0.1,"min":1,"max":2}},
+{"cat":"rouZ","nome":"Casaco leve","peso_g":340,"onde":"mala","pessoa":"z","qtd":1,"veste_no_voo":true},
+{"cat":"rouZ","nome":"Casaco extra","nota":"Para o salão e para o avião","peso_g":420,"onde":"mala","pessoa":"z","qtd":1},
+{"cat":"rouZ","nome":"Segunda pele","peso_g":180,"onde":"mala","pessoa":"z","clima":["frio"],"qtd":2},
+{"cat":"rouZ","nome":"Bermuda","peso_g":230,"onde":"mala","pessoa":"z","clima":["ameno","quente"],"qtd":{"escala":"fixo","mais":1,"mais_se_quente":1,"max":2}},
+{"cat":"rouZ","nome":"Boné","peso_g":85,"onde":"mala","pessoa":"z","clima":["ameno","quente"],"qtd":1},
+{"cat":"rouZ","nome":"Cinto","peso_g":145,"onde":"mala","pessoa":"z","qtd":1,"veste_no_voo":true},
+{"cat":"rouZ","nome":"Tênis","nota":"No pé. Único calçado","peso_g":0,"onde":"corpo","pessoa":"z","qtd":1},
+{"cat":"hig","nome":"Pasta de dente","nota":"Em pastilhas evita o limite de 100 ml","peso_g":45,"onde":"mala","qtd":{"escala":"dias","fator":0.07,"min":1,"max":2}},
+{"cat":"hig","nome":"Comprar no destino","nota":"Sabonete, shampoo e hidratante — nunca levar de casa","peso_g":0,"onde":"mao","qtd":1},
+{"cat":"hig","nome":"Escova de dentes","peso_g":18,"onde":"mala","qtd":{"escala":"pessoas"}},
+{"cat":"hig","nome":"Fio dental","peso_g":12,"onde":"mala","qtd":1},
+{"cat":"hig","nome":"Desodorante em barra","peso_g":70,"onde":"mala","qtd":1},
+{"cat":"hig","nome":"Pente ou escova","peso_g":35,"onde":"mala","qtd":1},
+{"cat":"hig","nome":"Cortador de unhas","peso_g":28,"onde":"mala","so_despacho":true,"qtd":1},
+{"cat":"hig","nome":"Necessaire","nota":"Montada uma vez e nunca desmontada","peso_g":190,"onde":"mala","qtd":1},
+{"cat":"hig","nome":"Toalha de microfibra","nota":"Seca rápido e serve de burrito para escorrer roupa","peso_g":130,"onde":"mala","qtd":1},
+{"cat":"hig","nome":"Chinelo","nota":"Quase nunca usado — só se o banheiro pedir","peso_g":170,"onde":"mala","qtd":1,"opcional":true},
+{"cat":"hig","nome":"Tampões de ouvido","nota":"Para a rodada e para dormir","peso_g":10,"onde":"mao","qtd":{"escala":"pessoas"}},
+{"cat":"med","nome":"Kit farmácia","nota":"Montado e lacrado, nunca desmontado entre viagens","peso_g":260,"onde":"mao","qtd":1},
+{"cat":"med","nome":"Remédios de uso contínuo","nota":"Embalagem original com bula","peso_g":90,"onde":"mao","qtd":1},
+{"cat":"med","nome":"Receita médica em inglês","nota":"Obrigatória para controlados","peso_g":5,"onde":"mao","qtd":1},
+{"cat":"med","nome":"Melatonina","nota":"Só nas primeiras noites, para ajustar o fuso","peso_g":18,"onde":"mao","qtd":1},
+{"cat":"med","nome":"Porta-comprimidos","nota":"Doses da semana já separadas","peso_g":45,"onde":"mao","qtd":1},
+{"cat":"sup","nome":"Creatina em doses","nota":"Pré-medidas, dentro do pote rotulado","peso_g":5,"onde":"mala","pessoa":"z","qtd":{"escala":"dias"}},
+{"cat":"sup","nome":"Pote original rotulado","nota":"Pó branco sem rótulo gera revista secundária","peso_g":55,"onde":"mala","pessoa":"z","qtd":1},
+{"cat":"lav","nome":"Varal de elástico trançado","nota":"A torção prende o tecido — dispensa pregador","peso_g":85,"onde":"mala","qtd":1},
+{"cat":"lav","nome":"Gancho over-the-door","nota":"A âncora mais confiável que existe","peso_g":55,"onde":"mala","qtd":2},
+{"cat":"lav","nome":"Mosquetão","nota":"Prende em qualquer barra, alça ou aro","peso_g":14,"onde":"mala","qtd":4},
+{"cat":"lav","nome":"Pregador de roupa","peso_g":5,"onde":"mala","qtd":6},
+{"cat":"lav","nome":"Cabide dobrável","nota":"Camiseta de algodão seca em cabide, não na corda","peso_g":28,"onde":"mala","qtd":4},
+{"cat":"lav","nome":"Saco impermeável 40 L","nota":"Um lava, o outro guarda a roupa suja. Encheu, lava","peso_g":200,"onde":"mala","qtd":2},
+{"cat":"lav","nome":"Tampão de pia","nota":"Silicone de 12 cm, assenta por cima da válvula click","peso_g":38,"onde":"mala","qtd":1},
+{"cat":"lav","nome":"Sabão em folhas","nota":"Não vaza e passa na segurança","peso_g":2,"onde":"mala","qtd":{"escala":"lavagens","fator":2,"min":2}},
+{"cat":"lav","nome":"Packing cube de compressão","peso_g":115,"onde":"mala","qtd":{"escala":"dias","fator":0.05,"mais":2,"min":3,"max":4}},
+{"cat":"lav","nome":"Balança digital de mão","nota":"Evita a taxa de excesso no balcão","peso_g":85,"onde":"mala","qtd":1},
+{"cat":"sup","nome":"Garrafa térmica vazia","nota":"Vazia no raio-X, enche depois. Serve de coqueteleira","peso_g":320,"onde":"mao","pessoa":"z","qtd":1}]}
+</script>
+
+<script>
+"use strict";
+var S={modo:"mala",dias:7,lavar:3,clima:"ameno",laptops:2,quem:"ambos",merino:false,menor:true,vestir:true,params:false,checked:{}};
+var D=null, origem="padrao";
+var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
+var $=function(s){return document.querySelector(s)};
+var kg=function(g){return (g/1000).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1})};
+var gLbl=function(g){return g>=1000?kg(g)+" kg":Math.round(g)+" g"};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+
+/* ── motor de quantidade ── */
+function ctx(){
+  var ef=S.lavar?Math.min(S.dias,S.lavar+2):S.dias;
+  return {dias:S.dias,lavagem:ef,fixo:1,
+    pessoas:S.quem==="ambos"?2:1,notebooks:S.laptops,
+    lavagens:S.lavar?Math.ceil(S.dias/S.lavar):1};
+}
+function qtdDe(r,c){
+  if(r==null)return 1;
+  if(typeof r==="number")return r;
+  var base=c[r.escala||"fixo"];
+  if(base===undefined)return 1;
+  var v=Math.ceil(base*(r.fator!=null?r.fator:1))+(r.mais||0);
+  if(S.clima==="quente"&&r.mais_se_quente)v+=r.mais_se_quente;
+  var max=r.max;
+  if(!S.lavar&&r.max_sem_lavar!=null)max=r.max_sem_lavar;
+  else if(S.merino&&r.max_merino!=null)max=r.max_merino;
+  return clamp(v,r.min!=null?r.min:0,max!=null?max:9999);
+}
+function pesoDe(it){return (S.merino&&it.peso_g_merino!=null)?it.peso_g_merino:(it.peso_g||0)}
+function keyOf(it){return it.cat+"|"+it.nome}
+function visivel(it){
+  if(it.clima&&it.clima.indexOf(S.clima)<0)return false;
+  if(it.requer_menor&&!S.menor)return false;
+  if(it.requer_despacho&&S.modo!=="mala")return false;
+  if(S.quem!=="ambos"&&it.pessoa&&it.pessoa!==S.quem)return false;
+  return true;
+}
+
+var grid=$("#grid"),gaugesEl=$("#gauges"),alertsEl=$("#alerts"),prevQ={};
+
+function render(){
+  if(!D)return;
+  var c=ctx(), soM=S.modo==="mochilas";
+  var cats=D.categorias.filter(function(k){return !(S.quem!=="ambos"&&k.pessoa&&k.pessoa!==S.quem)});
+  var ids={};cats.forEach(function(k){ids[k.id]=1});
+  var ativos=D.itens.filter(function(i){return ids[i.cat]&&visivel(i)})
+    .map(function(i){var q=qtdDe(i.qtd,c),g1=pesoDe(i);
+      var veste=(S.vestir&&i.veste_no_voo&&q>0)?1:0, opc=!!i.opcional;
+      return Object.assign({},i,{key:keyOf(i),qtd:q,g1:g1,veste:veste,opc:opc,
+        graw:g1*q, gt:opc?0:g1*Math.max(0,q-veste), gcorpo:opc?0:g1*veste,
+        bloq:!!(soM&&i.so_despacho)})})
+    .filter(function(i){return i.qtd>0});
+
+  /* cartões */
+  grid.innerHTML=cats.map(function(cat){
+    var list=ativos.filter(function(i){return i.cat===cat.id});
+    if(!list.length)return "";
+    var feitos=list.filter(function(i){return S.checked[i.key]}).length;
+    var sub=list.reduce(function(s,i){return s+((i.bloq||i.onde==="corpo")?0:i.gt)},0);
+    return '<section class="card" style="--accent:var(--'+(cat.cor||"rou")+')">'+
+      '<div class="chead"><span class="dot"></span><h3>'+esc(cat.nome)+'</h3><span class="cnt">'+feitos+'/'+list.length+'</span></div>'+
+      (cat.descricao?'<div class="csub">'+esc(cat.descricao)+'</div>':'')+
+      '<ul class="items">'+list.map(function(i){
+        var bump=prevQ[i.key]!==undefined&&prevQ[i.key]!==i.qtd;
+        var tag=i.bloq?'<span class="tag bloq">barrado</span>'
+          :i.opc?'<span class="tag opc">opcional</span>'
+          :i.onde==="mao"?'<span class="tag mao">mão</span>'
+          :i.onde==="corpo"?'<span class="tag corpo">no corpo</span>'
+          :'<span class="tag mala">'+(soM?"mochila 2":"mala")+'</span>';
+        var peso=i.onde==="corpo"?"—":(i.opc?"("+gLbl(i.graw)+")":gLbl(i.gt));
+        var nota=i.nota||"";
+        if(i.veste)nota=(nota?nota+" · ":"")+"1 vai no corpo";
+        return '<li><label class="item" title="'+i.g1+' g cada">'+
+          '<input type="checkbox" data-k="'+esc(i.key)+'" '+(S.checked[i.key]?"checked":"")+'>'+
+          '<span class="box"></span><span class="qty'+(bump?" bump":"")+'">'+i.qtd+'</span>'+
+          '<span class="lw"><span class="lm">'+esc(i.nome)+'</span>'+(nota?'<span class="ln">'+esc(nota)+'</span>':'')+'</span>'+
+          '<span class="wt'+(i.opc?" opc":"")+'">'+peso+'</span>'+tag+'</label></li>'}).join("")+'</ul>'+
+      '<div class="cfoot"><span>subtotal</span><b>'+gLbl(sub)+'</b></div></section>';
+  }).join("");
+  prevQ={};ativos.forEach(function(i){prevQ[i.key]=i.qtd});
+
+  /* bagagens */
+  var B=D.bagagens;
+  var T={mala:B.mala.tara_kg*1000,A:B.mochila1.tara_kg*1000,B:B.mochila2.tara_kg*1000};
+  var L={mala:B.mala.limite_kg*1000,A:B.mochila1.limite_kg*1000,B:B.mochila2.limite_kg*1000};
+  var A=0,flex=[];
+  ativos.forEach(function(i){
+    if(i.onde==="corpo"||i.bloq)return;
+    if(i.onde==="mao")A+=i.gt;else flex.push(i);
+  });
+  var ord=flex.slice().sort(function(a,b){return b.gt-a.gt});
+  var mala=0,Bg=0,defs,k=0,taraUsada;
+  if(soM){
+    flex.forEach(function(i){Bg+=i.gt});
+    while(Bg+T.B>L.B&&k<ord.length&&A+T.A<L.A){A+=ord[k].gt;Bg-=ord[k].gt;k++}
+    taraUsada=T.A+T.B;
+    defs=[
+      {n:B.mochila1.nome,tot:A+T.A,lim:L.A,tint:"var(--ele-d)",nota:(S.laptops===2?"Dois notebooks":"Um notebook")+", documentos e remédios. Vazia: "+kg(T.A)+" kg."},
+      {n:B.mochila2.nome,tot:Bg+T.B,lim:L.B,tint:"var(--rou-d)",nota:(B.mochila2.nota||"")+" Vazia: "+kg(T.B)+" kg."}];
+  }else{
+    flex.forEach(function(i){mala+=i.gt});
+    while(mala+T.mala>L.mala&&k<ord.length&&Bg+T.B<L.B){mala-=ord[k].gt;Bg+=ord[k].gt;k++}
+    taraUsada=T.mala+T.A+(Bg?T.B:0);
+    defs=[
+      {n:B.mala.nome,tot:mala+T.mala,lim:L.mala,tint:"var(--rou-d)",nota:(B.mala.nota||"")+" Vazia: "+kg(T.mala)+" kg."},
+      {n:B.mochila1.nome,tot:A+T.A,lim:L.A,tint:"var(--ele-d)",nota:(S.laptops===2?"Dois notebooks":"Um notebook")+", documentos e remédios. Vazia: "+kg(T.A)+" kg."},
+      {n:"Mochila 2",tot:Bg?Bg+T.B:0,lim:L.B,tint:"var(--lav-d)",nota:Bg?"Transbordo — o que não coube na mala.":"Vazia. Tudo coube na mala."}];
+  }
+  gaugesEl.className="gauges n"+defs.length;
+  gaugesEl.innerHTML=defs.map(function(d){
+    var pct=clamp(d.tot/d.lim*100,0,100),over=d.tot>d.lim;
+    return '<div class="gauge '+(over?"over":"")+'" style="--tint:'+d.tint+'">'+
+      '<div class="gauge-top"><span class="gauge-name"><span class="dot"></span>'+esc(d.n)+'</span><span class="gauge-cap">máx '+kg(d.lim)+' kg</span></div>'+
+      '<div class="gauge-read"><b>'+kg(d.tot)+'</b><span>kg</span><span class="pct">'+Math.round(pct)+'%</span></div>'+
+      '<div class="gtrack"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="gauge-note">'+esc(d.nota)+'</div></div>'}).join("");
+
+  /* avisos */
+  var av=[],over=defs.filter(function(d){return d.tot>d.lim});
+  if(origem==="padrao")av.push('<div class="alert data"><b>Usando a lista embutida.</b> O arquivo <code>xeque-mala-dados.json</code> não foi encontrado — arraste ele para cá ou use <b>Carregar JSON</b>. Explicação em Regras de bordo.</div>');
+  if(over.length){
+    var d2=[];
+    if(S.laptops===2)d2.push("levar um notebook só (−1,8 kg)");
+    if(S.lavar!==2)d2.push("lavar a cada 2 dias");
+    if(!S.merino)d2.push("ativar merino");
+    if(!S.vestir)d2.push("ligar 'vestir muda no voo'");
+    d2.push("vestir também o blazer e o casaco extra");
+    av.push('<div class="alert"><b>Não fecha:</b> '+over.map(function(o){return esc(o.n.split(" · ")[0].toLowerCase())}).join(" e ")+' acima do limite. Tente '+d2.slice(0,3).join(", ")+'.</div>');
+  }else if(soM)av.push('<div class="alert good"><b>Fecha nas duas mochilas.</b> Sem despacho: sem extravio, sem esteira, conexão apertada deixa de ser problema.</div>');
+  if(soM){
+    var bl=ativos.filter(function(i){return i.bloq});
+    if(bl.length)av.push('<div class="alert"><b>Barrado na mão:</b> '+bl.map(function(i){return esc(i.nome.toLowerCase())}).join(", ")+'. Compre no destino ou deixe em casa.</div>');
+    av.push('<div class="alert info"><b>Líquidos até 100 ml</b> num saco transparente. Sabonete, shampoo, hidratante e pasta em versão sólida passam direto.</div>');
+  }
+  if(!S.lavar&&S.dias>8)av.push('<div class="alert"><b>'+S.dias+' dias sem lavar não fecha.</b> Com lavagem a cada 3 dias a lista para de crescer a partir do quinto dia.</div>');
+  if(S.menor)av.push('<div class="alert info"><b>Jovem menor de 18 com só um dos pais:</b> autorização do outro com firma reconhecida — AEV ou impressa no passaporte. Gov.br não substitui.</div>');
+  alertsEl.innerHTML=av.join("");
+
+  /* leituras */
+  var tot=ativos.length,feitos=ativos.filter(function(i){return S.checked[i.key]}).length;
+  var conteudo=ativos.reduce(function(s,i){return s+((i.bloq||i.onde==="corpo")?0:i.gt)},0);
+  var pesoCorpo=ativos.reduce(function(s,i){return s+(i.bloq?0:(i.gcorpo||0))},0);
+  var pesoTotal=defs.reduce(function(s,d){return s+d.tot},0);
+  var limTotal=defs.reduce(function(s,d){return s+d.lim},0);
+  $("#gDone").textContent=feitos;$("#gTotal").textContent=tot;
+  $("#gFill").style.width=(tot?feitos/tot*100:0)+"%";
+  $("#gPeso").textContent=kg(pesoTotal);
+  $("#gPesoFill").style.width=clamp(pesoTotal/limTotal*100,0,100)+"%";
+  $("#gPesoFill").style.background=pesoTotal>limTotal?"var(--med)":"var(--ink)";
+  $("#gCorpo").textContent=kg(pesoCorpo);
+  $("#hintLine").textContent=tot+" itens · "+gLbl(conteudo)+" na bagagem + "+kg(taraUsada)+" kg de bagagem vazia + "+gLbl(pesoCorpo)+" no corpo";
+  $("#footStamp").textContent=(soM?"só mochilas":"mala + mochilas")+" · "+S.dias+"d · "+S.clima+" · "+S.laptops+" notebook"+(S.laptops>1?"s":"")+" · dados: "+(origem==="padrao"?"embutidos":origem);
+  $("#stateChips").innerHTML=[S.dias+" dias",S.lavar?"lava a cada "+S.lavar+"d":"não lava",S.clima,
+    S.laptops+" notebook"+(S.laptops>1?"s":""),S.merino?"merino":null,S.vestir?null:"sem vestir no voo",
+    S.quem==="ambos"?null:(S.quem==="m"?"só o jovem":"só o adulto")]
+    .filter(Boolean).map(function(t){return '<span class="chip">'+esc(t)+'</span>'}).join("");
+  salvarEstado();
+}
+
+/* ── dados ── */
+function valida(j){
+  if(!j||!Array.isArray(j.itens)||!Array.isArray(j.categorias))throw new Error("faltam 'itens' ou 'categorias'");
+  var b=j.bagagens;
+  if(!b||!b.mala||!b.mochila1||!b.mochila2)throw new Error("faltam as três bagagens");
+  return j;
+}
+function carregarDados(){
+  var par=new URLSearchParams(location.search).get("dados");
+  return fetch(par||"./xeque-mala-dados.json",{cache:"no-store"})
+    .then(function(r){if(!r.ok)throw 0;return r.json()})
+    .then(function(j){D=valida(j);origem="arquivo"})
+    .catch(function(){
+      return Promise.resolve()
+        .then(function(){return window.storage?window.storage.get("xeque-mala:dados"):null})
+        .then(function(r){
+          if(r&&r.value){D=valida(JSON.parse(r.value));origem="salvo";return}
+          throw 0;
+        })
+        .catch(function(){D=valida(JSON.parse($("#dadosPadrao").textContent));origem="padrao"});
+    });
+}
+function aplicarJSON(texto,nome){
+  try{
+    var j=valida(JSON.parse(texto));
+    D=j;origem=nome||"carregado";
+    try{if(window.storage)window.storage.set("xeque-mala:dados",JSON.stringify(j))}catch(e){}
+    render();
+  }catch(e){alert("JSON inválido: "+e.message)}
+}
+function salvarEstado(){try{if(window.storage)window.storage.set("xeque-mala:estado",JSON.stringify(S))}catch(e){}}
+function lerEstado(){
+  return Promise.resolve()
+    .then(function(){return window.storage?window.storage.get("xeque-mala:estado"):null})
+    .then(function(r){if(r&&r.value)Object.assign(S,JSON.parse(r.value))})
+    .catch(function(){});
+}
+
+/* ── controles ── */
+function seg(id,prop,cast){
+  cast=cast||function(v){return v};
+  $(id).addEventListener("click",function(e){
+    var b=e.target.closest("button");if(!b)return;
+    S[prop]=cast(b.dataset.v);sync();render();
+  });
+}
+function sync(){
+  var set=function(s,p,cast){cast=cast||function(v){return v};
+    Array.prototype.forEach.call(document.querySelectorAll(s+" button"),function(b){
+      b.setAttribute("aria-pressed",cast(b.dataset.v)===S[p])})};
+  set("#segModo","modo");set("#segDias","dias",Number);set("#segLavar","lavar",Number);
+  set("#segClima","clima");set("#segLap","laptops",Number);set("#segQuem","quem");
+  $("#dias").value=S.dias;$("#merino").checked=S.merino;$("#menor").checked=S.menor;$("#vestir").checked=S.vestir;
+  $("#paramsPanel").classList.toggle("open",S.params);
+  $("#btnParams").setAttribute("aria-expanded",S.params);
+}
+seg("#segModo","modo");seg("#segDias","dias",Number);seg("#segLavar","lavar",Number);
+seg("#segClima","clima");seg("#segLap","laptops",Number);seg("#segQuem","quem");
+function setD(v){S.dias=clamp(Math.round(v)||1,1,120);sync();render()}
+$("#dMinus").onclick=function(){setD(S.dias-1)};
+$("#dPlus").onclick=function(){setD(S.dias+1)};
+$("#dias").oninput=function(e){var v=parseInt(e.target.value,10);if(!isNaN(v))setD(v)};
+$("#merino").onchange=function(e){S.merino=e.target.checked;render()};
+$("#menor").onchange=function(e){S.menor=e.target.checked;render()};
+$("#vestir").onchange=function(e){S.vestir=e.target.checked;render()};
+$("#btnParams").onclick=function(){S.params=!S.params;sync();salvarEstado()};
+grid.addEventListener("change",function(e){
+  var cb=e.target.closest("input");if(!cb)return;
+  S.checked[cb.dataset.k]=cb.checked;render();
+});
+$("#btnPrint").onclick=function(){window.print()};
+$("#btnReset").onclick=function(){S.checked={};render()};
+$("#btnLoad").onclick=function(){$("#fileIn").click()};
+$("#fileIn").onchange=function(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();r.onload=function(){aplicarJSON(r.result,f.name)};r.readAsText(f);
+  e.target.value="";
+};
+$("#btnSave").onclick=function(){
+  var b=new Blob([JSON.stringify(D,null,2)],{type:"application/json"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="xeque-mala-dados.json";a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href)},2000);
+};
+var dz=$("#drop"),dcount=0;
+addEventListener("dragenter",function(e){e.preventDefault();dcount++;dz.classList.add("on")});
+addEventListener("dragover",function(e){e.preventDefault()});
+addEventListener("dragleave",function(){if(--dcount<=0)dz.classList.remove("on")});
+addEventListener("drop",function(e){
+  e.preventDefault();dcount=0;dz.classList.remove("on");
+  var f=e.dataTransfer.files[0];if(!f)return;
+  var r=new FileReader();r.onload=function(){aplicarJSON(r.result,f.name)};r.readAsText(f);
+});
+
+lerEstado().then(carregarDados).then(function(){sync();render()});
+</script>
+
+<!-- ============================================================
+     RODAPÉ DO SITE — o convite. Fecha a visita levando para a trajetória.
+     ============================================================ -->
+<footer class="convite">
+  <div class="wrap convite__int">
+    <img class="convite__logo" src="assets/logo-marca.png" alt="" width="367" height="400" loading="lazy">
+    <p class="convite__olho">Quem montou esta lista</p>
+    <h2 class="convite__t">Cada item aqui foi aprendido numa viagem.<br>Inclusive os erros.</h2>
+    <p class="convite__p">O Xeque-Mala nasceu das viagens de <b>Mathias Casalaspro</b> para torneios
+      internacionais. Mestre FIDE, ele jogou em Portugal, Espanha e Itália só neste ano — e voltou
+      de Leça com a primeira das três normas que faltam para o título de Mestre Internacional.</p>
+    <a class="convite__btn" href="https://www.mathiascasalaspro.com/">Conhecer a trajetória do Mathias</a>
+    <p class="convite__nota">A lista é livre para usar e compartilhar. Se ela te poupou uma dor de
+      cabeça no aeroporto, passe adiante.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -809,7 +809,8 @@ p{ margin:0 0 1em; }
 .promocao .duplo{ justify-content:center; }
 
 .rodape{ border-top:1px solid var(--linha-esc); padding-block:52px 40px; background:var(--noite); }
-.rodape__grid{ display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:36px; margin-bottom:44px; }
+.rodape__grid{ display:grid; grid-template-columns:1.15fr .9fr 1fr 1fr; gap:clamp(26px,3vw,40px); margin-bottom:44px; }
+.rodape__nota{ font-size:.78rem; line-height:1.55; color:var(--nevoa); opacity:.6; margin:12px 0 0; max-width:24ch; }
 .rodape__logo{ width:auto; height:86px; margin-bottom:18px; }
 .rodape h4{ font-family:var(--mono); font-weight:700; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ouro); margin-bottom:16px; }
 .rodape ul{ list-style:none; margin:0; padding:0; display:grid; gap:9px; }
@@ -1441,6 +1442,13 @@ p{ margin:0 0 1em; }
           <li><a href="#alcance" data-t="rodape.nav.alcance">Vídeos e alcance</a></li>
           <li><a href="#patrocinio" data-t="rodape.nav.patrocinio">Patrocínio</a></li>
         </ul>
+      </div>
+      <div>
+        <h4 data-t="rodape.ferramentas">Ferramentas</h4>
+        <ul>
+          <li><a href="/xeque-mala.html" data-t="rodape.ferr.xequemala">Xeque-Mala · lista de viagem</a></li>
+        </ul>
+        <p class="rodape__nota" data-t="rodape.ferr.nota">Ferramentas livres para a comunidade enxadrística.</p>
       </div>
       <div>
         <h4 data-t="rodape.contato">Contato</h4>
