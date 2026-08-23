@@ -47,14 +47,17 @@ def le_ids():
     return ids
 
 
+API = "https://www.googleapis.com/youtube/v3/videos"
+
+
 def consulta(ids, chave):
     """A API aceita até 50 ids por chamada."""
+    assert API.startswith("https://www.googleapis.com/"), "endereço da API adulterado"
     itens = []
     for i in range(0, len(ids), 50):
         lote = ids[i:i + 50]
         url = (
-            "https://www.googleapis.com/youtube/v3/videos"
-            "?part=snippet,statistics&id=" + ",".join(lote) + "&key=" + chave
+            API + "?part=snippet,statistics&id=" + ",".join(lote) + "&key=" + chave
         )
         try:
             with urllib.request.urlopen(url, timeout=30) as r:
@@ -80,6 +83,46 @@ def consulta(ids, chave):
             print(f"ERRO ao consultar a API: {e}", file=sys.stderr)
             sys.exit(1)
     return itens
+
+
+def sincroniza_reserva(ids):
+    """
+    O index.html guarda uma cópia da lista de vídeos (bloco videosReserva).
+    Ela existe para o site não ficar vazio se o JSON falhar ou se a página for
+    aberta direto do arquivo. Como é cópia, envelhece — então reescrevemos aqui,
+    para que rodar este script mantenha as duas sempre iguais.
+    """
+    alvo = os.path.join(RAIZ, "index.html")
+    if not os.path.exists(alvo):
+        return
+    with open(alvo, encoding="utf-8") as f:
+        html = f.read()
+
+    ini = html.find('<script type="application/json" id="videosReserva">')
+    if ini == -1:
+        return
+    corpo = html.find(">", ini) + 1
+    fim = html.find("</script>", corpo)
+    if fim == -1:
+        return
+
+    with open(ENTRADA, encoding="utf-8") as f:
+        brutos = json.load(f).get("videos", [])
+    urls = []
+    for item in brutos:
+        u = item if isinstance(item, str) else (item.get("url") or item.get("id"))
+        if id_do_youtube(u):
+            urls.append(u)
+
+    lista = ",\n  ".join(json.dumps(u, ensure_ascii=False) for u in urls)
+    novo = "\n{ \"videos\": [\n  " + lista + "\n] }\n    "
+
+    if html[corpo:fim] == novo:
+        print("  cópia de reserva no index.html: já estava em dia")
+        return
+    with open(alvo, "w", encoding="utf-8") as f:
+        f.write(html[:corpo] + novo + html[fim:])
+    print(f"  cópia de reserva no index.html atualizada ({len(urls)} vídeos)")
 
 
 def main():
@@ -140,6 +183,8 @@ def main():
     with open(SAIDA, "w", encoding="utf-8") as f:
         json.dump(saida, f, ensure_ascii=False, indent=2)
         f.write("\n")
+
+    sincroniza_reserva(ids)
 
     print(f"  visualizações: {views:,}".replace(",", "."))
     print(f"  curtidas:      {curtidas:,}".replace(",", "."))

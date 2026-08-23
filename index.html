@@ -1170,7 +1170,8 @@ p{ margin:0 0 1em; }
   "https://www.youtube.com/watch?v=_jfNoxM1KCs",
   "https://youtu.be/cGn_qyrobpw",
   "https://youtu.be/-trPrkdpdnw",
-  "https://www.youtube.com/watch?v=fAcmRCU627A"
+  "https://www.youtube.com/watch?v=fAcmRCU627A",
+  "https://youtu.be/Uv9iJ0AJppw"
 ] }
     </script>
     <div id="videos" class="rev videos"></div>
@@ -2014,7 +2015,6 @@ const PADRAO = {
        não gasta requisição nenhuma. */
     if (pronto && (pronto.views || pronto.curtidas)){
       Object.keys(pronto.porVideo || {}).forEach(id=> poeTitulo(id, (pronto.porVideo[id]||{}).titulo));
-      if (pronto.videos) $("#miniVideos").textContent = pronto.videos;
       const f = $("#viewsFonte");
       if (f && pronto.atualizadoEm){
         const d = new Date(pronto.atualizadoEm);

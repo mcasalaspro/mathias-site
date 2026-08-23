@@ -77,6 +77,11 @@ Cole a URL do YouTube e pronto — aceita `watch?v=`, `youtu.be/`, `/shorts/` e 
 primeiro da lista aparece grande no mosaico. Não precisam ser do canal dele: qualquer vídeo
 público entra.
 
+**Depois de acrescentar um vídeo, rode o ATUALIZAR-ALCANCE.bat.** Ele soma as views do vídeo
+novo e, de quebra, atualiza a cópia de reserva que fica dentro do `index.html`. Sem isso, o
+vídeo aparece no site publicado, mas não aparece se você abrir o `index.html` com dois cliques
+— e os totais de views continuam sem contá-lo.
+
 ### `dados/galeria.json` e `dados/hero.json`
 
 São os arquivos das **legendas**. Cada foto tem `destaque` (o trecho dourado), `legenda` e
