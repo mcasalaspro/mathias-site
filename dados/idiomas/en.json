@@ -129,7 +129,10 @@
   "rodape.ferr.xequemala": "Xeque-Mala · packing list",
   "rodape.ferr.nota": "Free tools for the chess community.",
   "lives.rotulo": "live broadcasts he appears in",
-  "lives.sub": "Rounds broadcast by chess channels. He is not always the subject — but he is there, usually on the cover, and the audience of those broadcasts carries his name along.",
+  "lives.sub": "Live streams where Mathias's games were broadcast by streamers.",
   "lives.abrir": "Open broadcast on YouTube",
-  "lives.views": "combined views<br>across those broadcasts"
+  "lives.views": "combined views<br>across those broadcasts",
+  "alcance.subTotal": "views in total",
+  "alcance.emProprios": "in videos about him",
+  "alcance.emLives": "in live broadcasts"
 }

@@ -129,7 +129,10 @@
   "rodape.ferr.xequemala": "Xeque-Mala · lista da viaggio",
   "rodape.ferr.nota": "Strumenti gratuiti per la comunità scacchistica.",
   "lives.rotulo": "dirette in cui compare",
-  "lives.sub": "Turni trasmessi da canali di scacchi. Non sempre è lui l'argomento — ma c'è, quasi sempre in copertina, e il pubblico di quelle dirette porta con sé il suo nome.",
+  "lives.sub": "Dirette in cui le partite di Mathias sono state trasmesse da streamer.",
   "lives.abrir": "Apri la diretta su YouTube",
-  "lives.views": "visualizzazioni totali<br>in quelle dirette"
+  "lives.views": "visualizzazioni totali<br>in quelle dirette",
+  "alcance.subTotal": "visualizzazioni in totale",
+  "alcance.emProprios": "in video su di lui",
+  "alcance.emLives": "in dirette"
 }

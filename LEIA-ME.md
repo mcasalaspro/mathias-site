@@ -89,10 +89,13 @@ A parede é **embaralhada a cada visita** — quem volta ao site vê capas difer
 ela não parece uma lista congelada.
 
 O `ATUALIZAR-ALCANCE.bat` também soma as visualizações dessas transmissões e grava em
-`viewsLives`, dentro do `dados/alcance.json`. **Esse número aparece ao lado do contador de
-transmissões e nunca é somado ao das views dos vídeos sobre ele** — são audiências de natureza
-diferente, e misturá-las tiraria a credibilidade das duas. Enquanto `viewsLives` for zero, só
-o contador de transmissões aparece.
+`viewsLives`, dentro do `dados/alcance.json`.
+
+**O número grande da seção Alcance é a soma das duas audiências**, e logo abaixo dele vem a
+composição: quanto veio de vídeos sobre ele e quanto veio das transmissões. Somar sem mostrar a
+origem é o que destruiria a credibilidade do número — por isso a quebra aparece junto, sempre.
+Enquanto `viewsLives` for zero, o total mostra só os vídeos próprios e a linha de composição
+não aparece.
 
 **Depois de acrescentar um vídeo, rode o ATUALIZAR-ALCANCE.bat.** Ele soma as views do vídeo
 novo e, de quebra, atualiza a cópia de reserva que fica dentro do `index.html`. Sem isso, o

@@ -699,13 +699,15 @@ p{ margin:0 0 1em; }
   font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase;
   color:var(--nevoa); margin:20px 0 0;
 }
+.alcance__quebra{ margin:14px 0 0; font-size:.88rem; line-height:1.8; color:var(--nevoa); }
+.alcance__quebra b{ font-family:var(--mono); font-weight:700; color:var(--ouro-claro); }
+.alcance__quebra i{ font-style:normal; color:var(--nevoa2); margin:0 8px; }
 .alcance__aviso{
   margin:0 0 6px; padding:16px 20px; max-width:70ch;
   border:1px dashed rgba(201,162,75,.5); border-radius:var(--raio);
   background:rgba(201,162,75,.07); color:var(--marfim); font-size:.9rem; line-height:1.55;
 }
 .alcance__aviso b{ color:var(--ouro); font-weight:600; }
-.alcance__mais{ font-family:var(--mono); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--nevoa); margin:0; }
 .alcance__sub{
   font-family:var(--mono); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
   color:var(--marfim); margin:0;
@@ -745,8 +747,8 @@ p{ margin:0 0 1em; }
 }
 .lives__sub{ margin:0 0 20px; font-size:.9rem; line-height:1.55; color:var(--nevoa); max-width:56ch; opacity:.85; }
 .lives__pista{
-  display:grid; grid-template-rows:repeat(3,auto); grid-auto-flow:column;
-  grid-auto-columns:clamp(124px,11vw,164px); gap:5px;
+  display:grid; grid-template-rows:repeat(5,auto); grid-auto-flow:column;
+  grid-auto-columns:clamp(118px,10vw,152px); gap:5px;
   margin-inline:calc(-1 * var(--fuga)); padding:0 var(--fuga) 12px;
   overflow-x:auto; overscroll-behavior-x:contain;
   scrollbar-width:thin; scrollbar-color:rgba(201,162,75,.35) transparent;
@@ -766,7 +768,7 @@ p{ margin:0 0 1em; }
 .lives__pista a:hover img, .lives__pista a:focus-visible img{ opacity:1; transform:scale(1.07); }
 .lives__pista a:focus-visible{ outline:2px solid var(--ouro); outline-offset:2px; }
 @media (max-width:560px){
-  .lives__pista{ grid-auto-columns:108px; gap:4px; }
+  .lives__pista{ grid-template-rows:repeat(5,auto); grid-auto-columns:104px; gap:4px; }
   .lives__t b{ font-size:1.3rem; }
 }
 .videos__grid{
@@ -1163,12 +1165,11 @@ p{ margin:0 0 1em; }
     <div class="alcance__topo rev">
       <div class="alcance__metricas">
         <div id="blocoViews">
-          <p class="alcance__mais" id="viewsMais" data-t="alcance.maisde">Mais de</p>
           <p class="alcance__num" id="viewsNum">—</p>
-          <p class="alcance__sub" data-t="alcance.sub">visualizações</p>
+          <p class="alcance__sub" data-t="alcance.subTotal">visualizações no total</p>
+          <p class="alcance__quebra" id="viewsQuebra" hidden></p>
         </div>
         <div id="blocoCurtidas">
-          <p class="alcance__mais" data-t="alcance.maisde">Mais de</p>
           <p class="alcance__num" id="curtidasNum">—</p>
           <p class="alcance__sub" data-t="alcance.subCurtidas">curtidas</p>
         </div>
@@ -1224,14 +1225,9 @@ p{ margin:0 0 1em; }
           <b id="livesN">—</b>
           <span data-t="lives.rotulo">transmissões ao vivo<br>em que ele aparece</span>
         </div>
-        <div id="livesBlocoViews" hidden>
-          <b id="livesViews">—</b>
-          <span data-t="lives.views">visualizações somadas<br>nessas transmissões</span>
-        </div>
       </div>
-      <p class="lives__sub" data-t="lives.sub">Rodadas transmitidas por canais de xadrez.
-      Nem sempre o assunto é ele — mas está lá, quase sempre na capa, e a audiência dessas
-      transmissões carrega o nome dele junto.</p>
+      <p class="lives__sub" data-t="lives.sub">Lives em que partidas do Mathias foram
+      transmitidas ao vivo por streamers.</p>
       <div class="lives__pista" id="livesPista"></div>
     </section>
 
@@ -1985,8 +1981,6 @@ const PADRAO = {
     const cx = $(bloco);
     if (!total){ if (cx) cx.remove(); return; }
     /* Número exato. Arredondado, parecia estimativa — e o dado é medido. */
-    const mais = $(".alcance__mais", cx);
-    if (mais) mais.remove();
     const el = $(campo);
     el.dataset.conta = total;
     obsConta.observe(el);
@@ -2020,8 +2014,20 @@ const PADRAO = {
       console.warn("Alcance: sem views nem curtidas. Preencha viewsManual/curtidasManual em dados/videos.json ou informe apiKeyYouTube.");
       return;
     }
-    mostraMetrica("#blocoViews", "#viewsNum", views);
+    /* O número grande é o alcance total. A composição vem logo abaixo, à vista —
+       somar sem mostrar de onde vem é o que destruiria a credibilidade do número. */
+    const lives = (ALCANCE && ALCANCE.viewsLives) || 0;
+    mostraMetrica("#blocoViews", "#viewsNum", views + lives);
     mostraMetrica("#blocoCurtidas", "#curtidasNum", curtidas);
+
+    const q = $("#viewsQuebra");
+    if (q && lives && views){
+      q.hidden = false;
+      q.innerHTML = "<b>" + views.toLocaleString("pt-BR") + "</b> " +
+        T("alcance.emProprios","em vídeos sobre ele") + "<i>·</i><b>" +
+        lives.toLocaleString("pt-BR") + "</b> " +
+        T("alcance.emLives","em transmissões ao vivo");
+    }
   }
 
 
@@ -2047,14 +2053,6 @@ const PADRAO = {
     cx.hidden = false;
     $("#livesN").textContent = ids.length;
 
-    /* Views das transmissões: número próprio, nunca somado ao dos vídeos sobre ele. */
-    const vistas = ALCANCE && ALCANCE.viewsLives;
-    if (vistas){
-      $("#livesBlocoViews").hidden = false;
-      const el = $("#livesViews");
-      el.dataset.conta = vistas;
-      obsConta.observe(el);
-    }
 
     const pista = $("#livesPista");
     pista.innerHTML = "";
@@ -2092,7 +2090,9 @@ const PADRAO = {
     /* Miniaturas grandes, 3 ou 4 por linha no desktop. Entre as opções da faixa,
        escolhemos a que deixa a última linha mais cheia. */
     function melhorColunas(n, largura){
-      const min = largura < 560 ? 1 : largura < 900 ? 2 : 3;
+      /* No celular são sempre duas colunas: a miniatura ainda se lê bem e a
+         rolagem vertical cai pela metade. */
+      const min = largura < 560 ? 2 : largura < 900 ? 2 : 3;
       const max = largura < 560 ? 2 : largura < 900 ? 3 : 4;
       let escolha = min, nota = Infinity;
       for (let c = min; c <= max; c++){
