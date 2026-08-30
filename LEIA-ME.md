@@ -77,6 +77,23 @@ Cole a URL do YouTube e pronto — aceita `watch?v=`, `youtu.be/`, `/shorts/` e 
 primeiro da lista aparece grande no mosaico. Não precisam ser do canal dele: qualquer vídeo
 público entra.
 
+**Há uma segunda lista, `participacoes`:** transmissões ao vivo em que o Mathias aparece, mas
+que não são sobre ele. Elas viram uma parede de capas clicáveis, sem títulos, logo abaixo do
+mosaico principal — nessas lives ele costuma estar na própria capa, então a miniatura já é a
+prova e o título seria ruído.
+
+Cole quantas URLs quiser; quanto mais, melhor o efeito de volume. URLs repetidas são
+descartadas sozinhas. **Com a lista vazia, o bloco inteiro some do site.**
+
+A parede é **embaralhada a cada visita** — quem volta ao site vê capas diferentes na frente, e
+ela não parece uma lista congelada.
+
+O `ATUALIZAR-ALCANCE.bat` também soma as visualizações dessas transmissões e grava em
+`viewsLives`, dentro do `dados/alcance.json`. **Esse número aparece ao lado do contador de
+transmissões e nunca é somado ao das views dos vídeos sobre ele** — são audiências de natureza
+diferente, e misturá-las tiraria a credibilidade das duas. Enquanto `viewsLives` for zero, só
+o contador de transmissões aparece.
+
 **Depois de acrescentar um vídeo, rode o ATUALIZAR-ALCANCE.bat.** Ele soma as views do vídeo
 novo e, de quebra, atualiza a cópia de reserva que fica dentro do `index.html`. Sem isso, o
 vídeo aparece no site publicado, mas não aparece se você abrir o `index.html` com dois cliques

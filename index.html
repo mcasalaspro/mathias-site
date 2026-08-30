@@ -729,6 +729,46 @@ p{ margin:0 0 1em; }
 
 /* ============ VÍDEOS + IMPRENSA ============ */
 .videos{ margin-inline:0; }
+
+/* ---- parede de transmissões ---- */
+.lives{ margin-top:clamp(44px,5vw,68px); }
+.lives__nums{ display:flex; flex-wrap:wrap; gap:clamp(26px,4vw,52px); margin:0 0 14px; }
+.lives__nums div{ display:flex; align-items:baseline; gap:11px; }
+.lives__nums div[hidden]{ display:none; }
+.lives__nums b{
+  font-family:var(--display); font-weight:800; font-size:clamp(1.7rem,3vw,2.4rem);
+  letter-spacing:-.03em; color:var(--ouro); line-height:1;
+}
+.lives__nums span{
+  font-family:var(--mono); font-size:.64rem; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--nevoa); line-height:1.6;
+}
+.lives__sub{ margin:0 0 20px; font-size:.9rem; line-height:1.55; color:var(--nevoa); max-width:56ch; opacity:.85; }
+.lives__pista{
+  display:grid; grid-template-rows:repeat(3,auto); grid-auto-flow:column;
+  grid-auto-columns:clamp(124px,11vw,164px); gap:5px;
+  margin-inline:calc(-1 * var(--fuga)); padding:0 var(--fuga) 12px;
+  overflow-x:auto; overscroll-behavior-x:contain;
+  scrollbar-width:thin; scrollbar-color:rgba(201,162,75,.35) transparent;
+  -webkit-mask-image:linear-gradient(to right, #000 calc(100% - 90px), transparent 100%);
+          mask-image:linear-gradient(to right, #000 calc(100% - 90px), transparent 100%);
+}
+.lives__pista::-webkit-scrollbar{ height:6px; }
+.lives__pista::-webkit-scrollbar-thumb{ background:rgba(201,162,75,.3); border-radius:100px; }
+.lives__pista a{
+  display:block; aspect-ratio:16/9; overflow:hidden; position:relative;
+  background:var(--noite); border:1px solid rgba(201,162,75,.1); border-radius:2px;
+}
+.lives__pista img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  opacity:.62; transition:opacity .25s ease, transform .45s ease;
+}
+.lives__pista a:hover img, .lives__pista a:focus-visible img{ opacity:1; transform:scale(1.07); }
+.lives__pista a:focus-visible{ outline:2px solid var(--ouro); outline-offset:2px; }
+@media (max-width:560px){
+  .lives__pista{ grid-auto-columns:108px; gap:4px; }
+  .lives__t b{ font-size:1.3rem; }
+}
 .videos__grid{
   display:grid; grid-template-columns:repeat(var(--colsVideo, 3), 1fr);
   gap:clamp(6px,.8vw,12px);
@@ -1175,6 +1215,25 @@ p{ margin:0 0 1em; }
 ] }
     </script>
     <div id="videos" class="rev videos"></div>
+
+    <!-- Parede de transmissões. Só aparece se houver URLs em
+         dados/videos.json > participacoes. Sem títulos: a capa é a prova. -->
+    <section class="lives rev" id="lives" hidden aria-labelledby="livesT">
+      <div class="lives__nums" id="livesT">
+        <div>
+          <b id="livesN">—</b>
+          <span data-t="lives.rotulo">transmissões ao vivo<br>em que ele aparece</span>
+        </div>
+        <div id="livesBlocoViews" hidden>
+          <b id="livesViews">—</b>
+          <span data-t="lives.views">visualizações somadas<br>nessas transmissões</span>
+        </div>
+      </div>
+      <p class="lives__sub" data-t="lives.sub">Rodadas transmitidas por canais de xadrez.
+      Nem sempre o assunto é ele — mas está lá, quase sempre na capa, e a audiência dessas
+      transmissões carrega o nome dele junto.</p>
+      <div class="lives__pista" id="livesPista"></div>
+    </section>
 
     <div class="midia">
       <div class="rev">
@@ -1966,6 +2025,54 @@ const PADRAO = {
   }
 
 
+  /* Parede de transmissões: só capas, clicáveis, abrindo no YouTube.
+     Sem títulos de propósito — nessas lives o Mathias aparece na própria capa,
+     então a miniatura já é a prova. Título seria ruído. */
+  function montaLives(lista){
+    const cx = $("#lives");
+    if (!cx) return;
+    const ids = (lista || [])
+      .map(v => idDoYoutube(typeof v === "string" ? v : (v && (v.url || v.id))))
+      .filter((id, i, todos) => id && todos.indexOf(id) === i);   // sem repetidos
+
+    if (!ids.length){ cx.remove(); return; }
+
+    /* Embaralha a cada visita: quem volta ao site vê capas diferentes na frente,
+       e a parede não parece uma lista congelada. */
+    for (let i = ids.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [ids[i], ids[j]] = [ids[j], ids[i]];
+    }
+
+    cx.hidden = false;
+    $("#livesN").textContent = ids.length;
+
+    /* Views das transmissões: número próprio, nunca somado ao dos vídeos sobre ele. */
+    const vistas = ALCANCE && ALCANCE.viewsLives;
+    if (vistas){
+      $("#livesBlocoViews").hidden = false;
+      const el = $("#livesViews");
+      el.dataset.conta = vistas;
+      obsConta.observe(el);
+    }
+
+    const pista = $("#livesPista");
+    pista.innerHTML = "";
+    ids.forEach((id, i) => {
+      const a = document.createElement("a");
+      a.href = "https://www.youtube.com/watch?v=" + id;
+      a.target = "_blank"; a.rel = "noopener";
+      a.setAttribute("aria-label", T("lives.abrir","Abrir transmissão no YouTube") + " " + (i+1));
+      const img = document.createElement("img");
+      img.src = "https://i.ytimg.com/vi/" + id + "/mqdefault.jpg";
+      img.alt = ""; img.loading = "lazy"; img.decoding = "async";
+      img.width = 320; img.height = 180;
+      img.onerror = function(){ this.onerror = null; this.src = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg"; };
+      a.appendChild(img);
+      pista.appendChild(a);
+    });
+  }
+
   async function montaVideos(cfg, pronto){
     const lista = (cfg && cfg.videos || []).map(v=>{
       const bruto = typeof v === "string" ? v : (v.url || v.id);
@@ -1978,6 +2085,7 @@ const PADRAO = {
     const grade = document.createElement("div");
     grade.className = "videos__grid";
     lista.forEach(v=> grade.appendChild(cartao(v, false)));
+    montaLives(cfg && cfg.participacoes);
     const caixa = $("#videos"); caixa.innerHTML = ""; caixa.appendChild(grade);
     $("#miniVideos").textContent = lista.length;
 

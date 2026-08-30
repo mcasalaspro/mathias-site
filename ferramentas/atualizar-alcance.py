@@ -35,16 +35,29 @@ def id_do_youtube(valor):
     return s if re.fullmatch(r"[A-Za-z0-9_-]{11}", s) else None
 
 
-def le_ids():
+def le_ids(campo="videos"):
     with open(ENTRADA, encoding="utf-8") as f:
         dados = json.load(f)
     ids = []
-    for item in dados.get("videos", []):
+    for item in dados.get(campo, []):
         bruto = item if isinstance(item, str) else (item.get("url") or item.get("id"))
         vid = id_do_youtube(bruto)
         if vid and vid not in ids:
             ids.append(vid)
     return ids
+
+
+def soma(itens):
+    """Devolve (views, curtidas, quantos esconderam as curtidas)."""
+    views = curtidas = ocultas = 0
+    for v in itens:
+        st = v.get("statistics", {}) or {}
+        views += int(st.get("viewCount", 0) or 0)
+        if "likeCount" in st:
+            curtidas += int(st.get("likeCount", 0) or 0)
+        else:
+            ocultas += 1
+    return views, curtidas, ocultas
 
 
 API = "https://www.googleapis.com/youtube/v3/videos"
@@ -168,6 +181,14 @@ def main():
 
     faltando = [i for i in ids if i not in por_video]
 
+    # --- transmissões em que ele aparece: contagem separada, nunca somada acima ---
+    ids_lives = le_ids("participacoes")
+    views_lives = curtidas_lives = 0
+    if ids_lives:
+        print(f"{len(ids_lives)} transmissão(ões) na lista de participações.")
+        itens_lives = consulta(ids_lives, chave)
+        views_lives, curtidas_lives, _ = soma(itens_lives)
+
     saida = {
         "_leia": (
             "Gerado por ferramentas/atualizar-alcance.py. Não edite à mão: "
@@ -178,6 +199,12 @@ def main():
         "curtidas": curtidas,
         "videos": len(por_video),
         "curtidasOcultasEm": len(sem_curtidas),
+        "_lives": ("Transmissões em que ele aparece, mas que não são sobre ele. "
+                   "Contadas à parte de propósito: somar às views dos vídeos próprios "
+                   "seria esticar o número."),
+        "lives": len(ids_lives),
+        "viewsLives": views_lives,
+        "curtidasLives": curtidas_lives,
         "porVideo": por_video,
     }
     with open(SAIDA, "w", encoding="utf-8") as f:
@@ -192,6 +219,8 @@ def main():
         print(f"  atenção: {len(sem_curtidas)} vídeo(s) com curtidas ocultas entram como zero.")
     if faltando:
         print(f"  atenção: {len(faltando)} id(s) não voltaram da API: {', '.join(faltando)}")
+    if ids_lives:
+        print(f"  transmissões:  {views_lives:,}".replace(",", ".") + " visualizações")
     print(f"\nGravado em dados/alcance.json")
 
 
