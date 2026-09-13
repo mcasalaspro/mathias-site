@@ -10,9 +10,27 @@ echo    PUBLICAR O SITE DO MATHIAS
 echo  ============================================
 echo(
 
-rem ---------- 1. o Git esta instalado? ----------
-git --version >nul 2>&1
-if errorlevel 1 goto sem_git
+rem ---------- 1. localizar o Git ----------
+rem O instalador nem sempre poe o Git no PATH. Procuramos nos lugares padrao
+rem (instalacao para todos os usuarios e instalacao so para o seu usuario) e,
+rem achando, acrescentamos a pasta ao PATH desta janela. Dai em diante o resto
+rem do arquivo chama "git" normalmente.
+where git >nul 2>&1
+if not errorlevel 1 goto git_ok
+
+set "P86=%ProgramFiles(x86)%"
+set "GITDIR="
+if exist "%ProgramFiles%\Git\cmd\git.exe"          set "GITDIR=%ProgramFiles%\Git\cmd"
+if not defined GITDIR if exist "%P86%\Git\cmd\git.exe" set "GITDIR=%P86%\Git\cmd"
+if not defined GITDIR if exist "%LOCALAPPDATA%\Programs\Git\cmd\git.exe" set "GITDIR=%LOCALAPPDATA%\Programs\Git\cmd"
+if not defined GITDIR if exist "C:\Program Files\Git\cmd\git.exe" set "GITDIR=C:\Program Files\Git\cmd"
+if not defined GITDIR goto sem_git
+
+set "PATH=%GITDIR%;%PATH%"
+echo  Git encontrado em  %GITDIR%
+echo(
+
+:git_ok
 
 rem ---------- 2. identidade do Git ----------
 set "GITNOME="
@@ -134,11 +152,19 @@ echo(
 goto fim
 
 :sem_git
-echo  [!] O Git nao esta instalado neste computador.
+echo  [!] Nao encontrei o Git neste computador.
 echo(
-echo      1. Baixe em  https://git-scm.com/download/win
-echo      2. Instale aceitando todas as opcoes padrao
-echo      3. Feche esta janela e rode este arquivo de novo
+echo      Procurei no PATH e nestas pastas:
+echo        %ProgramFiles%\Git\cmd\git.exe
+echo        %LOCALAPPDATA%\Programs\Git\cmd\git.exe
+echo(
+echo      Se o Git nao estiver instalado:
+echo        1. Baixe em  https://git-scm.com/download/win
+echo        2. Instale aceitando todas as opcoes padrao
+echo        3. Feche esta janela e rode este arquivo de novo
+echo(
+echo      Se ele estiver instalado em outro lugar, abra este arquivo no Bloco
+echo      de Notas e acrescente o caminho na lista do topo.
 echo(
 goto fim
 

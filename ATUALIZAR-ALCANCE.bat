@@ -13,11 +13,26 @@ echo  Consulta o YouTube, soma tudo e grava em dados/alcance.json.
 echo  Depois e so rodar o PUBLICAR.bat para o site mostrar os numeros.
 echo(
 
-rem ---------- Python instalado? ----------
+rem ---------- localizar o Python ----------
+rem Igual ao Git: o instalador nem sempre poe o Python no PATH. Procuramos nos
+rem lugares padrao antes de desistir.
 set "PY="
 py -3 --version >nul 2>&1 && set "PY=py -3"
+if not defined PY python --version >nul 2>&1 && set "PY=python"
+
 if not defined PY (
-  python --version >nul 2>&1 && set "PY=python"
+  set "PYDIR="
+  for %%V in (313 312 311 310 39) do (
+    if not defined PYDIR if exist "%LOCALAPPDATA%\Programs\Python\Python%%V\python.exe" set "PYDIR=%LOCALAPPDATA%\Programs\Python\Python%%V"
+    if not defined PYDIR if exist "C:\Python%%V\python.exe" set "PYDIR=C:\Python%%V"
+    if not defined PYDIR if exist "%ProgramFiles%\Python%%V\python.exe" set "PYDIR=%ProgramFiles%\Python%%V"
+  )
+  if defined PYDIR (
+    set "PATH=!PYDIR!;!PYDIR!\Scripts;%PATH%"
+    set "PY=python"
+    echo  Python encontrado em  !PYDIR!
+    echo(
+  )
 )
 if not defined PY goto sem_python
 
@@ -77,6 +92,8 @@ goto fim
 
 :sem_python
 echo  [!] Nao encontrei o Python neste computador.
+echo(
+echo      Procurei no PATH e nas pastas padrao de instalacao.
 echo(
 echo      Baixe em https://www.python.org/downloads/
 echo      Na primeira tela, marque "Add python.exe to PATH".

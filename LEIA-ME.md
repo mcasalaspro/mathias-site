@@ -133,6 +133,10 @@ API v3 em *Restrições de API*.
 Também dá para automatizar: guarde a chave em *Settings → Secrets and variables → Actions* com
 o nome `YOUTUBE_API_KEY`, e a rotina roda toda madrugada sozinha.
 
+**Enquanto o secret não existir**, a rotina diária não falha — ela avisa na aba Actions e
+encerra sem fazer nada. Assim você não recebe e-mail de erro todo dia por um passo que ainda
+não foi dado.
+
 **Se um vídeo tiver as curtidas escondidas**, ele entra como zero na soma. O total fica
 subestimado, nunca inflado.
 

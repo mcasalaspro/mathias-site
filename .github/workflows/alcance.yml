@@ -4,6 +4,9 @@ name: Atualizar alcance
 # Roda toda madrugada, quando a lista de vídeos muda, e sob demanda pelo botão
 # "Run workflow" na aba Actions.
 #
+# Sem o secret, a rotina não falha: ela avisa e encerra sem fazer nada. Um job
+# agendado que falha todo dia só ensina a ignorar e-mail de falha.
+#
 # ANTES DE FUNCIONAR, faça uma vez:
 #   1. No repositório: Settings > Secrets and variables > Actions > New repository secret
 #   2. Name:   YOUTUBE_API_KEY
@@ -32,21 +35,26 @@ jobs:
   somar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Conferir se a chave existe
+        id: chave
         run: |
           if [ -z "${{ secrets.YOUTUBE_API_KEY }}" ]; then
-            echo "::error::Falta o secret YOUTUBE_API_KEY. Veja as instruções no topo deste arquivo."
-            exit 1
+            echo "tem=nao" >> "$GITHUB_OUTPUT"
+            echo "::warning::Sem o secret YOUTUBE_API_KEY — nada foi atualizado. Veja as instruções no topo deste arquivo."
+          else
+            echo "tem=sim" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Somar views e curtidas
+        if: steps.chave.outputs.tem == 'sim'
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: python3 ferramentas/atualizar-alcance.py
 
       - name: Publicar se mudou
+        if: steps.chave.outputs.tem == 'sim'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

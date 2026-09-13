@@ -10,9 +10,27 @@ echo    CONFIGURAR O GIT
 echo  ============================================
 echo(
 
-rem ---------- 1. o Git esta instalado? ----------
-git --version >nul 2>&1
-if errorlevel 1 goto sem_git
+rem ---------- 1. localizar o Git ----------
+rem O instalador nem sempre poe o Git no PATH. Procuramos nos lugares padrao
+rem (instalacao para todos os usuarios e instalacao so para o seu usuario) e,
+rem achando, acrescentamos a pasta ao PATH desta janela. Dai em diante o resto
+rem do arquivo chama "git" normalmente.
+where git >nul 2>&1
+if not errorlevel 1 goto git_ok
+
+set "P86=%ProgramFiles(x86)%"
+set "GITDIR="
+if exist "%ProgramFiles%\Git\cmd\git.exe"          set "GITDIR=%ProgramFiles%\Git\cmd"
+if not defined GITDIR if exist "%P86%\Git\cmd\git.exe" set "GITDIR=%P86%\Git\cmd"
+if not defined GITDIR if exist "%LOCALAPPDATA%\Programs\Git\cmd\git.exe" set "GITDIR=%LOCALAPPDATA%\Programs\Git\cmd"
+if not defined GITDIR if exist "C:\Program Files\Git\cmd\git.exe" set "GITDIR=C:\Program Files\Git\cmd"
+if not defined GITDIR goto sem_git
+
+set "PATH=%GITDIR%;%PATH%"
+echo  Git encontrado em  %GITDIR%
+echo(
+
+:git_ok
 
 set "VERSAO="
 for /f "tokens=3" %%A in ('git --version') do set "VERSAO=%%A"
@@ -98,7 +116,11 @@ goto fim
 
 rem ============================================================
 :sem_git
-echo  [!] O Git nao esta instalado neste computador.
+echo  [!] Nao encontrei o Git neste computador.
+echo(
+echo      Procurei no PATH e nestas pastas:
+echo        %ProgramFiles%\Git\cmd\git.exe
+echo        %LOCALAPPDATA%\Programs\Git\cmd\git.exe
 echo(
 echo      Opcao 1 — instalador (recomendado):
 echo        https://git-scm.com/download/win

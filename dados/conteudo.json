@@ -3,25 +3,25 @@
   "atualizadoEm": "agosto de 2026",
   "numeros": [
     {
-      "valor": 2380,
+      "valor": 2341,
       "rotulo": "Rating FIDE",
       "rotulo_en": "FIDE rating",
       "rotulo_it": "Rating FIDE"
     },
     {
-      "valor": 538,
+      "valor": 529,
       "rotulo": "Partidas clássicas",
       "rotulo_en": "Classical games",
       "rotulo_it": "Partite classiche"
     },
     {
-      "valor": 317,
+      "valor": 316,
       "rotulo": "Torneios disputados",
       "rotulo_en": "Tournaments played",
       "rotulo_it": "Tornei disputati"
     },
     {
-      "valor": 163,
+      "valor": 162,
       "rotulo": "Eventos presenciais",
       "rotulo_en": "In-person events",
       "rotulo_it": "Eventi in presenza"
