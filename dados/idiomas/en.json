@@ -60,11 +60,8 @@
   "custeio.titulo": "What a season requires",
   "meta.arrecadados": "raised",
   "meta.meta": "goal",
-  "meta.btn": "Contribute to the season",
   "apoiar.h2": "Your support makes the difference",
-  "apoiar.lede": "<b>Pick an amount that fits your monthly budget.</b> No contribution is too small: together, they can make this dream real.",
-  "loja.h3": "Support and get something back",
-  "loja.p": "Lessons, products and services that fund his preparation directly. You gain, he moves forward.",
+  "apoiar.lede": "<b>Pick an amount that fits your monthly budget.</b>",
   "alcance.maisde": "More than",
   "alcance.sub": "views",
   "alcance.fonteAuto": "added up straight from YouTube on every visit",
@@ -134,5 +131,13 @@
   "lives.views": "combined views<br>across those broadcasts",
   "alcance.subTotal": "views in total",
   "alcance.emProprios": "in videos about him",
-  "alcance.emLives": "in live broadcasts"
+  "alcance.emLives": "in live broadcasts",
+  "apoiar.micro.rot": "Micro-contribution",
+  "apoiar.micro.conta": "<b>{mes} a month</b> is less than <b>{semana} a week</b>. On its own, it looks small. Added to what others give, it pays for training, travel and entry fees — and brings the predictability needed to plan the season.",
+  "apoiar.micro.tag": "Start here",
+  "apoiar.micro.sem": "less than {semana} a week",
+  "apoiar.micro.l1": "Monthly and automatic, via Mercado Pago",
+  "apoiar.micro.l2": "No commitment: to stop, just let us know",
+  "apoiar.micro.l3": "Any amount counts",
+  "meta.btnMicro": "Contribute from {mes}/month"
 }

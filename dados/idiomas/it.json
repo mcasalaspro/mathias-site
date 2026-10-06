@@ -3,7 +3,7 @@
   "_meta": {
     "titulo": "Mathias Casalaspro — Maestro FIDE di scacchi",
     "descricao": "A 11 anni ha battuto un Grande Maestro. A 12 è diventato Maestro FIDE. Mathias Casalaspro si allena per il titolo di Maestro Internazionale — e tu puoi farne parte.",
-    "atualizadoEm": "Aggiornato a",
+    "atualizadoEm": "Aggiornato:",
     "metaTemporada": "Obiettivo della stagione",
     "apoiar": "Sostieni",
     "escolher": "Scegli",
@@ -60,11 +60,8 @@
   "custeio.titulo": "Cosa richiede una stagione",
   "meta.arrecadados": "raccolti",
   "meta.meta": "obiettivo",
-  "meta.btn": "Contribuisci alla stagione",
   "apoiar.h2": "Il tuo sostegno fa la differenza",
-  "apoiar.lede": "<b>Scegli un importo che rientri nel tuo budget mensile.</b> Nessun contributo è piccolo: insieme, possono rendere reale questo sogno.",
-  "loja.h3": "Sostieni ricevendo qualcosa in cambio",
-  "loja.p": "Lezioni, prodotti e servizi che finanziano direttamente la sua preparazione. Ci guadagni tu, e lui va avanti.",
+  "apoiar.lede": "<b>Scegli un importo che rientri nel tuo budget mensile.</b>",
   "alcance.maisde": "Più di",
   "alcance.sub": "visualizzazioni",
   "alcance.fonteAuto": "sommate direttamente da YouTube a ogni visita",
@@ -134,5 +131,13 @@
   "lives.views": "visualizzazioni totali<br>in quelle dirette",
   "alcance.subTotal": "visualizzazioni in totale",
   "alcance.emProprios": "in video su di lui",
-  "alcance.emLives": "in dirette"
+  "alcance.emLives": "in dirette",
+  "apoiar.micro.rot": "Micro-contributo",
+  "apoiar.micro.conta": "<b>{mes} al mese</b> sono meno di <b>{semana} a settimana</b>. Da soli sembrano pochi. Sommati a quelli di altre persone, pagano allenamento, viaggi e iscrizioni — e danno la prevedibilità che permette di pianificare la stagione.",
+  "apoiar.micro.tag": "Inizia da qui",
+  "apoiar.micro.sem": "meno di {semana} a settimana",
+  "apoiar.micro.l1": "Mensile e automatico, tramite Mercado Pago",
+  "apoiar.micro.l2": "Nessun vincolo: per smettere, basta avvisarci",
+  "apoiar.micro.l3": "Ogni importo conta",
+  "meta.btnMicro": "Contribuisci da {mes}/mese"
 }

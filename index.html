@@ -598,28 +598,62 @@ p{ margin:0 0 1em; }
   font-size:clamp(1.15rem,2vw,1.5rem); line-height:1.25; color:var(--grafite); margin-bottom:8px;
 }
 
-.loja{ border-top:1px solid var(--linha-cla); padding-top:clamp(38px,4.5vw,54px); }
-.loja__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:26px; }
-@media (max-width:660px){ .loja__grid{ grid-template-columns:1fr 1fr; gap:10px; } }
-.prod{
-  display:block; position:relative; overflow:hidden; text-decoration:none;
-  border:1px solid var(--linha-cla); border-radius:var(--raio); background:var(--tabuleiro);
-  transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+/* ---- micro contribuição: texto à esquerda, cartões à direita ---- */
+.micro{ display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); gap:clamp(30px,4.5vw,72px); align-items:start; margin-top:clamp(28px,3.6vw,48px); }
+.micro__rot{
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ouro-esc); font-weight:700; margin:0 0 14px;
 }
-.prod:hover{ border-color:var(--ouro); transform:translateY(-3px); box-shadow:0 16px 36px -20px rgba(30,42,52,.55); }
-.prod img{ display:block; width:100%; aspect-ratio:1/1; object-fit:cover; }
-.prod__vazio{
-  display:grid; place-items:center; aspect-ratio:1/1;
-  background:url("assets/padrao-xadrez.png") repeat center/120px 120px, var(--tabuleiro);
+.micro__lede{ margin-bottom:16px; }
+.micro__lede b{ margin-bottom:0; }
+.micro__conta{ font-size:1.02rem; line-height:1.65; color:var(--grafite2); margin:0 0 24px; max-width:48ch; }
+.micro__conta b{ color:var(--grafite); font-weight:700; }
+.micro__lista{ list-style:none; margin:0; padding:0; display:grid; gap:11px; }
+.micro__lista li{ position:relative; padding-left:24px; font-size:.95rem; line-height:1.45; color:var(--grafite); }
+.micro__lista li::before{
+  content:""; position:absolute; left:2px; top:.48em; width:7px; height:7px;
+  background:var(--ouro); transform:rotate(45deg);
 }
-.prod__vazio::after{ content:"\265F"; font-size:3.2rem; color:var(--ouro); opacity:.5; }
-.prod > svg{
-  position:absolute; top:12px; right:12px; width:15px; height:15px; color:var(--grafite);
-  background:rgba(255,255,255,.94); border-radius:2px; padding:5px; box-sizing:content-box;
-  opacity:0; transition:opacity .2s ease;
+
+.micro .apoios{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-bottom:0; }
+.micro .apoio{ padding:20px 18px 16px; }
+.micro .apoio__v{ font-size:clamp(1.55rem,2.1vw,1.95rem); }
+.micro .apoio--livre .apoio__v{ font-size:clamp(1.15rem,1.5vw,1.4rem); }
+
+.apoio--micro{
+  grid-column:1/-1; border:2px solid var(--ouro); padding:24px 26px 22px !important; gap:8px;
+  box-shadow:0 18px 40px -26px rgba(138,106,34,.55);
 }
-.prod:hover > svg{ opacity:1; }
-.prod svg{ width:15px; height:15px; flex-shrink:0; color:var(--ouro-esc); }
+.apoio--micro .apoio__v{ font-size:clamp(2.6rem,4.2vw,3.5rem) !important; }
+.apoio__tag{
+  align-self:flex-start; font-family:var(--mono); font-size:.62rem; letter-spacing:.14em;
+  text-transform:uppercase; font-weight:700; color:var(--noite); background:var(--ouro);
+  padding:5px 9px; border-radius:2px; margin-bottom:6px;
+}
+.apoio__sem{ font-size:.95rem; color:var(--grafite2); }
+.apoio--micro{
+  display:grid; grid-template-columns:1fr auto; grid-template-areas:"tag pe" "v pe" "sem pe";
+  align-items:center; column-gap:22px; row-gap:6px;
+}
+.apoio--micro .apoio__tag{ grid-area:tag; justify-self:start; }
+.apoio--micro .apoio__v{ grid-area:v; }
+.apoio--micro .apoio__sem{ grid-area:sem; }
+.apoio--micro .apoio__pe{
+  grid-area:pe; margin:0; padding:15px 22px; border-radius:3px;
+  background:var(--ouro); color:var(--noite); font-size:.74rem; letter-spacing:.12em;
+  transition:background-color .2s ease;
+}
+.apoio--micro:hover .apoio__pe{ background:var(--ouro-claro); }
+
+@media (max-width:860px){
+  .micro{ grid-template-columns:1fr; }
+}
+@media (max-width:560px){
+  .micro .apoios{ grid-template-columns:1fr 1fr; gap:10px; }
+  .micro .apoio--livre{ grid-column:1/-1; }
+  .apoio--micro{ padding:20px 20px 18px !important; grid-template-columns:1fr; grid-template-areas:"tag" "v" "sem" "pe"; }
+  .apoio--micro .apoio__pe{ justify-self:stretch; text-align:center; margin-top:12px; }
+}
 
 /* ============ PATROCÍNIO ============ */
 .patro{ position:relative; overflow:hidden; padding-bottom:clamp(26px,2.8vw,44px); }
@@ -1349,7 +1383,7 @@ p{ margin:0 0 1em; }
           <div class="calc__gente" id="calcGente" aria-hidden="true"></div>
         </div>
 
-        <a class="btn btn--ouro" href="#apoiar" data-t="meta.btn">Contribuir com a temporada</a>
+        <a class="btn btn--ouro" href="#apoiar" id="metaBtn">Contribuir a partir de R$ 20/mês</a>
         <p class="meta__prova" id="prova">— pessoas já apoiaram</p>
         <p class="calc__nota" data-t="calc.nota">Esse valor não cobre todas as despesas de viagens e torneios, mas é uma ajuda muito significativa.</p>
       </div>
@@ -1362,47 +1396,41 @@ p{ margin:0 0 1em; }
   <div class="env">
     <p class="casa rev"><span data-t="casa.e5">Como apoiar</span></p>
     <h2 class="rev" style="max-width:20ch;margin-bottom:18px" data-t="apoiar.h2">Seu apoio faz a diferença</h2>
-    <p class="lede rev recado" data-t="apoiar.lede"><b>Escolha um valor que cabe no seu orçamento mensal.</b>
-    Nenhuma contribuição é pequena: somadas, elas podem tornar esse sonho realidade.</p>
+    <div class="micro rev">
+      <div class="micro__txt">
+        <p class="micro__rot" data-t="apoiar.micro.rot">Micro contribuição</p>
+        <p class="recado micro__lede" data-t="apoiar.lede"><b>Escolha um valor que cabe no seu orçamento mensal.</b></p>
+        <!-- Os valores desta frase vêm do menor apoio em dados/conteudo.json > apoios. -->
+        <p class="micro__conta" id="microConta"><b>R$ 20 por mês</b> é menos de <b>R$ 5 por semana</b>.
+        Sozinho, parece pouco. Somado ao de outras pessoas, paga treino, viagens e inscrições — e dá
+        a previsibilidade que permite planejar a temporada.</p>
+        <ul class="micro__lista">
+          <li data-t="apoiar.micro.l1">Mensal e automático, pelo Mercado Pago</li>
+          <li data-t="apoiar.micro.l2">Sem fidelidade: para parar, é só avisar</li>
+          <li data-t="apoiar.micro.l3">Qualquer valor conta</li>
+        </ul>
+      </div>
 
-    <!-- Os links abaixo são os planos de assinatura já existentes no Mercado Pago.
-         CONFERIR: qual plan_id corresponde a qual valor. -->
-    <div class="apoios rev" id="apoios">
-      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 20<small>/mês</small></span>
-        <span class="apoio__pe">Apoiar →</span>
-      </a>
-      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 50<small>/mês</small></span>
-        <span class="apoio__pe">Apoiar →</span>
-      </a>
-      <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c" target="_blank" rel="noopener">
-        <span class="apoio__v">R$ 100<small>/mês</small></span>
-        <span class="apoio__pe">Apoiar →</span>
-      </a>
-      <a class="apoio apoio--livre" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba" target="_blank" rel="noopener">
-        <span class="apoio__v">Outro valor</span>
-        <span class="apoio__pe">Escolher →</span>
-      </a>
-    </div>
-
-    <div class="loja rev">
-      <h3 data-t="loja.h3">Apoiar levando algo em troca</h3>
-      <p class="recado" data-t="loja.p" style="margin-bottom:0">Aulas, produtos e serviços que financiam diretamente a preparação. Você ganha, ele avança.</p>
-      <!-- Produtos vêm de dados/conteudo.json > loja. Para cada um, basta pôr a imagem
-           em assets/loja/ e apontar o campo "imagem". Sem imagem, o card mostra o padrão. -->
-      <div class="loja__grid" id="loja">
-        <a class="prod" href="https://form.respondi.app/oemyel9l" target="_blank" rel="noopener" aria-label="Partidas de treinamento — 1 hora de jogos online no Lichess">
-          <img src="assets/loja/partidas-de-treinamento.jpg" alt="Partidas de treinamento — 1 hora de jogos online no Lichess" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      <!-- Planos de assinatura do Mercado Pago. Os cartões vêm de dados/conteudo.json > apoios;
+           o menor valor fixo ganha o destaque de "Comece por aqui". -->
+      <div class="apoios" id="apoios">
+        <a class="apoio apoio--micro" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=8dfc1abd8d404f57a0e9eddc3873a9fc" target="_blank" rel="noopener">
+          <span class="apoio__tag">Comece por aqui</span>
+          <span class="apoio__v">R$ 20<small>/mês</small></span>
+          <span class="apoio__sem">menos de R$ 5 por semana</span>
+          <span class="apoio__pe">Apoiar →</span>
         </a>
-        <a class="prod" href="https://form.respondi.app/mg3mwzPj" target="_blank" rel="noopener" aria-label="Terapia e Orientação Educacional com Maurizio Casalaspro">
-          <img src="assets/loja/terapia-orientacao-educacional.jpg" alt="Terapia e Orientação Educacional com Maurizio Casalaspro" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=27036d019c8a4d9c88cd63afda62646a" target="_blank" rel="noopener">
+          <span class="apoio__v">R$ 50<small>/mês</small></span>
+          <span class="apoio__pe">Apoiar →</span>
         </a>
-        <a class="prod" href="https://produto.mercadolivre.com.br/MLB-1837673983-porta-copos-de-xadrez-_JM" target="_blank" rel="noopener" aria-label="Apoio de copos artesanal em borracha, no Mercado Livre">
-          <img src="assets/loja/apoio-de-copos.jpg" alt="Apoio de copos artesanal em borracha, no Mercado Livre" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        <a class="apoio" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=426a4917b0a242e0ab47c0781d41202c" target="_blank" rel="noopener">
+          <span class="apoio__v">R$ 100<small>/mês</small></span>
+          <span class="apoio__pe">Apoiar →</span>
         </a>
-        <a class="prod" href="https://amzn.to/46Ae2RE" target="_blank" rel="noopener" aria-label="Jogo dos Hábitos, de Maurizio Casalaspro, na Amazon">
-          <img src="assets/loja/jogo-dos-habitos.jpg" alt="Jogo dos Hábitos, de Maurizio Casalaspro, na Amazon" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        <a class="apoio apoio--livre" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=77b3e1c46a744a0384aa9756f8c214ba" target="_blank" rel="noopener">
+          <span class="apoio__v">Outro valor</span>
+          <span class="apoio__pe">Escolher →</span>
         </a>
       </div>
     </div>
@@ -1583,7 +1611,10 @@ const PADRAO = {
 
   /* Texto de interface. Se a chave faltar no idioma, cai no português. */
   function T(chave, alt){
-    const v = TXT[chave];
+    let v = TXT[chave];
+    /* As chaves "_meta.x" moram aninhadas em _meta no JSON de idioma. Sem isto,
+       elas nunca eram achadas e o inglês e o italiano mostravam o texto em português. */
+    if (v == null && chave.indexOf("_meta.") === 0) v = META[chave.slice(6)];
     return (v == null || v === "") ? (alt == null ? "" : alt) : v;
   }
   /* Campo traduzido de um item dos dados: texto_en, texto_it… senão o original. */
@@ -1708,7 +1739,19 @@ const PADRAO = {
       '<div class="num"><span class="num__v" data-conta="'+Number(n.valor||0)+'">0</span>' +
       '<span class="num__r">'+esc(TR(n,"rotulo"))+'</span></div>').join("");
     $$("[data-conta]", g).forEach(el=> obsConta.observe(el));
-    if (quando) $("#datadoNumeros").textContent = T("_meta.atualizadoEm","Atualizado em") + " " + quando;
+    if (quando) $("#datadoNumeros").textContent = T("_meta.atualizadoEm","Atualizado em") + " " + mesNoIdioma(quando);
+  }
+
+  /* "agosto de 2026" vem escrito à mão no conteudo.json. Em inglês e italiano,
+     o mês é reescrito no idioma da página; se o texto fugir do formato, fica como está. */
+  function mesNoIdioma(txt){
+    if (LANG === "pt") return txt;
+    const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho",
+                   "agosto","setembro","outubro","novembro","dezembro"];
+    const m = String(txt).trim().toLowerCase().match(/^([a-zç]+)\s+de\s+(\d{4})$/);
+    const i = m ? MESES.indexOf(m[1]) : -1;
+    if (i < 0) return txt;
+    return new Date(+m[2], i, 15).toLocaleDateString(LANG, { month:"long", year:"numeric" });
   }
 
   function montaConquistas(lista, nascimento){
@@ -1746,31 +1789,49 @@ const PADRAO = {
     }).join("");
   }
 
-  function montaLoja(produtos){
-    if (!Array.isArray(produtos) || !produtos.length) return;
-    const seta = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
-    $("#loja").innerHTML = produtos.map(p=>{
-      /* O título já está impresso na arte do produto: aqui ele vira só o rótulo
-         acessível, para quem usa leitor de tela. */
-      const nome = esc(TR(p,"nome") + (TR(p,"descricao") ? " — " + TR(p,"descricao") : ""));
-      const foto = p.imagem
-        ? '<img src="assets/loja/'+esc(p.imagem)+'" alt="'+nome+'" loading="lazy">'
-        : '<span class="prod__vazio" aria-hidden="true"></span>';
-      return '<a class="prod" href="'+esc(p.url)+'" target="_blank" rel="noopener" aria-label="'+nome+'">'+
-             foto+seta+'</a>';
-    }).join("");
+  /* "R$ 1.000" -> 1000. Devolve NaN se não houver número. */
+  function numeroDe(txt){
+    return parseFloat(String(txt || "").replace(/[^\d,.]/g,"").replace(/\./g,"").replace(",","."));
   }
 
-
+  /* A micro contribuição é o menor valor fixo da lista: ganha o cartão de destaque,
+     e a conta "por semana" sai dele. Mudou o valor no conteudo.json, o texto acompanha. */
   function montaApoios(itens){
     if (!Array.isArray(itens) || !itens.length) return;
-    $("#apoios").innerHTML = itens.map(a=>{
-      const livre = a.livre ? " apoio--livre" : "";
+    const fixos = itens.filter(a=> !a.livre && numeroDe(a.valor) > 0);
+    const micro = fixos.length ? fixos.reduce((m,a)=> numeroDe(a.valor) < numeroDe(m.valor) ? a : m) : null;
+    const ordem = micro ? [micro].concat(itens.filter(a=> a !== micro)) : itens;
+
+    $("#apoios").innerHTML = ordem.map(a=>{
+      const ehMicro = a === micro;
+      const classe = "apoio" + (a.livre ? " apoio--livre" : "") + (ehMicro ? " apoio--micro" : "");
       const valor = a.livre ? esc(TR(a,"valor")) : esc(a.valor) + '<small>'+esc(T("_meta.mes","/mês"))+'</small>';
-      return '<a class="apoio'+livre+'" href="'+esc(a.url)+'" target="_blank" rel="noopener">'+
+      return '<a class="'+classe+'" href="'+esc(a.url)+'" target="_blank" rel="noopener">'+
+             (ehMicro ? '<span class="apoio__tag">'+esc(T("apoiar.micro.tag","Comece por aqui"))+'</span>' : '')+
              '<span class="apoio__v">'+valor+'</span>'+
+             (ehMicro ? '<span class="apoio__sem">'+esc(semanal(a, "apoiar.micro.sem", "menos de {semana} por semana"))+'</span>' : '')+
              '<span class="apoio__pe">'+esc(a.livre ? T("_meta.escolher","Escolher") : T("_meta.apoiar","Apoiar"))+' →</span></a>';
     }).join("");
+    montaMicro(micro);
+  }
+
+  /* Valor mensal convertido em "menos de R$ X por semana" (12 meses ÷ 52 semanas). */
+  function semanal(a, chave, padrao){
+    const v = numeroDe(a.valor), s = v * 12 / 52;
+    const teto = Number.isInteger(s) ? s + 1 : Math.ceil(s);
+    const moeda = String(a.valor).replace(/[\d.,\s]+$/,"").trim() || "R$";
+    return T(chave, padrao).replace("{semana}", moeda + " " + teto).replace("{mes}", a.valor);
+  }
+
+  function montaMicro(micro){
+    if (!micro) return;
+    const conta = $("#microConta");
+    if (conta) conta.innerHTML = semanal(micro, "apoiar.micro.conta",
+      "<b>{mes} por mês</b> é menos de <b>{semana} por semana</b>. Sozinho, parece pouco. " +
+      "Somado ao de outras pessoas, paga treino, viagens e inscrições — e dá a previsibilidade " +
+      "que permite planejar a temporada.");
+    const btn = $("#metaBtn");
+    if (btn) btn.textContent = semanal(micro, "meta.btnMicro", "Contribuir a partir de {mes}/mês");
   }
 
   function montaImprensa(grupos){
@@ -2187,7 +2248,6 @@ const PADRAO = {
     montaImprensa(c.imprensa);
     montaCusteio(c.custeio);
     montaApoios(c.apoios);
-    montaLoja(c.loja);
     montaCaminho(Object.assign({ atualizadoEm: c.atualizadoEm }, c.caminho));
     aplicaContato(c.contato);
   }

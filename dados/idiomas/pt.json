@@ -40,12 +40,9 @@
   "custeio.titulo": "O que uma temporada exige",
   "meta.arrecadados": "arrecadados",
   "meta.meta": "meta",
-  "meta.btn": "Contribuir com a temporada",
   "casa.e5": "Como apoiar",
   "apoiar.h2": "Seu apoio faz a diferença",
-  "apoiar.lede": "<b>Escolha um valor que cabe no seu orçamento mensal.</b> Nenhuma contribuição é pequena: somadas, elas podem tornar esse sonho realidade.",
-  "loja.h3": "Apoiar levando algo em troca",
-  "loja.p": "Aulas, produtos e serviços que financiam diretamente a preparação. Você ganha, ele avança.",
+  "apoiar.lede": "<b>Escolha um valor que cabe no seu orçamento mensal.</b>",
   "casa.f6": "Alcance",
   "alcance.maisde": "Mais de",
   "alcance.sub": "visualizações",
@@ -134,5 +131,13 @@
   "lives.views": "visualizações somadas<br>nessas transmissões",
   "alcance.subTotal": "visualizações no total",
   "alcance.emProprios": "em vídeos sobre ele",
-  "alcance.emLives": "em transmissões ao vivo"
+  "alcance.emLives": "em transmissões ao vivo",
+  "apoiar.micro.rot": "Micro contribuição",
+  "apoiar.micro.conta": "<b>{mes} por mês</b> é menos de <b>{semana} por semana</b>. Sozinho, parece pouco. Somado ao de outras pessoas, paga treino, viagens e inscrições — e dá a previsibilidade que permite planejar a temporada.",
+  "apoiar.micro.tag": "Comece por aqui",
+  "apoiar.micro.sem": "menos de {semana} por semana",
+  "apoiar.micro.l1": "Mensal e automático, pelo Mercado Pago",
+  "apoiar.micro.l2": "Sem fidelidade: para parar, é só avisar",
+  "apoiar.micro.l3": "Qualquer valor conta",
+  "meta.btnMicro": "Contribuir a partir de {mes}/mês"
 }
