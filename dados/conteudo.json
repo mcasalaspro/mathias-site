@@ -3,25 +3,25 @@
   "atualizadoEm": "agosto de 2026",
   "numeros": [
     {
-      "valor": 2380,
+      "valor": 2411,
       "rotulo": "Rating FIDE",
       "rotulo_en": "FIDE rating",
       "rotulo_it": "Rating FIDE"
     },
     {
-      "valor": 538,
+      "valor": 547,
       "rotulo": "Partidas clássicas",
       "rotulo_en": "Classical games",
       "rotulo_it": "Partite classiche"
     },
     {
-      "valor": 318,
+      "valor": 319,
       "rotulo": "Torneios disputados",
       "rotulo_en": "Tournaments played",
       "rotulo_it": "Tornei disputati"
     },
     {
-      "valor": 163,
+      "valor": 164,
       "rotulo": "Eventos presenciais",
       "rotulo_en": "In-person events",
       "rotulo_it": "Eventi in presenza"
@@ -34,8 +34,8 @@
     }
   ],
   "caminho": {
-    "ratingAtual": 2380,
-    "normasFeitas": 1,
+    "ratingAtual": 2411,
+    "normasFeitas": 2,
     "normasNecessarias": 3,
     "temporada": "2027",
     "metaResumo": "O que sustenta treino, viagens e inscrições ao longo do ano",
@@ -61,14 +61,27 @@
         "nota": "FM · dez/2024"
       },
       {
-        "valor": 2400,
+        "valor": 2411,
         "titulo": "2400",
-        "nota": "meta · MI",
+        "nota": "2400 Elo - out/2026",
         "meta": true
       }
     ]
   },
   "conquistas": [
+    {
+      "ano": "2026",
+      "texto": "3º lugar no geral do V Manaus Chess Open 2026, empatado em pontos com o campeão e com performance de 2471 — conquistando a segunda norma de Mestre Internacional",
+      "local": "Manaus",
+      "selo": "Norma de MI",
+      "tipo": "fide",
+      "texto_en": "3rd place overall at the V Manaus Chess Open 2026, tied on points with the champion and achieving a 2471 performance rating — earning his second International Master norm.",
+      "texto_it": "3º posto assoluto al V Manaus Chess Open 2026, a pari punti con il vincitore e con una performance Elo di 2471 — conquistando la seconda norma di Maestro Internazionale.",
+      "local_en": "Brazil",
+      "local_it": "Brasile",
+      "selo_en": "IM norm",
+      "selo_it": "Norma di MI"
+    },
     {
       "ano": "2026",
       "texto": "5º lugar no geral do Leça Chess Open, empatado em pontos com o campeão e com performance de 2553 — o resultado que fechou a primeira norma de Mestre Internacional",

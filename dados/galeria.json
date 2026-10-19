@@ -2,6 +2,12 @@
   "_leia": "ESTE É O ARQUIVO DAS LEGENDAS. Cada foto de assets/galeria/ tem uma entrada aqui: 'destaque' é o trecho dourado no começo, 'legenda' é o texto, e 'alt' descreve a imagem para leitores de tela. A GitHub Action reescreve este arquivo quando você adiciona ou remove fotos, mas SEMPRE preserva os textos que você já escreveu.",
   "fotos": [
     {
+      "arquivo": "2026-10-Manaus_Norma2.webp",
+      "destaque": "V Manaus Chess Open 2026",
+      "legenda": "Aberto em Manaus - Segunda norma de MI e terceiro classificado no geral.",
+      "alt": "Arte de divulgação do Aberto em Manaus - Segunda norma de MI e terceiro classificado no geral."
+    },
+    {
       "arquivo": "2026-09_cob-expo.jpg",
       "destaque": "COB Expo 2026",
       "legenda": "Convidado pelo Comitê Olímpico do Brasil para representar o xadrez na maior feira de esportes olímpicos da América Latina.",
