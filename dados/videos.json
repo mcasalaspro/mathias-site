@@ -29,7 +29,7 @@
   ],
   "_curtidasManual": "Total de curtidas somado à mão. Só é usado quando não há chave de API, igual ao viewsManual.",
   "curtidasManual": 0,
-  "_participacoes": "Transmissões ao vivo em que o Mathias aparece, mas que não são sobre ele. Viram uma parede de capas clicáveis, sem títulos, abaixo do mosaico principal. URLs repetidas são descartadas sozinhas. Lista vazia esconde o bloco inteiro. Origem desta leva: canal Everton Togni.",
+  "_participacoes": "Transmissões ao vivo em que o Mathias aparece, mas que não são apenas sobre ele. Viram uma parede de capas clicáveis, sem títulos, abaixo do mosaico principal. URLs repetidas são descartadas sozinhas. Lista vazia esconde o bloco inteiro. Origem desta leva: canal Everton Togni.",
   "participacoes": [
     "https://www.youtube.com/watch?v=_folw34fBs8",
     "https://www.youtube.com/watch?v=Azc9VEA6rIo",
