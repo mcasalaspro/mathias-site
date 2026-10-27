@@ -27,7 +27,7 @@
       "rotulo_it": "Eventi in presenza"
     },
     {
-      "valor": 2,
+      "valor": 1,
       "rotulo": "Norma de MI conquistada",
       "rotulo_en": "IM norm achieved",
       "rotulo_it": "Norma di MI ottenuta"
@@ -282,6 +282,18 @@
       ],
       "grupo_en": "COB Expo 2025 · São Paulo",
       "grupo_it": "COB Expo 2025 · San Paolo"
+    },
+    {
+      "grupo": "Simultânea · Sociedade Hípica de Campinas, 2025",
+      "itens": [
+        {
+          "titulo": "SHC recebe prodígio do xadrez brasileiro, MF Mathias Casalaspro, para partidas simultâneas",
+          "veiculo": "Sociedade Hípica de Campinas",
+          "url": "https://hipica.com.br/shc-recebe-prodigio-do-xadrez-brasileiro-mf-mathias-casalaspro-para-partidas-simultaneas/"
+        }
+      ],
+      "grupo_en": "Simul · Sociedade Hípica de Campinas, 2025",
+      "grupo_it": "Simultanea · Sociedade Hípica de Campinas, 2025"
     },
     {
       "grupo": "Xadrez na educação",
