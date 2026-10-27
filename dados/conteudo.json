@@ -27,7 +27,7 @@
       "rotulo_it": "Eventi in presenza"
     },
     {
-      "valor": 1,
+      "valor": 2,
       "rotulo": "Norma de MI conquistada",
       "rotulo_en": "IM norm achieved",
       "rotulo_it": "Norma di MI ottenuta"
@@ -227,6 +227,18 @@
     }
   ],
   "imprensa": [
+    {
+      "grupo": "V Manaus Chess Open · Manaus, 2026",
+      "itens": [
+        {
+          "titulo": "Manaus reúne grandes mestres e promessas do xadrez no Manaus Chess Open",
+          "veiculo": "Portal Barelândia",
+          "url": "https://barelandia.com.br/esporte/manaus-reune-grandes-mestres-e-promessas-do-xadrez-no-manaus-chess-open/"
+        }
+      ],
+      "grupo_en": "V Manaus Chess Open · Manaus, 2026",
+      "grupo_it": "V Manaus Chess Open · Manaus, 2026"
+    },
     {
       "grupo": "Olimpíada Mundial Sub-16 · Barranquilla, 2025",
       "itens": [
