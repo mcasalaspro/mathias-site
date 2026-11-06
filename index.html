@@ -1570,13 +1570,13 @@ p{ margin:0 0 1em; }
 const PADRAO = {
   atualizadoEm: "agosto de 2026",
   caminho: {
-    ratingAtual: 2341, escala: [2100, 2440],
+    ratingAtual: 2411, escala: [2100, 2440],
     marcos: [
       { valor:2200, titulo:"2200", nota:"jun/2024" },
       { valor:2341, titulo:"2341", nota:"FM · dez/2024" },
-      { valor:2400, titulo:"2400", nota:"meta · MI", meta:true }
+      { valor:2411, titulo:"2411", nota:"pico · out/2026", meta:true }
     ],
-    normasFeitas: 1, normasNecessarias: 3,
+    normasFeitas: 2, normasNecessarias: 3,
     temporada: "2027", metaResumo: "4 torneios internacionais · 2 normas restantes",
     metaValor: 60000, arrecadado: 12500, apoiadores: 0
   },
@@ -1868,7 +1868,7 @@ const PADRAO = {
       const el = document.createElement("div");
       el.className = "marco" + (m.meta ? " marco--meta" : "") + (i%2 ? " marco--baixo" : "") + (x > 80 ? " marco--fim" : "");
       el.style.left = x + "%";
-      el.innerHTML = '<span class="marco__pt"></span><span class="marco__lb"><b>'+esc(m.titulo)+'</b>'+esc(m.nota)+'</span>';
+      el.innerHTML = '<span class="marco__pt"></span><span class="marco__lb"><b>'+esc(m.titulo)+'</b>'+esc(TR(m,"nota"))+'</span>';
       trilho.appendChild(el);
     });
 
@@ -1891,7 +1891,7 @@ const PADRAO = {
     $("#apoioMensal").textContent = brl(jaTem);
     const prova = $("#prova");
     if (prova){ if (C.apoiadores > 0) prova.textContent = C.apoiadores + " pessoas já apoiaram"; else prova.remove(); }
-    if (C.atualizadoEm) $("#datado-rating").textContent = "Atualizado em " + C.atualizadoEm;
+    if (C.atualizadoEm) $("#datado-rating").textContent = T("_meta.atualizadoEm","Atualizado em") + " " + mesNoIdioma(C.atualizadoEm);
 
     const obsBarra = new IntersectionObserver((es,obs)=>{
       es.forEach(e=>{

@@ -28,9 +28,9 @@
     },
     {
       "valor": 2,
-      "rotulo": "Norma de MI conquistada",
-      "rotulo_en": "IM norm achieved",
-      "rotulo_it": "Norma di MI ottenuta"
+      "rotulo": "Normas de MI conquistadas",
+      "rotulo_en": "IM norms achieved",
+      "rotulo_it": "Norme di MI ottenute"
     }
   ],
   "caminho": {
@@ -53,22 +53,39 @@
       {
         "valor": 2200,
         "titulo": "2200",
-        "nota": "jun/2024"
+        "nota": "jun/2024",
+        "nota_en": "Jun 2024",
+        "nota_it": "giu 2024"
       },
       {
         "valor": 2341,
         "titulo": "2341",
-        "nota": "FM · dez/2024"
+        "nota": "FM · dez/2024",
+        "nota_en": "FM · Dec 2024",
+        "nota_it": "FM · dic 2024"
       },
       {
         "valor": 2411,
-        "titulo": "2400",
-        "nota": "2400 Elo - out/2026",
+        "titulo": "2411",
+        "nota": "pico · out/2026",
+        "nota_en": "peak · Oct 2026",
+        "nota_it": "picco · ott 2026",
         "meta": true
       }
-    ]
+    ],
+    "atualizadoEm": "novembro de 2026"
   },
   "conquistas": [
+    {
+      "ano": "2026",
+      "texto": "Mais jovem brasileiro a atingir 3000 de rating blitz no Chess.com — e apenas o sexto brasileiro a conseguir essa marca",
+      "texto_en": "Youngest Brazilian ever to reach a 3000 blitz rating on Chess.com — and only the sixth Brazilian to achieve it",
+      "texto_it": "Il brasiliano più giovane a raggiungere 3000 punti di rating blitz su Chess.com — e solo il sesto brasiliano a riuscirci",
+      "selo": "Recorde!",
+      "selo_en": "Record!",
+      "selo_it": "Record!",
+      "tipo": "inedito"
+    },
     {
       "ano": "2026",
       "texto": "3º lugar no geral do V Manaus Chess Open 2026, empatado em pontos com o campeão e com performance de 2471 — conquistando a segunda norma de Mestre Internacional",
