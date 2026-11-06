@@ -2120,32 +2120,17 @@ const PADRAO = {
     };
     embaralha(ids);
 
-    /* A parede repete as capas (em outra ordem) para parecer ainda maior.
-       O contador continua mostrando só as transmissões diferentes.
-       A repetição fica fora da navegação por teclado e de leitores de tela. */
-    const REPETICOES = 2;
-    let mural = ids.slice();
-    for (let r = 1; r < REPETICOES; r++){
-      const outra = embaralha(ids.slice());
-      if (outra[0] === mural[mural.length - 1]) outra.push(outra.shift());
-      mural = mural.concat(outra);
-    }
-
     cx.hidden = false;
     $("#livesN").textContent = ids.length;
 
 
     const pista = $("#livesPista");
     pista.innerHTML = "";
-    mural.forEach((id, i) => {
+    ids.forEach((id, i) => {
       const a = document.createElement("a");
       a.href = "https://www.youtube.com/watch?v=" + id;
       a.target = "_blank"; a.rel = "noopener";
-      if (i < ids.length){
-        a.setAttribute("aria-label", T("lives.abrir","Abrir transmissão no YouTube") + " " + (i+1));
-      } else {
-        a.tabIndex = -1; a.setAttribute("aria-hidden", "true");
-      }
+      a.setAttribute("aria-label", T("lives.abrir","Abrir transmissão no YouTube") + " " + (i+1));
       const img = document.createElement("img");
       img.src = "https://i.ytimg.com/vi/" + id + "/mqdefault.jpg";
       img.alt = ""; img.loading = "lazy"; img.decoding = "async";
